@@ -2,22 +2,24 @@ import React from 'react';
 import Image from 'next/image';
 import Button from "@mui/joy/Button";
 import { Tag } from '../Tag/Tag';
+import { CustomButton } from '../Button/Button';
 
 // Define the props interface
 export interface SingleCardItemProps {
-  variant: 'event' | 'article';
+  variant: 'event' | 'article' | 'video';
   imageUrl: string;
   title: string;
   author?: string;
   details?: string;
   description?: string;
   tags?: string[];
+  zone?: string;
   onFirstButtonClick: () => void;
   onSecondButtonClick: () => void;
 }
 
 const SingleCardItem = (props: SingleCardItemProps) => {
-  const { variant, imageUrl, title, description = "", details = "", onFirstButtonClick, onSecondButtonClick, tags = [], author = "" } = props;
+  const { variant, imageUrl, zone, title, description = "", details = "", onFirstButtonClick, onSecondButtonClick, tags = [], author = "" } = props;
   return (
     <div className="flex items-start gap-6 ">
       {/* First Column: Image */}
@@ -67,11 +69,18 @@ const SingleCardItem = (props: SingleCardItemProps) => {
 
           {/* Dates  */}
           {variant === 'event' ? (
-            <div className="flex items-center">
-              <Image src="/date-icon.svg" alt="Date" width={12} height={12} />
-              <span className="text-[#161616] font-bold text-lg leading-[120%] tracking-[0.36px] ml-2">
-                {details}
-              </span>
+            <div className="flex gap-1">
+              {tags.map((tag, index) => (
+                <Tag text={tag} key={index} type={'relevance'} />
+              ))}
+
+              <div className="justify-start items-center gap-2 flex ml-2">
+                <Image src="/date-icon.svg" alt="Date" width={12} height={12} />
+                <div className="text-neutral-900 text-opacity-80 text-sm font-normal font-['Cabin'] leading-[16.80px]">{details}</div>
+                <div className="w-[5px] h-[5px] opacity-80 bg-neutral-900" />
+                <div className="opacity-80 text-neutral-900 text-sm font-normal font-['Cabin'] leading-[16.80px]">{zone}</div>
+
+              </div>
             </div>
           ) : (
             <div className="flex gap-1">
@@ -88,9 +97,9 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         </div>
 
         {/* Second Row: Buttons */}
-        {variant === 'event' ? (<div className="flex gap-4">
-          <Button onClick={onFirstButtonClick}>
-            Join Event         </Button>
+        {variant === 'event' ? (<div className="flex">
+          <CustomButton text='Join Event' onClick={onFirstButtonClick} size='10px' width='180px' type='primary' />
+          <CustomButton text='Details' onClick={onSecondButtonClick} size='10px' width='180px' />
           <Button onClick={onSecondButtonClick}>
             Details
           </Button>

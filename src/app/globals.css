@@ -36,7 +36,7 @@ body {
     /* Number of lines to show */
 }
 
-.line-clamp-1 {
+.line-clamp-3 {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;

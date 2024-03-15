@@ -846,9 +846,8 @@ export const NavBar = () => {
             <a href="#" className="py-5 px-2 text-black">Articles</a>
             <a href="#" className="py-5 px-2 text-black">Videos</a>
             <a href="#" className="py-5 px-2 text-black flex items-center justify-center" >More <IoIosArrowDown /></a>
-            <CustomButton text='ENG' icon={<IoIosArrowDown />} onClick={() => { }} width='100px' size='10px' type='secondary' />
+            <CustomButton text='ENG' icon={<IoIosArrowDown />} onClick={() => { }} width='70px' size='10px' type='secondary' useSmall={true} />
           </div>
-
         </div>
       </div>
 

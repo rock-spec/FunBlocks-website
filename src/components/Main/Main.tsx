@@ -2,6 +2,7 @@ import React from 'react';
 import { GamesColumn } from "@/components/GamesColumn/GamesColumn";
 import { MainColumn } from "@/components/MainColumn/MainColumn";
 import Image from "next/image";
+import { Column } from '../Column/Column';
 
 const Main = () => {
   const svgBackground = "url('/background.svg')";

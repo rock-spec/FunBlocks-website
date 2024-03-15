@@ -10,47 +10,60 @@ export interface ButtonProps {
   height?: string;
   width?: string;
   size?: string;
-  icon?: ReactNode; // Add a new prop for the icon
+  useSmall?: boolean;
+  icon?: ReactNode;
 }
 
 export const CustomButton = (props: ButtonProps) => {
-  const { onClick, text, type = 'primary', height = "100px", width = "350px", icon, size = "18px" } = props;
+  // Destructure props for easier usage
+  const {
+    onClick,
+    text,
+    type = 'secondary',
+    height = "100px",
+    width = "350px",
+    icon,
+    size = "18px",
+    useSmall,
+  } = props;
 
-  const primaryImageSrc = 'https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010723%20(1)%202-uu1e39irGGWhvZYyNWKcHykOFrV02R.svg';
-  const secondaryImageSrc = 'https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010723%20(1)%201-DrIKz8IZYKwkbEiGowfHc2iWdhmweB.svg';
+  // Define image sources for different button types
+  const imageSrc = useSmall
+    ? 'https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/button-nx98psh0NxJo08FqKnaafixQss0KAI.svg'
+    : type === 'primary'
+      ? 'https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010723%20(1)%202-uu1e39irGGWhvZYyNWKcHykOFrV02R.svg'
+      : 'https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010723%20(1)%201-DrIKz8IZYKwkbEiGowfHc2iWdhmweB.svg';
+
+  // Dynamically set color based on button type and size
+  const color = useSmall ? "#161616" : type === "primary" ? "#FFFCF9" : "#161616";
+
+  // Define styles for the button
+  const buttonStyles = {
+    color,
+    fontSize: size,
+    fontFamily: '"Press Start 2P", cursive',
+    backgroundImage: `url("${imageSrc}")`,
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    width,
+    height,
+  };
 
   return (
     <>
       {/* Preload images */}
-      <Image src={primaryImageSrc} alt="" width={1} height={1} />
-      <Image src={secondaryImageSrc} alt="" width={1} height={1} />
+      <Image src={imageSrc} alt="" width={1} height={1} />
 
       {/* Render button */}
       <div
         onClick={onClick}
         className="text-center text-neutral-900 text-lg font-bold font-['OffBit Trial'] tracking-tight flex justify-center items-center"
-        style={{
-          color: type === "primary" ? "#FFFCF9" : "#161616",
-          fontSize: size,
-          fontFamily: '"Press Start 2P", cursive',
-          backgroundImage: `url("${type === 'primary' ? primaryImageSrc : secondaryImageSrc}")`,
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          width: width, // Set width of the div in px
-          height: height, // Set height of the div px
-
-
-        }}
-      > {text} {icon}
+        style={buttonStyles}
+      >
+        {/* Display button text and icon */}
+        {text} {icon}
       </div>
     </>
   );
 };
-
-// // Usage example:
-// <CustomButton
-//   onClick={() => console.log('Button clicked')}
-//   text="Click me"
-//   icon={<IoIosArrowDown />} // Pass the icon as a prop
-// />
