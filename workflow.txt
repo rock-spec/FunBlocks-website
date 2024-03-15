@@ -1,0 +1,8 @@
+THIS IS THE TEMPERORY FILE TO PLAN DEVELOPMENT
+
+Frontend Development To-Do List (Tomorrow)  (March 16th):
+
+1. Create reusable side components.
+2. Develop Home, Games, and Articles pages.
+3. Implement navigation for seamless page transitions.
+4. Complete basic layout and functionality of Home, Games, and Articles pages by tomorrow (March 16th).

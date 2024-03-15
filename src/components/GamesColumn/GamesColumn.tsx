@@ -1,32 +1,47 @@
 import React from 'react';
-import Button from "@mui/joy/Button";
-import {Tag} from "@/components/Tag/Tag";
-import Image from "next/image";
+import { Column } from '../Column/Column';
 
 export const GamesColumn = () => {
   return (
-      <div className="border border-black bg-floralWhite p-5 w-[285px] max-h-[776px]">
-        {/* Row 1 */}
-        <div className="flex justify-between items-center mb-10 h-[33px]">
-          <Tag text={'games'} type={'section'}/>
-          <Image
-              src={'/filter.svg'}
-              alt="Filter Icon"
-              width={24}
-              height={24}
-          />
-        </div>
 
-        {/* Row 2 */}
-        <div className="mb-10 min-h-[583px] overflow-auto">
-          {/* Row 2 content, potentially overflowing */}
-        </div>
-
-        {/* Row 3 */}
-        <div className="flex justify-end h-[40px]">
-          {/* Replace ButtonComponent with your actual button component */}
-          <Button variant="solid">Solid</Button>
-        </div>
-      </div>
+    <Column variant='game' title='game' buttonText='All Games' onButtonClick={() => { }}
+      columnItems={[{
+        variant: "game",
+        tags: ['Crypto', '8+'],
+        title: "Game 1",
+        imageUrl: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/game-pW2m7GbYkdo7XmrKvmQAtnp0Eh5OD6.png"
+      },
+      {
+        variant: "game",
+        tags: ['Crypto', '8+'],
+        title: "Game 1",
+        imageUrl: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/game%20(1)-QnKAcgeQFAZMjJlgN5YhUNOyFnXwc4.png"
+      },
+      {
+        variant: "game",
+        tags: ['Crypto', '8+'],
+        title: "Game 1",
+        imageUrl: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/img-kWQFGUobAsklZOZxQ4wefibP0Zcr7I.png"
+      },
+      {
+        variant: "game",
+        tags: ['Crypto', '8+'],
+        title: "Game 1",
+        imageUrl: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/game%20(2)-8HFIoSLnMaAi53FMkbQU9M5Xk3U8RL.png"
+      },
+      {
+        variant: "game",
+        tags: ['Crypto', '8+'],
+        title: "Game 1",
+        imageUrl: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/game%20(3)-kT72FeiJsE4gENjdIT27R54fdvdUTd.png"
+      },
+      {
+        variant: "game",
+        tags: ['Crypto', '8+'],
+        title: "Game 1",
+        imageUrl: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/img%20(1)-7Tio5zOgorsegGbIQOV2fcQNimIm2Y.png"
+      },
+      ]}
+    />
   );
 }
