@@ -7,7 +7,7 @@ import { CustomButton } from "../Button/Button";
 
 // Define the props interface
 export interface ColumnProps {
-  variant: 'game' | 'article';
+  variant: 'game' | 'article' | 'news';
   title: string;
   author?: string;
   details?: string;
@@ -22,7 +22,7 @@ export interface ColumnProps {
 export const Column = (props: ColumnProps) => {
   const { variant, title, columnItems, buttonText, onButtonClick = () => { } } = props;
   return (
-    <div className="border border-black bg-floralWhite p-5 w-[285px] h-fit">
+    <div className="border border-black bg-floralWhite p-5 w-[285px] h-full">
       {/* Row 1 */}
       <div className="flex justify-between items-center mb-10 h-[33px] ">
         <Tag text={`${title}s`} type={"section"} />

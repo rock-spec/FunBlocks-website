@@ -818,7 +818,12 @@ export const BottomSVG = () => {
   );
 };
 
-export const NavBar = () => {
+
+interface NavBarProps {
+  handleNavigation: (page: string) => void;
+}
+
+export const NavBar: React.FC<NavBarProps> = ({ handleNavigation }) => {
   return (
     <nav className={"bg-floralWhite"}>
       <div className="max-w-full mx-auto px-10 py-7.5 h-24" style={{ height: '98px' }}>
@@ -833,28 +838,28 @@ export const NavBar = () => {
 
           <SearchInput />
 
+
           {/* Page Navigation Links Section */}
           <div className="flex items-center" style={{
             fontSize: '10px',
-            // lineHeight: '120%',
-            // letterSpacing: '0.36px',
             fontFamily: '"Press Start 2P", cursive'
           }}>
-            <a href="#" className="py-5 px-2 text-black">Home</a>
-            <a href="#" className="py-5 px-2 text-black">Games</a>
-            <a href="#" className="py-5 px-2 text-black">News</a>
-            <a href="#" className="py-5 px-2 text-black">Articles</a>
-            <a href="#" className="py-5 px-2 text-black">Videos</a>
+            <a href="#" className="py-5 px-2 text-black" onClick={() => handleNavigation('home')}>Home</a>
+            <a href="#" className="py-5 px-2 text-black" onClick={() => handleNavigation('games')}>Games</a>
+            <a href="#" className="py-5 px-2 text-black" onClick={() => handleNavigation('news')}>News</a>
+            <a href="#" className="py-5 px-2 text-black" onClick={() => handleNavigation('article')}>Articles</a>
+            <a href="#" className="py-5 px-2 text-black" onClick={() => handleNavigation('videos')}>Videos</a>
             <a href="#" className="py-5 px-2 text-black flex items-center justify-center" >More <IoIosArrowDown /></a>
-            <CustomButton text='ENG' icon={<IoIosArrowDown />} onClick={() => { }} width='70px' size='10px' type='secondary' useSmall={true} />
+            <CustomButton useSmall={true} onClick={() => { }} size='10px' text='ENG' width='75px' icon={<IoIosArrowDown />} />
           </div>
         </div>
       </div>
 
       {/* SVG at the bottom of the NavBar */}
       <div className="w-full bg-gray-200 overflow-hidden">
-        <BottomSVG />
+        {/* BottomSVG */}
       </div>
     </nav>
   );
 };
+

@@ -100,9 +100,6 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         {variant === 'event' ? (<div className="flex">
           <CustomButton text='Join Event' onClick={onFirstButtonClick} size='10px' width='180px' type='primary' />
           <CustomButton text='Details' onClick={onSecondButtonClick} size='10px' width='180px' />
-          <Button onClick={onSecondButtonClick}>
-            Details
-          </Button>
         </div>) : ""}
       </div>
     </div>

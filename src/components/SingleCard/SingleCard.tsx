@@ -10,14 +10,16 @@ export interface SingleCardProps {
   singleCardItemDetails: Array<SingleCardItemProps>; // Define or import EventCardDetail interface
   buttonText: string;
   onButtonClick: () => void; // Function type for button click
+  heading?: string
 }
 
 const SingleCard = (props: SingleCardProps) => {
-  const { name, singleCardItemDetails, buttonText, onButtonClick } = props;
+  const { name, singleCardItemDetails, buttonText, onButtonClick, heading } = props;
+  const title = heading || (name + 's')
   return (
     <div className="flex flex-col flex-1 items-start gap-5 p-5 border border-[#161616] bg-[#FFFCF9]">
       {/* First Row: Tag */}
-      <Tag text={name + 's'} type={'section'} />
+      <Tag text={title} type={'section'} />
 
       {/* Second Row: Event Cards */}
       {

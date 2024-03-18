@@ -58,7 +58,7 @@ export const CustomButton = (props: ButtonProps) => {
       {/* Render button */}
       <div
         onClick={onClick}
-        className="text-center text-neutral-900 text-lg font-bold font-['OffBit Trial'] tracking-tight flex justify-center items-center"
+        className="text-center text-neutral-900 text-lg font-bold font-['OffBit Trial'] tracking-tight flex justify-center items-center hover:scale-[1.01] transition-all cursor-pointer"
         style={buttonStyles}
       >
         {/* Display button text and icon */}

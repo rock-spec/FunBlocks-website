@@ -1,36 +1,65 @@
-import React from 'react';
-import { GamesColumn } from "@/components/GamesColumn/GamesColumn";
-import { MainColumn } from "@/components/MainColumn/MainColumn";
+import React, { useState } from 'react';
 import Image from "next/image";
-import { Column } from '../Column/Column';
+import Home from '../Home/Home';
+import { NavBar } from '../NavBar/NavBar';
+import Article from '../Articles/Article';
+import Video from '../Videos/Video';
+import Game from '../Games/Game';
+
 
 const Main = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'home':
+        return <Home />;
+      case 'games':
+        return <Game />;
+      case 'news':
+        return "News";
+      case "article":
+        return <Article />;
+      case 'videos':
+        return <Video />;
+      default:
+        return <Home />;
+    }
+  };
+
+  const handleNavigation = (page: string) => {
+    setCurrentPage(page);
+  };
+
   const svgBackground = "url('/background.svg')";
   return (
-    <div
-      className="min-h-screen flex justify-center items-start pt-[60px] pb-[60px]"
-      style={{
-        backgroundImage: svgBackground,
-        backgroundRepeat: 'repeat',
-        backgroundSize: 'auto'
-      }}
-    >
-      <div className="absolute top-[143px] left-0 -z-10">
-        <Image src="/bg-svg-left.svg" alt="Left SVG" width={336} height={461} />
-      </div>
+    <>
+      {/* Pass handleNavigation function as a prop to NavBar */}
 
-      <div className="absolute top-1 right-0 -z-10">
-        <Image src="/bg-svg-right.svg" alt="Right SVG" width={221} height={557} />
-      </div>
+      <NavBar handleNavigation={handleNavigation} />
+      <div
+        className="min-h-screen flex justify-center items-start pt-[60px] pb-[60px]"
+        style={{
+          backgroundImage: svgBackground,
+          backgroundRepeat: 'repeat',
+          backgroundSize: 'auto'
+        }}
+      >
+        <div className="absolute top-[143px] left-0 -z-10">
+          <Image src="/bg-svg-left.svg" alt="Left SVG" width={336} height={461} />
+        </div>
 
-      <div className="w-full max-w-[1200px] flex justify-between gap-x-5">
-        {/* Left Column */}
-        <GamesColumn />
-        <MainColumn />
+        <div className="absolute top-1 right-0 -z-10">
+          <Image src="/bg-svg-right.svg" alt="Right SVG" width={221} height={557} />
+        </div>
+
+
+
+        {/* Pages */}
+        {renderPage()}
       </div>
-    </div>
+    </>
   );
-}
-
+};
 
 export default Main;

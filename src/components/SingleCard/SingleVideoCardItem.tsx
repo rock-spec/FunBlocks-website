@@ -25,7 +25,7 @@ const SingleVideoCardItem = (props: SingleCardItemProps) => {
                         objectFit="cover"
                         objectPosition="center"
                     />
-                    <div className="absolute bottom-[50%] left-[50%] translate-x-[-50%] translate-y-[50%] shadow-md">
+                    <div className="hover:scale-110 transition-all cursor-pointer active:scale-95 absolute bottom-[50%] left-[50%] translate-x-[-50%] translate-y-[50%] shadow-md">
                         <Image
                             src="/play-button.svg"
                             alt="Play"
