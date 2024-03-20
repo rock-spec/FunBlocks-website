@@ -1,15 +1,20 @@
+'use client'
+
+import { Column } from '@/components/Column/Column';
+import { EventColumn } from '@/components/Events/EventColumn';
 import React from 'react';
-import { HomeColumn } from './HomeColumn';
-import { Column } from '../Column/Column';
 
 
-const Homee = () => {
 
+const Event = () => {
     return (
-
         <div className="w-full max-w-[1200px] flex justify-between gap-x-5">
-            {/* Left Column */}
-            <Column variant='game' title='game' buttonText='All Games' onButtonClick={() => { }}
+
+            {/* Main Column  */}
+            <EventColumn />
+
+            {/* Right Column */}
+            <Column variant='game' title='Featured Game' buttonText='All Games' onButtonClick={() => { }}
                 columnItems={[{
                     variant: "game",
                     tags: ['Crypto', '8+'],
@@ -48,14 +53,10 @@ const Homee = () => {
                 },
                 ]}
             />
-            {/* Main Column  */}
-            <HomeColumn />
         </div>
 
     );
 }
 
 
-
-export default Homee;
-
+export default Event;

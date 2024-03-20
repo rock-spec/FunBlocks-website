@@ -7,7 +7,7 @@ import { IoIosArrowDown } from "react-icons/io";
 
 
 
-export const ArticleColumn = () => {
+export const NewsColumn = () => {
 
     const singleCardItemDetails: SingleCardItemProps[] =
         [
@@ -24,6 +24,7 @@ export const ArticleColumn = () => {
                 'onSecondButtonClick': () => {
                 },
             },
+
             {
                 'variant': 'article',
                 'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(1)-oGAvZEn2wnE2aa3MPruck6hoXfCowD.png?height=360&width=720",

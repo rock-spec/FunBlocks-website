@@ -1,9 +1,12 @@
-import React from 'react';
+'use client'
+
+import React, { useState } from 'react';
 import Image from "next/image";
 import SearchInput from "@/components/SearchInput/SearchInput";
 import Button from "@mui/joy/Button";
 import { IoIosArrowDown } from "react-icons/io"
 import { CustomButton } from '../Button/Button';
+import Link from 'next/link';
 
 
 export const BottomSVG = () => {
@@ -818,12 +821,36 @@ export const BottomSVG = () => {
   );
 };
 
+// interface NavBarProps {
+//   handleNavigation: (page: string) => void;
+// }
 
-interface NavBarProps {
-  handleNavigation: (page: string) => void;
-}
+export const NavBar = () => {
+  // export const NavBar: React.FC<NavBarProps> = ({ handleNavigation }) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const [language, setLanguage] = useState("ENG")
 
-export const NavBar: React.FC<NavBarProps> = ({ handleNavigation }) => {
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+  const toggleLanguageDropdown = () => {
+    setShowLanguageDropdown(!showLanguageDropdown);
+  };
+
+  const handleDropdownItemClick = () => {
+
+    setShowDropdown(false); // Hide dropdown after item click
+  };
+
+  const handleLanguageItemClick = (language: string) => {
+    // Handle language selection here
+    setLanguage(language)
+    console.log(`Selected language: ${language}`);
+    setShowLanguageDropdown(false); // Hide dropdown after language selection
+  };
+
   return (
     <nav className={"bg-floralWhite"}>
       <div className="max-w-full mx-auto px-10 py-7.5 h-24" style={{ height: '98px' }}>
@@ -836,30 +863,60 @@ export const NavBar: React.FC<NavBarProps> = ({ handleNavigation }) => {
             </a>
           </div>
 
-          <SearchInput />
-
+          <SearchInput varient="dark" />
 
           {/* Page Navigation Links Section */}
           <div className="flex items-center" style={{
             fontSize: '10px',
             fontFamily: '"Press Start 2P", cursive'
           }}>
-            <a href="#" className="py-5 px-2 text-black" onClick={() => handleNavigation('home')}>Home</a>
-            <a href="#" className="py-5 px-2 text-black" onClick={() => handleNavigation('games')}>Games</a>
-            <a href="#" className="py-5 px-2 text-black" onClick={() => handleNavigation('news')}>News</a>
-            <a href="#" className="py-5 px-2 text-black" onClick={() => handleNavigation('article')}>Articles</a>
-            <a href="#" className="py-5 px-2 text-black" onClick={() => handleNavigation('videos')}>Videos</a>
-            <a href="#" className="py-5 px-2 text-black flex items-center justify-center" >More <IoIosArrowDown /></a>
-            <CustomButton useSmall={true} onClick={() => { }} size='10px' text='ENG' width='75px' icon={<IoIosArrowDown />} />
+            <Link className="py-5 px-2" href={'/'} > Home</Link>
+            <Link className="py-5 px-2" href={'/game'}> Games</Link>
+            <Link className="py-5 px-2" href={'/news'}> news</Link>
+            <Link className="py-5 px-2" href={'/article'}> Article</Link>
+            <Link className="py-5 px-2" href={'/video'}> Videos</Link>
+
+            <div className="relative">
+              <div className="py-5 px-2 text-black flex items-center justify-center" onClick={toggleDropdown}>
+                More <IoIosArrowDown />
+              </div>
+              <div>
+                {showDropdown && (
+                  <div className="absolute bg-white shadow-lg top-full mt-1 right-0">
+                    <Link href={'/event'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownItemClick}> Events</div></Link> <br />
+                    <Link href={'/engine'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownItemClick}> Engine</div></Link>
+                  </div>
+                )}
+              </div>
+            </div>
+
+          </div>
+          <div className="relative">
+            <CustomButton
+              useSmall={true}
+              onClick={toggleLanguageDropdown}
+              size='10px'
+              text={language}
+              width='75px'
+              icon={<IoIosArrowDown />}
+            />
+            {showLanguageDropdown && (
+              <div className="absolute bg-white shadow-lg top-full mt-1 right-0">
+                <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('CHIN')}>CHINIES</a>
+                <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('HIN')}>HINDI</a>
+                <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('GER')}>GERMAN</a>
+                <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('FRE')}>FRENCH</a>
+              </div>
+            )}
           </div>
         </div>
+
       </div>
 
       {/* SVG at the bottom of the NavBar */}
       <div className="w-full bg-gray-200 overflow-hidden">
-        {/* BottomSVG */}
+        <BottomSVG />
       </div>
-    </nav>
+    </nav >
   );
 };
-

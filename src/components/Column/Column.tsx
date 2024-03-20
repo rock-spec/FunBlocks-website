@@ -14,7 +14,7 @@ export interface ColumnProps {
   description?: string;
   tags?: string[];
   zone?: string;
-  buttonText: string;
+  buttonText?: string;
   columnItems: Array<SingleColumnProps>;
   onButtonClick?: () => void;
 }
@@ -31,7 +31,7 @@ export const Column = (props: ColumnProps) => {
       <div className=" overflow-x-hidden w-fit max-h-fit">
         {/* Row 2 */}
 
-        <div className="flex w-fit flex-col gap-8">
+        <div className={`flex w-fit flex-col gap-${variant === "article" ? 0 : 5}`}>
           {columnItems.map((detail, index) => (
             <ColumnItems key={index} {...detail} /> // Replace '...detail' with actual props
           ))}
@@ -43,7 +43,7 @@ export const Column = (props: ColumnProps) => {
       {/* Row 3 */}
       <div className="flex ">
         {/* Replace ButtonComponent with your actual button component */}
-        <CustomButton text={buttonText} onClick={onButtonClick} />
+        {buttonText && <CustomButton text={buttonText} onClick={onButtonClick} />}
       </div>
     </div>
   );

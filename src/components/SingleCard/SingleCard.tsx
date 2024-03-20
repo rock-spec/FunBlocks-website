@@ -8,7 +8,7 @@ import SingleVideoCardItem from './SingleVideoCardItem';
 export interface SingleCardProps {
   name: 'event' | 'article' | 'video';
   singleCardItemDetails: Array<SingleCardItemProps>; // Define or import EventCardDetail interface
-  buttonText: string;
+  buttonText?: string;
   onButtonClick: () => void; // Function type for button click
   heading?: string
 }
@@ -24,7 +24,7 @@ const SingleCard = (props: SingleCardProps) => {
       {/* Second Row: Event Cards */}
       {
         name === 'video' ? (
-          <div className="grid grid-cols-2 grid-rows-2 gap-4">
+          <div className="grid grid-cols-2  gap-4">
             {singleCardItemDetails.map((detail, index) => (
               <SingleVideoCardItem key={index} {...detail} /> // Replace '...detail' with actual props
             ))}
@@ -37,9 +37,9 @@ const SingleCard = (props: SingleCardProps) => {
       }
 
       {/* Third Row: Button */}
-      <div className="flex justify-center w-full">
+      {buttonText && <div className="flex justify-center w-full">
         <CustomButton onClick={onButtonClick} text={buttonText} width="300px" type='secondary' size='13px' />
-      </div>
+      </div>}
     </div>
   );
 };
