@@ -27,15 +27,14 @@
 
  Page Development:
 
- 1. Engine Details Page
- 2. Search Result Page
- 3. Search Details Page
-
- 4. Upgrade Game V2 features.
+ 1. Engine Details Page Done
+ 3. Search Details Page Done
+ 3. Game  Page  Done
+ 4. Upgrade Game V2 features. Done
 
  Ensure Responsiveness:
 
- 1. Make all pages responsive for different devices and screen sizes.
+ 1. Make all pages responsive for different devices and screen sizes. //Working
 
  Backend Development:
 

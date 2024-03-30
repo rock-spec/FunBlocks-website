@@ -1,17 +1,22 @@
-import React from 'react';
-import { GameColumn } from './GameColumn';
-import { Column } from '../Column/Column';
+"use client"
 
-const Game = () => {
+import { Column } from '@/components/Column/Column';
+import { EngineDetailColumn } from '@/components/Engine/EngineDetailColumn';
+import { GameDetailColumn } from '@/components/Games/GameDetailColumn';
+import React from 'react';
+
+
+
+const EngineDetail = ({ params }: { params: { id: string } }) => {
     return (
 
         <div className="w-full max-w-[1200px] flex justify-between gap-x-5">
 
             {/* Main Column  */}
-            <GameColumn />
+            <EngineDetailColumn />
 
             {/* Right Column */}
-            <Column variant='news' title='related new' buttonText='All Games' onButtonClick={() => { }}
+            <Column variant='news' title='related new' onButtonClick={() => { }}
                 columnItems={[{
                     variant: 'news',
                     tags: ['research', '8+'],
@@ -45,4 +50,4 @@ const Game = () => {
 }
 
 
-export default Game;
+export default EngineDetail;
