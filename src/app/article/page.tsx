@@ -1,4 +1,4 @@
-'use client'
+
 
 import { ArticleColumn } from '@/components/Articles/ArticleColumn';
 import { Column } from '@/components/Column/Column';
@@ -6,7 +6,7 @@ import React from 'react';
 
 const Article = () => {
     return (
-        <div className="w-full max-w-[1200px] flex justify-between gap-x-5">
+        <div className="w-full max-w-[1200px] flex justify-between gap-x-5 lg:flex-row flex-col">
 
             {/* Main Column  */}
             <ArticleColumn />

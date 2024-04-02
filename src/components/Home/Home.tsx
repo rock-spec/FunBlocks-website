@@ -7,9 +7,9 @@ const Homee = () => {
 
     return (
 
-        <div className="w-full max-w-[1200px] flex justify-between gap-x-5">
+        <div className="w-full max-w-[1200px] flex flex-col  justify-between lg:gap-x-5 lg:flex-row">
             {/* Left Column */}
-            <Column variant='game' title='game' buttonText='All Games' onButtonClick={() => { }}
+            <Column variant='game' title='game' buttonText='All Games' onButtonClick={() => { }} className='' responsive
                 columnItems={[{
                     variant: "game",
                     tags: ['Crypto', '8+'],

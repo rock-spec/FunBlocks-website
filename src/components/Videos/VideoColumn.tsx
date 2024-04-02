@@ -85,15 +85,20 @@ export const VideoColumn = () => {
 
     return (
         <>
-            <div className="w-[895px]">
-                <div className="flex w-full mb-10">
-                    <SearchInput varient="light" placeholder="Search for Keywords" />
+            <div className="lg:w-[895px]  w-full">
+                <div className="flex flex-col lg:flex-row w-full mb-10">
+                    <div className="h-[52px]">
+                        <SearchInput varient="light" placeholder="Search for Keywords" />
+                    </div>
+
                     <CustomButton onClick={() => { }} size='13px' text='Category' height='42px' icon={<IoIosArrowDown />} />
                     <CustomButton onClick={() => { }} size='13px' text='Sort By' height='42px' icon={<IoIosArrowDown />} />
                 </div>
                 <div className="flex mb-10 gap-x-5">
+
+
                     <div>
-                        <div className="grid grid-cols-2 grid-rows-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2  grid-rows-2 gap-4">
                             {singleCardItemDetails.map((detail, index) => (
                                 <div className="p-5 border border-[#161616] bg-[#FFFCF9]">
                                     <SingleVideoCardItem key={index} {...detail} />

@@ -24,7 +24,7 @@ const SingleCard = (props: SingleCardProps) => {
       {/* Second Row: Event Cards */}
       {
         name === 'video' ? (
-          <div className="grid grid-cols-2  gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {singleCardItemDetails.map((detail, index) => (
               <SingleVideoCardItem key={index} {...detail} /> // Replace '...detail' with actual props
             ))}

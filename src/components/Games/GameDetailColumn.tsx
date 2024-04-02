@@ -9,14 +9,14 @@ import { Column } from "../Column/Column";
 export const GameDetailColumn = () => {
     return (
         <>
-            <div className="w-[895px]">
-                <div className="h-fit-content items-stretch flex mb-10 gap-x-5 ">
-                    <div className="w-full p-5 bg-stone-50   border border-neutral-900 flex justify-end items-start gap-6  h-full">
+            <div className="m-w-[895px] w-full">
+                <div className="h-fit-content items-stretch flex  mb-10 gap-x-5 ">
+                    <div className="w-full p-5 bg-stone-50   border border-neutral-900  justify-end flex md:flex-row flex-col items-start gap-6  h-full">
 
                         {/* image container */}
-                        <div className="relative w-[50%]">
+                        <div className="relative md:w-[50%] w-full">
                             {/* main banner image  */}
-                            <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/game%20(4)-59X7lgG93UpVBCzWzysM3VhhQZePh5.png"} width={457} height={337} alt="" className="rounded-md" />
+                            <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/game%20(4)-59X7lgG93UpVBCzWzysM3VhhQZePh5.png"} width={457} height={337} alt="" className="rounded-md w-full" />
 
                             {/* /Star Image/ */}
                             {/* <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Tag-Swq9b5dkBzXvaPrsQFkgnAavhvTx5O.svg"} height={32} width={32} alt="" className="absolute bottom-[4%] left-[2%]  hover:scale-110 transition-all cursor-pointer" /> */}
@@ -30,14 +30,14 @@ export const GameDetailColumn = () => {
                             </div> */}
                         </div>
 
-                        <div className="w-[50%]">
+                        <div className="md:w-[50%] w-full">
                             <div className=" text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[48px] ">
                                 BOLT: Solana ecological ECS full-chain game engine
                             </div>
 
                             <div className=" text-neutral-900 text-base font-normal font-['Cabin']">BOLT is a full-chain game engine developed by the Magicblock team for the Solana ecosystem. This article is compiled from the speeches of the two founders of Magicblock at the Breakpoint 2023 event.
                             </div>
-                            <div className="mt-[-25px] ">
+                            <div className="">
                                 <CustomButton text="Play Now" type="primary" onClick={() => { }} width="190px" size="14px" />
                             </div>
                         </div>

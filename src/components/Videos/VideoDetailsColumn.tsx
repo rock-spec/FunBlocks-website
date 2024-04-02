@@ -10,9 +10,9 @@ export const VideoDetailsColumn = () => {
 
     return (
         <>
-            <div className="w-[895px]">
+            <div className="m-w-[895px] w-full">
                 <div className="flex-col w-full mb-10 p-5 border border-[#161616] bg-[#FFFCF9]">
-                    <div className="w-[850px] text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[33.60px] mb-[12px]">The Evolution of Multiplayer Gaming: From Couch Co-op to Global Connectivity</div>
+                    <div className=" text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[33.60px] mb-[12px]">The Evolution of Multiplayer Gaming: From Couch Co-op to Global Connectivity</div>
                     <div className="flex gap-1 mb-[24px]">
                         {['games'].map((tag, index) => (
                             <Tag text={tag} key={index} type={'relevance'} />
@@ -25,7 +25,7 @@ export const VideoDetailsColumn = () => {
                     </div>
 
                     <div className="relative">
-                        <Image alt="banner" height={487.44} width={857.55} className="mb-[24px] w-[855.58px] h-[487.44px]" src="https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/image%2085-qSFSrtFKOzO7NDbmQMxRie60TTiBkn.png" />
+                        <Image alt="banner" height={487.44} width={857.55} className="mb-[24px] w-[855.58px] " src="https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/image%2085-qSFSrtFKOzO7NDbmQMxRie60TTiBkn.png" />
                         <div className="hover:scale-110 transition-all cursor-pointer active:scale-95 absolute bottom-[50%] left-[50%] translate-x-[-50%] translate-y-[50%] ">
 
                             <Image
@@ -38,8 +38,8 @@ export const VideoDetailsColumn = () => {
                     </div>
 
 
-                    <div className="w-[850px] text-neutral-900 text-xl font-semibold font-['Cabin'] leading-[30px] mb-[12px] mt-[24px]">Video Summary</div>
-                    <div className="w-[850px] text-neutral-900 text-base font-normal font-['Cabin'] leading-normal mb-[20.28px]">The journey of multiplayer gaming is a fascinating saga of innovation, community, and the ever-evolving relationship between technology and social interaction. From the humble beginnings of couch co-op play to today's vast networks of global connectivity, multiplayer gaming has transformed in ways that early gamers could hardly have imagined. Multiplayer gaming has its roots in the local co-op and competitive experiences of the late 20th century. Games like "Pong" laid the foundation, but it was titles such as "Contra" and "Street Fighter II" that truly epitomized the era of couch multiplayer gaming. These games required players to be physically present in the same room, sharing a screen and often, in the case of co-op games, working together to achieve a common goal. This format fostered a sense of camaraderie and immediate social interaction that became a defining characteristic of early video gaming culture.</div>
+                    <div className=" text-neutral-900 text-xl font-semibold font-['Cabin'] leading-[30px] mb-[12px] mt-[24px]">Video Summary</div>
+                    <div className=" text-neutral-900 text-base font-normal font-['Cabin'] leading-normal mb-[20.28px]">The journey of multiplayer gaming is a fascinating saga of innovation, community, and the ever-evolving relationship between technology and social interaction. From the humble beginnings of couch co-op play to today's vast networks of global connectivity, multiplayer gaming has transformed in ways that early gamers could hardly have imagined. Multiplayer gaming has its roots in the local co-op and competitive experiences of the late 20th century. Games like "Pong" laid the foundation, but it was titles such as "Contra" and "Street Fighter II" that truly epitomized the era of couch multiplayer gaming. These games required players to be physically present in the same room, sharing a screen and often, in the case of co-op games, working together to achieve a common goal. This format fostered a sense of camaraderie and immediate social interaction that became a defining characteristic of early video gaming culture.</div>
 
                 </div>
 

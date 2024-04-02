@@ -13,7 +13,8 @@ const SearchInput = (props: SearchInputProps) => {
 
   return (
     <div
-      className={`flex items-center justify-between bg-[${varient === 'dark' ? "#F6EEE6" : "#FFFCF9"}] border-b-2 border-nero  flex-1 max-w-[447px]
+      className={`flex items-center justify-between bg-[${varient === 'dark' ? "#F6EEE6" : "#FFFCF9"}] border-b-2 border-nero  flex-1
+       max-w-${varient === 'dark' ? '[447px]' : '[350px]'} ${varient === 'dark' ? 'mx-5' : 'mr-4'} 
       h-[52px] px-6 py-4.5`}>
       <input
         type="text"

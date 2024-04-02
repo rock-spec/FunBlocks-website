@@ -14,9 +14,9 @@ export const EventDetailsColumn = () => {
 
     return (
         <>
-            <div className="w-[895px]">
+            <div className="m-w-[895px] w-full">
                 <div className="flex-col w-full mb-10 p-5 border border-[#161616] bg-[#FFFCF9]">
-                    <div className="w-[850px] text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[33.60px] mb-[12px]">The Strongest Argument for Crypto-Native Gaming</div>
+                    <div className=" text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[33.60px] mb-[12px]">The Strongest Argument for Crypto-Native Gaming</div>
                     <div className="flex gap-1 mb-[24px]">
                         {['playtest', 'offline'].map((tag, index) => (
                             <Tag text={tag} key={index} type={'relevance'} />
@@ -24,11 +24,11 @@ export const EventDetailsColumn = () => {
 
                     </div>
 
-                    <Image alt="banner" height={309} width={850} className="mb-[24px] w-full h-[309px]" src="https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/thumbnail%20(3)-mhg4WOYQNb55ARMbFgNXHRQewXQ7yR.png" />
+                    <Image alt="banner" height={309} width={850} className="mb-[24px] w-full " src="https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/thumbnail%20(3)-mhg4WOYQNb55ARMbFgNXHRQewXQ7yR.png" />
 
 
                     <div className="flex justify-between items-center  mt-[-40px]">
-                        <div className="w-[850px] text-neutral-900 text-xl font-semibold font-['Cabin'] leading-[30px] mb-[12px] mt-[24px]">Event Details</div>
+                        <div className=" text-neutral-900 text-xl font-semibold font-['Cabin'] leading-[30px] mb-[12px] mt-[24px]">Event Details</div>
                         <CustomButton text="Join Event" onClick={() => { }} type="primary" size="13px" width="220px" />
                     </div>
 

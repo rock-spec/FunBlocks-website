@@ -12,14 +12,14 @@ const NewsDetails = ({ params }: { params: { id: string } }) => {
     const id = params.id; // Access the dynamic id parameter
 
     return (
-        <div className="w-full max-w-[1200px] flex justify-between gap-x-5">
+        <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
 
             {/* Main Column  */}
             <NewsDetailsColumn />
 
             {/* Right Column */}
             <div className='flex-col justify-items-start items-center h-fit'>
-                <Column variant='game' title='Related Game' onButtonClick={() => { }}
+                <Column variant='game' responsive title='Related Game' onButtonClick={() => { }}
                     columnItems={[{
                         variant: "game",
                         tags: ['Crypto', '8+'],
@@ -37,7 +37,7 @@ const NewsDetails = ({ params }: { params: { id: string } }) => {
                 />
                 {/* for space between them */}
                 <div className='h-[24px] w-full'></div>
-                <Column variant='article' title='Article' onButtonClick={() => { }}
+                <Column variant='article' title='Article' responsive onButtonClick={() => { }}
                     columnItems={[
                         {
                             variant: "article",

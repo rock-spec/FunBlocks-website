@@ -123,10 +123,10 @@ export const GameColumn = () => {
 
     return (
         <>
-            <div className="w-[895px]">
-                <div className="flex mb-10 gap-x-5">
+            <div className="w-full md:w-[895px] flex flex-col items-center justify-center">
+                <div className="flex mb-10 gap-5">
                     <div>
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-flow-col-1 gap-4">
                             {singleCardItemDetails.map((detail, index) => (
                                 <div className="p-5 border border-[#161616] bg-[#FFFCF9]" key={index}>
                                     <GameCardComponet {...detail} />

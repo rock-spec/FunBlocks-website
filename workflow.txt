@@ -1,29 +1,28 @@
- Completed Tasks:
 
- 1. Developed reusable components including:
-    1. Column
-    2. Custom Button
-    3. Video Card
-    4. Game Card
-    5. Article Card
-    6. Event Card
-    7. Modified Tags Component
-    8. Engine Card
+ Tasks:
 
- 2. Designed and implemented various pages such as:
-    - Home Page
-    - Games Page
-    - News Page
-    - Event Page
-    - Other Pages (specify)
+ 
+  Developed reusable components including:
+    1. Column //done
+    2. Custom Button //done
+    3. Video Card //done
+    4. Game Card //done
+    5. Article Card //done
+    6. Event Card //done
+    7. Modified Tags Component //done
+    8. Engine Card //done
 
- 3. Implemented hover effects and transitions for enhanced user experience.
+  Designed and implemented various pages such as:
+    - Home Page //done
+    - Games Page //done
+    - News Page //done
+    - Event Page //done
+    - Other Pages (specify) //done
 
- 4. Redesigned and recreated navigations for improved usability.
+  Implemented hover effects and transitions for enhanced user experience. //done
 
+  Redesigned and recreated navigations for improved usability. //done
 
-
- Tasks Remaining:
 
  Page Development:
 
@@ -34,7 +33,36 @@
 
  Ensure Responsiveness:
 
- 1. Make all pages responsive for different devices and screen sizes. //Working
+ 1. Make all pages responsive for different devices and screen sizes.
+   a) article -> article detail -> done
+   b) engine -> engine detail -> done
+   c) event -> event detail -> done 
+   d) game -> game detail -> done 
+   e) news -> news detail -> done
+   f) search -> done
+   g) video -> video detail -> done
+
+
+ 2. NavBar & Footer
+   a) Navbar -> Done
+   b) Footer -> Done
+
+ Problems:
+
+ Fix Button in froentend //Working
+
+
+
+ Froentend Functions
+
+ 1.Search should work
+ 2.Filter should work 
+ 3.All Links Should work 
+ 4.Slider Should Work
+ 5.Language internationalization
+ 
+
+
 
  Backend Development:
 

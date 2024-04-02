@@ -10,13 +10,13 @@ import React from 'react';
 const EngineDetail = ({ params }: { params: { id: string } }) => {
     return (
 
-        <div className="w-full max-w-[1200px] flex justify-between gap-x-5">
+        <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
 
             {/* Main Column  */}
             <EngineDetailColumn />
 
             {/* Right Column */}
-            <Column variant='news' title='related new' onButtonClick={() => { }}
+            <Column variant='news' title='related new' responsive onButtonClick={() => { }}
                 columnItems={[{
                     variant: 'news',
                     tags: ['research', '8+'],

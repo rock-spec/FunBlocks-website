@@ -48,14 +48,14 @@ export const EngineDetailColumn = () => {
             },]
     return (
         <>
-            <div className="w-[895px]">
+            <div className="max-w-[895px] w-full">
                 <div className="h-fit-content items-stretch flex mb-10 gap-x-5 ">
-                    <div className="w-full p-5 bg-stone-50   border border-neutral-900 flex justify-end items-start gap-6  h-full">
+                    <div className="w-full p-5 bg-stone-50   border border-neutral-900 flex md:flex-row flex-col justify-end items-start gap-6  h-full">
 
                         {/* image container */}
-                        <div className="relative w-[50%]">
+                        <div className="relative md:w-[50%] w-full">
                             {/* main banner image  */}
-                            <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/game%20(5)-6oU68Ivx1882hoKKQMWom7yAEApTQa.png"} width={457} height={337} alt="" className="rounded-md" />
+                            <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/game%20(5)-6oU68Ivx1882hoKKQMWom7yAEApTQa.png"} width={457} height={337} alt="" className="rounded-md w-full" />
 
                             {/* /Star Image/ */}
                             {/* <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Tag-Swq9b5dkBzXvaPrsQFkgnAavhvTx5O.svg"} height={32} width={32} alt="" className="absolute bottom-[4%] left-[2%]  hover:scale-110 transition-all cursor-pointer" /> */}
@@ -69,7 +69,7 @@ export const EngineDetailColumn = () => {
                             </div> */}
                         </div>
 
-                        <div className="w-[50%]">
+                        <div className="md:w-[50%] w-full">
                             <div className=" text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[48px] ">
                                 MUD V1
                             </div>
@@ -78,7 +78,7 @@ export const EngineDetailColumn = () => {
                             </div>
                             <br />
 
-                            <div className="grid grid-cols-3 gap-y-2 gap-x-3">
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-3">
 
                                 <div className="text-neutral-900 text-base font-medium font-['Cabin'] underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
 
@@ -113,7 +113,7 @@ export const EngineDetailColumn = () => {
                 <div className="flex mb-10  flex-col  items-start gap-5">
 
                     <Tag text={"MUD V1 GAMes"} type={'section'} />
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
                         {singleCardItemDetails.map((detail, index) => (
                             <div className="p-5 border border-[#161616] bg-[#FFFCF9]" key={index}>
                                 <GameCardComponet {...detail} />
@@ -126,6 +126,7 @@ export const EngineDetailColumn = () => {
                 <div className="flex mb-10 gap-x-5">
                     <SingleCard
                         name={'article'}
+
                         heading="related articles"
                         singleCardItemDetails={
                             [

@@ -54,18 +54,19 @@ export const CustomButton = (props: ButtonProps) => {
 
   return (
     <>
+      <div className='bg-red'>{text} {icon}</div>
       {/* Preload images */}
-      <Image src={imageSrc} alt="" width={1} height={1} />
+      {/* <Image src={imageSrc} alt="" width={1} height={1} /> */}
 
       {/* Render button */}
-      <div
+      {/* <div
         onClick={onClick}
         className="text-center text-neutral-900 text-lg font-bold font-['OffBit Trial'] tracking-tight flex justify-center items-center hover:scale-[1.01] transition-all cursor-pointer"
         style={buttonStyles}
-      >
-        {/* Display button text and icon */}
-        {text} {icon}
-      </div>
+      > */}
+      {/* Display button text and icon */}
+      {/* {text} {icon}
+      </div> */}
     </>
   );
 };

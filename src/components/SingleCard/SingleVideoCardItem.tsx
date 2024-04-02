@@ -14,9 +14,9 @@ const SingleVideoCardItem = (props: SingleCardItemProps) => {
         <div className=" gap-6 shadow-sm">
             {/* First Column: Image */}
             <div className="w-full h-[339px] rounded-lg flex-col justify-start items-start gap-6 inline-flex">
-                <div className="relative rounded-md border border-[#161616] overflow-hidden ">
+                <div className="relative w-full rounded-md border border-[#161616] overflow-hidden ">
                     <Image
-                        className=' w-[full] h-[full] object-cover'
+                        className=' w-full h-full object-cover'
                         src={imageUrl}
                         alt="Image"
                         width={427}
@@ -37,10 +37,10 @@ const SingleVideoCardItem = (props: SingleCardItemProps) => {
                 <div className="h-[82px] flex-col justify-center items-start gap-10 flex">
                     <div className="self-stretch h-[82px] flex-col justify-center items-start gap-3 flex">
                         {/* Show only two lines of description */}
-                        <div className={`w-[415px] text-neutral-900 text-lg font-bold font-['Cabin'] leading-snug `}>
+                        <div className={` text-neutral-900 text-md font-bold font-['Cabin'] leading-snug `}>
                             {title}
                         </div>
-                        <div className={`self-stretch text-neutral-900 text-base font-normal font-['Cabin'] leading-normal max-w-[427px] line-clamp-2`}>
+                        <div className={`self-stretch text-neutral-900 w-full font-normal font-['Cabin'] leading-normal  line-clamp-2`}>
                             {description}
                         </div>
 

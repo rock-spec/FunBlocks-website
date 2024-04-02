@@ -9,13 +9,13 @@ import React from 'react';
 const GameDetail = ({ params }: { params: { id: string } }) => {
     return (
 
-        <div className="w-full max-w-[1200px] flex justify-between gap-x-5">
+        <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
 
             {/* Main Column  */}
             <GameDetailColumn />
 
             {/* Right Column */}
-            <Column variant='news' title='related new' buttonText='All Games' onButtonClick={() => { }}
+            <Column variant='news' responsive title='related new' buttonText='All Games' onButtonClick={() => { }}
                 columnItems={[{
                     variant: 'news',
                     tags: ['research', '8+'],

@@ -117,12 +117,16 @@ export const EventColumn = () => {
 
     return (
         <>
-            <div className="w-[895px]">
-                <div className="flex w-full mb-10">
-                    <SearchInput varient="light" placeholder="Search for Keywords" />
-                    <CustomButton onClick={() => { }} size='13px' text='Type' height='42px' icon={<IoIosArrowDown />} />
-                    <CustomButton onClick={() => { }} size='13px' text='Status' height='42px' icon={<IoIosArrowDown />} />
-                    <CustomButton onClick={() => { }} size='13px' text='Category' height='42px' icon={<IoIosArrowDown />} />
+            <div className="lg:w-[895px] w-full">
+                <div className="flex lg:flex-row flex-col w-full mb-10">
+                    <div className="h-58px">
+                        <SearchInput varient="light" placeholder="Search for Keywords" />
+                    </div>
+                    <div className="flex">
+                        <CustomButton onClick={() => { }} size='13px' text='Type' height='42px' icon={<IoIosArrowDown />} />
+                        <CustomButton onClick={() => { }} size='13px' text='Status' height='42px' icon={<IoIosArrowDown />} />
+                        <CustomButton onClick={() => { }} size='13px' text='Category' height='42px' icon={<IoIosArrowDown />} />
+                    </div>
                 </div>
                 <div className="flex mb-10 gap-x-5">
 

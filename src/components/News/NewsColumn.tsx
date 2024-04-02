@@ -137,9 +137,12 @@ export const NewsColumn = () => {
 
     return (
         <>
-            <div className="w-[895px]">
-                <div className="flex w-full mb-10">
-                    <SearchInput varient="light" placeholder="Search for Keywords" />
+            <div className="lg:w-[895px]  w-full">
+                <div className="flex flex-col lg:flex-row w-full mb-10">
+                    <div className="h-[52px]">
+                        <SearchInput varient="light" placeholder="Search for Keywords" />
+                    </div>
+
                     <CustomButton onClick={() => { }} size='13px' text='Category' height='42px' icon={<IoIosArrowDown />} />
                     <CustomButton onClick={() => { }} size='13px' text='Sort By' height='42px' icon={<IoIosArrowDown />} />
                 </div>

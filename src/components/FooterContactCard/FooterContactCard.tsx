@@ -17,21 +17,21 @@ const FooterContactCard = () => {
 
 
   return (
-    <div className="flex flex-col flex-1 items-start gap-3 w-[361px] h-[80.5px]">
+    <div className="flex flex-col flex-1 items-start gap-3 w-full">
       {/* First Row: EMAIL US */}
-      <div className="text-pictonBlue text-xs font-medium" style={{ lineHeight: '140%' }}>
+      <div className="text-pictonBlue text-xs font-medium" >
         EMAIL US
       </div>
 
       {/* Second Row: Email Address */}
-      <div className="text-default text-base" style={{ lineHeight: '110%' }}>
+      <div className="text-default text-base" >
         support@funblocks.com
       </div>
 
       {/* Third Row: Social Icons */}
       <div className="flex items-start gap-2">
         {socialIcons.map((icon, index) => (
-          <div key={index} className="w-[30.496px] h-[30.496px] cursor-pointer hover:scale-105 transition-all" style={{ flexShrink: 0 }}>
+          <div key={index} className="cursor-pointer hover:scale-105 transition-all" style={{}}>
             <Link href={icon.link}>
               <Image
                 src={icon.URL}

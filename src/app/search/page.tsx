@@ -1,4 +1,4 @@
-"use client"
+
 
 import { CustomButton } from '@/components/Button/Button';
 import { Column } from '@/components/Column/Column';
@@ -140,21 +140,21 @@ const Search = () => {
 
     return (
 
-        <div className="w-full max-w-[1200px] flex justify-between gap-x-5">
+        <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
 
             {/* mainCoulumn  */}
-            <div className="w-[895px]">
+            <div className="m-w-[895px] w-full">
 
 
-                <div className="flex mb-10 gap-x-5">
-                    <div className="w-fit  px-5 py-3 bg-stone-50 border border-neutral-900 justify-start items-start gap-5 inline-flex">
-                        <div className="justify-start items-start gap-10 flex">
-                            <div className="text-center text-blue-700 text-xl font-bold font-['OffBit Trial'] tracking-tight">All</div>
-                            <div className="text-center text-neutral-900 text-xl font-bold font-['OffBit Trial'] tracking-tight">Articles</div>
-                            <div className="text-center text-neutral-900 text-xl font-bold font-['OffBit Trial'] tracking-tight">News</div>
-                            <div className="text-center text-neutral-900 text-xl font-bold font-['OffBit Trial'] tracking-tight">Games</div>
-                            <div className="text-center text-neutral-900 text-xl font-bold font-['OffBit Trial'] tracking-tight">Videos</div>
-                            <div className="text-center text-neutral-900 text-xl font-bold font-['OffBit Trial'] tracking-tight">Events</div>
+                <div className="flex mb-10 gap-x-5 flex-col md:flex-row">
+                    <div className="lg:w-fit w-full  px-5 py-3 bg-stone-50 border border-neutral-900 lg:justify-start justify-between  items-start gap-5 inline-flex ">
+                        <div className="w-full box-border justify-between md:text-xl sm:text-base text-xs items-start md:gap-10 sm:gap-3 gap-1 flex">
+                            <div className="text-center text-blue-700  font-bold font-['OffBit Trial'] tracking-tight">All</div>
+                            <div className="text-center text-neutral-900  font-bold font-['OffBit Trial'] tracking-tight">Articles</div>
+                            <div className="text-center text-neutral-900  font-bold font-['OffBit Trial'] tracking-tight">News</div>
+                            <div className="text-center text-neutral-900  font-bold font-['OffBit Trial'] tracking-tight">Games</div>
+                            <div className="text-center text-neutral-900  font-bold font-['OffBit Trial'] tracking-tight">Videos</div>
+                            <div className="text-center text-neutral-900  font-bold font-['OffBit Trial'] tracking-tight">Events</div>
                         </div>
 
                     </div>
@@ -180,7 +180,7 @@ const Search = () => {
                 <div>
                     <Tag type="section" text='3 Related Games Found' />
                     <div className="flex mb-10 gap-x-5 mt-5">
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
                             {singleGameCardItemDetails.map((detail, index) => (
                                 <div className="p-5 border border-[#161616] bg-[#FFFCF9]" key={index}>
                                     <GameCardComponet {...detail} />
@@ -197,7 +197,7 @@ const Search = () => {
                 {/* Related Video Section  */}
                 <div>
                     <Tag type="section" text='2 Related Videos Found' />
-                    <div className="grid grid-cols-2  gap-4 mt-5">
+                    <div className="grid  md:grid-cols-2 grid-cols-1  gap-4 mt-5">
                         {singleVideoCardItemDetails.map((detail, index) => (
                             <div className="p-5 border border-[#161616] bg-[#FFFCF9]">
                                 <SingleVideoCardItem key={index} {...detail} />
@@ -232,8 +232,8 @@ const Search = () => {
 
 
             {/* Right */}
-            <div className='flex-col justify-items-start items-center h-fit'>
-                <Column variant='article' title='Article' onButtonClick={() => { }}
+            <div className='flex-col justify-items-start items-center h-fit mt-10 lg:mt-0'>
+                <Column variant='article' responsive title='Article' onButtonClick={() => { }}
                     columnItems={[
                         {
                             variant: "article",

@@ -11,7 +11,7 @@ export interface ArticleCardProps {
 const ArticleCard = (props: ArticleCardProps) => {
   const { imageUrl, title, tags } = props;
   return (
-    <div className="flex flex-col items-start gap-5 p-5 border border-[#161616] bg-[#FFFCF9] w-[285px]">
+    <div className="flex flex-col items-start gap-5 p-5 border border-[#161616] bg-[#FFFCF9] md:w-[285px] w-full mb-5 md:mb-0">
       {/* First Row: Image */}
       <div className="w-full border border-[#161616]">
         <Image
@@ -26,6 +26,13 @@ const ArticleCard = (props: ArticleCardProps) => {
       </div>
 
       {/* Second Row: Title */}
+      <div>
+
+
+      </div>
+      <div>
+
+      </div>
       <div
         className="self-stretch overflow-hidden text-nero text-lg font-bold leading-[120%] tracking-[-0.36px] line-clamp-2">
         {title}

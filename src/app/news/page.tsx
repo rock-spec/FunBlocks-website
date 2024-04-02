@@ -1,4 +1,4 @@
-"use client"
+
 
 import { Column } from '@/components/Column/Column';
 import { NewsColumn } from '@/components/News/NewsColumn';
@@ -7,13 +7,13 @@ import React from 'react';
 
 const News = () => {
     return (
-        <div className="w-full max-w-[1200px] flex justify-between gap-x-5">
+        <div className="w-full max-w-[1200px] flex flex-col lg:flex-row justify-between gap-x-5">
 
             {/* Main Column  */}
             <NewsColumn />
 
             {/* Right Column */}
-            <Column variant='game' title='Featured Game' buttonText='All Games' onButtonClick={() => { }}
+            <Column variant='game' title='Featured Game' buttonText='All Games' responsive onButtonClick={() => { }}
                 columnItems={[{
                     variant: "game",
                     tags: ['Crypto', '8+'],

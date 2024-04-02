@@ -21,11 +21,11 @@ export interface SingleCardItemProps {
 const SingleCardItem = (props: SingleCardItemProps) => {
   const { variant, imageUrl, zone, title, description = "", details = "", onFirstButtonClick, onSecondButtonClick, tags = [], author = "" } = props;
   return (
-    <div className="flex items-start gap-6 ">
+    <div className="flex md:flex-row w-full flex-col items-start gap-6 ">
       {/* First Column: Image */}
-      <div className="relative rounded-md border border-[#161616] overflow-hidden min-w-[260px]">
+      <div className="relative rounded-md border border-[#161616] overflow-hidden min-w-[260px] w-full">
         <Image
-          className=' w-[full] h-[full] object-cover'
+          className=' w-full h-full '
           src={imageUrl}
           alt="Image"
           width={272}
@@ -33,6 +33,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
           layout="fixed"
           objectFit="cover"
           objectPosition="center"
+
         />
         {/* {variant === 'video' && (
           <div className="absolute bottom-5 left-5">
@@ -69,27 +70,30 @@ const SingleCardItem = (props: SingleCardItemProps) => {
 
           {/* Dates  */}
           {variant === 'event' ? (
-            <div className="flex gap-1">
-              {tags.map((tag, index) => (
-                <Tag text={tag} key={index} type={'relevance'} />
-              ))}
-
-              <div className="justify-start items-center gap-2 flex ml-2">
+            <div className="flex md:flex-row flex-col gap-3">
+              <div className='flex gap-1'>
+                {tags.map((tag, index) => (
+                  <Tag text={tag} key={index} type={'relevance'} />
+                ))}
+              </div>
+              <div className="justify-start items-center gap-2 flex md:ml-2">
                 <Image src="/date-icon.svg" alt="Date" width={12} height={12} />
-                <div className="text-neutral-900 text-opacity-80 text-sm font-normal font-['Cabin'] leading-[16.80px]">{details}</div>
-                <div className="w-[5px] h-[5px] opacity-80 bg-neutral-900" />
-                <div className="opacity-80 text-neutral-900 text-sm font-normal font-['Cabin'] leading-[16.80px]">{zone}</div>
+                <div className="text-neutral-900 text-opacity-80 text-sm font-normal font-['Cabin'] leading-[16.80px]">{details} {zone}</div>
+                <div className="w-[5px] h-[5px] opacity-80 hidden md:block bg-neutral-900" />
 
               </div>
             </div>
           ) : (
-            <div className="flex gap-1">
-              {tags.map((tag, index) => (
-                <Tag text={tag} key={index} type={'relevance'} />
-              ))}
-              <div className="justify-start items-center gap-2 flex ml-2">
+            <div className="flex md:flex-row flex-col gap-3">
+              <div className='flex gap-1'>
+                {tags.map((tag, index) => (
+                  <Tag text={tag} key={index} type={'relevance'} />
+                ))}
+              </div>
+
+              <div className="justify-start md:items-center gap-2 flex md:flex-row flex-col md:ml-2">
                 <div className="opacity-80 text-neutral-900 text-sm font-normal font-['Cabin'] leading-[16.80px]">By {author}</div>
-                <div className="w-[5px] h-[5px] opacity-80 bg-neutral-900" />
+                <div className="w-[5px] h-[5px] hidden md:block  opacity-80 bg-neutral-900" />
                 <div className="text-neutral-900 text-opacity-80 text-sm font-normal font-['Cabin'] leading-[16.80px]">{details}</div>
               </div>
             </div>

@@ -8,13 +8,13 @@ import React from 'react';
 
 const Video = () => {
     return (
-        <div className="w-full max-w-[1200px] flex justify-between gap-x-5">
+        <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
 
             {/* Main Column  */}
             <VideoColumn />
 
             {/* Right Column */}
-            <Column variant='game' title='Featured Game' buttonText='All Games' onButtonClick={() => { }}
+            <Column variant='game' responsive title='Featured Game' buttonText='All Games' onButtonClick={() => { }}
                 columnItems={[{
                     variant: "game",
                     tags: ['Crypto', '8+'],

@@ -829,6 +829,7 @@ export const NavBar = () => {
   // export const NavBar: React.FC<NavBarProps> = ({ handleNavigation }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const [showNavDropdown, setShowNavDropdown] = useState(false);
   const [language, setLanguage] = useState("ENG")
 
   const toggleDropdown = () => {
@@ -853,20 +854,20 @@ export const NavBar = () => {
 
   return (
     <nav className={"bg-floralWhite"}>
-      <div className="max-w-full mx-auto px-10 py-7.5 h-24" style={{ height: '98px' }}>
-        <div className="flex justify-between items-center h-full mx-auto" style={{ width: '1200px' }}>
+      <div className="w-full mx-auto px-10 py-7.5 h-24" style={{ height: '98px' }}>
+        <div className="flex justify-between items-center h-full mx-auto max-w-[1200px] w-full">
 
           {/* Logo Section */}
           <div className="flex space-x-4">
             <a href="#" className="flex items-center">
-              <Image src="/funblocks.svg" alt="Logo" width={204} height={25} />
+              <Image src="/funblocks.svg" alt="Logo" width={204} height={25} className='md:w-40 lg:w-52' />
             </a>
           </div>
 
           <SearchInput varient="dark" />
 
           {/* Page Navigation Links Section */}
-          <div className="flex items-center" style={{
+          <div className="items-center hidden lg:flex" style={{
             fontSize: '10px',
             fontFamily: '"Press Start 2P", cursive'
           }}>
@@ -889,26 +890,39 @@ export const NavBar = () => {
                 )}
               </div>
             </div>
+          </div>
 
+          <div className='flex items-center justify-center'>
+            <div className='lg:hidden'>
+              <Image src={"/bar.svg"} height={50} width={50} alt='' onClick={() => {
+                setShowNavDropdown(!showNavDropdown)
+              }} />
+              {
+                showNavDropdown ? <div>aniket</div> : ""
+              }
+
+
+            </div>
+            <div className="relative">
+              <CustomButton
+                useSmall={true}
+                onClick={toggleLanguageDropdown}
+                size='10px'
+                text={language}
+                width='75px'
+                icon={<IoIosArrowDown />}
+              />
+              {showLanguageDropdown && (
+                <div className="absolute bg-white shadow-lg top-full mt-1 right-0">
+                  <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('CHIN')}>CHINIES</a>
+                  <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('HIN')}>HINDI</a>
+                  <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('GER')}>GERMAN</a>
+                  <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('FRE')}>FRENCH</a>
+                </div>
+              )}
+            </div>
           </div>
-          <div className="relative">
-            <CustomButton
-              useSmall={true}
-              onClick={toggleLanguageDropdown}
-              size='10px'
-              text={language}
-              width='75px'
-              icon={<IoIosArrowDown />}
-            />
-            {showLanguageDropdown && (
-              <div className="absolute bg-white shadow-lg top-full mt-1 right-0">
-                <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('CHIN')}>CHINIES</a>
-                <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('HIN')}>HINDI</a>
-                <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('GER')}>GERMAN</a>
-                <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('FRE')}>FRENCH</a>
-              </div>
-            )}
-          </div>
+
         </div>
 
       </div>

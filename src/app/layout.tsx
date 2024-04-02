@@ -26,7 +26,7 @@ export default function RootLayout({
         </nav>
 
         <div
-          className="min-h-screen flex justify-center items-start pt-[60px] pb-[60px]"
+          className="min-h-screen flex justify-center items-start pt-[60px] pb-[60px] m-5 md:m-10"
           style={{
             backgroundImage: svgBackground,
             backgroundRepeat: 'repeat',
@@ -43,7 +43,9 @@ export default function RootLayout({
           </div>
           {children}
         </div>
-        <footer>
+
+
+        <footer className="w-full">
           <Footer />
         </footer>
       </body>

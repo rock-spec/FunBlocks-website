@@ -1,4 +1,4 @@
-"use client"
+
 
 import { Column } from '@/components/Column/Column';
 import { GameColumn } from '@/components/Games/GameColumn';
@@ -9,12 +9,12 @@ import React from 'react';
 const Game = () => {
     return (
 
-        <div className="w-full max-w-[1200px] flex justify-between gap-x-5">
+        <div className="w-full max-w-[1200px] flex flex-col md:flex-row justify-between gap-x-5">
 
 
 
             {/* Left Column */}
-            <div className="border border-black bg-floralWhite p-5 w-[285px] h-full flex-col justify-start items-start gap-5 inline-flex ">
+            <div className="border border-black bg-floralWhite  hidden p-5 w-[285px] h-full flex-col justify-start items-start gap-5 md:inline-flex ">
                 <div className="self-stretch h-[33px] flex-col justify-start items-start gap-5 flex">
                     <div className="self-stretch justify-between items-center inline-flex">
                         <div className="p-2.5 bg-stone-300 justify-center items-center flex">

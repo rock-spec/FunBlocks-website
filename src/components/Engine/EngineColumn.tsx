@@ -72,15 +72,15 @@ export const EngineColumn = () => {
 
     return (
         <>
-            <div className="w-[895px]">
+            <div className="w-full  lg:w-[895px] ">
                 <div className="flex w-full mb-10">
                     <SearchInput varient="light" placeholder="Search for Keywords" />
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <div>
-                        <div className="grid grid-cols-3 grid-rows-3 gap-4">
+                        <div className="grid lg:grid-cols-3 grid-rows-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
                             {singleCardItemDetails.map((detail, index) => (
-                                <div className="p-5 border border-[#161616] bg-[#FFFCF9] h-[285px]">
+                                <div className="p-5 border border-[#161616] bg-[#FFFCF9] min-h-[285px]">
                                     <EngineCardComponet key={index} {...detail} />
                                 </div>
                             ))}

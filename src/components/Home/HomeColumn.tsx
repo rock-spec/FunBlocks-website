@@ -9,14 +9,14 @@ import { Column } from "../Column/Column";
 export const HomeColumn = () => {
     return (
         <>
-            <div className="w-[895px]">
-                <div className="h-[630px] items-stretch flex mb-10 gap-x-5 ">
-                    <div className="w-[590px] p-5 bg-stone-50   border border-neutral-900 flex-col justify-end items-start gap-6 inline-flex h-full">
+            <div className="w-full">
+                <div className=" items-stretch flex mb-10 gap-x-5 lg:flex-row flex-col">
+                    <div className="w-full p-5 bg-stone-50   border border-neutral-900 flex-col justify-end items-start gap-6 inline-flex h-full">
 
                         {/* image container */}
-                        <div className="relative">
+                        <div className="relative w-full">
                             {/* main banner image  */}
-                            <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/2FqWBbNeNmTMfVE9N2ycLe%201-xwmYWzUaXWhOeADUxSuqnqVaS7czj2.png"} width={550} height={253} alt="" className="rounded-md" />
+                            <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/2FqWBbNeNmTMfVE9N2ycLe%201-xwmYWzUaXWhOeADUxSuqnqVaS7czj2.png"} width={550} height={253} alt="" className="w-full rounded-md " />
 
                             {/* /Star Image/ */}
                             <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Tag-Swq9b5dkBzXvaPrsQFkgnAavhvTx5O.svg"} height={32} width={32} alt="" className="absolute bottom-[4%] left-[2%]  hover:scale-110 transition-all cursor-pointer" />
@@ -51,7 +51,7 @@ export const HomeColumn = () => {
 
                     <div className=" h-full">
 
-                        <Column variant='news' title='new' buttonText='All Games' onButtonClick={() => { }}
+                        <Column variant='news' title='new' buttonText='All Games' responsive className="mb-0 mt-10 lg:mt-0" onButtonClick={() => { }}
                             columnItems={[{
                                 variant: 'news',
                                 tags: ['research', '8+'],
@@ -84,7 +84,8 @@ export const HomeColumn = () => {
 
                 </div>
 
-                <div className="flex mb-10 gap-x-5">
+                <div className="flex mb-10  w-full md:justify-between flex-col md:flex-row 
+                ">
                     <ArticleCard
                         imageUrl={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/onchain/image%2069-e6l3TBzi8yI3Z3eEwSkNlRlO1VcRHS.png?height=360&width=720"}
                         title={"Redstone: a high-performance expansion solution for hosting full-chain games"}
@@ -113,7 +114,7 @@ export const HomeColumn = () => {
                                     'title': 'The Strongest Argument for Crypto-Native Gaming',
                                     'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
                                     'details': 'February 24, 2024 at 10:50 AM',
-                                    'tags': ['game'],
+                                    'tags': ['game', 'check'],
                                     'author': "Janson Will",
                                     'onFirstButtonClick': () => {
                                     },
