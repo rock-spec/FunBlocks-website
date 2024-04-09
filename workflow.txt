@@ -47,19 +47,30 @@
    a) Navbar -> Done
    b) Footer -> Done
 
- Problems:
 
- Fix Button in froentend //Working
+
+Till now worked on:-
+
+1.Fix Button in froentend //Working
+2.All Links Should work //done
+3.Slider Should Work //done
+4.Establish connection between project and database //done
+5.Language internationalization //done
+6.Populate with demo data //working
+7.nav Responsiveness //working
+
 
 
 
  Froentend Functions
 
- 1.Search should work
- 2.Filter should work 
- 3.All Links Should work 
- 4.Slider Should Work
- 5.Language internationalization
+
+ 1.Search should work //thursday
+ 2.Filter should work //thursday
+ 3.All Links Should work ///done
+ 4.Slider Should Work //done
+ 5.Language internationalization //done
+
  
 
 
@@ -67,7 +78,12 @@
  Backend Development:
 
  Database Work:
- 1. Define schema
- 2. Populate with demo data
- 3. Set up production environment
- 4. Establish connection between project and database
+ 1. Define schema //done
+ 2. Populate with demo data //will do wednusday
+ 3. Set up production environment  //Wating for supabase creds
+ 4. Establish connection between project and database //Done
+
+
+ Server Work:
+
+ 1.Create APIs for fetching datas -->will do on tuesday

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Button from "@mui/joy/Button";
 import { Tag } from '../Tag/Tag';
 import { CustomButton } from '../Button/Button';
+import Link from 'next/link';
 
 // Define the props interface
 export interface SingleCardItemProps {
@@ -23,19 +24,22 @@ const SingleCardItem = (props: SingleCardItemProps) => {
   return (
     <div className="flex md:flex-row w-full flex-col items-start gap-6 ">
       {/* First Column: Image */}
-      <div className="relative rounded-md border border-[#161616] overflow-hidden min-w-[260px] w-full">
-        <Image
-          className=' w-full h-full '
-          src={imageUrl}
-          alt="Image"
-          width={272}
-          height={153}
-          layout="fixed"
-          objectFit="cover"
-          objectPosition="center"
 
-        />
-        {/* {variant === 'video' && (
+      <Link href={`/${variant}/id`}>
+        <div className="relative rounded-md border border-[#161616] overflow-hidden min-w-[260px] w-full">
+          <Image
+            className=' w-full h-full '
+            src={imageUrl}
+            alt="Image"
+            width={272}
+            height={153}
+            layout="fixed"
+            objectFit="cover"
+            objectPosition="center"
+
+          />
+          {/* {variant === 'video' && (
+
           <div className="absolute bottom-5 left-5">
             <Image
               src="/play-button.svg"
@@ -45,8 +49,8 @@ const SingleCardItem = (props: SingleCardItemProps) => {
             />
           </div>
         )} */}
-      </div>
-
+        </div>
+      </Link>
       {/* Second Column */}
       <div className="flex flex-col w-full">
         {/* First Row */}

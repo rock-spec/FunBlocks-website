@@ -5,47 +5,45 @@ import { CustomButton } from "@/components/Button/Button";
 import Image from "next/image";
 import { Tag } from "@/components/Tag/Tag";
 import { Column } from "../Column/Column";
+import CarousalHome from "../Carousel/CarousalHome";
 
 export const HomeColumn = () => {
     return (
         <>
             <div className="w-full">
                 <div className=" items-stretch flex mb-10 gap-x-5 lg:flex-row flex-col">
-                    <div className="w-full p-5 bg-stone-50   border border-neutral-900 flex-col justify-end items-start gap-6 inline-flex h-full">
-
-                        {/* image container */}
-                        <div className="relative w-full">
-                            {/* main banner image  */}
-                            <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/2FqWBbNeNmTMfVE9N2ycLe%201-xwmYWzUaXWhOeADUxSuqnqVaS7czj2.png"} width={550} height={253} alt="" className="w-full rounded-md " />
-
-                            {/* /Star Image/ */}
-                            <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Tag-Swq9b5dkBzXvaPrsQFkgnAavhvTx5O.svg"} height={32} width={32} alt="" className="absolute bottom-[4%] left-[2%]  hover:scale-110 transition-all cursor-pointer" />
-
-                            {/* Thunderbolt logo with tag*/}
-                            <div className="flex absolute justify-start items-center top-[4%] left-[2%] cursor-pointer hover:scale-110 transition-all">
-
-                                <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/bolt%20logo-M3SSX7VCK0Xc3OUZQo8qe4TDcRv53a.svg"} height={32} width={32} alt="" className="rounded-none" />
-                                <Tag text="BOLT" />
-
-                            </div>
-
-                            {/* Right and Left Arrows  */}
-                            <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010719-wQdE9W69jKjLbs5nPI5BS26APpWHzM.svg"} height={32} width={32} alt="" className="absolute top-[50%] right-[-10px] translate-y-[-50%] hover:scale-110 transition-all cursor-pointer" />
-                            <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010720-1vi6ze7ydnZpPXaN26jGDjF6Z1R2B2.svg"} height={32} width={32} alt="" className="absolute top-[50%] translate-y-[-50%] left-[-10px] hover:scale-110 transition-all cursor-pointer" />
-
-                        </div>
 
 
-                        <div className=" text-neutral-900 text-[40px] font-bold font-['Cabin'] leading-[48px]">
-                            BOLT: Solana ecological ECS full-chain game engine
-                        </div>
+                    <CarousalHome data={[
+                        {
+                            desc: "BOLT is a full-chain game engine developed by the Magicblock team for the Solana ecosystem. This article is compiled from the speeches of the two founders of Magicblock at the Breakpoint 2023 event.",
+                            id: "some id",
+                            title: " BOLT: Solana ecological ECS full-chain game engine",
+                            mainImage: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/2FqWBbNeNmTMfVE9N2ycLe%201-xwmYWzUaXWhOeADUxSuqnqVaS7czj2.png",
+                            starImage: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Tag-Swq9b5dkBzXvaPrsQFkgnAavhvTx5O.svg",
+                            engineLogo: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/bolt%20logo-M3SSX7VCK0Xc3OUZQo8qe4TDcRv53a.svg",
+                            engineName: "BOLT",
+                        },
+                        {
+                            desc: "Gamify is a full-chain game engine developed by the Magicblock team for the Solana ecosystem. This article is compiled from the speeches of the two founders of Magicblock at the Breakpoint 2023 event.",
+                            id: "some id",
+                            title: " Gamify: Solana ecological ECS full-chain game engine",
+                            mainImage: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/2FqWBbNeNmTMfVE9N2ycLe%201-xwmYWzUaXWhOeADUxSuqnqVaS7czj2.png",
+                            starImage: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Tag-Swq9b5dkBzXvaPrsQFkgnAavhvTx5O.svg",
+                            engineLogo: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/bolt%20logo-M3SSX7VCK0Xc3OUZQo8qe4TDcRv53a.svg",
+                            engineName: "Gamify",
+                        },
+                        {
+                            desc: "Test is a full-chain game engine developed by the Magicblock team for the Solana ecosystem. This article is compiled from the speeches of the two founders of Magicblock at the Breakpoint 2023 event.",
+                            id: "some id",
+                            title: " Test: Solana ecological ECS full-chain game engine",
+                            mainImage: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/2FqWBbNeNmTMfVE9N2ycLe%201-xwmYWzUaXWhOeADUxSuqnqVaS7czj2.png",
+                            starImage: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Tag-Swq9b5dkBzXvaPrsQFkgnAavhvTx5O.svg",
+                            engineLogo: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/bolt%20logo-M3SSX7VCK0Xc3OUZQo8qe4TDcRv53a.svg",
+                            engineName: "Test",
+                        }
+                    ]} />
 
-                        <div className=" text-neutral-900 text-base font-normal font-['Cabin'] leading-normal">BOLT is a full-chain game engine developed by the Magicblock team for the Solana ecosystem. This article is compiled from the speeches of the two founders of Magicblock at the Breakpoint 2023 event.
-                        </div>
-                        <div className="mt-[-25px] ">
-                            <CustomButton text="Explore" type="primary" onClick={() => { }} width="190px" size="14px" />
-                        </div>
-                    </div>
 
 
 
@@ -87,16 +85,19 @@ export const HomeColumn = () => {
                 <div className="flex mb-10  w-full md:justify-between flex-col md:flex-row 
                 ">
                     <ArticleCard
+                        id="id"
                         imageUrl={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/onchain/image%2069-e6l3TBzi8yI3Z3eEwSkNlRlO1VcRHS.png?height=360&width=720"}
                         title={"Redstone: a high-performance expansion solution for hosting full-chain games"}
                         tags={['Promotion', 'Platform', '2+']}
                     />
                     <ArticleCard
+                        id="id"
                         imageUrl={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/onchain/thumbnail-McHzr10Ru0augEYm4DkgfQS2fQ3DPQ.png?height=360&width=720"}
                         title={"A quick look at Sky Strife Season 0 update content"}
                         tags={['ONCHAIN-GAMES', 'update', '8+']}
                     />
                     <ArticleCard
+                        id="id"
                         imageUrl={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/onchain/thumbnail%20(1)-xVkomkQKgQOVnIPlD8jNspRQIWXdGQ.png?height=360&width=720"}
                         title={"Curio: Introducing the full-chain game engine Keystone"}
                         tags={['update', 'techno talks', '2+']}

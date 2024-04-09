@@ -859,9 +859,11 @@ export const NavBar = () => {
 
           {/* Logo Section */}
           <div className="flex space-x-4">
-            <a href="#" className="flex items-center">
+
+            <Link href="/" className="flex items-center">
               <Image src="/funblocks.svg" alt="Logo" width={204} height={25} className='md:w-40 lg:w-52' />
-            </a>
+            </Link>
+
           </div>
 
           <SearchInput varient="dark" />
@@ -910,14 +912,16 @@ export const NavBar = () => {
                 size='10px'
                 text={language}
                 width='75px'
-                icon={<IoIosArrowDown />}
+
+              // icon={<IoIosArrowDown />}
               />
               {showLanguageDropdown && (
                 <div className="absolute bg-white shadow-lg top-full mt-1 right-0">
-                  <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('CHIN')}>CHINIES</a>
+                  {/* <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('CHIN')}>CHINIES</a>
                   <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('HIN')}>HINDI</a>
-                  <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('GER')}>GERMAN</a>
-                  <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('FRE')}>FRENCH</a>
+                  <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('GER')}>GERMAN</a>*/}
+                  <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('ENG')}>ENGLISH</a>
+
                 </div>
               )}
             </div>

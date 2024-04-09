@@ -156,7 +156,6 @@ const Search = () => {
                             <div className="text-center text-neutral-900  font-bold font-['OffBit Trial'] tracking-tight">Videos</div>
                             <div className="text-center text-neutral-900  font-bold font-['OffBit Trial'] tracking-tight">Events</div>
                         </div>
-
                     </div>
                     <CustomButton onClick={() => { }} size='13px' text='Filter By time' height='42px' icon={<IoIosArrowDown />} />
                 </div>
