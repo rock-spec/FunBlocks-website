@@ -1,4 +1,6 @@
 
+
+ 
  Tasks:
 
  
@@ -17,7 +19,7 @@
     - Games Page //done
     - News Page //done
     - Event Page //done
-    - Other Pages (specify) //done
+    - Other Pages  //done
 
   Implemented hover effects and transitions for enhanced user experience. //done
 
@@ -48,7 +50,6 @@
    b) Footer -> Done
 
 
-
 Till now worked on:-
 
 1.Fix Button in froentend //Working
@@ -57,20 +58,17 @@ Till now worked on:-
 4.Establish connection between project and database //done
 5.Language internationalization //done
 6.Populate with demo data //working
-7.nav Responsiveness //working
-
+7.nav Responsiveness //done
 
 
 
  Froentend Functions
-
 
  1.Search should work //thursday
  2.Filter should work //thursday
  3.All Links Should work ///done
  4.Slider Should Work //done
  5.Language internationalization //done
-
  
 
 
@@ -87,3 +85,20 @@ Till now worked on:-
  Server Work:
 
  1.Create APIs for fetching datas -->will do on tuesday
+
+
+
+ Total Task in Accessending order
+
+ 1)Fix Button in froentend //Working --> sat
+ 2)Nav Responsiveness //Working --> Done
+ 3)Populate with demo data databse// Done
+ 3.5) Configure TRPC //Done
+ 4)Create APIs for fetching datas -->Done
+ 5)Populate with demo data //Working
+ 6)Search should work //sat
+ 6)Fix Nav //sat
+ 7)Filter should work //sat
+
+
+ 

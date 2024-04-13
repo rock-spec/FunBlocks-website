@@ -1,16 +1,31 @@
+'use client'
 
-
-import { Column } from '@/components/Column/Column';
 import { GameColumn } from '@/components/Games/GameColumn';
-import React from 'react';
-
-
+import React, { useEffect, useState } from 'react';
+import { trpc } from '../_trpc/client';
+import { UseQueryResult } from '@tanstack/react-query';
 
 const Game = () => {
+
+    // Fetching game data using trpc
+    const { data: gameData, error, status } = trpc.gameData.useQuery();
+
+    // State to store game data
+    // const [games, setGames] = useState([]);
+
+    // // Effect to update games when gameData changes
+    // useEffect(() => {
+    //     if (status === 'success' && gameData) {
+    //         setGames(gameData);
+    //     }
+    // }, [gameData, status]);
+
+
+
+
     return (
 
         <div className="w-full max-w-[1200px] flex flex-col md:flex-row justify-between gap-x-5">
-
 
 
             {/* Left Column */}
@@ -148,7 +163,9 @@ const Game = () => {
                 </div>
             </div>
             {/* Main Column  */}
-            <GameColumn />
+            {
+                status === "success" ? (<GameColumn data={gameData} />) : ""
+            }
         </div>
 
     );

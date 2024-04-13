@@ -8,66 +8,75 @@ import EngineCardComponet, { EngineCardComponentProps } from "./EngineCardCompon
 
 
 
-export const EngineColumn = () => {
+export const EngineColumn = ({ data }: { data: any }) => {
 
     const singleCardItemDetails: EngineCardComponentProps[] =
-        [
+        data.map((engine: any) => (
             {
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010724-MWIAHOGgX1avVIEnxLD6FJPk6Vl1hF.png",
-                'title': 'MUD V1',
+                id: engine.engineid,
+                'imageUrl': engine.pic,
+                'title': engine.engineid,
                 'onClick': () => {
                 },
-            },
-            {
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010725-4jddOnaiXmyGp2zFCHofNYxYAL0v3p.png",
-                'title': 'MUD V1',
-                'onClick': () => {
-                },
-            },
-            {
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010726-ZdefNQk8MctPIabaN1cnL1HXqwSUPr.png",
-                'title': 'MUD V1',
-                'onClick': () => {
-                },
-            },
-            {
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010725-4jddOnaiXmyGp2zFCHofNYxYAL0v3p.png",
-                'title': 'MUD V1',
-                'onClick': () => {
-                },
-            },
-            {
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010726-ZdefNQk8MctPIabaN1cnL1HXqwSUPr.png",
-                'title': 'MUD V1',
-                'onClick': () => {
-                },
-            },
-            {
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010725-4jddOnaiXmyGp2zFCHofNYxYAL0v3p.png",
-                'title': 'MUD V1',
-                'onClick': () => {
-                },
-            },
-            {
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010724-MWIAHOGgX1avVIEnxLD6FJPk6Vl1hF.png",
-                'title': 'MUD V1',
-                'onClick': () => {
-                },
-            },
-            {
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010724-MWIAHOGgX1avVIEnxLD6FJPk6Vl1hF.png",
-                'title': 'MUD V1',
-                'onClick': () => {
-                },
-            },
-            {
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010724-MWIAHOGgX1avVIEnxLD6FJPk6Vl1hF.png",
-                'title': 'MUD V1',
-                'onClick': () => {
-                },
-            },
+            }
+        ))
+    // [
+    //     {
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010724-MWIAHOGgX1avVIEnxLD6FJPk6Vl1hF.png",
+    //         'title': 'MUD V1',
+    //         'onClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010725-4jddOnaiXmyGp2zFCHofNYxYAL0v3p.png",
+    //         'title': 'MUD V1',
+    //         'onClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010726-ZdefNQk8MctPIabaN1cnL1HXqwSUPr.png",
+    //         'title': 'MUD V1',
+    //         'onClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010725-4jddOnaiXmyGp2zFCHofNYxYAL0v3p.png",
+    //         'title': 'MUD V1',
+    //         'onClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010726-ZdefNQk8MctPIabaN1cnL1HXqwSUPr.png",
+    //         'title': 'MUD V1',
+    //         'onClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010725-4jddOnaiXmyGp2zFCHofNYxYAL0v3p.png",
+    //         'title': 'MUD V1',
+    //         'onClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010724-MWIAHOGgX1avVIEnxLD6FJPk6Vl1hF.png",
+    //         'title': 'MUD V1',
+    //         'onClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010724-MWIAHOGgX1avVIEnxLD6FJPk6Vl1hF.png",
+    //         'title': 'MUD V1',
+    //         'onClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010724-MWIAHOGgX1avVIEnxLD6FJPk6Vl1hF.png",
+    //         'title': 'MUD V1',
+    //         'onClick': () => {
+    //         },
+    //     },
 
-        ]
+    // ]
 
 
     return (

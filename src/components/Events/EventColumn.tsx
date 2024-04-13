@@ -3,115 +3,134 @@ import SingleCardItem, { SingleCardItemProps } from "../SingleCardItem/SingleCar
 import { CustomButton } from "../Button/Button";
 import SearchInput from "../SearchInput/SearchInput";
 import { IoIosArrowDown } from "react-icons/io";
+import formatDate from "@/utils/dateFormat";
 
 
 
 
-export const EventColumn = () => {
+export const EventColumn = ({ data }: { data: any }) => {
 
     const singleCardItemDetails: SingleCardItemProps[] =
-        [
+        data.map((event: any) =>
+        (
             {
+                id: event.eventid,
                 'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/sdsadfdasfdas-2WG67OTCZhpMuTKA19b7yJ91khTlgw.png?height=360&width=720",
-                'title': 'The Strongest Argument for Crypto-Native Gaming',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
+                'imageUrl': `${event.pic}?height=360&width=720`,
+                'title': event.title,
+                'details': `${formatDate(event.startdate)} - ${formatDate(event.enddate)}`,
+                // 'zone': "EST",
+                'tags': [event.game.gameid],
                 'onFirstButtonClick': () => {
                 },
                 'onSecondButtonClick': () => {
                 },
-            },
+            }
 
-            {
-                'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/thumbnail%20(2)-bOEjitwjBCCiwscUyj71ma09XB1sRN.png?height=360&width=720",
-                'title': 'Loot Survivor and the Emergence of Onchain Arcades',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-            {
-                'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/sdsadfdasfdas-2WG67OTCZhpMuTKA19b7yJ91khTlgw.png?height=360&width=720",
-                'title': 'The Strongest Argument for Crypto-Native Gaming',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
+        )
+        )
+    // [
+    //     {
+    //         'variant': 'event',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/sdsadfdasfdas-2WG67OTCZhpMuTKA19b7yJ91khTlgw.png?height=360&width=720",
+    //         'title': 'The Strongest Argument for Crypto-Native Gaming',
+    //         'details': 'October 24th, 2023 - October 25th, 2023',
+    //         'zone': "EST",
+    //         'tags': ['online', 'playtest'],
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
 
-            {
-                'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/thumbnail%20(2)-bOEjitwjBCCiwscUyj71ma09XB1sRN.png?height=360&width=720",
-                'title': 'Loot Survivor and the Emergence of Onchain Arcades',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-            {
-                'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/sdsadfdasfdas-2WG67OTCZhpMuTKA19b7yJ91khTlgw.png?height=360&width=720",
-                'title': 'The Strongest Argument for Crypto-Native Gaming',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
+    //     {
+    //         'variant': 'event',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/thumbnail%20(2)-bOEjitwjBCCiwscUyj71ma09XB1sRN.png?height=360&width=720",
+    //         'title': 'Loot Survivor and the Emergence of Onchain Arcades',
+    //         'details': 'October 24th, 2023 - October 25th, 2023',
+    //         'zone': "EST",
+    //         'tags': ['online', 'playtest'],
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'variant': 'event',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/sdsadfdasfdas-2WG67OTCZhpMuTKA19b7yJ91khTlgw.png?height=360&width=720",
+    //         'title': 'The Strongest Argument for Crypto-Native Gaming',
+    //         'details': 'October 24th, 2023 - October 25th, 2023',
+    //         'zone': "EST",
+    //         'tags': ['online', 'playtest'],
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
 
-            {
-                'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/thumbnail%20(2)-bOEjitwjBCCiwscUyj71ma09XB1sRN.png?height=360&width=720",
-                'title': 'Loot Survivor and the Emergence of Onchain Arcades',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-            {
-                'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/sdsadfdasfdas-2WG67OTCZhpMuTKA19b7yJ91khTlgw.png?height=360&width=720",
-                'title': 'The Strongest Argument for Crypto-Native Gaming',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
+    //     {
+    //         'variant': 'event',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/thumbnail%20(2)-bOEjitwjBCCiwscUyj71ma09XB1sRN.png?height=360&width=720",
+    //         'title': 'Loot Survivor and the Emergence of Onchain Arcades',
+    //         'details': 'October 24th, 2023 - October 25th, 2023',
+    //         'zone': "EST",
+    //         'tags': ['online', 'playtest'],
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'variant': 'event',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/sdsadfdasfdas-2WG67OTCZhpMuTKA19b7yJ91khTlgw.png?height=360&width=720",
+    //         'title': 'The Strongest Argument for Crypto-Native Gaming',
+    //         'details': 'October 24th, 2023 - October 25th, 2023',
+    //         'zone': "EST",
+    //         'tags': ['online', 'playtest'],
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
 
-            {
-                'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/thumbnail%20(2)-bOEjitwjBCCiwscUyj71ma09XB1sRN.png?height=360&width=720",
-                'title': 'Loot Survivor and the Emergence of Onchain Arcades',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-        ]
+    //     {
+    //         'variant': 'event',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/thumbnail%20(2)-bOEjitwjBCCiwscUyj71ma09XB1sRN.png?height=360&width=720",
+    //         'title': 'Loot Survivor and the Emergence of Onchain Arcades',
+    //         'details': 'October 24th, 2023 - October 25th, 2023',
+    //         'zone': "EST",
+    //         'tags': ['online', 'playtest'],
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'variant': 'event',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/sdsadfdasfdas-2WG67OTCZhpMuTKA19b7yJ91khTlgw.png?height=360&width=720",
+    //         'title': 'The Strongest Argument for Crypto-Native Gaming',
+    //         'details': 'October 24th, 2023 - October 25th, 2023',
+    //         'zone': "EST",
+    //         'tags': ['online', 'playtest'],
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
+
+    //     {
+    //         'variant': 'event',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/thumbnail%20(2)-bOEjitwjBCCiwscUyj71ma09XB1sRN.png?height=360&width=720",
+    //         'title': 'Loot Survivor and the Emergence of Onchain Arcades',
+    //         'details': 'October 24th, 2023 - October 25th, 2023',
+    //         'zone': "EST",
+    //         'tags': ['online', 'playtest'],
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
+    // ]
 
 
 

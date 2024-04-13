@@ -8,79 +8,94 @@ import SingleVideoCardItem from "../SingleCard/SingleVideoCardItem";
 
 
 
-export const VideoColumn = () => {
+export const VideoColumn = ({ data }: { data: any }) => {
 
     const singleCardItemDetails: SingleCardItemProps[] =
-        [
+        data.map((video: any) =>
+        (
             {
                 'variant': 'video',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(3)-5zWDNu18KhXQQBqMhnDkdenKizVhxY.png?height=360&width=720",
-                'title': 'The Strongest Argument for Crypto-Native Gaming',
-                'description': 'Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed by Loothero[2], a senior member of Bibliotheca DAO, and uses a unique Play2Die mechanism. The game is inspired by the backstory and gameplay of the original Loot Project community [3], where players need to fight beasts, clear obstacles, collect equipment to survive, and compete for higher positions in the leaderboards.',
-                'tags': ['online', 'playtest'],
+                "id": video.videoid,
+                'imageUrl': video.media_url,//This is video url for video
+                'title': video.video_name,
+                'description': video.summary,
+                'tags': [],
                 'onFirstButtonClick': () => {
                 },
                 'onSecondButtonClick': () => {
                 },
-            },
+            }
+        ))
+    // [
+    // {
+    //     'variant': 'video',
+    //     'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(3)-5zWDNu18KhXQQBqMhnDkdenKizVhxY.png?height=360&width=720",
+    //     'title': 'The Strongest Argument for Crypto-Native Gaming',
+    //     'description': 'Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed by Loothero[2], a senior member of Bibliotheca DAO, and uses a unique Play2Die mechanism. The game is inspired by the backstory and gameplay of the original Loot Project community [3], where players need to fight beasts, clear obstacles, collect equipment to survive, and compete for higher positions in the leaderboards.',
+    //     'tags': ['online', 'playtest'],
+    //     'onFirstButtonClick': () => {
+    //     },
+    //     'onSecondButtonClick': () => {
+    //     },
+    // },
 
-            {
-                'variant': 'video',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184844-PONGpPl6WzeMR6Lzp6s4cwxzgGi1Lf.png?height=360&width=720",
-                'title': 'Loot Survivor and the Emergence of Onchain Arcade',
-                'description': 'Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed by Loothero[2], a senior member of Bibliotheca DAO, and uses a unique Play2Die mechanism. The game is inspired by the backstory and gameplay of the original Loot Project community [3], where players need to fight beasts, clear obstacles, collect equipment to survive, and compete for higher positions in the leaderboards.',
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-            {
-                'variant': 'video',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(3)-5zWDNu18KhXQQBqMhnDkdenKizVhxY.png?height=360&width=720",
-                'title': 'The Strongest Argument for Crypto-Native Gaming',
-                'description': 'Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed by Loothero[2], a senior member of Bibliotheca DAO, and uses a unique Play2Die mechanism. The game is inspired by the backstory and gameplay of the original Loot Project community [3], where players need to fight beasts, clear obstacles, collect equipment to survive, and compete for higher positions in the leaderboards.',
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
+    // {
+    //     'variant': 'video',
+    //     'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184844-PONGpPl6WzeMR6Lzp6s4cwxzgGi1Lf.png?height=360&width=720",
+    //     'title': 'Loot Survivor and the Emergence of Onchain Arcade',
+    //     'description': 'Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed by Loothero[2], a senior member of Bibliotheca DAO, and uses a unique Play2Die mechanism. The game is inspired by the backstory and gameplay of the original Loot Project community [3], where players need to fight beasts, clear obstacles, collect equipment to survive, and compete for higher positions in the leaderboards.',
+    //     'tags': ['online', 'playtest'],
+    //     'onFirstButtonClick': () => {
+    //     },
+    //     'onSecondButtonClick': () => {
+    //     },
+    // },
+    // {
+    //     'variant': 'video',
+    //     'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(3)-5zWDNu18KhXQQBqMhnDkdenKizVhxY.png?height=360&width=720",
+    //     'title': 'The Strongest Argument for Crypto-Native Gaming',
+    //     'description': 'Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed by Loothero[2], a senior member of Bibliotheca DAO, and uses a unique Play2Die mechanism. The game is inspired by the backstory and gameplay of the original Loot Project community [3], where players need to fight beasts, clear obstacles, collect equipment to survive, and compete for higher positions in the leaderboards.',
+    //     'tags': ['online', 'playtest'],
+    //     'onFirstButtonClick': () => {
+    //     },
+    //     'onSecondButtonClick': () => {
+    //     },
+    // },
 
-            {
-                'variant': 'video',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184844-PONGpPl6WzeMR6Lzp6s4cwxzgGi1Lf.png?height=360&width=720",
-                'title': 'Loot Survivor and the Emergence of Onchain Arcade',
-                'description': 'Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed by Loothero[2], a senior member of Bibliotheca DAO, and uses a unique Play2Die mechanism. The game is inspired by the backstory and gameplay of the original Loot Project community [3], where players need to fight beasts, clear obstacles, collect equipment to survive, and compete for higher positions in the leaderboards.',
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-            {
-                'variant': 'video',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184844-PONGpPl6WzeMR6Lzp6s4cwxzgGi1Lf.png?height=360&width=720",
-                'title': 'Loot Survivor and the Emergence of Onchain Arcade',
-                'description': 'Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed by Loothero[2], a senior member of Bibliotheca DAO, and uses a unique Play2Die mechanism. The game is inspired by the backstory and gameplay of the original Loot Project community [3], where players need to fight beasts, clear obstacles, collect equipment to survive, and compete for higher positions in the leaderboards.',
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-            {
-                'variant': 'video',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184844-PONGpPl6WzeMR6Lzp6s4cwxzgGi1Lf.png?height=360&width=720",
-                'title': 'Loot Survivor and the Emergence of Onchain Arcade',
-                'description': 'Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed by Loothero[2], a senior member of Bibliotheca DAO, and uses a unique Play2Die mechanism. The game is inspired by the backstory and gameplay of the original Loot Project community [3], where players need to fight beasts, clear obstacles, collect equipment to survive, and compete for higher positions in the leaderboards.',
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-        ]
+    // {
+    //     'variant': 'video',
+    //     'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184844-PONGpPl6WzeMR6Lzp6s4cwxzgGi1Lf.png?height=360&width=720",
+    //     'title': 'Loot Survivor and the Emergence of Onchain Arcade',
+    //     'description': 'Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed by Loothero[2], a senior member of Bibliotheca DAO, and uses a unique Play2Die mechanism. The game is inspired by the backstory and gameplay of the original Loot Project community [3], where players need to fight beasts, clear obstacles, collect equipment to survive, and compete for higher positions in the leaderboards.',
+    //     'tags': ['online', 'playtest'],
+    //     'onFirstButtonClick': () => {
+    //     },
+    //     'onSecondButtonClick': () => {
+    //     },
+    // },
+    // {
+    //     'variant': 'video',
+    //     'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184844-PONGpPl6WzeMR6Lzp6s4cwxzgGi1Lf.png?height=360&width=720",
+    //     'title': 'Loot Survivor and the Emergence of Onchain Arcade',
+    //     'description': 'Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed by Loothero[2], a senior member of Bibliotheca DAO, and uses a unique Play2Die mechanism. The game is inspired by the backstory and gameplay of the original Loot Project community [3], where players need to fight beasts, clear obstacles, collect equipment to survive, and compete for higher positions in the leaderboards.',
+    //     'tags': ['online', 'playtest'],
+    //     'onFirstButtonClick': () => {
+    //     },
+    //     'onSecondButtonClick': () => {
+    //     },
+    // },
+    // {
+    //     'variant': 'video',
+    //     'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184844-PONGpPl6WzeMR6Lzp6s4cwxzgGi1Lf.png?height=360&width=720",
+    //     'title': 'Loot Survivor and the Emergence of Onchain Arcade',
+    //     'description': 'Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed by Loothero[2], a senior member of Bibliotheca DAO, and uses a unique Play2Die mechanism. The game is inspired by the backstory and gameplay of the original Loot Project community [3], where players need to fight beasts, clear obstacles, collect equipment to survive, and compete for higher positions in the leaderboards.',
+    //     'tags': ['online', 'playtest'],
+    //     'onFirstButtonClick': () => {
+    //     },
+    //     'onSecondButtonClick': () => {
+    //     },
+    // },
+    // ]
 
 
     return (

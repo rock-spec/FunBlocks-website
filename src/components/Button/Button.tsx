@@ -54,7 +54,8 @@ export const CustomButton = (props: ButtonProps) => {
 
   return (
     <>
-      <div className='bg-red'>{text} {icon}</div>
+      <div className='flex bg-blue-600 px-3 py-1 text-white items-center justify-center rounded-md mt-3
+  '>{text} {icon}</div>
       {/* Preload images */}
       {/* <Image src={imageSrc} alt="" width={1} height={1} /> */}
 

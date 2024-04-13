@@ -3,134 +3,153 @@ import SingleCardItem, { SingleCardItemProps } from "../SingleCardItem/SingleCar
 import { CustomButton } from "../Button/Button";
 import SearchInput from "../SearchInput/SearchInput";
 import { IoIosArrowDown } from "react-icons/io";
+import formatDate from "@/utils/dateFormat";
 
 
 
 
-export const ArticleColumn = () => {
+export const ArticleColumn = ({ data }: { data: any }) => {
 
     const singleCardItemDetails: SingleCardItemProps[] =
-        [
+        data.map((article: any) =>
+        (
             {
                 'variant': 'article',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843-lvW7VjPWajYBlfUfol1CSdb5jGIBho.png?height=360&width=720",
-                'title': 'The Strongest Argument for Crypto-Native Gaming',
-                'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-                'details': 'February 24, 2024 at 10:50 AM',
-                'tags': ['game'],
-                'author': "Janson Will",
+                'id': article.articleid,
+                'imageUrl': `${article.content.image}?height=360&width=720`,
+                'title': article.content.title,
+                'description': article.content.description,
+                'details': formatDate(article.content.publishdate),
+                'tags': [article.content.game.gameid],
+                'author': article.content.user.username,
                 'onFirstButtonClick': () => {
                 },
                 'onSecondButtonClick': () => {
                 },
-            },
-            {
-                'variant': 'article',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(1)-oGAvZEn2wnE2aa3MPruck6hoXfCowD.png?height=360&width=720",
-                'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
-                'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-                'details': 'February 24, 2024 at 10:50 AM',
-                'tags': ['game'],
-                'author': "Janson Will",
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-            {
-                'variant': 'article',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(2)-G8kMzAkSKf1U1W5Akzo3DhwgFS9ww9.png?height=360&width=720",
-                'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
-                'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-                'details': 'February 24, 2024 at 10:50 AM',
-                'tags': ['game'],
-                'author': "Janson Will",
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-            {
-                'variant': 'article',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843-lvW7VjPWajYBlfUfol1CSdb5jGIBho.png?height=360&width=720",
-                'title': 'The Strongest Argument for Crypto-Native Gaming',
-                'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-                'details': 'February 24, 2024 at 10:50 AM',
-                'tags': ['game'],
-                'author': "Janson Will",
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
+            }
+        )
+        )
+    // [
+    //     {
+    //         'variant': 'article',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843-lvW7VjPWajYBlfUfol1CSdb5jGIBho.png?height=360&width=720",
+    //         'title': 'The Strongest Argument for Crypto-Native Gaming',
+    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
+    //         'details': 'February 24, 2024 at 10:50 AM',
+    //         'tags': ['game'],
+    //         'author': "Janson Will",
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'variant': 'article',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(1)-oGAvZEn2wnE2aa3MPruck6hoXfCowD.png?height=360&width=720",
+    //         'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
+    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
+    //         'details': 'February 24, 2024 at 10:50 AM',
+    //         'tags': ['game'],
+    //         'author': "Janson Will",
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'variant': 'article',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(2)-G8kMzAkSKf1U1W5Akzo3DhwgFS9ww9.png?height=360&width=720",
+    //         'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
+    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
+    //         'details': 'February 24, 2024 at 10:50 AM',
+    //         'tags': ['game'],
+    //         'author': "Janson Will",
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'variant': 'article',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843-lvW7VjPWajYBlfUfol1CSdb5jGIBho.png?height=360&width=720",
+    //         'title': 'The Strongest Argument for Crypto-Native Gaming',
+    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
+    //         'details': 'February 24, 2024 at 10:50 AM',
+    //         'tags': ['game'],
+    //         'author': "Janson Will",
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
 
-            {
-                'variant': 'article',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(1)-oGAvZEn2wnE2aa3MPruck6hoXfCowD.png?height=360&width=720",
-                'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
-                'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-                'details': 'February 24, 2024 at 10:50 AM',
-                'tags': ['game'],
-                'author': "Janson Will",
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-            {
-                'variant': 'article',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(2)-G8kMzAkSKf1U1W5Akzo3DhwgFS9ww9.png?height=360&width=720",
-                'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
-                'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-                'details': 'February 24, 2024 at 10:50 AM',
-                'tags': ['game'],
-                'author': "Janson Will",
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-            {
-                'variant': 'article',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843-lvW7VjPWajYBlfUfol1CSdb5jGIBho.png?height=360&width=720",
-                'title': 'The Strongest Argument for Crypto-Native Gaming',
-                'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-                'details': 'February 24, 2024 at 10:50 AM',
-                'tags': ['game'],
-                'author': "Janson Will",
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
+    //     {
+    //         'variant': 'article',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(1)-oGAvZEn2wnE2aa3MPruck6hoXfCowD.png?height=360&width=720",
+    //         'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
+    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
+    //         'details': 'February 24, 2024 at 10:50 AM',
+    //         'tags': ['game'],
+    //         'author': "Janson Will",
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'variant': 'article',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(2)-G8kMzAkSKf1U1W5Akzo3DhwgFS9ww9.png?height=360&width=720",
+    //         'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
+    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
+    //         'details': 'February 24, 2024 at 10:50 AM',
+    //         'tags': ['game'],
+    //         'author': "Janson Will",
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'variant': 'article',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843-lvW7VjPWajYBlfUfol1CSdb5jGIBho.png?height=360&width=720",
+    //         'title': 'The Strongest Argument for Crypto-Native Gaming',
+    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
+    //         'details': 'February 24, 2024 at 10:50 AM',
+    //         'tags': ['game'],
+    //         'author': "Janson Will",
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
 
-            {
-                'variant': 'article',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(1)-oGAvZEn2wnE2aa3MPruck6hoXfCowD.png?height=360&width=720",
-                'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
-                'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-                'details': 'February 24, 2024 at 10:50 AM',
-                'tags': ['game'],
-                'author': "Janson Will",
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-            {
-                'variant': 'article',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(2)-G8kMzAkSKf1U1W5Akzo3DhwgFS9ww9.png?height=360&width=720",
-                'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
-                'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-                'details': 'February 24, 2024 at 10:50 AM',
-                'tags': ['game'],
-                'author': "Janson Will",
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-        ]
+    //     {
+    //         'variant': 'article',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(1)-oGAvZEn2wnE2aa3MPruck6hoXfCowD.png?height=360&width=720",
+    //         'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
+    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
+    //         'details': 'February 24, 2024 at 10:50 AM',
+    //         'tags': ['game'],
+    //         'author': "Janson Will",
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
+    //     {
+    //         'variant': 'article',
+    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(2)-G8kMzAkSKf1U1W5Akzo3DhwgFS9ww9.png?height=360&width=720",
+    //         'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
+    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
+    //         'details': 'February 24, 2024 at 10:50 AM',
+    //         'tags': ['game'],
+    //         'author': "Janson Will",
+    //         'onFirstButtonClick': () => {
+    //         },
+    //         'onSecondButtonClick': () => {
+    //         },
+    //     },
+    // ]
 
 
 
