@@ -6,31 +6,34 @@ import { IoIosArrowDown } from "react-icons/io";
 import { Tag } from "../Tag/Tag";
 import Image from "next/image";
 import SingleCard from "../SingleCard/SingleCard";
+import formatDate from "@/utils/dateFormat";
 
 
 
 
-export const ArticleDetailsColumn = () => {
+export const ArticleDetailsColumn = ({ data }: { data: any }) => {
+
+
 
     return (
         <>
             <div className="m-w-[895px] w-full ">
                 <div className="flex-col w-full mb-10 p-5 border border-[#161616] bg-[#FFFCF9]">
-                    <div className=" text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[33.60px] mb-[12px]">The Evolution of Multiplayer Gaming: From Couch Co-op to Global Connectivity</div>
+                    <div className=" text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[33.60px] mb-[12px]">{data.article.content.title}</div>
                     <div className="flex gap-1 mb-[24px]">
-                        {['games'].map((tag, index) => (
+                        {[data.relatedData.game[0].gameid].map((tag, index) => (
                             <Tag text={tag} key={index} type={'relevance'} />
                         ))}
                         <div className="justify-start items-center gap-2 flex ml-2">
-                            <div className="opacity-80 text-neutral-900 text-sm font-normal font-['Cabin'] leading-[16.80px]">By Jason Will</div>
+                            <div className="opacity-80 text-neutral-900 text-sm font-normal font-['Cabin'] leading-[16.80px]">{data.article.content.user.username}</div>
                             <div className="w-[5px] h-[5px] opacity-80 bg-neutral-900" />
-                            <div className="text-neutral-900 text-opacity-80 text-sm font-normal font-['Cabin'] leading-[16.80px]">February 24, 2024 at 10:50 AM</div>
+                            <div className="text-neutral-900 text-opacity-80 text-sm font-normal font-['Cabin'] leading-[16.80px]">{formatDate(data.article.content.publishdate)}</div>
                         </div>
                     </div>
                     <div className=" text-neutral-900 text-xl font-semibold font-['Cabin'] leading-[30px] mb-[12px]">Summary</div>
                     <div className=" text-neutral-900 text-base font-normal font-['Cabin'] leading-normal mb-[20.28px]">The journey of multiplayer gaming is a fascinating saga of innovation, community, and the ever-evolving relationship between technology and social interaction. From the humble beginnings of couch co-op play to today's vast networks of global connectivity, multiplayer gaming has transformed in ways that early gamers could hardly have imagined. Multiplayer gaming has its roots in the local co-op and competitive experiences of the late 20th century. Games like "Pong" laid the foundation, but it was titles such as "Contra" and "Street Fighter II" that truly epitomized the era of couch multiplayer gaming. These games required players to be physically present in the same room, sharing a screen and often, in the case of co-op games, working together to achieve a common goal. This format fostered a sense of camaraderie and immediate social interaction that became a defining characteristic of early video gaming culture.</div>
 
-                    <Image alt="banner" height={487.44} width={857.55} className="mb-[24px] object-cover object-center w-[855.58px] " src="https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/image%2085-qSFSrtFKOzO7NDbmQMxRie60TTiBkn.png" />
+                    <Image alt="banner" height={487.44} width={857.55} className="mb-[24px] object-cover object-center w-[855.58px] " src={data.article.content.image} />
 
                     <div className=" text-neutral-900 text-xl font-semibold font-['Cabin'] leading-[30px] mb-[12px]">The Early Days: Couch Co-op and Local Multiplayer</div>
                     <div className=" text-neutral-900 text-base font-normal font-['Cabin'] leading-normal mb-[20.28px]">Multiplayer gaming has its roots in the local co-op and competitive experiences of the late 20th century. Games like "Pong" laid the foundation, but it was titles such as "Contra" and "Street Fighter II" that truly epitomized the era of couch multiplayer gaming. These games required players to be physically present in the same room, sharing a screen and often, in the case of co-op games, working together to achieve a common goal. This format fostered a sense of camaraderie and immediate social interaction that became a defining characteristic of early video gaming culture.</div>
@@ -55,36 +58,24 @@ export const ArticleDetailsColumn = () => {
                         heading="related articles"
                         name={'article'}
                         singleCardItemDetails={
-                            [
+                            data.relatedData.relatedArticles.map((article: any) =>
+                            (
                                 {
+                                    'id': article.articleid,
                                     'variant': 'article',
-                                    'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843-lvW7VjPWajYBlfUfol1CSdb5jGIBho.png?height=360&width=720",
-                                    'title': 'The Strongest Argument for Crypto-Native Gaming',
-                                    'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-                                    'details': 'February 24, 2024 at 10:50 AM',
-                                    'tags': ['game'],
-                                    'author': "Janson Will",
+                                    'imageUrl': `${article.content.image}?height=360&width=720`,
+                                    'title': article.content.title,
+                                    'description': article.content.description,
+                                    'details': formatDate(article.content.publishdate),
+                                    'tags': [article.content.game.gameid],
+                                    'author': article.content.user.username,
                                     'onFirstButtonClick': () => {
                                     },
                                     'onSecondButtonClick': () => {
                                     },
-                                },
+                                }
+                            ))
 
-                                {
-                                    'variant': 'article',
-                                    'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(1)-oGAvZEn2wnE2aa3MPruck6hoXfCowD.png?height=360&width=720",
-                                    'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
-                                    'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-                                    'details': 'February 24, 2024 at 10:50 AM',
-                                    'tags': ['game'],
-                                    'author': "Janson Will",
-                                    'onFirstButtonClick': () => {
-                                    },
-                                    'onSecondButtonClick': () => {
-                                    },
-                                },
-
-                            ]
                         }
 
                         onButtonClick={() => {
@@ -96,32 +87,22 @@ export const ArticleDetailsColumn = () => {
                         heading="related videos"
                         name={'video'}
                         singleCardItemDetails={
-                            [
+                            data.relatedData.relatedVideos.map((video: any) =>
+                            (
                                 {
                                     'variant': 'video',
-                                    'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(3)-5zWDNu18KhXQQBqMhnDkdenKizVhxY.png?height=360&width=720",
-                                    'title': 'The Strongest Argument for Crypto-Native Gaming',
-                                    'description': 'Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed by Loothero[2], a senior member of Bibliotheca DAO, and uses a unique Play2Die mechanism. The game is inspired by the backstory and gameplay of the original Loot Project community [3], where players need to fight beasts, clear obstacles, collect equipment to survive, and compete for higher positions in the leaderboards.',
-                                    'tags': ['online', 'playtest'],
+                                    "id": video.videoid,
+                                    'imageUrl': video.media_url,//This is video url for video
+                                    'title': video.video_name,
+                                    'description': video.summary,
+                                    'tags': [],
                                     'onFirstButtonClick': () => {
                                     },
                                     'onSecondButtonClick': () => {
                                     },
-                                },
-
-                                {
-                                    'variant': 'video',
-                                    'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184844-PONGpPl6WzeMR6Lzp6s4cwxzgGi1Lf.png?height=360&width=720",
-                                    'title': 'Loot Survivor and the Emergence of Onchain Arcade',
-                                    'description': 'Loot Survivor[1] is the first game in the Realms Autonomous Worlds ecosystem. It was developed by Loothero[2], a senior member of Bibliotheca DAO, and uses a unique Play2Die mechanism. The game is inspired by the backstory and gameplay of the original Loot Project community [3], where players need to fight beasts, clear obstacles, collect equipment to survive, and compete for higher positions in the leaderboards.',
-                                    'tags': ['online', 'playtest'],
-                                    'onFirstButtonClick': () => {
-                                    },
-                                    'onSecondButtonClick': () => {
-                                    },
-                                },
-
-                            ]
+                                }
+                            )
+                            )
                         }
                         onButtonClick={() => {
                         }}

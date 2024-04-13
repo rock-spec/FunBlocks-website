@@ -1,117 +1,90 @@
-import React from "react";
+'use client'
+
+import React, { useState } from "react";
 import SingleCardItem, { SingleCardItemProps } from "../SingleCardItem/SingleCardItem";
 import { CustomButton } from "../Button/Button";
 import SearchInput from "../SearchInput/SearchInput";
 import { IoIosArrowDown } from "react-icons/io";
+import formatDate from "@/utils/dateFormat";
 
 
+export const EventColumn = ({ data }: { data: any }) => {
 
+    const [filteredEvent, setFilteredEvent] = useState(data || [])
 
-export const EventColumn = () => {
 
     const singleCardItemDetails: SingleCardItemProps[] =
-        [
+        filteredEvent?.map((event: any) =>
+        (
             {
+                id: event.eventid,
                 'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/sdsadfdasfdas-2WG67OTCZhpMuTKA19b7yJ91khTlgw.png?height=360&width=720",
-                'title': 'The Strongest Argument for Crypto-Native Gaming',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
+                'imageUrl': `${event.pic}?height=360&width=720`,
+                'title': event.title,
+                'details': `${formatDate(event.startdate)} - ${formatDate(event.enddate)}`,
+                // 'zone': "EST",
+                'tags': [event.game.gameid],
                 'onFirstButtonClick': () => {
                 },
                 'onSecondButtonClick': () => {
                 },
-            },
+            }
 
-            {
-                'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/thumbnail%20(2)-bOEjitwjBCCiwscUyj71ma09XB1sRN.png?height=360&width=720",
-                'title': 'Loot Survivor and the Emergence of Onchain Arcades',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-            {
-                'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/sdsadfdasfdas-2WG67OTCZhpMuTKA19b7yJ91khTlgw.png?height=360&width=720",
-                'title': 'The Strongest Argument for Crypto-Native Gaming',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
+        )
+        )
 
-            {
-                'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/thumbnail%20(2)-bOEjitwjBCCiwscUyj71ma09XB1sRN.png?height=360&width=720",
-                'title': 'Loot Survivor and the Emergence of Onchain Arcades',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-            {
-                'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/sdsadfdasfdas-2WG67OTCZhpMuTKA19b7yJ91khTlgw.png?height=360&width=720",
-                'title': 'The Strongest Argument for Crypto-Native Gaming',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
 
-            {
-                'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/thumbnail%20(2)-bOEjitwjBCCiwscUyj71ma09XB1sRN.png?height=360&width=720",
-                'title': 'Loot Survivor and the Emergence of Onchain Arcades',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-            {
-                'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/sdsadfdasfdas-2WG67OTCZhpMuTKA19b7yJ91khTlgw.png?height=360&width=720",
-                'title': 'The Strongest Argument for Crypto-Native Gaming',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
+    function filterEvent(searchString: string = ""): any[] {
+        const events = data;
 
-            {
-                'variant': 'event',
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/thumbnail%20(2)-bOEjitwjBCCiwscUyj71ma09XB1sRN.png?height=360&width=720",
-                'title': 'Loot Survivor and the Emergence of Onchain Arcades',
-                'details': 'October 24th, 2023 - October 25th, 2023',
-                'zone': "EST",
-                'tags': ['online', 'playtest'],
-                'onFirstButtonClick': () => {
-                },
-                'onSecondButtonClick': () => {
-                },
-            },
-        ]
+        // If searchString is empty, return the original eventArray
+        if (!searchString.trim()) {
+            return events;
+        }
+
+        // Filter the eventArray based on the search string
+        return events.filter((event: any) => {
+            const lowerSearchString = searchString.toLowerCase();
+            const lowerStartDate = event?.startdate?.toLowerCase();
+            const lowerEndDate = event?.enddate?.toLowerCase();
+
+            // Check if the search string matches any part of the startdate or enddate
+            const startDateMatch = lowerStartDate?.includes(lowerSearchString);
+            const endDateMatch = lowerEndDate?.includes(lowerSearchString);
+
+            // Check if the search string matches any part of the title, detail, gameid, or eventid
+            const otherMatches = (
+                event?.gameid?.toLowerCase().includes(lowerSearchString) ||
+                event?.eventid?.toLowerCase().includes(lowerSearchString) ||
+                event?.title?.toLowerCase().includes(lowerSearchString) ||
+                event?.detail?.toLowerCase().includes(lowerSearchString)
+            );
+
+            // Check if the search string represents a month (e.g., "April")
+            const isMonth = (dateString: string) => {
+                const months = [
+                    "january", "february", "march", "april",
+                    "may", "june", "july", "august",
+                    "september", "october", "november", "december"
+                ];
+                return months.some(month => dateString.includes(month));
+            };
+
+            // Return true if any of the matches are found
+            return startDateMatch || endDateMatch || otherMatches || (isMonth(lowerSearchString) && (lowerStartDate.includes(lowerSearchString) || lowerEndDate.includes(lowerSearchString)));
+        });
+    }
+
+
+
+
+    const handleSearch = (e: any) => {
+        const val = e.target.value
+        const updateData = filterEvent(val)
+        console.log(updateData);
+
+        setFilteredEvent(updateData)
+    }
 
 
 
@@ -120,12 +93,12 @@ export const EventColumn = () => {
             <div className="lg:w-[895px] w-full">
                 <div className="flex lg:flex-row flex-col w-full mb-10">
                     <div className="h-58px">
-                        <SearchInput varient="light" placeholder="Search for Keywords" />
+                        <SearchInput varient="light" placeholder="Search for Keywords" onChange={handleSearch} />
                     </div>
                     <div className="flex">
-                        <CustomButton onClick={() => { }} size='13px' text='Type' height='42px' icon={<IoIosArrowDown />} />
+                        {/* <CustomButton onClick={() => { }} size='13px' text='Type' height='42px' icon={<IoIosArrowDown />} />
                         <CustomButton onClick={() => { }} size='13px' text='Status' height='42px' icon={<IoIosArrowDown />} />
-                        <CustomButton onClick={() => { }} size='13px' text='Category' height='42px' icon={<IoIosArrowDown />} />
+                        <CustomButton onClick={() => { }} size='13px' text='Category' height='42px' icon={<IoIosArrowDown />} /> */}
                     </div>
                 </div>
                 <div className="flex mb-10 gap-x-5">
@@ -137,7 +110,7 @@ export const EventColumn = () => {
                             </div>
                         ))}
                         <div className="flex item-center w-full justify-center">
-                            <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" />
+                            {/* <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" /> */}
                         </div>
                     </div>
                 </div>

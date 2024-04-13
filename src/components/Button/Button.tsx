@@ -4,6 +4,7 @@ import React, { ReactNode } from 'react';
 import Image from 'next/image';
 
 import '../../app/globals.css';
+import Link from 'next/link';
 
 export interface ButtonProps {
   onClick: () => void;
@@ -14,11 +15,13 @@ export interface ButtonProps {
   size?: string;
   useSmall?: boolean;
   icon?: ReactNode;
+  link?: string;
 }
 
 export const CustomButton = (props: ButtonProps) => {
   // Destructure props for easier usage
   const {
+    link,
     onClick,
     text,
     type = 'secondary',
@@ -54,7 +57,12 @@ export const CustomButton = (props: ButtonProps) => {
 
   return (
     <>
-      <div className='bg-red'>{text} {icon}</div>
+      <div className='flex bg-blue-600 px-3 py-1 text-white items-center justify-center rounded-md mt-3 mr-1 cursor-pointer
+  '>
+        {link ? <Link href={link}>{text} {icon}</Link> : `${text} ${icon ? icon : ""}`}
+
+
+      </div>
       {/* Preload images */}
       {/* <Image src={imageSrc} alt="" width={1} height={1} /> */}
 

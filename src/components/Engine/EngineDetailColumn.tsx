@@ -6,46 +6,25 @@ import Image from "next/image";
 import { Tag } from "@/components/Tag/Tag";
 import { Column } from "../Column/Column";
 import GameCardComponet, { GameCardComponentProps } from "../Games/GameCardComponet";
+import Link from "next/link";
+import formatDate from "@/utils/dateFormat";
 
-export const EngineDetailColumn = () => {
+export const EngineDetailColumn = ({ engine, relatedGames, relatedArticles }: { engine: any, relatedGames: any, relatedArticles: any }) => {
 
     const singleCardItemDetails: GameCardComponentProps[] =
-        [
-            {
-                game_id: "123",
-                engine: "paima",
-                engine_logo: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/bolt%20logo-GeDmp6kt980WP2Z0ch3gDvtkNrdZkK.svg",
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Game%20Thumbail-imKmzXRUOYiTlqkK85KeumNoUIFL0o.png",
-                'title': 'Alchemist',
-                'description': 'The World Adventure',
-                'tags': ['online', 'playtest'],
-                'onClick': () => {
-                },
+        relatedGames.map((game: any) => ({
+            game_id: game?.game_id,
+            engine: game?.engineid,
+            engine_logo: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/bolt%20logo-GeDmp6kt980WP2Z0ch3gDvtkNrdZkK.svg",
+            'imageUrl': game?.pic,
+            'title': game?.game_name,
+            'description': '',
+            'tags': [game?.gamestudioid],
+            'onClick': () => {
             },
+        }))
 
-            {
-                game_id: "123",
-                engine: "mud v2",
-                engine_logo: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/bolt%20logo-1-eyMwzsUTiIgfNQdNrEYhbGPlLtez0d.svg",
-
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/image%2090-i60QEO453Pelab4EsRedYMtXuzGkIY.png",
-                'title': 'ClimBros',
-                'description': 'Them Mountain Ride',
-                'tags': ['online', 'playtest'],
-                'onClick': () => {
-                },
-            },
-            {
-                game_id: "123",
-                engine: "world engine",
-                engine_logo: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/bolt%20logo-2-t5gXRpZAHPvDZ9TIGzvnUhIPY5TgYk.svg",
-                'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/image%2092-gZQHVixbfRKHN3R806WteVL7mHxc5Z.png",
-                'title': 'The Uplift',
-                'description': 'Crypto Mind',
-                'tags': ['online', 'playtest'],
-                'onClick': () => {
-                },
-            },]
+    const engineData = engine && engine[0]
     return (
         <>
             <div className="max-w-[895px] w-full">
@@ -55,7 +34,7 @@ export const EngineDetailColumn = () => {
                         {/* image container */}
                         <div className="relative md:w-[50%] w-full">
                             {/* main banner image  */}
-                            <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/game%20(5)-6oU68Ivx1882hoKKQMWom7yAEApTQa.png"} width={457} height={337} alt="" className="rounded-md w-full" />
+                            <Image src={engineData?.pic} width={457} height={337} alt="" className="rounded-md w-full" />
 
                             {/* /Star Image/ */}
                             {/* <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Tag-Swq9b5dkBzXvaPrsQFkgnAavhvTx5O.svg"} height={32} width={32} alt="" className="absolute bottom-[4%] left-[2%]  hover:scale-110 transition-all cursor-pointer" /> */}
@@ -71,10 +50,10 @@ export const EngineDetailColumn = () => {
 
                         <div className="md:w-[50%] w-full">
                             <div className=" text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[48px] ">
-                                MUD V1
+                                {engineData?.engineid}
                             </div>
 
-                            <div className=" text-neutral-900 text-base font-normal font-['Cabin']">MUD V1, short for Multi-User Dungeon Version 1, is an early version of the MUD (Multi-User Dungeon) concept, which laid the groundwork for the development of text-based online multiplayer games. MUDs are text-based virtual worlds where players can interact with each other and the environment using text commands.
+                            <div className=" text-neutral-900 text-base font-normal font-['Cabin']">{engineData?.desc}
                             </div>
                             <br />
 
@@ -83,13 +62,13 @@ export const EngineDetailColumn = () => {
                                 <div className="text-neutral-900 text-base font-medium font-['Cabin'] underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
 
                                     <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-bSRcfFmN2KJ4lSUyJxVUZBs8dZu8k9.svg"} height={24} width={24} alt="" className="h-6 mr-1" />
-                                    <p> MUD V1</p>
+                                    <p><Link href={engineData?.website} target="blank">{engineData?.engineid}</Link></p>
                                 </div>
 
                                 <div className="text-neutral-900 text-base font-medium font-['Cabin'] underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
 
                                     <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-1-PZh4LhAvRZK9PlN7UP5ctTh11SfFFQ.svg"} height={24} width={24} alt="" className="h-6 mr-1" />
-                                    <p> Documentations</p>
+                                    <p> <Link href={engineData?.blogurl} target="blank">Docs</Link></p>
                                 </div>
                                 <div className="text-neutral-900 text-base font-medium font-['Cabin'] underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
 
@@ -129,48 +108,24 @@ export const EngineDetailColumn = () => {
 
                         heading="related articles"
                         singleCardItemDetails={
-                            [
+                            relatedArticles.map((article: any) =>
+                            (
                                 {
                                     'variant': 'article',
-                                    'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843-lvW7VjPWajYBlfUfol1CSdb5jGIBho.png?height=360&width=720",
-                                    'title': 'The Strongest Argument for Crypto-Native Gaming',
-                                    'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-                                    'details': 'February 24, 2024 at 10:50 AM',
-                                    'tags': ['game'],
-                                    'author': "Janson Will",
+                                    'id': article.articleid,
+                                    'imageUrl': `${article.content.image}?height=360&width=720`,
+                                    'title': article.content.title,
+                                    'description': article.content.description,
+                                    'details': formatDate(article.content.publishdate),
+                                    'tags': [article.content.game.gameid],
+                                    'author': article.content.user.username,
                                     'onFirstButtonClick': () => {
                                     },
                                     'onSecondButtonClick': () => {
                                     },
-                                },
-
-                                {
-                                    'variant': 'article',
-                                    'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(1)-oGAvZEn2wnE2aa3MPruck6hoXfCowD.png?height=360&width=720",
-                                    'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
-                                    'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-                                    'details': 'February 24, 2024 at 10:50 AM',
-                                    'tags': ['game'],
-                                    'author': "Janson Will",
-                                    'onFirstButtonClick': () => {
-                                    },
-                                    'onSecondButtonClick': () => {
-                                    },
-                                },
-                                {
-                                    'variant': 'article',
-                                    'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(2)-G8kMzAkSKf1U1W5Akzo3DhwgFS9ww9.png?height=360&width=720",
-                                    'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
-                                    'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-                                    'details': 'February 24, 2024 at 10:50 AM',
-                                    'tags': ['game'],
-                                    'author': "Janson Will",
-                                    'onFirstButtonClick': () => {
-                                    },
-                                    'onSecondButtonClick': () => {
-                                    },
-                                },
-                            ]
+                                }
+                            )
+                            )
                         }
                         buttonText={''}
                         onButtonClick={() => {

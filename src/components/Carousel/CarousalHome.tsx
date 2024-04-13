@@ -47,7 +47,7 @@ const CarousalHome = ({ data }: CarousalHomeProps) => {
 
     return (
 
-        <div className="  bg-stone-50   border border-neutral-900 ">
+        <div className="  bg-stone-50   border border-neutral-900 " >
             <div className="w-full flex-col p-5 justify-end items-start gap-6 inline-flex h-full">
 
                 {/* image container */}
@@ -82,7 +82,7 @@ const CarousalHome = ({ data }: CarousalHomeProps) => {
                 </div>
                 <Link href={`/engine/${data[0].id}`}>
                     <div className="mt-[-25px] ">
-                        <CustomButton text="Explore" type="primary" onClick={() => { }} width="190px" size="14px" />
+                        <CustomButton text="Explore" type="primary" onClick={() => { }} width="190px" size="14px" link={`/article/${data[dataIndex].id}`} />
                     </div>
                 </Link>
             </div>

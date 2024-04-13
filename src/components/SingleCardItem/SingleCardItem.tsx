@@ -7,7 +7,8 @@ import Link from 'next/link';
 
 // Define the props interface
 export interface SingleCardItemProps {
-  variant: 'event' | 'article' | 'video';
+  id?: string,
+  variant: 'event' | 'article' | 'video' | 'news';
   imageUrl: string;
   title: string;
   author?: string;
@@ -20,12 +21,12 @@ export interface SingleCardItemProps {
 }
 
 const SingleCardItem = (props: SingleCardItemProps) => {
-  const { variant, imageUrl, zone, title, description = "", details = "", onFirstButtonClick, onSecondButtonClick, tags = [], author = "" } = props;
+  const { variant, imageUrl, zone, title, id, description = "", details = "", onFirstButtonClick, onSecondButtonClick, tags = [], author = "" } = props;
   return (
     <div className="flex md:flex-row w-full flex-col items-start gap-6 ">
       {/* First Column: Image */}
 
-      <Link href={`/${variant}/id`}>
+      <Link href={`/${variant}/${id}`}>
         <div className="relative rounded-md border border-[#161616] overflow-hidden min-w-[260px] w-full">
           <Image
             className=' w-full h-full '
@@ -74,7 +75,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
 
           {/* Dates  */}
           {variant === 'event' ? (
-            <div className="flex md:flex-row flex-col gap-3">
+            <div className="flex md:flex-row flex-col gap-3 flex-1">
               <div className='flex gap-1'>
                 {tags.map((tag, index) => (
                   <Tag text={tag} key={index} type={'relevance'} />
@@ -83,7 +84,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
               <div className="justify-start items-center gap-2 flex md:ml-2">
                 <Image src="/date-icon.svg" alt="Date" width={12} height={12} />
                 <div className="text-neutral-900 text-opacity-80 text-sm font-normal font-['Cabin'] leading-[16.80px]">{details} {zone}</div>
-                <div className="w-[5px] h-[5px] opacity-80 hidden md:block bg-neutral-900" />
+                {/* <div className="w-[5px] h-[5px] opacity-80 hidden md:block bg-neutral-900" /> */}
 
               </div>
             </div>
@@ -107,7 +108,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         {/* Second Row: Buttons */}
         {variant === 'event' ? (<div className="flex">
           <CustomButton text='Join Event' onClick={onFirstButtonClick} size='10px' width='180px' type='primary' />
-          <CustomButton text='Details' onClick={onSecondButtonClick} size='10px' width='180px' />
+          {/* <CustomButton text='Details' onClick={onSecondButtonClick} size='10px' width='180px' /> */}
         </div>) : ""}
       </div>
     </div>
