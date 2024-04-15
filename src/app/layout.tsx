@@ -24,7 +24,7 @@ function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Provider>
-          <nav>
+          <nav suppressHydrationWarning={true}>
             <NavBar />
           </nav>
 

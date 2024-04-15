@@ -82,7 +82,7 @@ const CarousalHome = ({ data }: CarousalHomeProps) => {
                 </div>
                 <Link href={`/engine/${data[0].id}`}>
                     <div className="mt-[-25px] ">
-                        <CustomButton text="Explore" type="primary" onClick={() => { }} width="190px" size="14px" />
+                        <CustomButton text="Explore" type="primary" onClick={() => { }} width="190px" size="14px" link={`/article/${data[dataIndex].id}`} />
                     </div>
                 </Link>
             </div>

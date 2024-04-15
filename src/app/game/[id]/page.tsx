@@ -25,7 +25,7 @@ const GameDetail = async ({ params }: { params: { id: string } }) => {
             {/* {JSON.stringify(data)} */}
 
             {/* Right Column */}
-            <Column variant='news' responsive title='related new' buttonText='All Games' onButtonClick={() => { }}
+            <Column variant='news' responsive title='related new' buttonText='' onButtonClick={() => { }}
                 columnItems={
                     relatedNews?.map((news: any) => ({
                         id: news?.newsid,

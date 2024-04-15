@@ -6,7 +6,7 @@ const supabase = SupabaseInstance.getSupabaseInstance()
 const getAllVideos = async () => {
     const { data, error } = await supabase
         .from("videos")
-        .select("videoid,video_name,summary,media_url")
+        .select("videoid,video_name,summary,media_url,gameid")
 
 
     if (error) {

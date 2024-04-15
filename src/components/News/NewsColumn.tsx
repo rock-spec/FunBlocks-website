@@ -1,4 +1,6 @@
-import React from "react";
+"use client"
+
+import React, { useState } from "react";
 import SingleCardItem, { SingleCardItemProps } from "../SingleCardItem/SingleCardItem";
 import { CustomButton } from "../Button/Button";
 import SearchInput from "../SearchInput/SearchInput";
@@ -10,9 +12,29 @@ import formatDate from "@/utils/dateFormat";
 
 export const NewsColumn = ({ data }: { data: any }) => {
 
+    const [newsFilterData, setNewsFilterData] = useState(data)
+
+    function filterNewsArray(searchString: string): any[] {
+        const newsArray: any[] = data
+        // If searchString is empty, return the original newsArray
+        if (!searchString.trim()) {
+            return newsArray;
+        }
+
+        // Filter the newsArray based on the search string
+        return newsArray.filter(news => {
+            return (
+                news?.newsid?.toLowerCase().includes(searchString.toLowerCase()) ||
+                news?.game?.gameid?.toLowerCase().includes(searchString.toLowerCase()) ||
+                news?.content?.title?.toLowerCase().includes(searchString.toLowerCase())
+            );
+        });
+    }
+
+
     const singleCardItemDetails: SingleCardItemProps[] =
 
-        data.map((news: any) =>
+        newsFilterData?.map((news: any) =>
         (
             {
                 'variant': 'news',
@@ -30,128 +52,13 @@ export const NewsColumn = ({ data }: { data: any }) => {
             }
         )
         )
-    // [
-    //     {
-    //         'variant': 'news',
-    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843-lvW7VjPWajYBlfUfol1CSdb5jGIBho.png?height=360&width=720",
-    //         'title': 'The Strongest Argument for Crypto-Native Gaming',
-    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-    //         'details': 'February 24, 2024 at 10:50 AM',
-    //         'tags': ['game'],
-    //         'author': "Janson Will",
-    //         'onFirstButtonClick': () => {
-    //         },
-    //         'onSecondButtonClick': () => {
-    //         },
-    //     },
 
-    //     {
-    //         'variant': 'news',
-    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(1)-oGAvZEn2wnE2aa3MPruck6hoXfCowD.png?height=360&width=720",
-    //         'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
-    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-    //         'details': 'February 24, 2024 at 10:50 AM',
-    //         'tags': ['game'],
-    //         'author': "Janson Will",
-    //         'onFirstButtonClick': () => {
-    //         },
-    //         'onSecondButtonClick': () => {
-    //         },
-    //     },
-    //     {
-    //         'variant': 'news',
-    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(2)-G8kMzAkSKf1U1W5Akzo3DhwgFS9ww9.png?height=360&width=720",
-    //         'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
-    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-    //         'details': 'February 24, 2024 at 10:50 AM',
-    //         'tags': ['game'],
-    //         'author': "Janson Will",
-    //         'onFirstButtonClick': () => {
-    //         },
-    //         'onSecondButtonClick': () => {
-    //         },
-    //     },
-    //     {
-    //         'variant': 'news',
-    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843-lvW7VjPWajYBlfUfol1CSdb5jGIBho.png?height=360&width=720",
-    //         'title': 'The Strongest Argument for Crypto-Native Gaming',
-    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-    //         'details': 'February 24, 2024 at 10:50 AM',
-    //         'tags': ['game'],
-    //         'author': "Janson Will",
-    //         'onFirstButtonClick': () => {
-    //         },
-    //         'onSecondButtonClick': () => {
-    //         },
-    //     },
+    const handleSearch = (e: any) => {
+        const val = e.target.value
+        const updateData = filterNewsArray(val)
+        setNewsFilterData(updateData)
+    }
 
-    //     {
-    //         'variant': 'news',
-    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(1)-oGAvZEn2wnE2aa3MPruck6hoXfCowD.png?height=360&width=720",
-    //         'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
-    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-    //         'details': 'February 24, 2024 at 10:50 AM',
-    //         'tags': ['game'],
-    //         'author': "Janson Will",
-    //         'onFirstButtonClick': () => {
-    //         },
-    //         'onSecondButtonClick': () => {
-    //         },
-    //     },
-    //     {
-    //         'variant': 'news',
-    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(2)-G8kMzAkSKf1U1W5Akzo3DhwgFS9ww9.png?height=360&width=720",
-    //         'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
-    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-    //         'details': 'February 24, 2024 at 10:50 AM',
-    //         'tags': ['game'],
-    //         'author': "Janson Will",
-    //         'onFirstButtonClick': () => {
-    //         },
-    //         'onSecondButtonClick': () => {
-    //         },
-    //     },
-    //     {
-    //         'variant': 'news',
-    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843-lvW7VjPWajYBlfUfol1CSdb5jGIBho.png?height=360&width=720",
-    //         'title': 'The Strongest Argument for Crypto-Native Gaming',
-    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-    //         'details': 'February 24, 2024 at 10:50 AM',
-    //         'tags': ['game'],
-    //         'author': "Janson Will",
-    //         'onFirstButtonClick': () => {
-    //         },
-    //         'onSecondButtonClick': () => {
-    //         },
-    //     },
-
-    //     {
-    //         'variant': 'news',
-    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(1)-oGAvZEn2wnE2aa3MPruck6hoXfCowD.png?height=360&width=720",
-    //         'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
-    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-    //         'details': 'February 24, 2024 at 10:50 AM',
-    //         'tags': ['game'],
-    //         'author': "Janson Will",
-    //         'onFirstButtonClick': () => {
-    //         },
-    //         'onSecondButtonClick': () => {
-    //         },
-    //     },
-    //     {
-    //         'variant': 'news',
-    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184843%20(2)-G8kMzAkSKf1U1W5Akzo3DhwgFS9ww9.png?height=360&width=720",
-    //         'title': 'Introduction to the Autonomous World: THE CASE FOR AUTONOMOUS WORLDS',
-    //         'description': "In the ever-evolving world of video games, staying ahead of the curve is not just about keeping your software updated; it's about immersing yourself in the heart of gaming culture",
-    //         'details': 'February 24, 2024 at 10:50 AM',
-    //         'tags': ['game'],
-    //         'author': "Janson Will",
-    //         'onFirstButtonClick': () => {
-    //         },
-    //         'onSecondButtonClick': () => {
-    //         },
-    //     },
-    // ]
 
 
 
@@ -160,11 +67,11 @@ export const NewsColumn = ({ data }: { data: any }) => {
             <div className="lg:w-[895px]  w-full">
                 <div className="flex flex-col lg:flex-row w-full mb-10">
                     <div className="h-[52px]">
-                        <SearchInput varient="light" placeholder="Search for Keywords" />
+                        <SearchInput varient="light" placeholder="Search for Keywords" onChange={handleSearch} />
                     </div>
 
-                    <CustomButton onClick={() => { }} size='13px' text='Category' height='42px' icon={<IoIosArrowDown />} />
-                    <CustomButton onClick={() => { }} size='13px' text='Sort By' height='42px' icon={<IoIosArrowDown />} />
+                    {/* <CustomButton onClick={() => { }} size='13px' text='Category' height='42px' icon={<IoIosArrowDown />} />
+                    <CustomButton onClick={() => { }} size='13px' text='Sort By' height='42px' icon={<IoIosArrowDown />} /> */}
                 </div>
                 <div className="flex mb-10 gap-x-5">
 
@@ -175,7 +82,7 @@ export const NewsColumn = ({ data }: { data: any }) => {
                             </div>
                         ))}
                         <div className="flex item-center w-full justify-center">
-                            <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" />
+                            {/* <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" /> */}
                         </div>
                     </div>
                 </div>

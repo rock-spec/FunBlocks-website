@@ -23,43 +23,6 @@ export const EngineDetailColumn = ({ engine, relatedGames, relatedArticles }: { 
             'onClick': () => {
             },
         }))
-    // [
-    //     {
-    //         game_id: "123",
-    //         engine: "paima",
-    //         engine_logo: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/bolt%20logo-GeDmp6kt980WP2Z0ch3gDvtkNrdZkK.svg",
-    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Game%20Thumbail-imKmzXRUOYiTlqkK85KeumNoUIFL0o.png",
-    //         'title': 'Alchemist',
-    //         'description': 'The World Adventure',
-    //         'tags': ['online', 'playtest'],
-    //         'onClick': () => {
-    //         },
-    //     },
-
-    //     {
-    //         game_id: "123",
-    //         engine: "mud v2",
-    //         engine_logo: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/bolt%20logo-1-eyMwzsUTiIgfNQdNrEYhbGPlLtez0d.svg",
-
-    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/image%2090-i60QEO453Pelab4EsRedYMtXuzGkIY.png",
-    //         'title': 'ClimBros',
-    //         'description': 'Them Mountain Ride',
-    //         'tags': ['online', 'playtest'],
-    //         'onClick': () => {
-    //         },
-    //     },
-    //     {
-    //         game_id: "123",
-    //         engine: "world engine",
-    //         engine_logo: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/bolt%20logo-2-t5gXRpZAHPvDZ9TIGzvnUhIPY5TgYk.svg",
-    //         'imageUrl': "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/image%2092-gZQHVixbfRKHN3R806WteVL7mHxc5Z.png",
-    //         'title': 'The Uplift',
-    //         'description': 'Crypto Mind',
-    //         'tags': ['online', 'playtest'],
-    //         'onClick': () => {
-    //         },
-    //     },]
-
     const engineData = engine && engine[0]
     return (
         <>

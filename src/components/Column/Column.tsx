@@ -46,7 +46,7 @@ export const Column = (props: ColumnProps) => {
       {/* Row 3 */}
       <div className="flex ">
         {/* Replace ButtonComponent with your actual button component */}
-        {buttonText && <CustomButton text={buttonText} onClick={onButtonClick} />}
+        {buttonText && <CustomButton text={buttonText} onClick={onButtonClick} link={`/${variant}`} />}
       </div>
     </div>
   );

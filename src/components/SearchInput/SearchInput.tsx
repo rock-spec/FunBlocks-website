@@ -1,16 +1,17 @@
+"use client"
+
 import React from 'react';
 import Image from "next/image";
 
 export interface SearchInputProps {
   varient?: 'light' | 'dark',
   placeholder?: string,
-  className?: string
+  className?: string,
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void // Modify the onChange type
 }
 
 const SearchInput = (props: SearchInputProps) => {
-  const { varient = "dark", placeholder = "Search for anything" } = props
-
-  // ${ varient === "dark" ? "447px" : "350px" }
+  const { varient = "dark", placeholder = "Search for anything", onChange = () => { } } = props
 
   return (
     <div
@@ -18,6 +19,7 @@ const SearchInput = (props: SearchInputProps) => {
        max-w-${varient === 'dark' ? '[447px]' : '[350px]'} ${varient === 'dark' ? 'mx-5' : 'mr-4'} 
       h-[52px] px-6 py-4.5 ${props.className}`}>
       <input
+        onChange={onChange} // Use the passed onChange function here
         type="text"
         className=" h-5.5 bg-transparent outline-none placeholder-default"
         placeholder={placeholder}
