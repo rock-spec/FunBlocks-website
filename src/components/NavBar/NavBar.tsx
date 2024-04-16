@@ -850,11 +850,6 @@ export const NavBar = () => {
 
   };
 
-  const handleDropdownNavItemClick = () => {
-    setShowNavDropdown(!showNavDropdown)
-
-  };
-
   const handleLanguageItemClick = (language: string) => {
     // Handle language selection here
     setLanguage(language)
@@ -876,7 +871,7 @@ export const NavBar = () => {
 
           </div>
 
-          <SearchInput varient="dark" className='ml-0 pl-0 mr-0 pr-0 sm:mx-3  ' />
+          <SearchInput varient="dark" className='ml-0 pl-0 mr-0 pr-0 sm:mx-3' />
 
           {/* Page Navigation Links Section */}
           <div className="items-center hidden lg:flex" style={{
@@ -891,78 +886,68 @@ export const NavBar = () => {
 
             <div className="relative">
               <div className="py-5 px-2 text-black flex items-center justify-center cursor-pointer" onClick={toggleDropdown}>
-                <div className="py-5 px-2 text-black flex items-center justify-center cursor-pointer" onClick={toggleDropdown}>
-                  More <IoIosArrowDown />
-                </div>
-                <div>
-                  {showDropdown && (
-                    <div className="absolute bg-white shadow-lg top-full mt-1 right-0">
-                      <Link href={'/event'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownItemClick}> Events</div></Link> <br />
-                      <Link href={'/engine'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownItemClick}> Engine</div></Link>
-                    </div>
-                  )}
-                </div>
+                More <IoIosArrowDown />
+              </div>
+              <div>
+                {showDropdown && (
+                  <div className="absolute bg-white shadow-lg top-full mt-1 right-0">
+                    <Link href={'/event'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownItemClick}> Events</div></Link> <br />
+                    <Link href={'/engine'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownItemClick}> Engine</div></Link>
+                  </div>
+                )}
               </div>
             </div>
+          </div>
 
-            <div className='flex items-center justify-center '>
-              <div className='lg:hidden relative min-w-6'>
-                <div className='flex items-center justify-center '>
-                  <div className='lg:hidden relative min-w-6'>
-                    <Image src={"/bar.svg"} height={50} width={50} alt='' onClick={() => {
-                      setShowNavDropdown(!showNavDropdown)
-                    }} />
-                    {
-                      showNavDropdown ? <div className="absolute top-10 bg-white shadow-lg  right-0 uppercase z-10">
-                        <Link className="py-5 px-2" href={'/'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Home</div></Link>
-                        <Link className="py-5 px-2" href={'/game'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Games</div></Link>
-                        <Link className="py-5 px-2" href={'/news'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>news</div></Link>
-                        <Link className="py-5 px-2" href={'/article'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Article</div></Link>
-                        <Link className="py-5 px-2" href={'/video'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Videos</div></Link>
-                        <Link href={'/event'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}> Events</div></Link> <br />
-                        <Link href={'/engine'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}> Engine</div></Link>
-                      </div> : ""
+          <div className='flex items-center justify-center '>
+            <div className='lg:hidden relative min-w-6'>
+              <Image src={"/bar.svg"} height={50} width={50} alt='' onClick={() => {
+                setShowNavDropdown(!showNavDropdown)
+              }} />
+              {
                 showNavDropdown ? <div className="absolute top-10 bg-white shadow-lg  right-0 uppercase z-10">
-                      <Link className="py-5 px-2" href={'/'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Home</div></Link>
-                      <Link className="py-5 px-2" href={'/game'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Games</div></Link>
-                      <Link className="py-5 px-2" href={'/news'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>news</div></Link>
-                      <Link className="py-5 px-2" href={'/article'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Article</div></Link>
-                      <Link className="py-5 px-2" href={'/video'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Videos</div></Link>
-                      <Link href={'/event'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}> Events</div></Link> <br />
-                      <Link href={'/engine'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}> Engine</div></Link>
-                    </div> : ""
+                  <Link className="py-5 px-2" href={'/'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Home</div></Link>
+                  <Link className="py-5 px-2" href={'/game'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Games</div></Link>
+                  <Link className="py-5 px-2" href={'/news'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>news</div></Link>
+                  <Link className="py-5 px-2" href={'/article'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Article</div></Link>
+                  <Link className="py-5 px-2" href={'/video'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Videos</div></Link>
+                  <Link href={'/event'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}> Events</div></Link> <br />
+                  <Link href={'/engine'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}> Engine</div></Link>
+                </div> : ""
               }
 
 
-                  </div>
-                  <div className="relative hidden lg:block">
-                    <div className="relative hidden lg:block">
-                      <CustomButton
-                        useSmall={true}
-                        onClick={toggleLanguageDropdown}
-                        size='10px'
-                        text={language}
-                        width='75px'
+            </div>
+            <div className="relative hidden lg:block">
+              <CustomButton
+                useSmall={true}
+                onClick={toggleLanguageDropdown}
+                size='10px'
+                text={language}
+                width='75px'
 
-                      // icon={<IoIosArrowDown />}
-                      />
-                      {showLanguageDropdown && (
-                        <div className="absolute  bg-white shadow-lg top-full mt-1 right-0">
-                          <Link href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('ENG')}>ENGLISH</Link>
-
-                        </div>
-                      )}
-                    </div>
-                  </div>
+              // icon={<IoIosArrowDown />}
+              />
+              {showLanguageDropdown && (
+                <div className="absolute  bg-white shadow-lg top-full mt-1 right-0">
+                  {/* <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('CHIN')}>CHINIES</a>
+                  <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('HIN')}>HINDI</a>
+                  <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('GER')}>GERMAN</a>*/}
+                  <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('ENG')}>ENGLISH</a>
 
                 </div>
+              )}
+            </div>
+          </div>
 
-              </div>
+        </div>
 
-              {/* SVG at the bottom of the NavBar */}
-              <div className="w-full bg-gray-200 overflow-hidden">
-                <BottomSVG />
-              </div>
-            </nav >
-            );
+      </div>
+
+      {/* SVG at the bottom of the NavBar */}
+      <div className="w-full bg-gray-200 overflow-hidden">
+        <BottomSVG />
+      </div>
+    </nav >
+  );
 };

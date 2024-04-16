@@ -42,7 +42,6 @@ export const EngineColumn = ({ data }: { data: any }) => {
             }
         ))
 
-
     const handleSearch = (e: any) => {
         const val = e.target.value
         const updateData = filterEngine(val)

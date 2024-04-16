@@ -23,7 +23,6 @@ export const EngineDetailColumn = ({ engine, relatedGames, relatedArticles }: { 
             'onClick': () => {
             },
         }))
-
     const engineData = engine && engine[0]
     return (
         <>

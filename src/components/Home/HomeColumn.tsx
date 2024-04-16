@@ -78,7 +78,6 @@ export const HomeColumn = ({ data }: { data: any }) => {
                         ))
                     }
 
-
                 </div>
 
                 <div className="flex mb-10 gap-x-5">
@@ -104,7 +103,6 @@ export const HomeColumn = ({ data }: { data: any }) => {
                                 }
                             )
                             )
-
                         }
                         buttonText={'View More Articles'}
                         onButtonClick={() => {
