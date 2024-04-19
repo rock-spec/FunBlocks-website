@@ -105,7 +105,7 @@ export const EventColumn = ({ data }: { data: any }) => {
 
                     <div className="flex flex-col flex-1 items-start gap-5">
                         {singleCardItemDetails.map((detail, index) => (
-                            <div className="p-5 border border-[#161616] bg-[#FFFCF9]">
+                            <div className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[55rem]">
                                 <SingleCardItem key={index} {...detail} />
                             </div>
                         ))}

@@ -858,20 +858,20 @@ export const NavBar = () => {
   };
 
   return (
-    <nav className={"bg-floralWhite"}>
-      <div className="w-full mx-auto px-10 py-7.5 h-24" style={{ height: '98px' }}>
-        <div className="flex justify-between items-center h-full mx-auto max-w-[1200px] w-full">
+    <nav className={"bg-floralWhite fixed top-0 left-0 right-0 z-[1000]"}>
+      <div className="w-full mx-auto px-10 py-7.5 h-24 z-[1000]" style={{ height: '98px' }}>
+        <div className="flex justify-between items-center h-full mx-auto max-w-[1200px] w-full z-[1000]">
 
           {/* Logo Section */}
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 z-[1000]">
 
-            <Link href="/" className="items-center hidden sm:flex ">
+            <Link href="/" className="items-center hidden sm:flex z-[1000]">
               <Image src="/funblocks.svg" alt="Logo" width={204} height={25} className='md:w-40 lg:w-52' />
             </Link>
 
           </div>
 
-          <SearchInput varient="dark" className='ml-0 pl-0 mr-0 pr-0 sm:mx-3' />
+          <SearchInput varient="dark" className='ml-0 pl-0 mr-0 pr-0 sm:mx-3 z-[1000]' />
 
           {/* Page Navigation Links Section */}
           <div className="items-center hidden lg:flex" style={{

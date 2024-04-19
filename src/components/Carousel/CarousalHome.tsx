@@ -47,13 +47,13 @@ const CarousalHome = ({ data }: CarousalHomeProps) => {
 
     return (
 
-        <div className="  bg-stone-50   border border-neutral-900 " >
+        <div className="  bg-stone-50   border box-border border-neutral-900 " >
             <div className="w-full flex-col p-5 justify-end items-start gap-6 inline-flex h-full">
 
                 {/* image container */}
                 <div className="relative w-full">
                     {/* main banner image  */}
-                    <Image src={data[dataIndex].mainImage} width={550} height={253} alt="" className="w-full rounded-md " />
+                    <Image src={data[dataIndex].mainImage} width={720} height={720} alt="" className="w-full lg:h-80 rounded-md object-cover" />
 
                     {/* /Star Image/ */}
                     <Image src={data[dataIndex].starImage} height={32} width={32} alt="" className="absolute bottom-[4%] left-[2%]  hover:scale-110 transition-all cursor-pointer" />
@@ -61,7 +61,7 @@ const CarousalHome = ({ data }: CarousalHomeProps) => {
                     {/* Thunderbolt logo with tag*/}
                     <div className="flex absolute justify-start items-center top-[4%] left-[2%] cursor-pointer hover:scale-110 transition-all">
 
-                        <Image src={data[dataIndex].engineLogo} height={32} width={32} alt="" className="rounded-none" />
+                        <Image src={data[dataIndex].engineLogo} height={46} width={46} alt="" className="rounded-none" />
                         <Tag text={data[dataIndex].engineName} />
 
                     </div>
@@ -73,7 +73,7 @@ const CarousalHome = ({ data }: CarousalHomeProps) => {
                 </div>
 
 
-                <div className=" text-neutral-900 text-[40px] font-bold font-['Cabin'] leading-[48px]">
+                <div className=" text-neutral-900 text-[40px] font-bold font-['Cabin'] leading-[48px] lg:h-24">
                     {data[dataIndex].title}
                 </div>
 
