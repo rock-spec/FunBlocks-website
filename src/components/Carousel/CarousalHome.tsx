@@ -68,7 +68,7 @@ const CarousalHome = ({ data }: any) => {
                     {data[dataIndex]?.title}
                 </div>
 
-                <div className=" text-neutral-900 text-base font-normal font-['Cabin'] leading-normal">
+                <div className=" text-neutral-900 text-base font-normal font-['Cabin'] leading-normal line-clamp-3 lg:h-20">
                     {data[dataIndex]?.description}
                 </div>
 
