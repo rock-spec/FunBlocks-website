@@ -8,7 +8,7 @@ const getNews = async () => {
     .select(
       "newsid,content(title,image,game(gameid,engineid,gamestudioid,blockchainid))"
     )
-    .range(0, 3);
+    .eq("isHome", true);
 
   if (error) {
     throw new Error("Error fetching news: " + error.message);
@@ -21,7 +21,7 @@ const getGames = async () => {
   const { data, error } = await supabase
     .from("game")
     .select("*")
-    .range(0, 5);
+    .eq("isHome", true);
 
   if (error) {
     throw new Error("Error fetching games: " + error.message);
@@ -36,7 +36,7 @@ const getArticles = async () => {
     .select(
       "articleid,content(*,user(*),game(gameid,engineid,gamestudioid,blockchainid,engine(logo,pic)))"
     )
-    .range(0, 5);
+    .eq("isHome", true);
 
   if (error) {
     throw new Error("Error fetching articles: " + error.message);
@@ -62,7 +62,7 @@ const getEvents = async () => {
   const { data, error } = await supabase
     .from("events")
     .select("*,game(gameid,engineid,gamestudioid,blockchainid)")
-    .range(0, 2);
+    .eq("isHome", true);
 
   if (error) {
     throw new Error("Error fetching events: " + error.message);

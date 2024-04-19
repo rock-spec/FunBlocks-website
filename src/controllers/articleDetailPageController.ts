@@ -39,6 +39,7 @@ const articleData = async (article_id: string) => {
         )
         .eq("articleid", article_id)
 
+
     if (error) {
         throw new Error("Error fetching articles: " + error.message);
     }

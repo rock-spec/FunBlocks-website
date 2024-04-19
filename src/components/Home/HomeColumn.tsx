@@ -3,19 +3,12 @@
 import React, { useEffect, useState } from "react";
 import ArticleCard from "@/components/ArticleCard/ArticleCard";
 import SingleCard from "@/components/SingleCard/SingleCard";
-import { CustomButton } from "@/components/Button/Button";
-import Image from "next/image";
-import { Tag } from "@/components/Tag/Tag";
 import { Column } from "../Column/Column";
 import CarousalHome from "../Carousel/CarousalHome";
-import { trpc } from "@/app/_trpc/client";
-import { Data } from "./Home";
-import { AppRouter } from "@/trpc";
-import { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
-import { inferReactQueryProcedureOptions } from "@trpc/react-query";
 import formatDate from "@/utils/dateFormat";
 import SupabaseInstance from "../../../supabase";
 
+export const dynamic = 'force-dynamic'
 
 
 
@@ -72,7 +65,6 @@ export const HomeColumn = ({ data }: { data: any }) => {
 
 
                     <div className=" h-full">
-
                         <Column variant='news' title='new' buttonText='All News' responsive className="mb-0 mt-10 lg:mt-0" onButtonClick={() => { }}
                             columnItems={
                                 data.news.map((news: any) => ({
@@ -111,7 +103,7 @@ export const HomeColumn = ({ data }: { data: any }) => {
                         name={'article'}
                         singleCardItemDetails={
 
-                            data.articles.slice(0, 3).map((article: any) =>
+                            data.articles.map((article: any) =>
                             (
                                 {
                                     'variant': 'article',
@@ -139,7 +131,7 @@ export const HomeColumn = ({ data }: { data: any }) => {
                     <SingleCard
                         name={'video'}
                         singleCardItemDetails={
-                            data.videos.slice(0, 4).map((video: any) =>
+                            data.videos.map((video: any) =>
                             (
                                 {
                                     'variant': 'video',
@@ -165,7 +157,7 @@ export const HomeColumn = ({ data }: { data: any }) => {
                     <SingleCard
                         name={'event'}
                         singleCardItemDetails={
-                            data.events.slice(0, 2).map((event: any) =>
+                            data.events.map((event: any) =>
                             (
                                 {
                                     id: event.eventid,
@@ -179,6 +171,7 @@ export const HomeColumn = ({ data }: { data: any }) => {
                                     },
                                     'onSecondButtonClick': () => {
                                     },
+                                    url: event?.joinurl
                                 }
 
                             )

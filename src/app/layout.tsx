@@ -4,10 +4,10 @@ import "./globals.css";
 import { NavBar } from "@/components/NavBar/NavBar";
 import Footer from "@/components/Footer/Footer";
 import Image from "next/image";
-import { type AppType } from "next/app";
 import Provider from "@/app/_trpc/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
+
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
