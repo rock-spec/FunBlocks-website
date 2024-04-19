@@ -58,7 +58,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         <div className="flex flex-col gap-2 ">
           {/* Title */}
           <div className="text-[#161616] font-bold text-lg leading-[120%] tracking-[-0.32px] line-clamp-2">
-            {title}
+            <Link href={`/${variant}/${id}`}> {title}</Link>
           </div>
 
 
@@ -111,7 +111,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
           {/* <CustomButton text='Details' onClick={onSecondButtonClick} size='10px' width='180px' /> */}
         </div>) : ""}
       </div>
-    </div>
+    </div >
   );
 };
 

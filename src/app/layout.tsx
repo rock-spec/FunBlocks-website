@@ -24,12 +24,12 @@ function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Provider>
-          <nav suppressHydrationWarning={true}>
+          <nav suppressHydrationWarning={true} className="z-[1000]">
             <NavBar />
           </nav>
 
           <div
-            className="min-h-screen flex justify-center items-start pt-[60px] pb-[60px] m-5 md:m-10"
+            className="min-h-screen flex justify-center items-start pt-[60px] pb-[60px] m-5 mt-14 md:m-16 "
             style={{
               backgroundImage: svgBackground,
               backgroundRepeat: 'repeat',
@@ -48,7 +48,7 @@ function RootLayout({
           </div>
 
 
-          <footer className="w-full">
+          <footer className="w-full ">
             <Footer />
           </footer>
         </Provider>
