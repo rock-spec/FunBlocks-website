@@ -8,21 +8,11 @@ import { useState } from "react";
 import Link from "next/link";
 
 
-interface CaurosalDataProps {
-    mainImage: string,
-    starImage: string,
-    engineLogo: string,
-    engineName: string,
-    title: string,
-    desc: string,
-    id: string,
-}
 
-interface CarousalHomeProps {
-    data: CaurosalDataProps[]
-}
 
-const CarousalHome = ({ data }: CarousalHomeProps) => {
+
+
+const CarousalHome = ({ data }: any) => {
 
     const [dataIndex, setDataIndex] = useState(0)
 
@@ -47,22 +37,23 @@ const CarousalHome = ({ data }: CarousalHomeProps) => {
 
     return (
 
-        <div className="  bg-stone-50   border box-border border-neutral-900 " >
+        <div className="  bg-stone-50  w-full flex-1 border box-border border-neutral-900 " >
             <div className="w-full flex-col p-5 justify-end items-start gap-6 inline-flex h-full">
 
                 {/* image container */}
                 <div className="relative w-full">
                     {/* main banner image  */}
-                    <Image src={data[dataIndex].mainImage} width={720} height={720} alt="" className="w-full lg:h-80 rounded-md object-cover" />
+                    <Image src={data[dataIndex]?.imageurl} width={720} height={720} alt="" className="w-full lg:h-80 rounded-md object-cover" />
 
                     {/* /Star Image/ */}
-                    <Image src={data[dataIndex].starImage} height={32} width={32} alt="" className="absolute bottom-[4%] left-[2%]  hover:scale-110 transition-all cursor-pointer" />
+                    <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Tag-Swq9b5dkBzXvaPrsQFkgnAavhvTx5O.svg"} height={32} width={32} alt="" className="absolute bottom-[4%] left-[2%]  hover:scale-110 transition-all cursor-pointer" />
 
                     {/* Thunderbolt logo with tag*/}
                     <div className="flex absolute justify-start items-center top-[4%] left-[2%] cursor-pointer hover:scale-110 transition-all">
 
-                        <Image src={data[dataIndex].engineLogo} height={46} width={46} alt="" className="rounded-none" />
-                        <Tag text={data[dataIndex].engineName} />
+                        {/* <Image src={data[dataIndex].engineLogo} height={46} width={46} alt="" className="rounded-none" /> */}
+                        <Tag text={data[dataIndex]?.gameid || "Featured"
+                        } />
 
                     </div>
 
@@ -74,17 +65,17 @@ const CarousalHome = ({ data }: CarousalHomeProps) => {
 
 
                 <div className=" text-neutral-900 text-[40px] font-bold font-['Cabin'] leading-[48px] lg:h-24">
-                    {data[dataIndex].title}
+                    {data[dataIndex]?.title}
                 </div>
 
                 <div className=" text-neutral-900 text-base font-normal font-['Cabin'] leading-normal">
-                    {data[dataIndex].desc}
+                    {data[dataIndex]?.description}
                 </div>
-                <Link href={`/engine/${data[0].id}`}>
-                    <div className="mt-[-25px] ">
-                        <CustomButton text="Explore" type="primary" onClick={() => { }} width="190px" size="14px" link={`/article/${data[dataIndex].id}`} />
-                    </div>
-                </Link>
+
+                <div className="mt-[-25px] ">
+                    <CustomButton text="Explore" type="primary" onClick={() => { }} width="190px" size="14px" link={data[dataIndex]?.url || "www.someurl.com"} />
+                </div>
+
             </div>
         </div>
 

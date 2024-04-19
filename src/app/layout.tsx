@@ -8,6 +8,7 @@ import { type AppType } from "next/app";
 import Provider from "@/app/_trpc/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: "Fun Blocks",
@@ -29,7 +30,7 @@ function RootLayout({
           </nav>
 
           <div
-            className="min-h-screen flex justify-center items-start pt-[60px] pb-[60px] m-5 mt-14 md:m-16 "
+            className="min-h-screen flex justify-center items-start pt-[60px] pb-[60px] m-5 lg:mt-28 md:m-16 "
             style={{
               backgroundImage: svgBackground,
               backgroundRepeat: 'repeat',
