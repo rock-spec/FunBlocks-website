@@ -57,24 +57,37 @@ export const CustomButton = (props: ButtonProps) => {
 
   return (
     <>
-      <div className='flex bg-blue-600 px-3 py-1 text-white items-center justify-center rounded-md mt-3 mr-1 cursor-pointer
+      {/* <div className='flex bg-blue-600 px-3 py-1 text-white items-center justify-center rounded-md mt-3 mr-1 cursor-pointer
   '>
         {link ? <Link href={link}>{text} {icon}</Link> : `${text} ${icon ? icon : ""}`}
 
 
-      </div>
+      </div> */}
       {/* Preload images */}
-      {/* <Image src={imageSrc} alt="" width={1} height={1} /> */}
+      <Image src={imageSrc} alt="" width={1} height={1} />
 
       {/* Render button */}
-      {/* <div
-        onClick={onClick}
+
+      {/* {link ? <Link href={link}>  <div
         className="text-center text-neutral-900 text-lg font-bold font-['OffBit Trial'] tracking-tight flex justify-center items-center hover:scale-[1.01] transition-all cursor-pointer"
         style={buttonStyles}
-      > */}
-      {/* Display button text and icon */}
-      {/* {text} {icon}
-      </div> */}
+      >
+        {text} {icon}
+      </div></Link> : (<div
+        className="text-center text-neutral-900 text-lg font-bold font-['OffBit Trial'] tracking-tight flex justify-center items-center hover:scale-[1.01] transition-all cursor-pointer"
+        style={buttonStyles}
+      >
+        {text} {icon}
+      </div>)} */}
+      <div
+        // onClick={onClick}
+        className="text-center text-neutral-900 text-lg font-bold font-['OffBit Trial'] tracking-tight flex justify-center items-center hover:scale-[1.01] transition-all cursor-pointer"
+        style={buttonStyles}
+      >
+        {/* Display button text and icon */}
+        <Link href={link ?? "#"}>  {text} {icon} </Link>
+      </div>
+
     </>
   );
 };

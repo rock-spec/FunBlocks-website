@@ -27,7 +27,7 @@ export const Column = (props: ColumnProps) => {
     <div className={`border border-black bg-floralWhite p-5 lg:w-[285px] h-full ${responsive ? 'sm:w-full bg-re mb-10 lg:mb-0' : ""} ${className} `}>
 
       {/* Row 1 */}
-      <div className="flex justify-between items-center mb-10 h-[33px] ">
+      <div className="flex justify-between items-center mb-5 h-[33px] ">
         <Tag text={`${title}s`} type={"section"} />
         {/* <Image src={"/filter.svg"} alt="Filter Icon" width={24} height={24} /> */}
       </div>

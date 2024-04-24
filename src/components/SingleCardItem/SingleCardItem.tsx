@@ -79,7 +79,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
             <div className="flex md:flex-row flex-col gap-3 flex-1">
               <div className='flex gap-1'>
                 {tags.map((tag, index) => (
-                  <Tag text={tag} key={index} type={'relevance'} />
+                  <Tag text={tag} key={index} type={'relevance'} linkto='game' />
                 ))}
               </div>
               <div className="justify-start items-center gap-2 flex md:ml-2">
@@ -93,7 +93,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
             <div className="flex md:flex-row flex-col gap-3">
               <div className='flex gap-1'>
                 {tags.map((tag, index) => (
-                  <Tag text={tag} key={index} type={'relevance'} />
+                  <Tag text={tag} key={index} type={'relevance'} linkto='game' />
                 ))}
               </div>
 

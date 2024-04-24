@@ -29,16 +29,16 @@ const SingleVideoCardItem = (props: SingleCardItemProps) => {
                             objectFit="cover"
                             objectPosition="center"
                         /> */}
-                        <video width={427} height={237} controls preload="none" className=' w-full h-full object-cover' >
-                            <source src={imageUrl} type="video/mp4" />
-                            {/* <track
+                        {/* <video width={427} height={237} controls preload="none" className=' w-full h-full object-cover' >
+                            <source src={imageUrl} type="video/mp4" /> */}
+                        {/* <track
                                 src="/path/to/captions.vtt"
                                 kind="subtitles"
                                 srcLang="en"
                                 label="English"
                             /> */}
-                            Your browser does not support the video tag.
-                        </video>
+                        {/* Your browser does not support the video tag. */}
+                        {/* </video> */}
 
                         {/* <div className="hover:scale-110 transition-all cursor-pointer active:scale-95 absolute bottom-[50%] left-[50%] translate-x-[-50%] translate-y-[50%] shadow-md">
                             <Image
@@ -49,6 +49,7 @@ const SingleVideoCardItem = (props: SingleCardItemProps) => {
                             />
 
                         </div> */}
+                        <iframe width="427" height="237" src={imageUrl} title={title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className='w-full h-[237px]'></iframe>
                     </div>
                     <div className="h-[82px] flex-col justify-center items-start gap-10 flex">
                         <div className="self-stretch h-[82px] flex-col justify-center items-start gap-3 flex">

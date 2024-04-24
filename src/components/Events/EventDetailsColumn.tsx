@@ -25,7 +25,7 @@ export const EventDetailsColumn = ({ data }: { data: any }) => {
                     <div className=" text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[33.60px] mb-[12px]">{eventDetails.title}</div>
                     <div className="flex gap-1 mb-[24px]">
                         {[eventDetails.gameid, relatedGame.engineid].map((tag, index) => (
-                            <Tag text={tag} key={index} type={'relevance'} />
+                            <Tag text={tag} key={index} type={'relevance'} linkto={index != 0 ? "engine" : "game"} />
                         ))}
 
                     </div>

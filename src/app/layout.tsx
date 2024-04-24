@@ -34,17 +34,19 @@ function RootLayout({
             style={{
               backgroundImage: svgBackground,
               backgroundRepeat: 'repeat',
-              backgroundSize: 'auto'
+              backgroundSize: 'auto',
+              backgroundAttachment: 'fixed'
             }}
           >
 
-            <div className="absolute top-[143px] left-0 -z-10">
+            <div className="absolute top-[143px] left-0 -z-10" style={{ position: 'fixed' }}>
               <Image src="/bg-svg-left.svg" alt="Left SVG" width={336} height={461} />
             </div>
 
-            <div className="absolute top-1 right-0 -z-10">
+            <div className="absolute top-1 right-0 -z-10" style={{ position: 'fixed' }}>
               <Image src="/bg-svg-right.svg" alt="Right SVG" width={221} height={557} />
             </div>
+
             {children}
           </div>
 
