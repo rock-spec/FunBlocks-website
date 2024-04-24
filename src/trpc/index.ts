@@ -14,10 +14,17 @@ import { getGameRelatedData } from '@/controllers/utilControllers';
 import { getnewsDetailPageData } from '@/controllers/newsDetailPageController';
 import { getvideoDetailPageData } from '@/controllers/videoDetailPageController';
 import { getEngineDetailPageData } from '@/controllers/engineDetailPageController';
+import { getSliderData } from '@/controllers/sliderController';
 
 
 
 export const appRouter = router({
+
+    //sliderRoutes
+    // sliderData: publicProcedure.query(async () => {
+    //     const sliderData = await getSliderData()
+    //     return sliderData
+    // }),
 
     // main pages routes 
     homeData: publicProcedure.query(async () => {

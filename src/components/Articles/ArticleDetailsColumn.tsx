@@ -22,7 +22,7 @@ export const ArticleDetailsColumn = ({ data }: { data: any }) => {
                     <div className=" text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[33.60px] mb-[12px]">{data.article.content.title}</div>
                     <div className="flex gap-1 mb-[24px]">
                         {[data.relatedData.game[0].gameid].map((tag, index) => (
-                            <Tag text={tag} key={index} type={'relevance'} />
+                            <Tag text={tag} key={index} type={'relevance'} linkto="game" />
                         ))}
                         <div className="justify-start items-center gap-2 flex ml-2">
                             <div className="opacity-80 text-neutral-900 text-sm font-normal font-['Cabin'] leading-[16.80px]">{data.article.content.user.username}</div>

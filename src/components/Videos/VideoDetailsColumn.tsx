@@ -18,7 +18,7 @@ export const VideoDetailsColumn = async ({ data }: { data: any }) => {
                     <div className=" text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[33.60px] mb-[12px]">{video?.video_name}</div>
                     <div className="flex gap-1 mb-[24px]">
                         {[video.gameid].map((tag, index) => (
-                            <Tag text={tag} key={index} type={'relevance'} />
+                            <Tag text={tag} key={index} type={'relevance'} linkto="game" />
                         ))}
                         <div className="justify-start items-center gap-2 flex ml-2">
                             <div className="opacity-80 text-neutral-900 text-sm font-normal font-['Cabin'] leading-[16.80px]">By {video?.user?.username}</div>
@@ -29,16 +29,31 @@ export const VideoDetailsColumn = async ({ data }: { data: any }) => {
 
                     <div className="relative">
 
-                        <video width={487} height={857} controls preload="none" className='mb-[24px] w-[855.58px] object-cover' >
-                            <source src={video?.media_url} type="video/mp4" />
-                            {/* <track
+                        {/* <video width={487} height={857} controls preload="none" className='mb-[24px] w-[855.58px] object-cover' >
+                            <source src={video?.media_url} type="video/mp4" /> */}
+                        {/* <track
                                 src="/path/to/captions.vtt"
                                 kind="subtitles"
                                 srcLang="en"
                                 label="English"
                             /> */}
-                            Your browser does not support the video tag.
-                        </video>
+                        {/* Your browser does not support the video tag.
+                        </video> */}
+                        <div className="w-full h-full">
+                            <div style={{ position: 'relative', width: '100%', height: "100%" }}>
+                                <iframe
+                                    src={video?.media_url}
+                                    title={video?.video_name}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                    allowFullScreen
+                                    style={{ top: 0, left: 0 }}
+                                    className="lg:h-[487.44px] h-full w-full lg:w-[857.55px]"
+                                ></iframe>
+                            </div>
+                        </div>
+
+
                         {/* <Image alt="banner" height={487.44} width={857.55} className="mb-[24px] w-[855.58px] " src="https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/image%2085-qSFSrtFKOzO7NDbmQMxRie60TTiBkn.png" />
                         <div className="hover:scale-110 transition-all cursor-pointer active:scale-95 absolute bottom-[50%] left-[50%] translate-x-[-50%] translate-y-[50%] ">
 

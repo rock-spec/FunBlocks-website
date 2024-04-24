@@ -24,7 +24,7 @@ const GameCardComponet = (props: GameCardComponentProps) => {
                 <div className="rounded-lg relative">
                     <div className="rounded-md border border-[#161616]">
                         <Image
-                            className='object-cover min-h-[180px]'
+                            className='object-cover h-[180px]'
                             src={imageUrl}
                             alt="Image"
                             width={427}
@@ -46,7 +46,7 @@ const GameCardComponet = (props: GameCardComponentProps) => {
                     <div className="self-stretch justify-start items-end gap-1 inline-flex">
                         {
                             tags.map((tag, index) => (
-                                <Tag text={tag} key={index} type={'relevance'} />
+                                <Tag text={tag} key={index} type={'relevance'} linkto='engine' />
                             ))
                         }
                     </div>

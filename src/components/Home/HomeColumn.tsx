@@ -1,20 +1,14 @@
+'use client'
 
-
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ArticleCard from "@/components/ArticleCard/ArticleCard";
 import SingleCard from "@/components/SingleCard/SingleCard";
-import { CustomButton } from "@/components/Button/Button";
-import Image from "next/image";
-import { Tag } from "@/components/Tag/Tag";
 import { Column } from "../Column/Column";
 import CarousalHome from "../Carousel/CarousalHome";
-import { trpc } from "@/app/_trpc/client";
-import { Data } from "./Home";
-import { AppRouter } from "@/trpc";
-import { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
-import { inferReactQueryProcedureOptions } from "@trpc/react-query";
 import formatDate from "@/utils/dateFormat";
+import SupabaseInstance from "../../../supabase";
 
+export const dynamic = 'force-dynamic'
 
 
 
@@ -26,27 +20,51 @@ import formatDate from "@/utils/dateFormat";
 
 export const HomeColumn = ({ data }: { data: any }) => {
 
+    const supabase = SupabaseInstance.getSupabaseInstance()
+
+    const [sliderData, setSliderData]: any[] = useState([])
+    const [featuredData, setFeaturedData]: any[] = useState([])
+
+    const fetchData = async () => {
+
+        let { data: featured, error } = await supabase
+            .from('featured')
+            .select('*')
+        console.log("this is my data");
+        if (featured) {
+            setFeaturedData(featured)
+        }
+
+
+        let { data: sliderData, error: sliderError } = await supabase
+            .from('slider')
+            .select('*')
+        console.log("this is my slider data");
+        if (sliderData) {
+            setSliderData(sliderData)
+        }
+
+        console.log(sliderData);
+
+
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
     return (
         <>
             <div className="w-full">
                 <div className=" items-stretch flex mb-10 gap-x-5 lg:flex-row flex-col">
 
 
-                    <CarousalHome data={data.articles.map((article: any) => ({
-                        desc: `${article.content.game.gameid} is a full-chain game engine developed by the Magicblock team for the ${article.content.game.blockchainid} ecosystem. This article is compiled from the speeches of the two founders of Magicblock at the Breakpoint 2023 event.`,
-                        id: article.articleid,
-                        title: article.content.title,
-                        mainImage: article.content.image,
-                        starImage: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Tag-Swq9b5dkBzXvaPrsQFkgnAavhvTx5O.svg",
-                        engineLogo: article.content.game.engine.pic,
-                        engineName: article.content.game.engineid,
-                    }))} />
+                    {sliderData && <CarousalHome data={sliderData} />}
 
 
 
 
                     <div className=" h-full">
-
                         <Column variant='news' title='new' buttonText='All News' responsive className="mb-0 mt-10 lg:mt-0" onButtonClick={() => { }}
                             columnItems={
                                 data.news.map((news: any) => ({
@@ -67,13 +85,13 @@ export const HomeColumn = ({ data }: { data: any }) => {
                     ">
 
                     {
-                        data.articles.slice(0, 3).map((articles: any) => (
+                        featuredData?.slice(0, 3).map((feature: any) => (
                             <ArticleCard
-                                id={articles.articleid}
-                                key={articles.articleid} // Ensure to provide a unique key for each iterated element
-                                imageUrl={articles.content.image}
-                                title={articles.content.title}
-                                tags={[articles.content.game.gameid]} // Assuming you want to display the gameid as a tag
+                                id={feature.featuredid}
+                                key={feature.featuredid} // Ensure to provide a unique key for each iterated element
+                                imageUrl={feature.image}
+                                title={feature.title}
+                                tags={[feature.gameid]} // Assuming you want to display the gameid as a tag
                             />
                         ))
                     }
@@ -85,7 +103,7 @@ export const HomeColumn = ({ data }: { data: any }) => {
                         name={'article'}
                         singleCardItemDetails={
 
-                            data.articles.slice(0, 3).map((article: any) =>
+                            data.articles.map((article: any) =>
                             (
                                 {
                                     'variant': 'article',
@@ -113,7 +131,7 @@ export const HomeColumn = ({ data }: { data: any }) => {
                     <SingleCard
                         name={'video'}
                         singleCardItemDetails={
-                            data.videos.slice(0, 4).map((video: any) =>
+                            data.videos.map((video: any) =>
                             (
                                 {
                                     'variant': 'video',
@@ -139,7 +157,7 @@ export const HomeColumn = ({ data }: { data: any }) => {
                     <SingleCard
                         name={'event'}
                         singleCardItemDetails={
-                            data.events.slice(0, 2).map((event: any) =>
+                            data.events.map((event: any) =>
                             (
                                 {
                                     id: event.eventid,
@@ -153,6 +171,7 @@ export const HomeColumn = ({ data }: { data: any }) => {
                                     },
                                     'onSecondButtonClick': () => {
                                     },
+                                    url: event?.joinurl
                                 }
 
                             )
