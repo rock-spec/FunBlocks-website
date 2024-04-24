@@ -42,7 +42,7 @@ export const GameColumn = (data: any) => {
             'imageUrl': game.pic,
             'title': game.game_name,
             'description': null, //this is like game name : some data
-            'tags': [game.engineid, game.blockchainid],
+            'tags': [game.engineid],
             'onClick': () => {
             }
 

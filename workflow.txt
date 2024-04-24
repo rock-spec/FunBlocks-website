@@ -1,8 +1,10 @@
+//IGNORE THIS PAGE 
+
 image upload
-games filter
+games filter --nhi krna hai
 search
 
-changed event database to join button
+changed event database to join button --fornetend mai ho gya funblocks ke lie
 database chage to check image should be on homepage or not
 lastly check for data sync in admin and funblocks
 

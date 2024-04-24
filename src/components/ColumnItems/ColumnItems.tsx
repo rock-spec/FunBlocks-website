@@ -38,7 +38,7 @@ export const ColumnItems = (props: SingleColumnProps) => {
                     </div>
                     <div className="self-stretch justify-start items-end gap-[5px] inline-flex ">
                         {variant !== 'article' && tags.slice(0, 1).map((tag, index) => (
-                            <Tag text={tag} key={index} type={'relevance'} />
+                            <Tag text={tag} key={index} type={'relevance'} linkto={variant === "game" ? "engine" : "game"} />
                         ))}
                     </div>
                 </div>

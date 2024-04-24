@@ -15,6 +15,8 @@ export const GameDetailColumn = async ({ data }: { data: any }) => {
     const relatedEvents = data?.relatedEvents
 
 
+
+
     return (
         <>
             <div className="m-w-[895px] w-full">
@@ -118,6 +120,7 @@ export const GameDetailColumn = async ({ data }: { data: any }) => {
                             relatedEvents?.map((event: any) =>
                             (
                                 {
+                                    url: event?.joinurl,
                                     id: event.eventid,
                                     'variant': 'event',
                                     'imageUrl': `${event.pic}?height=360&width=720`,

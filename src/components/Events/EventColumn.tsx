@@ -17,6 +17,7 @@ export const EventColumn = ({ data }: { data: any }) => {
         filteredEvent?.map((event: any) =>
         (
             {
+                url: event?.joinurl,
                 id: event.eventid,
                 'variant': 'event',
                 'imageUrl': `${event.pic}?height=360&width=720`,

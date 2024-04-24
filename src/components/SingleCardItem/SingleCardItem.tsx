@@ -16,12 +16,13 @@ export interface SingleCardItemProps {
   description?: string;
   tags?: string[];
   zone?: string;
+  url?: string;
   onFirstButtonClick: () => void;
   onSecondButtonClick: () => void;
 }
 
 const SingleCardItem = (props: SingleCardItemProps) => {
-  const { variant, imageUrl, zone, title, id, description = "", details = "", onFirstButtonClick, onSecondButtonClick, tags = [], author = "" } = props;
+  const { variant, imageUrl, zone, title, id, description = "", details = "", url, onFirstButtonClick, onSecondButtonClick, tags = [], author = "" } = props;
   return (
     <div className="flex md:flex-row w-full flex-col items-start gap-6 ">
       {/* First Column: Image */}
@@ -78,7 +79,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
             <div className="flex md:flex-row flex-col gap-3 flex-1">
               <div className='flex gap-1'>
                 {tags.map((tag, index) => (
-                  <Tag text={tag} key={index} type={'relevance'} />
+                  <Tag text={tag} key={index} type={'relevance'} linkto='game' />
                 ))}
               </div>
               <div className="justify-start items-center gap-2 flex md:ml-2">
@@ -92,7 +93,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
             <div className="flex md:flex-row flex-col gap-3">
               <div className='flex gap-1'>
                 {tags.map((tag, index) => (
-                  <Tag text={tag} key={index} type={'relevance'} />
+                  <Tag text={tag} key={index} type={'relevance'} linkto='game' />
                 ))}
               </div>
 
@@ -107,7 +108,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
 
         {/* Second Row: Buttons */}
         {variant === 'event' ? (<div className="flex">
-          <CustomButton text='Join Event' onClick={onFirstButtonClick} size='10px' width='180px' type='primary' />
+          <CustomButton text='Join Event' onClick={onFirstButtonClick} size='10px' width='180px' type='primary' link={url ? url : "https://w0.peakpx.com/wallpaper/102/75/HD-wallpaper-bgmi-thumbnail-ideas-gaming-thumbnail-design-map-pubg.jpg"} />
           {/* <CustomButton text='Details' onClick={onSecondButtonClick} size='10px' width='180px' /> */}
         </div>) : ""}
       </div>

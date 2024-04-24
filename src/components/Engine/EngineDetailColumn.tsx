@@ -69,7 +69,7 @@ export const EngineDetailColumn = ({ engine, relatedGames, relatedArticles }: { 
                                     <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-1-PZh4LhAvRZK9PlN7UP5ctTh11SfFFQ.svg"} height={24} width={24} alt="" className="h-6 mr-1" />
                                     <p> <Link href={engineData?.blogurl} target="blank">Docs</Link></p>
                                 </div>
-                                <div className="text-neutral-900 text-base font-medium font-['Cabin'] underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
+                                {/* <div className="text-neutral-900 text-base font-medium font-['Cabin'] underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
 
                                     <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-2-AnqrY48rvFGY6C4mxEVx1GoEZfBpiN.svg"} height={24} width={24} alt="" className="h-6 mr-1" />
                                     <p>Twitter</p>
@@ -78,7 +78,7 @@ export const EngineDetailColumn = ({ engine, relatedGames, relatedArticles }: { 
 
                                     <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-3-nw373W2KTWzNMkQ8ZL6ejHFaOyckdZ.svg"} height={24} width={24} alt="" className="h-6 mr-1" />
                                     <p>Github</p>
-                                </div>
+                                </div> */}
 
 
 
@@ -90,7 +90,7 @@ export const EngineDetailColumn = ({ engine, relatedGames, relatedArticles }: { 
                 </div>
                 <div className="flex mb-10  flex-col  items-start gap-5">
 
-                    <Tag text={"MUD V1 GAMes"} type={'section'} />
+                    <Tag text={"MUD V1 GAMES"} type={'section'} />
                     <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
                         {singleCardItemDetails.map((detail, index) => (
                             <div className="p-5 border border-[#161616] bg-[#FFFCF9]" key={index}>
