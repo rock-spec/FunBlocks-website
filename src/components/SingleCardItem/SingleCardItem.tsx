@@ -27,7 +27,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
     <div className="flex md:flex-row w-full flex-col items-start gap-6 ">
       {/* First Column: Image */}
 
-      <Link href={`/${variant}/${id}`}>
+      <Link href={`/${variant}/${id}`} target="blank">
         <div className="relative rounded-md border border-[#161616] overflow-hidden min-w-[260px] w-full">
           <Image
             className=' w-full h-full '
@@ -59,7 +59,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         <div className="flex flex-col gap-2 ">
           {/* Title */}
           <div className="text-[#161616] font-bold text-lg leading-[120%] tracking-[-0.32px] line-clamp-2">
-            <Link href={`/${variant}/${id}`}> {title}</Link>
+            <Link href={`/${variant}/${id}`} target="blank"> {title}</Link>
           </div>
 
 

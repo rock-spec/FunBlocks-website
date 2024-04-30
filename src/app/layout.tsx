@@ -1,3 +1,5 @@
+'use client'
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -5,28 +7,33 @@ import { NavBar } from "@/components/NavBar/NavBar";
 import Footer from "@/components/Footer/Footer";
 import Image from "next/image";
 import Provider from "@/app/_trpc/Providers";
+import { useState } from "react";
+import HomeSearch from "@/components/HomeSearch/SearchHome";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const dynamic = 'force-dynamic'
 
-export const metadata: Metadata = {
-  title: "Fun Blocks",
-  description: "Fun Blocks",
-};
+// export const metadata: Metadata = {
+//   title: "Fun Blocks",
+//   description: "Fun Blocks",
+// };
+
 
 function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [searchQuery, setSearchQuery] = useState("")
+
   const svgBackground = "url('/background.svg')";
   return (
     <html lang="en">
       <body className={inter.className}>
         <Provider>
           <nav suppressHydrationWarning={true} className="z-[1000]">
-            <NavBar />
+            <NavBar setSearchQuery={setSearchQuery} />
           </nav>
 
           <div
@@ -47,7 +54,7 @@ function RootLayout({
               <Image src="/bg-svg-right.svg" alt="Right SVG" width={221} height={557} />
             </div>
 
-            {children}
+            {!searchQuery ? children : <HomeSearch query={searchQuery} />}
           </div>
 
 
