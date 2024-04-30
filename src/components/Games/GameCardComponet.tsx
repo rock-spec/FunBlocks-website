@@ -32,8 +32,6 @@ const GameCardComponet = (props: GameCardComponentProps) => {
                             layout="fixed"
                             objectFit="cover"
                             objectPosition="center"
-
-
                         />
                     </div>
                 </div>

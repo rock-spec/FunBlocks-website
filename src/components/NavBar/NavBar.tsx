@@ -870,8 +870,13 @@ export const NavBar = () => {
             </Link>
 
           </div>
-          <div className='flex-1'></div>
-          {/* <SearchInput varient="dark" className='ml-0 pl-0 mr-0 pr-0 sm:mx-3 z-[1000]' /> */}
+          <div className='flex-1'>
+            <SearchInput varient="dark" className='ml-0 pl-0 mr-0 pr-0 sm:mx-3 z-[1000]' onChange={async (e) => {
+              const val = e.target.value
+              console.log(val);
+            }} />
+          </div>
+
 
           {/* Page Navigation Links Section */}
           <div className="items-center hidden lg:flex" style={{
