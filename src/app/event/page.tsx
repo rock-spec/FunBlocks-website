@@ -5,6 +5,7 @@ import { EventColumn } from '@/components/Events/EventColumn';
 import React from 'react';
 import { trpcServer } from '../_trpc/trpcServer';
 
+export const dynamic = 'force-dynamic'
 
 
 const Event = async () => {

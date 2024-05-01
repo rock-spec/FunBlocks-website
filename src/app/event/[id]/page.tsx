@@ -4,6 +4,7 @@ import { ArticleDetailsColumn } from '@/components/Articles/ArticleDetailsColumn
 import { Column } from '@/components/Column/Column';
 import { EventDetailsColumn } from '@/components/Events/EventDetailsColumn';
 import React from 'react';
+export const dynamic = 'force-dynamic'
 
 
 

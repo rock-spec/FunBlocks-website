@@ -5,6 +5,7 @@ import React from 'react';
 import { trpcServer } from '../_trpc/trpcServer';
 
 
+export const dynamic = 'force-dynamic'
 
 const Engine = async () => {
     const { featuredGames, engines } = await trpcServer().engineData()

@@ -5,6 +5,7 @@ import { EngineDetailColumn } from '@/components/Engine/EngineDetailColumn';
 import { GameDetailColumn } from '@/components/Games/GameDetailColumn';
 import React from 'react';
 
+export const dynamic = 'force-dynamic'
 
 
 const EngineDetail = async ({ params }: { params: { id: string } }) => {

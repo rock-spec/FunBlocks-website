@@ -5,6 +5,7 @@ import { NewsColumn } from '@/components/News/NewsColumn';
 import React from 'react';
 import { trpcServer } from '../_trpc/trpcServer';
 
+export const dynamic = 'force-dynamic'
 
 const News = async () => {
     const { featuredGames, news } = await trpcServer().newsData()
