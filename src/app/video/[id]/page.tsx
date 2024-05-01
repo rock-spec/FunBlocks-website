@@ -6,6 +6,7 @@ import { VideoDetailsColumn } from '@/components/Videos/VideoDetailsColumn';
 import React from 'react';
 
 
+export const dynamic = 'force-dynamic'
 
 const VideoDetails = async ({ params }: { params: { id: string } }) => {
 

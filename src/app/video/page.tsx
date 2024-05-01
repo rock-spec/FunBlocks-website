@@ -4,6 +4,7 @@ import { VideoColumn } from '@/components/Videos/VideoColumn';
 import React from 'react';
 import { trpcServer } from '../_trpc/trpcServer';
 
+export const dynamic = 'force-dynamic'
 
 
 const Video = async () => {

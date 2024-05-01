@@ -4,6 +4,7 @@ import { Column } from '@/components/Column/Column';
 import { GameDetailColumn } from '@/components/Games/GameDetailColumn';
 import React from 'react';
 
+export const dynamic = 'force-dynamic'
 
 
 const GameDetail = async ({ params }: { params: { id: string } }) => {

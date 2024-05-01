@@ -2,6 +2,7 @@ import { GameColumn } from '@/components/Games/GameColumn';
 import React, { useEffect, useState } from 'react';
 import { trpcServer } from '../_trpc/trpcServer';
 import { Column } from '@/components/Column/Column';
+export const dynamic = 'force-dynamic'
 
 const Game = async () => {
 

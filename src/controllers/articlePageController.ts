@@ -7,7 +7,7 @@ const getAllArticles = async () => {
     const { data, error } = await supabase
         .from("articles")
         .select(
-            "articleid,content(*,user(username),game(gameid,engineid,gamestudioid,blockchainid))"
+            "*,content(*,user(username),game(gameid,engineid,gamestudioid,blockchainid))"
         )
     if (error) {
         throw new Error("Error fetching articles: " + error.message);
