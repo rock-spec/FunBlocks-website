@@ -15,6 +15,7 @@ import { getnewsDetailPageData } from '@/controllers/newsDetailPageController';
 import { getvideoDetailPageData } from '@/controllers/videoDetailPageController';
 import { getEngineDetailPageData } from '@/controllers/engineDetailPageController';
 import { getSliderData } from '@/controllers/sliderController';
+import getSearchData from '@/controllers/searchController';
 
 
 
@@ -85,6 +86,11 @@ export const appRouter = router({
     engineDetailsData: publicProcedure.input(z.string()).query(async (opts) => {
         const { input } = opts
         const engineDetailsData = await getEngineDetailPageData(input)
+        return engineDetailsData
+    }),
+    searchPage: publicProcedure.input(z.string()).query(async (opts) => {
+        const { input } = opts
+        const engineDetailsData = await getSearchData(input)
         return engineDetailsData
     })
 });

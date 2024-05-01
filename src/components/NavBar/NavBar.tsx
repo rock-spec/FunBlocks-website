@@ -7,6 +7,7 @@ import Button from "@mui/joy/Button";
 import { IoIosArrowDown } from "react-icons/io"
 import { CustomButton } from '../Button/Button';
 import Link from 'next/link';
+import HomeSearch from '../HomeSearch/SearchHome';
 
 
 export const BottomSVG = () => {
@@ -821,16 +822,17 @@ export const BottomSVG = () => {
   );
 };
 
-// interface NavBarProps {
-//   handleNavigation: (page: string) => void;
-// }
+interface NavBarProps {
+  setSearchQuery: (query: string) => void;
+}
 
-export const NavBar = () => {
+export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
   // export const NavBar: React.FC<NavBarProps> = ({ handleNavigation }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const [showNavDropdown, setShowNavDropdown] = useState(false);
   const [language, setLanguage] = useState("ENG")
+
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -858,7 +860,7 @@ export const NavBar = () => {
   };
 
   return (
-    <nav className={"bg-floralWhite fixed top-0 left-0 right-0 z-[1000]"}>
+    <>    <nav className={"bg-floralWhite fixed top-0 left-0 right-0 z-[1000]"}>
       <div className="w-full mx-auto px-10 py-7.5 h-24 z-[1000]" style={{ height: '98px' }}>
         <div className="flex justify-between items-center h-full mx-auto max-w-[1200px] w-full z-[1000]">
 
@@ -870,8 +872,18 @@ export const NavBar = () => {
             </Link>
 
           </div>
-          <div className='flex-1'></div>
-          {/* <SearchInput varient="dark" className='ml-0 pl-0 mr-0 pr-0 sm:mx-3 z-[1000]' /> */}
+          <div className='flex-1'>
+            {/* THIS IS SEACH INPUT  */}
+
+            <SearchInput varient="dark" className='ml-0 pl-0 mr-0 pr-0 sm:mx-3 z-[1000]'
+              onChange={async (e) => {
+                const val = e.target.value
+                setSearchQuery(val)
+              }} />
+
+
+          </div>
+
 
           {/* Page Navigation Links Section */}
           <div className="items-center hidden lg:flex" style={{
@@ -949,5 +961,7 @@ export const NavBar = () => {
         <BottomSVG />
       </div>
     </nav >
+
+    </>
   );
 };

@@ -49,7 +49,7 @@ const SingleVideoCardItem = (props: SingleCardItemProps) => {
                             />
 
                         </div> */}
-                        <iframe width="427" height="237" src={imageUrl} title={title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className='w-full h-[237px]'></iframe>
+                        <iframe width="427" height="237" src={imageUrl} title={title} allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className='w-full h-[237px]'></iframe>
                     </div>
                     <div className="h-[82px] flex-col justify-center items-start gap-10 flex">
                         <div className="self-stretch h-[82px] flex-col justify-center items-start gap-3 flex">
