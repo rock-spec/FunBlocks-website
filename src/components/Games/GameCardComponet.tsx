@@ -18,7 +18,7 @@ const GameCardComponet = (props: GameCardComponentProps) => {
     const { imageUrl, title, tags, engine, description, onClick, engine_logo, game_id } = props;
 
     return (
-        <Link href={`/game/${game_id}`}>
+        <Link href={`/game/${game_id}`} target="_blank">
             <div className="gap-6 shadow-sm flex flex-col "> {/* Make it a flex container */}
                 {/* First Column: Image */}
                 <div className="rounded-lg relative">
@@ -32,8 +32,6 @@ const GameCardComponet = (props: GameCardComponentProps) => {
                             layout="fixed"
                             objectFit="cover"
                             objectPosition="center"
-
-
                         />
                     </div>
                 </div>

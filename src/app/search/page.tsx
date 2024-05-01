@@ -1,4 +1,4 @@
-
+'use client'
 
 import { CustomButton } from '@/components/Button/Button';
 import { Column } from '@/components/Column/Column';
@@ -218,13 +218,9 @@ const Search = () => {
                                 <SingleCardItem key={index} {...detail} />
                             </div>
                         ))}
-
                     </div>
+
                 </div>
-
-
-
-
             </div>
 
 
