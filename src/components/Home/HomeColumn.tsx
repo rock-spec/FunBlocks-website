@@ -7,6 +7,7 @@ import { Column } from "../Column/Column";
 import CarousalHome from "../Carousel/CarousalHome";
 import formatDate from "@/utils/dateFormat";
 import SupabaseInstance from "../../../supabase";
+import { Cabin } from "next/font/google";
 
 export const dynamic = 'force-dynamic'
 
@@ -16,7 +17,10 @@ export const dynamic = 'force-dynamic'
 
 // type RouterOutput = inferReactQueryProcedureOptions<AppRouter>
 
-
+const cabin = Cabin({
+    subsets: ["latin"],
+    weight: ['700', '400', '500', '600']
+})
 
 export const HomeColumn = ({ data }: { data: any }) => {
 
@@ -56,13 +60,10 @@ export const HomeColumn = ({ data }: { data: any }) => {
     return (
         <>
             <div className="w-full">
-                <div className=" items-stretch flex mb-10 gap-x-5 lg:flex-row flex-col">
+                <div className={`items-stretch flex mb-10 gap-x-5 lg:flex-row flex-col ${cabin.className}`} >
 
 
                     {sliderData && <CarousalHome data={sliderData} />}
-
-
-
 
                     <div className=" h-full">
                         <Column variant='news' title='new' buttonText='All News' responsive className="mb-0 mt-10 lg:mt-0" onButtonClick={() => { }}
@@ -91,6 +92,7 @@ export const HomeColumn = ({ data }: { data: any }) => {
                                 key={feature.featuredid} // Ensure to provide a unique key for each iterated element
                                 imageUrl={feature.image}
                                 title={feature.title}
+                                url={feature.url}
                                 tags={[feature.gameid]} // Assuming you want to display the gameid as a tag
                             />
                         ))

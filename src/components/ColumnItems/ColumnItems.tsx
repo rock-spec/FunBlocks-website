@@ -3,6 +3,7 @@ import Button from "@mui/joy/Button";
 import { Tag } from "@/components/Tag/Tag";
 import Image from "next/image";
 import Link from "next/link";
+import { Cabin } from "next/font/google";
 
 // Define the props interface
 export interface SingleColumnProps {
@@ -18,6 +19,11 @@ export interface SingleColumnProps {
     onClick?: () => void;
 }
 
+const cabin = Cabin({
+    subsets: ["latin"],
+    weight: ['700']
+})
+
 export const ColumnItems = (props: SingleColumnProps) => {
     const { variant, title, onClick, imageUrl, tags = [], id } = props;
 
@@ -27,13 +33,14 @@ export const ColumnItems = (props: SingleColumnProps) => {
     const imageWidth = 80;
     const classnames = variant === "news" || variant === "article" ? 'line-clamp-3' : '';
 
+
     return (
         <Link href={`/${variant}/${id || "demoId"}`}>
             <div className={`w-[245px] h-[${containerHeight}px] justify-start items-start gap-[15px] inline-flex cursor-pointer`}>
                 <Image src={imageUrl} height={img_size} width={img_size} alt=""
-                    className={`h-[85px] w-[85px] border-[3.2px] rounded-[7px] border-neutral-900/85 object-cover`} />
+                    className={`h-[85px] w-[85px] border-[2px] rounded-[7px] border-neutral-900/85 object-cover`} />
                 <div className="grow shrink basis-0 h-full flex-col justify-start items-start gap-2 inline-flex">
-                    <div className={`self-stretch text-neutral-900 text-sm font-bold font-['Cabin'] leading-tight ${classnames}`}>
+                    <div className={` self-stretch text-neutral-900 text-sm  leading-tight  ${classnames} ${cabin.className} font-bold`}>
                         {title}
                     </div>
                     <div className="self-stretch justify-start items-end gap-[5px] inline-flex ">

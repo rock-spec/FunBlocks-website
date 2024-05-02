@@ -24,7 +24,6 @@ const GameCardComponet = (props: GameCardComponentProps) => {
                 <div className="rounded-lg relative">
                     <div className="rounded-md border border-[#161616]">
                         <Image
-                            className='object-cover h-[180px]'
                             src={imageUrl}
                             alt="Image"
                             width={427}
@@ -32,6 +31,8 @@ const GameCardComponet = (props: GameCardComponentProps) => {
                             layout="fixed"
                             objectFit="cover"
                             objectPosition="center"
+                            className='object-cover h-237px]'
+
                         />
                     </div>
                 </div>

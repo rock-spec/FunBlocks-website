@@ -66,7 +66,7 @@ export const NewsColumn = ({ data }: { data: any }) => {
         <>
             <div className="lg:w-[895px]  w-full">
                 <div className="flex flex-col lg:flex-row w-full mb-10">
-                    <div className="h-[52px]">
+                    <div className="h-[52px] w-full">
                         <SearchInput varient="light" placeholder="Search for Keywords" onChange={handleSearch} />
                     </div>
 

@@ -38,7 +38,7 @@ const SingleCard = (props: SingleCardProps) => {
 
       {/* Third Row: Button */}
       {buttonText && <div className="flex justify-center w-full">
-        <CustomButton onClick={onButtonClick} text={buttonText} width="300px" type='secondary' size='13px' link={`/${name}`} />
+        <CustomButton onClick={onButtonClick} text={buttonText} width="300px" type='secondary' link={`/${name}`} />
       </div>
       }
     </div>
