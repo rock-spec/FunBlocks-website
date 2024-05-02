@@ -54,10 +54,10 @@ const SingleVideoCardItem = (props: SingleCardItemProps) => {
                     <div className="h-[82px] flex-col justify-center items-start gap-10 flex">
                         <div className="self-stretch h-[82px] flex-col justify-center items-start gap-3 flex">
                             {/* Show only two lines of description */}
-                            <div className={` text-neutral-900 text-md font-bold font-['Cabin'] leading-snug `}>
+                            <div className={` text-neutral-900 text-md font-bold leading-snug `}>
                                 {title}
                             </div>
-                            <div className={`self-stretch text-neutral-900 w-full font-normal font-['Cabin'] leading-normal  line-clamp-2`}>
+                            <div className={`self-stretch text-neutral-900 w-full font-normal leading-normal  line-clamp-2`}>
                                 {description}
                             </div>
 

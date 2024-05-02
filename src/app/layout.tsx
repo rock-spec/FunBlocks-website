@@ -1,7 +1,7 @@
 'use client'
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Cabin } from "next/font/google";
 import "./globals.css";
 import { NavBar } from "@/components/NavBar/NavBar";
 import Footer from "@/components/Footer/Footer";
@@ -10,7 +10,7 @@ import Provider from "@/app/_trpc/Providers";
 import { useState } from "react";
 import HomeSearch from "@/components/HomeSearch/SearchHome";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export const dynamic = 'force-dynamic'
 
@@ -18,7 +18,10 @@ export const dynamic = 'force-dynamic'
 //   title: "Fun Blocks",
 //   description: "Fun Blocks",
 // };
-
+const cabin = Cabin({
+  subsets: ["latin"],
+  weight: ['700', '400', '500', '600']
+})
 
 function RootLayout({
   children,
@@ -30,7 +33,7 @@ function RootLayout({
   const svgBackground = "url('/background.svg')";
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cabin.className}>
         <Provider>
           <nav suppressHydrationWarning={true} className="z-[1000]">
             <NavBar setSearchQuery={setSearchQuery} />

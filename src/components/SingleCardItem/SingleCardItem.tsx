@@ -4,6 +4,7 @@ import Button from "@mui/joy/Button";
 import { Tag } from '../Tag/Tag';
 import { CustomButton } from '../Button/Button';
 import Link from 'next/link';
+import { Cabin } from 'next/font/google';
 
 // Define the props interface
 export interface SingleCardItemProps {
@@ -20,7 +21,10 @@ export interface SingleCardItemProps {
   onFirstButtonClick: () => void;
   onSecondButtonClick: () => void;
 }
-
+const cabin = Cabin({
+  subsets: ["latin"],
+  weight: ['700', '400', '500', '600']
+})
 const SingleCardItem = (props: SingleCardItemProps) => {
   const { variant, imageUrl, zone, title, id, description = "", details = "", url, onFirstButtonClick, onSecondButtonClick, tags = [], author = "" } = props;
   return (
@@ -30,7 +34,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
       <Link href={`/${variant}/${id}`} target="blank">
         <div className="relative rounded-md border border-[#161616] overflow-hidden min-w-[260px] w-full">
           <Image
-            className=' w-full h-full '
+            className=' w-full h-[153px] object-cover '
             src={imageUrl}
             alt="Image"
             width={272}
@@ -38,6 +42,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
             layout="fixed"
             objectFit="cover"
             objectPosition="center"
+
 
           />
           {/* {variant === 'video' && (
@@ -66,7 +71,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
 
           {/* Details */}
           <div className=" text-neutral-900 text-base font-normal font-['Cabin'] leading-normal overflow-hidden">
-            <div className="line-clamp-2">
+            <div className={`line-clamp-2 ${cabin.className}`}>
               {description}
             </div>
           </div>
@@ -84,7 +89,10 @@ const SingleCardItem = (props: SingleCardItemProps) => {
               </div>
               <div className="justify-start items-center gap-2 flex md:ml-2">
                 <Image src="/date-icon.svg" alt="Date" width={12} height={12} />
-                <div className="text-neutral-900 text-opacity-80 text-sm font-normal font-['Cabin'] leading-[16.80px]">{details} {zone}</div>
+                <div className={`text-neutral-900 text-opacity-80 text-sm font-normal  leading-[16.80px] ${cabin.className}`}>
+                  {details}
+                  {/* {zone} */}
+                </div>
                 {/* <div className="w-[5px] h-[5px] opacity-80 hidden md:block bg-neutral-900" /> */}
 
               </div>

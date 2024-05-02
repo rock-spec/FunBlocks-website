@@ -17,11 +17,11 @@ const SearchInput = (props: SearchInputProps) => {
     <div
       className={`flex items-center justify-between bg-[${varient === 'dark' ? "#F6EEE6" : "#FFFCF9"}] border-b-2 border-nero  flex-1
        max-w-${varient === 'dark' ? '[447px]' : '[350px]'} ${varient === 'dark' ? 'mx-5' : 'mr-4'} 
-      h-[52px] px-6 py-4.5 ${props.className}`}>
+      h-[52px] px-6 py-4.5 ${props.className} w-full`}>
       <input
         onChange={onChange} // Use the passed onChange function here
         type="text"
-        className=" h-5.5 bg-transparent outline-none placeholder-default"
+        className=" h-5.5 bg-transparent outline-none placeholder-default w-full"
         placeholder={placeholder}
         style={{ padding: '0', height: '22px' }} // Inline style for exact height
       />

@@ -6,8 +6,13 @@ import { CustomButton } from "../Button/Button"
 import ReactSimplyCarousel from 'react-simply-carousel';
 import { useState } from "react";
 import Link from "next/link";
+import { Cabin } from "next/font/google";
 
 
+const cabin = Cabin({
+    subsets: ["latin"],
+    weight: ['700', '400', '500', '600']
+})
 
 
 
@@ -61,16 +66,16 @@ const CarousalHome = ({ data }: any) => {
                     <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010720-1vi6ze7ydnZpPXaN26jGDjF6Z1R2B2.svg"} height={32} width={32} alt="" className="absolute top-[50%] translate-y-[-50%] left-[-10px] hover:scale-110 transition-all cursor-pointer" onClick={goback} />
 
                 </div>
-                <div className=" text-neutral-900 text-[40px] font-bold font-['Cabin'] leading-[48px] lg:h-24">
+                <div className={`text-neutral-900 text-[40px] font-bold leading-[48px] lg:h-24 ${cabin.className}`} >
                     {data[dataIndex]?.title}
                 </div>
 
-                <div className=" text-neutral-900 text-base font-normal font-['Cabin'] leading-normal line-clamp-3 lg:h-20">
+                <div className={`text-neutral-900 text-base font-normal leading-normal line-clamp-3 lg:h-20 ${cabin.className} `}>
                     {data[dataIndex]?.description}
                 </div>
 
-                <div className="mt-[-25px] ">
-                    <CustomButton text="Explore" type="primary" onClick={() => { }} width="190px" size="14px" link={data[dataIndex]?.url || "www.someurl.com"} />
+                <div className="mb-[-25px]">
+                    <CustomButton text="Explore" type="primary" onClick={() => { }} width="190px" link={data[dataIndex]?.url || "www.someurl.com"} />
                 </div>
             </div>
         </div>

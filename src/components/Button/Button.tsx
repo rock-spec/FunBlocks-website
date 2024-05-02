@@ -2,6 +2,7 @@
 
 import React, { ReactNode } from 'react';
 import Image from 'next/image';
+import localFont from "next/font/local"
 
 import '../../app/globals.css';
 import Link from 'next/link';
@@ -17,6 +18,11 @@ export interface ButtonProps {
   icon?: ReactNode;
   link?: string;
 }
+
+const OffBit = localFont({
+  src: "./font/OffBitTrial-Bold.otf",
+  display: "swap"
+})
 
 export const CustomButton = (props: ButtonProps) => {
   // Destructure props for easier usage
@@ -81,11 +87,14 @@ export const CustomButton = (props: ButtonProps) => {
       </div>)} */}
       <div
         // onClick={onClick}
-        className="text-center text-neutral-900 text-lg font-bold font-['OffBit Trial'] tracking-tight flex justify-center items-center hover:scale-[1.01] transition-all cursor-pointer"
+        className={`text-center text-neutral-900 
+        text-lg font-bold font-['OffBit Trial'] tracking-tight flex justify-center items-center
+         hover:scale-[1.01] transition-all 
+        cursor-pointer text-[18px] ${OffBit.className}`}
         style={buttonStyles}
       >
         {/* Display button text and icon */}
-        <Link href={link ?? "#"}>  {text} {icon} </Link>
+        <Link href={link ?? "#"} className={OffBit.className}>  {text} {icon} </Link>
       </div>
 
     </>

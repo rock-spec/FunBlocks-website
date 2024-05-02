@@ -24,7 +24,7 @@ export interface ColumnProps {
 export const Column = (props: ColumnProps) => {
   const { variant, title, columnItems, buttonText, onButtonClick = () => { }, className, responsive } = props;
   return (
-    <div className={`border border-black bg-floralWhite p-5 lg:w-[285px] h-full ${responsive ? 'sm:w-full bg-re mb-10 lg:mb-0' : ""} ${className} `}>
+    <div className={`border border-black bg-floralWhite p-5 lg:w-[285px] h-full lg:min-h-[700px] ${responsive ? 'sm:w-full bg-re mb-10 lg:mb-0' : ""} ${className} `}>
 
       {/* Row 1 */}
       <div className="flex justify-between items-center mb-5 h-[33px] ">
@@ -44,7 +44,7 @@ export const Column = (props: ColumnProps) => {
       </div>
 
       {/* Row 3 */}
-      <div className="flex ">
+      <div className="flex justify-self-end ">
         {/* Replace ButtonComponent with your actual button component */}
         {buttonText && <CustomButton text={buttonText} onClick={onButtonClick} link={`/${variant}`} />}
       </div>
