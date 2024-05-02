@@ -5,6 +5,7 @@ import { Column } from '@/components/Column/Column';
 import React from 'react';
 
 
+export const dynamic = 'force-dynamic'
 
 const ArticleDetails = async ({ params }: { params: { id: string } }) => {
 
