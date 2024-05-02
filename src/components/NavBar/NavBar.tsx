@@ -8,6 +8,7 @@ import { IoIosArrowDown } from "react-icons/io"
 import { CustomButton } from '../Button/Button';
 import Link from 'next/link';
 import HomeSearch from '../HomeSearch/SearchHome';
+import localFont from "next/font/local"
 
 
 export const BottomSVG = () => {
@@ -826,6 +827,11 @@ interface NavBarProps {
   setSearchQuery: (query: string) => void;
 }
 
+const OffBit = localFont({
+  src: "./font/OffBitTrial-Bold.otf",
+  display: "swap"
+})
+
 export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
   // export const NavBar: React.FC<NavBarProps> = ({ handleNavigation }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -872,7 +878,7 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
             </Link>
 
           </div>
-          <div className='flex-1'>
+          <div className='flex-1 mx-5'>
             {/* THIS IS SEACH INPUT  */}
 
             <SearchInput varient="dark" className='ml-0 pl-0 mr-0 pr-0 sm:mx-3 z-[1000]'
@@ -886,13 +892,12 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
 
 
           {/* Page Navigation Links Section */}
-          <div className="items-center hidden lg:flex" style={{
-            fontSize: '10px',
-            fontFamily: '"Press Start 2P", cursive'
+          <div className={`items-center font-bold hidden lg:flex ${OffBit.className}`} style={{
+            fontSize: '18px',
           }}>
             <Link className="py-5 px-2" href={'/'} > Home</Link>
             <Link className="py-5 px-2" href={'/game'}> Games</Link>
-            <Link className="py-5 px-2" href={'/news'}> news</Link>
+            <Link className="py-5 px-2" href={'/news'}> News</Link>
             <Link className="py-5 px-2" href={'/article'}> Article</Link>
             <Link className="py-5 px-2" href={'/video'}> Videos</Link>
 
@@ -934,7 +939,7 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
               <CustomButton
                 useSmall={true}
                 onClick={toggleLanguageDropdown}
-                size='10px'
+                size='18px'
                 text={language}
                 width='75px'
 

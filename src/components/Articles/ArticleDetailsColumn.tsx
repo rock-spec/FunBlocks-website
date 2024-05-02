@@ -7,6 +7,7 @@ import { Tag } from "../Tag/Tag";
 import Image from "next/image";
 import SingleCard from "../SingleCard/SingleCard";
 import formatDate from "@/utils/dateFormat";
+import { renderHTML } from "@/utils/renderhtml";
 
 
 
@@ -32,8 +33,9 @@ export const ArticleDetailsColumn = ({ data }: { data: any }) => {
                     </div>
 
                     <Image alt="banner" height={487.44} width={857.55} className="mb-[24px] object-cover object-center w-[855.58px] " src={data.article.content.image} />
-                    <div dangerouslySetInnerHTML={{ __html: data?.news?.body }} className="text-neutral-900 text-base font-normal font-['Cabin'] leading-normal mb-[20.28px]" />
-                </div>
+                    <div className="text-neutral-900 text-base font-normal font-['Cabin'] leading-normal mb-[20.28px]">
+                        {data?.news?.body && renderHTML(data.news.body)}
+                    </div>                </div>
                 <div className="flex mb-10 gap-x-5">
                     <SingleCard
                         heading="related articles"
