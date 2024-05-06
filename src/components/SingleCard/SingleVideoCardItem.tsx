@@ -10,7 +10,6 @@ const SingleVideoCardItem = (props: SingleCardItemProps) => {
     const { variant, imageUrl, zone, title, description = "", id, details = "", onFirstButtonClick, onSecondButtonClick, tags = [], author = "" } = props;
 
 
-
     return (
 
         <Link href={`/${variant}/${id}`}>
