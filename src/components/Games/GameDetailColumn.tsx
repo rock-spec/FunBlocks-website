@@ -6,6 +6,8 @@ import Image from "next/image";
 import { Tag } from "@/components/Tag/Tag";
 import { Column } from "../Column/Column";
 import formatDate from "@/utils/dateFormat";
+import { Cabin } from "next/font/google";
+const cabin = Cabin({ subsets: ["latin"], weight: ['400', '500', '600', '700'] })
 
 export const GameDetailColumn = async ({ data }: { data: any }) => {
 
@@ -40,12 +42,12 @@ export const GameDetailColumn = async ({ data }: { data: any }) => {
                             </div> */}
                         </div>
 
-                        <div className="md:w-[50%] w-full">
-                            <div className=" text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[48px] ">
+                        <div className={"md:w-[50%] w-full " + cabin.className}>
+                            <div className=" text-neutral-900 text-[28px] font-bold leading-[48px] ">
                                 {game?.game_name}
                             </div>
 
-                            <div className=" text-neutral-900 text-base font-normal font-['Cabin']">{game?.game_desc}
+                            <div className=" text-neutral-900 text-base font-normal">{game?.game_desc}
                             </div>
                             <div className="">
                                 <CustomButton text="Play Now" type="primary" onClick={() => { }} width="190px" size="14px" />

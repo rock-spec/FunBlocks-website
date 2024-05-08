@@ -21,10 +21,10 @@ export interface SingleCardItemProps {
   onFirstButtonClick: () => void;
   onSecondButtonClick: () => void;
 }
-const cabin = Cabin({
-  subsets: ["latin"],
-  weight: ['700', '400', '500', '600']
-})
+
+
+const cabin = Cabin({ subsets: ["latin"], weight: ['400', '500', '600', '700'] })
+
 const SingleCardItem = (props: SingleCardItemProps) => {
   const { variant, imageUrl, zone, title, id, description = "", details = "", url, onFirstButtonClick, onSecondButtonClick, tags = [], author = "" } = props;
   return (
@@ -32,7 +32,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
       {/* First Column: Image */}
 
       <Link href={`/${variant}/${id}`} target="blank">
-        <div className="relative rounded-md border border-[#161616] overflow-hidden min-w-[260px] w-full">
+        <div className={"relative rounded-md border border-[#161616] overflow-hidden min-w-[260px] w-full " + cabin.className}>
           <Image
             className=' w-full h-[153px] object-cover '
             src={imageUrl}
@@ -70,7 +70,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
 
 
           {/* Details */}
-          <div className=" text-neutral-900 text-base font-normal font-['Cabin'] leading-normal overflow-hidden">
+          <div className=" text-neutral-900 text-base font-normal  leading-normal overflow-hidden">
             <div className={`line-clamp-2 ${cabin.className}`}>
               {description}
             </div>
@@ -106,9 +106,9 @@ const SingleCardItem = (props: SingleCardItemProps) => {
               </div>
 
               <div className="justify-start md:items-center gap-2 flex md:flex-row flex-col md:ml-2">
-                <div className="opacity-80 text-neutral-900 text-sm font-normal font-['Cabin'] leading-[16.80px]">By {author}</div>
+                <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px]">By {author}</div>
                 <div className="w-[5px] h-[5px] hidden md:block  opacity-80 bg-neutral-900" />
-                <div className="text-neutral-900 text-opacity-80 text-sm font-normal font-['Cabin'] leading-[16.80px]">{details}</div>
+                <div className="text-neutral-900 text-opacity-80 text-sm font-normal  leading-[16.80px]">{details}</div>
               </div>
             </div>
           )}

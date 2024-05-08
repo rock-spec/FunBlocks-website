@@ -93,7 +93,7 @@ export const EventColumn = ({ data }: { data: any }) => {
         <>
             <div className="lg:w-[895px] w-full">
                 <div className="flex lg:flex-row flex-col w-full mb-10">
-                    <div className="h-58px">
+                    <div className="h-58px w-full">
                         <SearchInput varient="light" placeholder="Search for Keywords" onChange={handleSearch} />
                     </div>
                     <div className="flex">
