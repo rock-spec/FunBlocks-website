@@ -7,8 +7,10 @@ import { Tag } from "../Tag/Tag";
 import Image from "next/image";
 import SingleCard from "../SingleCard/SingleCard";
 import formatDate from "@/utils/dateFormat";
+import { Cabin } from "next/font/google";
 
 
+const cabin = Cabin({ subsets: ["latin"], weight: ['400', '500', '600', '700'] })
 
 
 export const EventDetailsColumn = ({ data }: { data: any }) => {
@@ -21,8 +23,8 @@ export const EventDetailsColumn = ({ data }: { data: any }) => {
     return (
         <>
             <div className="m-w-[895px] w-full">
-                <div className="flex-col w-full mb-10 p-5 border border-[#161616] bg-[#FFFCF9]">
-                    <div className=" text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[33.60px] mb-[12px]">{eventDetails.title}</div>
+                <div className={"flex-col w-full mb-10 p-5 border border-[#161616] bg-[#FFFCF9] " + cabin.className}>
+                    <div className=" text-neutral-900 text-[28px] font-bold  leading-[33.60px] mb-[12px]">{eventDetails.title}</div>
                     <div className="flex gap-1 mb-[24px]">
                         {[eventDetails.gameid, relatedGame.engineid].map((tag, index) => (
                             <Tag text={tag} key={index} type={'relevance'} linkto={index != 0 ? "engine" : "game"} />
@@ -34,25 +36,25 @@ export const EventDetailsColumn = ({ data }: { data: any }) => {
 
 
                     <div className="flex justify-between items-center  mt-[-40px]">
-                        <div className=" text-neutral-900 text-xl font-semibold font-['Cabin'] leading-[30px] mb-[12px] mt-[24px]">Event Details</div>
+                        <div className=" text-neutral-900 text-xl font-semibold  leading-[30px] mb-[12px] mt-[24px]">Event Details</div>
                         <CustomButton text="Join Event" onClick={() => { }} type="primary" size="13px" width="220px" />
                     </div>
 
                     <div className="justify-start items-center gap-2 flex ">
                         <Image src="/date-icon.svg" alt="Date" width={12} height={12} />
-                        <div className="text-neutral-900 text-opacity-80 text-sm font-normal font-['Cabin'] leading-[16.80px]">{formatDate(eventDetails.startdate)} - {formatDate(eventDetails.enddate)}</div>
+                        <div className="text-neutral-900 text-opacity-80 text-sm font-normal  leading-[16.80px]">{formatDate(eventDetails.startdate)} - {formatDate(eventDetails.enddate)}</div>
                         <div className="w-[5px] h-[5px] opacity-80 bg-neutral-900" />
-                        <div className="opacity-80 text-neutral-900 text-sm font-normal font-['Cabin'] leading-[16.80px]">
+                        <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px]">
                             {/* EST */}
                         </div>
 
                     </div>
                     <div className="justify-start items-center gap-2 flex mt-2">
                         <Image src="https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Clip%20path%20group-Id1e5vC4bAoV6FkGu6qRvtfZaM7czB.svg" alt="Date" width={12} height={12} />
-                        <div className="text-neutral-900 text-opacity-80 text-sm font-normal font-['Cabin'] leading-[16.80px]">{eventDetails.address}</div>
+                        <div className="text-neutral-900 text-opacity-80 text-sm font-normal  leading-[16.80px]">{eventDetails.address}</div>
                     </div>
 
-                    <div className="mt-5 text-neutral-900 text-base font-normal font-['Cabin'] leading-normal mb-[20.28px]">
+                    <div className="mt-5 text-neutral-900 text-base font-normal  leading-normal mb-[20.28px]">
                         {eventDetails.detail}
                     </div>
 

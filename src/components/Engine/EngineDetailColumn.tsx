@@ -8,6 +8,9 @@ import { Column } from "../Column/Column";
 import GameCardComponet, { GameCardComponentProps } from "../Games/GameCardComponet";
 import Link from "next/link";
 import formatDate from "@/utils/dateFormat";
+import { Cabin } from "next/font/google";
+
+const cabin = Cabin({ subsets: ["latin"], weight: ['400', '500', '600', '700'] })
 
 export const EngineDetailColumn = ({ engine, relatedGames, relatedArticles }: { engine: any, relatedGames: any, relatedArticles: any }) => {
 
@@ -27,7 +30,7 @@ export const EngineDetailColumn = ({ engine, relatedGames, relatedArticles }: { 
     return (
         <>
             <div className="max-w-[895px] w-full">
-                <div className="h-fit-content items-stretch flex mb-10 gap-x-5 ">
+                <div className={"h-fit-content items-stretch flex mb-10 gap-x-5 " + cabin.className}>
                     <div className="w-full p-5 bg-stone-50   border border-neutral-900 flex md:flex-row flex-col justify-end items-start gap-6  h-full">
 
                         {/* image container */}
@@ -48,33 +51,33 @@ export const EngineDetailColumn = ({ engine, relatedGames, relatedArticles }: { 
                         </div>
 
                         <div className="md:w-[50%] w-full">
-                            <div className=" text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[48px] ">
+                            <div className=" text-neutral-900 text-[28px] font-bold leading-[48px] ">
                                 {engineData?.engineid}
                             </div>
 
-                            <div className=" text-neutral-900 text-base font-normal font-['Cabin']">{engineData?.desc}
+                            <div className=" text-neutral-900 text-base font-normal">{engineData?.desc}
                             </div>
                             <br />
 
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-3">
 
-                                <div className="text-neutral-900 text-base font-medium font-['Cabin'] underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
+                                <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
 
                                     <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-bSRcfFmN2KJ4lSUyJxVUZBs8dZu8k9.svg"} height={24} width={24} alt="" className="h-6 mr-1" />
                                     <p><Link href={engineData?.website} target="blank">{engineData?.engineid}</Link></p>
                                 </div>
 
-                                <div className="text-neutral-900 text-base font-medium font-['Cabin'] underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
+                                <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
 
                                     <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-1-PZh4LhAvRZK9PlN7UP5ctTh11SfFFQ.svg"} height={24} width={24} alt="" className="h-6 mr-1" />
                                     <p> <Link href={engineData?.blogurl} target="blank">Docs</Link></p>
                                 </div>
-                                {/* <div className="text-neutral-900 text-base font-medium font-['Cabin'] underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
+                                {/* <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
 
                                     <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-2-AnqrY48rvFGY6C4mxEVx1GoEZfBpiN.svg"} height={24} width={24} alt="" className="h-6 mr-1" />
                                     <p>Twitter</p>
                                 </div>
-                                <div className="text-neutral-900 text-base font-medium font-['Cabin'] underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
+                                <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
 
                                     <Image src={"https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-3-nw373W2KTWzNMkQ8ZL6ejHFaOyckdZ.svg"} height={24} width={24} alt="" className="h-6 mr-1" />
                                     <p>Github</p>

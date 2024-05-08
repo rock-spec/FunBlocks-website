@@ -908,8 +908,8 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
               <div>
                 {showDropdown && (
                   <div className="absolute bg-white shadow-lg top-full mt-1 right-0">
-                    <Link href={'/event'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownItemClick}> Events</div></Link> <br />
-                    <Link href={'/engine'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownItemClick}> Engine</div></Link>
+                    <Link href={'/event'} > <div className=" px-4 hover:bg-slate-400 m-0" onClick={handleDropdownItemClick}> Events</div></Link> <br />
+                    <Link href={'/engine'} > <div className=" px-4 hover:bg-slate-400 m-0" onClick={handleDropdownItemClick}> Engine</div></Link>
                   </div>
                 )}
               </div>
@@ -923,11 +923,11 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
               }} />
               {
                 showNavDropdown ? <div className="absolute top-10 bg-white shadow-lg  right-0 uppercase z-10">
-                  <Link className="py-5 px-2" href={'/'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Home</div></Link>
-                  <Link className="py-5 px-2" href={'/game'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Games</div></Link>
-                  <Link className="py-5 px-2" href={'/news'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>news</div></Link>
-                  <Link className="py-5 px-2" href={'/article'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Article</div></Link>
-                  <Link className="py-5 px-2" href={'/video'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Videos</div></Link>
+                  <Link className="py-2 px-2" href={'/'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Home</div></Link>
+                  <Link className="py-2 px-2" href={'/game'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Games</div></Link>
+                  <Link className="py-2 px-2" href={'/news'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>news</div></Link>
+                  <Link className="py-2 px-2" href={'/article'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Article</div></Link>
+                  <Link className="py-2 px-2" href={'/video'}> <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}>Videos</div></Link>
                   <Link href={'/event'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}> Events</div></Link> <br />
                   <Link href={'/engine'} > <div className="p-2 px-4 hover:bg-slate-400 m-0" onClick={handleDropdownNavItemClick}> Engine</div></Link>
                 </div> : ""
