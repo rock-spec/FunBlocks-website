@@ -21,10 +21,10 @@ const GameCardComponet = (props: GameCardComponentProps) => {
 
     return (
         <Link href={`/game/${game_id}`} target="_blank">
-            <div className={"gap-6 shadow-sm flex flex-col " + cabin.className}> {/* Make it a flex container */}
+            <div className={"gap-6 shadow-sm flex flex-col  " + cabin.className }> {/* Make it a flex container */}
                 {/* First Column: Image */}
                 <div className="rounded-lg relative">
-                    <div className="rounded-md border border-[#161616]">
+                    <div className="rounded-md border border-[#161616] overflow-hidden">
                         <Image
                             src={imageUrl}
                             alt="Image"
@@ -33,7 +33,7 @@ const GameCardComponet = (props: GameCardComponentProps) => {
                             layout="fixed"
                             objectFit="cover"
                             objectPosition="center"
-                            className='object-cover h-[237px]'
+                            className='object-cover h-[187px] aspect-video'
 
                         />
                     </div>

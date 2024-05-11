@@ -1,80 +1,87 @@
-
-
-import React, { ReactNode } from 'react';
-import Image from 'next/image';
+import React, { ReactNode } from "react"
+import Image from "next/image"
 import localFont from "next/font/local"
 
-import '../../app/globals.css';
-import Link from 'next/link';
+import "../../app/globals.css"
+import Link from "next/link"
 
 export interface ButtonProps {
-  onClick: () => void;
-  text: string;
-  type?: 'primary' | 'secondary';
-  height?: string;
-  width?: string;
-  size?: string;
-  useSmall?: boolean;
-  icon?: ReactNode;
-  link?: string;
+    onClick: () => void
+    text: string
+    type?: "primary" | "secondary"
+    height?: string
+    width?: string
+    size?: string
+    useSmall?: boolean
+    useMedium?: boolean
+    icon?: ReactNode
+    link?: string
 }
 
 const OffBit = localFont({
-  src: "./font/OffBitTrial-Bold.otf",
-  display: "swap"
+    src: "./font/OffBitTrial-Bold.otf",
+    display: "swap",
 })
 
 export const CustomButton = (props: ButtonProps) => {
-  // Destructure props for easier usage
-  const {
-    link,
-    onClick,
-    text,
-    type = 'secondary',
-    height = "100px",
-    width = "350px",
-    icon,
-    size = "18px",
-    useSmall,
-  } = props;
+    // Destructure props for easier usage
+    const {
+        link,
+        onClick,
+        text,
+        type = "secondary",
+        height = "100px",
+        width = "350px",
+        icon,
+        size = "18px",
+        useSmall,
+        useMedium,
+    } = props
 
-  // Define image sources for different button types
-  const imageSrc = useSmall
-    ? 'https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/button-nx98psh0NxJo08FqKnaafixQss0KAI.svg'
-    : type === 'primary'
-      ? 'https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010723%20(1)%202-uu1e39irGGWhvZYyNWKcHykOFrV02R.svg'
-      : 'https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010723%20(1)%201-DrIKz8IZYKwkbEiGowfHc2iWdhmweB.svg';
+    // Define image sources for different button types
 
-  // Dynamically set color based on button type and size
-  const color = useSmall ? "#161616" : type === "primary" ? "#FFFCF9" : "#161616";
+    // const imageSrc = "/buttons/medium-button.svg"
 
-  // Define styles for the button
-  const buttonStyles = {
-    color,
-    fontSize: size,
-    fontFamily: '"Press Start 2P", cursive',
-    backgroundImage: `url("${imageSrc}")`,
-    backgroundSize: 'contain',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    width,
-    height,
-  };
+    const imageSrc = useSmall
+        ? "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/button-nx98psh0NxJo08FqKnaafixQss0KAI.svg"
+        : useMedium
+        ? "/buttons/medium-button.svg"
+        : type === "primary"
+        ? "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010723%20(1)%202-uu1e39irGGWhvZYyNWKcHykOFrV02R.svg"
+        : "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010723%20(1)%201-DrIKz8IZYKwkbEiGowfHc2iWdhmweB.svg"
 
-  return (
-    <>
-      {/* <div className='flex bg-blue-600 px-3 py-1 text-white items-center justify-center rounded-md mt-3 mr-1 cursor-pointer
+    // Dynamically set color based on button type and size
+    const color = useSmall ? "#161616" : type === "primary" ? "#FFFCF9" : "#161616"
+
+    // Define styles for the button
+    const buttonStyles = {
+        color,
+        fontSize: size,
+        fontFamily: '"Press Start 2P", cursive',
+        backgroundImage: `url("${imageSrc}")`,
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        width,
+        height,
+    }
+
+    return (
+        <>
+            {/* <div className='flex bg-blue-600 px-3 py-1 text-white items-center justify-center rounded-md mt-3 mr-1 cursor-pointer
   '>
         {link ? <Link href={link}>{text} {icon}</Link> : `${text} ${icon ? icon : ""}`}
 
 
       </div> */}
-      {/* Preload images */}
-      <Image src={imageSrc} alt="" width={1} height={1} />
 
-      {/* Render button */}
+            {/* Preload images */}
+            {/* Add this if necessarrry ---------------------------------- */}
+            {/* <Image src={imageSrc} alt="" width={1} height={1} /> */}
+            {/* ------------------- */}
 
-      {/* {link ? <Link href={link}>  <div
+            {/* Render button */}
+            {/* {link ? <Link href={link}>  <div
         className="text-center text-neutral-900 text-lg font-bold font-['OffBit Trial'] tracking-tight flex justify-center items-center hover:scale-[1.01] transition-all cursor-pointer"
         style={buttonStyles}
       >
@@ -85,18 +92,20 @@ export const CustomButton = (props: ButtonProps) => {
       >
         {text} {icon}
       </div>)} */}
-      <div
-        // onClick={onClick}
-        className={`text-center text-neutral-900 
+            <div
+                // onClick={onClick}
+                className={`text-center text-neutral-900  
         text-lg font-bold font-['OffBit Trial'] tracking-tight flex justify-center items-center
-         hover:scale-[1.01] transition-all 
+         hover:scale-[1.01] transition-all  
         cursor-pointer text-[18px] ${OffBit.className}`}
-        style={buttonStyles}
-      >
-        {/* Display button text and icon */}
-        <Link href={link ?? "#"} className={OffBit.className}>  {text} {icon} </Link>
-      </div>
-
-    </>
-  );
-};
+                style={buttonStyles}
+            >
+                {/* Display button text and icon */}
+                <Link href={link ?? "#"} className={`${OffBit.className} `}>
+                    {" "}
+                    {text} {icon}{" "}
+                </Link>
+            </div>
+        </>
+    )
+}
