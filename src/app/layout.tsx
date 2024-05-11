@@ -35,7 +35,7 @@ function RootLayout({
     <html lang="en">
       <body className={cabin.className}>
         <Provider>
-          <nav suppressHydrationWarning={true} className="z-[1000]">
+          <nav suppressHydrationWarning={true} className="z-[1000] ">
             <NavBar setSearchQuery={setSearchQuery} />
           </nav>
 
