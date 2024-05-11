@@ -8,6 +8,8 @@ export const dynamic = 'force-dynamic'
 
 const Article = async () => {
     const { featuredGames, articles } = await trpcServer().articleData()
+    console.log(articles);
+    
 
     return (
         <div className="w-full max-w-[1200px] flex justify-between gap-x-5 lg:flex-row flex-col">

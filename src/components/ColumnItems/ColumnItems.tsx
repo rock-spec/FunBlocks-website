@@ -36,7 +36,7 @@ export const ColumnItems = (props: SingleColumnProps) => {
 
     return (
         <Link href={`/${variant}/${id || "demoId"}`}>
-            <div className={`w-[245px] h-[${containerHeight}px] justify-start items-start gap-[15px] inline-flex cursor-pointer`}>
+            <div className={`w-[245px] h-[${containerHeight}px] justify-start items-start gap-[15px] inline-flex cursor-pointer `}>
                 <Image src={imageUrl} height={img_size} width={img_size} alt=""
                     className={`h-[85px] w-[85px] border-[2px] rounded-[7px] border-neutral-900/85 object-cover`} />
                 <div className="grow shrink basis-0 h-full flex-col justify-start items-start gap-2 inline-flex">
