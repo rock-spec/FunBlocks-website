@@ -8,10 +8,10 @@ import SearchInput from "../SearchInput/SearchInput"
 import { IoIosArrowDown } from "react-icons/io"
 import formatDate from "@/utils/dateFormat"
 
-export const ArticleColumn = async ({ data }: { data: any }) => {
-
+export const ArticleColumn = ({ data }: { data: any }) => {
     const [articleFilterData, setArticlesFilterData] = useState(data)
     const [category, setCategory] = useState<string[]>([])
+    console.log(category)
 
     function filterArticleArray(searchString: string): any[] {
         const articleArray: any[] = data
@@ -74,7 +74,10 @@ export const ArticleColumn = async ({ data }: { data: any }) => {
                 <div className="flex mb-10 gap-x-5">
                     <div className="flex flex-col flex-1 items-start gap-5">
                         {singleCardItemDetails.map((detail, index) => (
-                            <div className="p-5 border border-[#161616] bg-[#FFFCF9] w-full lg:w-[55rem]">
+                            <div
+                                key={index}
+                                className="p-5 border border-[#161616] bg-[#FFFCF9] w-full lg:w-[55rem]"
+                            >
                                 <SingleCardItem key={index} {...detail} />
                             </div>
                         ))}
