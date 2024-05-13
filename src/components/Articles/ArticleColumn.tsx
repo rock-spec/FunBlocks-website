@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import SingleCardItem, { SingleCardItemProps } from "../SingleCardItem/SingleCardItem"
 import { CustomButton } from "../Button/Button"
 import CustomDropDown from "../DropDown/DropDown.jsx"
@@ -8,8 +8,10 @@ import SearchInput from "../SearchInput/SearchInput"
 import { IoIosArrowDown } from "react-icons/io"
 import formatDate from "@/utils/dateFormat"
 
-export const ArticleColumn = ({ data }: { data: any }) => {
+export const ArticleColumn = async ({ data }: { data: any }) => {
+
     const [articleFilterData, setArticlesFilterData] = useState(data)
+    const [category, setCategory] = useState<string[]>([])
 
     function filterArticleArray(searchString: string): any[] {
         const articleArray: any[] = data
@@ -47,33 +49,27 @@ export const ArticleColumn = ({ data }: { data: any }) => {
         setArticlesFilterData(updateData)
     }
 
+    useEffect(() => {
+        let tmp: string[] = []
+        data.forEach((news: { category: string }) => {
+            if (news.category) tmp.push(news.category)
+        })
+        setCategory(tmp)
+    }, [data])
+
     return (
         <>
             <div className="lg:w-[895px]  w-full">
-                <div className="flex flex-col lg:flex-row w-full mb-10">
-                    <div className="h-[50px] w-full">
+                <div className="flex flex-col lg:flex-row w-full mb-10 gap-x-4">
+                    <div className=" w-full">
                         <SearchInput
                             varient="light"
                             placeholder="Search for Keywords"
                             onChange={handleSearch}
                         />
                     </div>
-                    <CustomDropDown />
-
-                    {/* <CustomButton
-                        onClick={() => {}}
-                        size="13px"
-                        text="Category"
-                        height="42px"
-                        icon={<IoIosArrowDown />}
-                    />
-                    <CustomButton
-                        onClick={() => {}}
-                        size="13px"
-                        text="Sort By"
-                        height="42px"
-                        icon={<IoIosArrowDown />}
-                    /> */}
+                    <CustomDropDown text={"Category"} options={category} />
+                    <CustomDropDown text={"Sort By"} />
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <div className="flex flex-col flex-1 items-start gap-5">
