@@ -7,6 +7,9 @@ const SUPABASE_KEY = process.env["NEXT_PUBLIC_SUPABASE_KEY"] as string;
 
 
 class SupabaseInstance {
+    static from(arg0: string) {
+        throw new Error("Method not implemented.");
+    }
     static supabase: SupabaseClient<any, "public", any>
 
     static getSupabaseInstance() {
