@@ -1,0 +1,31 @@
+import localFont from "next/font/local"
+import Link from "next/link"
+
+const OffBit = localFont({
+    src: "./font/OffBitTrial-Bold.otf",
+})
+const BlueSmallButton = ({
+    text,
+    link,
+    height = "h-10",
+    width = "w-[115px]",
+    bg = "bg-[url('/buttons/explore.svg')]",
+    bg_hover = "hover:bg-[url('/buttons/explore_hover.svg')]",
+}: {
+    text: string
+    link: string
+    height?: string
+    width?: string
+    bg?: string
+    bg_hover?: string
+}) => {
+    return (
+        <button
+            className={`${height} ${width} flex justify-center items-center text-white text-lg  bg-cover bg-no-repeat ${bg} ${bg_hover} ${OffBit.className} leading-normal`}
+        >
+            <Link href={link}>{text}</Link>
+        </button>
+    )
+}
+
+export default BlueSmallButton
