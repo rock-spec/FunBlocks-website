@@ -4,11 +4,12 @@ import React, { useState } from "react"
 import Image from "next/image"
 import SearchInput from "@/components/SearchInput/SearchInput"
 import Button from "@mui/joy/Button"
-import { IoIosArrowDown } from "react-icons/io"
 import { CustomButton } from "../Button/Button"
+import { IoIosArrowDown } from "react-icons/io"
 import Link from "next/link"
 import HomeSearch from "../HomeSearch/SearchHome"
 import localFont from "next/font/local"
+import LanguageSelector from "../LanguageSelector/LanguageSelector"
 
 export const BottomSVG = () => {
     return (
@@ -840,7 +841,7 @@ const OffBit = localFont({
 export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
     // export const NavBar: React.FC<NavBarProps> = ({ handleNavigation }) => {
     const [showDropdown, setShowDropdown] = useState(false)
-    const [showLanguageDropdown, setShowLanguageDropdown] = useState(false)
+    // const [showLanguageDropdown, setShowLanguageDropdown] = useState(false)
     const [showNavDropdown, setShowNavDropdown] = useState(false)
     const [language, setLanguage] = useState("ENG")
 
@@ -848,9 +849,9 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
         setShowDropdown(!showDropdown)
     }
 
-    const toggleLanguageDropdown = () => {
-        setShowLanguageDropdown(!showLanguageDropdown)
-    }
+    // const toggleLanguageDropdown = () => {
+    //     setShowLanguageDropdown(!showLanguageDropdown)
+    // }
 
     const handleDropdownItemClick = () => {
         setShowDropdown(false) // Hide dropdown after item click
@@ -860,12 +861,12 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
         setShowNavDropdown(!showNavDropdown)
     }
 
-    const handleLanguageItemClick = (language: string) => {
-        // Handle language selection here
-        setLanguage(language)
-        console.log(`Selected language: ${language}`)
-        setShowLanguageDropdown(false) // Hide dropdown after language selection
-    }
+    // const handleLanguageItemClick = (language: string) => {
+    //     // Handle language selection here
+    //     setLanguage(language)
+    //     console.log(`Selected language: ${language}`)
+    //     setShowLanguageDropdown(false) // Hide dropdown after language selection
+    // }
 
     return (
         <>
@@ -1046,7 +1047,10 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
                                     ""
                                 )}
                             </div>
-                            <div className="relative hidden lg:block">
+                            <div>
+                                <LanguageSelector />
+                            </div>
+                            {/* <div className="relative  lg:block">
                                 <CustomButton
                                     useSmall={true}
                                     onClick={toggleLanguageDropdown}
@@ -1056,11 +1060,7 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
 
                                     // icon={<IoIosArrowDown />}
                                 />
-                                {showLanguageDropdown && (
-                                    <div className="absolute  bg-white shadow-lg top-full mt-1 right-0">
-                                        {/* <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('CHIN')}>CHINIES</a>
-                  <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('HIN')}>HINDI</a>
-                  <a href="#" className="block py-2 px-4 text-gray-800" onClick={() => handleLanguageItemClick('GER')}>GERMAN</a>*/}
+           
                                         <a
                                             href="#"
                                             className="block py-2 px-4 text-gray-800"
@@ -1070,7 +1070,7 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
                                         </a>
                                     </div>
                                 )}
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
