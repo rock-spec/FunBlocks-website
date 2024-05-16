@@ -17,7 +17,7 @@ const SingleCard = (props: SingleCardProps) => {
     const { name, singleCardItemDetails, buttonText, onButtonClick, heading } = props
     const title = heading || name + "s"
     return (
-        <div className="flex flex-col flex-1 items-start gap-5 p-5 border border-[#161616] bg-[#FFFCF9] ">
+        <div className="flex flex-col flex-1 items-start gap-5 p-5 border border-[#161616] bg-[#FFFCF9]">
             {/* First Row: Tag */}
             <Tag text={title} type={"section"} />
 
@@ -38,11 +38,12 @@ const SingleCard = (props: SingleCardProps) => {
 
             {/* Third Row: Button */}
             {buttonText && (
-                <div className="flex justify-center w-full ">
+                <div className="flex justify-center w-full  ">
                     <CustomButton
                         onClick={onButtonClick}
                         text={buttonText}
-                        width="300px"
+                        height="50px"
+                        width="221px"
                         type="secondary"
                         link={`/${name}`}
                     />

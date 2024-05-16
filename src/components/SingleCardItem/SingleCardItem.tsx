@@ -40,13 +40,13 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         author = "",
     } = props
     return (
-        <div className="flex md:flex-row w-full flex-col items-start gap-6">
+        <div className="flex md:flex-row w-full flex-col items-start gap-6 ">
             {/* First Column: Image */}
 
             <Link href={`/${variant}/${id}`} target="blank">
                 <div
                     className={
-                        "relative rounded-md border border-[#161616] overflow-hidden min-w-[260px] w-full " +
+                        "relative rounded-[4px] border border-[#161616] overflow-hidden min-w-[260px] w-full " +
                         cabin.className
                     }
                 >
@@ -78,7 +78,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                 {/* First Row */}
                 <div className="flex flex-col gap-2 ">
                     {/* Title */}
-                    <div className="text-[#161616] font-bold text-lg leading-[120%] tracking-[-0.32px] line-clamp-2">
+                    <div className="text-[#161616] font-bold text-lg leading-[120%] tracking-[-0.32px] line-clamp-2 bg ">
                         <Link href={`/${variant}/${id}`} target="blank">
                             {" "}
                             {title}
@@ -99,9 +99,9 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                                 ))}
                             </div>
                             <div className="justify-start items-center gap-2 flex md:ml-2">
-                                <Image src="/date-icon.svg" alt="Date" width={12} height={12} />
+                                <Image src="/date-icon.svg" alt="Date" width={14} height={14} />
                                 <div
-                                    className={`text-neutral-900 text-opacity-80 text-sm font-normal  leading-[16.80px] ${cabin.className}`}
+                                    className={`text-neutral-900 text-opacity-80 text-lg  font-bold  leading-[16.80px] ${cabin.className}`}
                                 >
                                     {details}
                                     {/* {zone} */}
@@ -110,7 +110,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                             </div>
                         </div>
                     ) : (
-                        <div className="flex md:flex-row flex-col gap-3">
+                        <div className="flex md:flex-row flex-col gap-3 ">
                             <div className="flex gap-1">
                                 {tags.map((tag, index) => (
                                     <Tag text={tag} key={index} type={"relevance"} linkto="game" />
@@ -132,7 +132,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
 
                 {/* Second Row: Buttons */}
                 {variant === "event" ? (
-                    <div className="flex  items-center gap-x-4 mt-[52px]">
+                    <div className="flex  items-center gap-x-4 mt-[52px] ">
                         <Link
                             href={url ? url : "#"}
                             className="flex justify-center items-center bg-[url('/buttons/join_event.svg')]  w-[140px] h-10 duration-300 hover:scale-105 "
