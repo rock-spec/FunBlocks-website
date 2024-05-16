@@ -91,7 +91,7 @@ const Homee = async () => {
     const game = HomeData.games
 
     return (
-        <div className="relatve w-full max-w-[1200px] flex flex-col  justify-between lg:gap-x-5 lg:flex-row ">
+        <div className="relatve w-full max-w-[1200px] flex flex-col  justify-between lg:gap-x-5 lg:flex-row">
             {/* Left Column */}
             <Column
                 variant="game"
