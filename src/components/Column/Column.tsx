@@ -21,9 +21,10 @@ export interface ColumnProps {
 
 export const Column = (props: ColumnProps) => {
     const { variant, title, columnItems, buttonText, onButtonClick = () => {}, className, responsive } = props
+
     return (
         <div
-            className={`border border-black bg-floralWhite p-5 lg:w-[285px] h-full lg:min-h-[700px]  ${
+            className={`border relative border-black bg-floralWhite p-5 lg:w-[285px] h-full lg:min-h-[700px]  ${
                 responsive ? "sm:w-full bg-re mb-10 lg:mb-0" : ""
             } ${className} `}
         >
@@ -51,10 +52,10 @@ export const Column = (props: ColumnProps) => {
             </div>
 
             {/* Row 3 */}
-            <div className="flex justify-self-end ">
+            <div className="flex  w-full  absolute left-0 bottom-4">
                 {/* Replace ButtonComponent with your actual button component */}
                 {buttonText && (
-                    <div className="mx-auto">
+                    <div className="mx-auto ">
                         <CustomButton
                             text={buttonText}
                             onClick={onButtonClick}

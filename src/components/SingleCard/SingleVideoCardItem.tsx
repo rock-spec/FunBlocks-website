@@ -16,7 +16,7 @@ const SingleVideoCardItem = (props: SingleCardItemProps) => {
             <div className=" gap-6 shadow-sm">
                 {/* First Column: Image */}
                 <div className="w-full h-[339px] rounded-lg flex-col justify-start items-start gap-6 inline-flex">
-                    <div className="relative w-full rounded-md border border-[#161616] overflow-hidden ">
+                    <div className="relative w-full rounded-md border border-[#161616]  overflow-hidden ">
 
                         {/* <Image
                             className=' w-full h-full object-cover'

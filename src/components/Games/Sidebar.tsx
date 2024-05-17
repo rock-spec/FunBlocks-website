@@ -12,7 +12,6 @@ const OffBit = localFont({
 })
 
 const Sidebar = ({ data }: { data: any }) => {
-    console.log(data)
     const [engines, setEngines] = useState<string[]>([])
     const [blockChains, setblockChains] = useState<string[]>([])
     const [gameStudio, setGameStudio] = useState<string[]>([])
