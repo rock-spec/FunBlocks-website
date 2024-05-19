@@ -2,7 +2,7 @@ import React, { ReactNode } from "react"
 import Image from "next/image"
 import localFont from "next/font/local"
 
-import "../../app/globals.css"
+// import "../../app/globals.css"
 import Link from "next/link"
 
 export interface ButtonProps {

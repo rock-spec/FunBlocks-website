@@ -1,0 +1,10 @@
+{
+    "Navbar": {
+        "home": "home",
+        "games": "games",
+        "news": "news",
+        "article": "article",
+        "videos": "videos",
+        "more": "more"
+    }
+}

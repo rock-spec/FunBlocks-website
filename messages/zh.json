@@ -1,0 +1,10 @@
+{
+    "Navbar": {
+        "home": "首页",
+        "games": "游戏",
+        "news": "新闻",
+        "article": "文章",
+        "videos": "视频",
+        "more": "更多"
+    }
+}

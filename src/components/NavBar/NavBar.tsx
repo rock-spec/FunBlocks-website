@@ -10,6 +10,7 @@ import Link from "next/link"
 import HomeSearch from "../HomeSearch/SearchHome"
 import localFont from "next/font/local"
 import LanguageSelector from "../LanguageSelector/LanguageSelector"
+import { useTranslations } from "next-intl"
 
 export const BottomSVG = () => {
     return (
@@ -839,11 +840,11 @@ const OffBit = localFont({
 })
 
 export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
-    // export const NavBar: React.FC<NavBarProps> = ({ handleNavigation }) => {
     const [showDropdown, setShowDropdown] = useState(false)
-    // const [showLanguageDropdown, setShowLanguageDropdown] = useState(false)
     const [showNavDropdown, setShowNavDropdown] = useState(false)
     const [language, setLanguage] = useState("ENG")
+
+    const t = useTranslations("Navbar")
 
     const toggleDropdown = () => {
         setShowDropdown(!showDropdown)
@@ -907,8 +908,7 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
                             }}
                         >
                             <Link className="py-5 px-2" href={"/"}>
-                                {" "}
-                                Home
+                                {t("home")}
                             </Link>
                             <Link className="py-5 px-2" href={"/game"}>
                                 {" "}
