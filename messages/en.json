@@ -4,6 +4,8 @@
         "games": "games",
         "news": "news",
         "article": "article",
+        "articles": "articles",
+        "video": "video",
         "videos": "videos",
         "more": "more",
         "events": "events",
@@ -30,6 +32,26 @@
         "joinEvent": "join event",
         "details": "details",
         "category": "category",
-        "sortBy": "Sort by"
+        "sortBy": "Sort by",
+        "playNow": "play now"
+    },
+    "Tags": {
+        "featuredGames": "featured games",
+        "relatedGames": "related games",
+        "relatedArticles": "related articles",
+        "relatedNews": "related news",
+        "relatedVideos": "related videos",
+        "relatedEvents": "related events"
+    },
+    "Search": {
+        "navSearch": "Search for anything",
+        "blockchainSearch": "Search Blockchain",
+        "pageSearch": "Search for Keywords"
+    },
+    "Misc": {
+        "engine": "engine",
+        "gameStudio": "game studio",
+        "more": "More",
+        "showLess": "Show Less"
     }
 }

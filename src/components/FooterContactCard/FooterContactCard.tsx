@@ -54,7 +54,7 @@ const FooterContactCard = () => {
     return (
         <div className="flex flex-col flex-1 items-start gap-3 w-full">
             {/* First Row: EMAIL US */}
-            <div className="text-pictonBlue text-xs font-medium">{t("emailUs")}</div>
+            <div className="text-pictonBlue text-xs font-medium capitalize">{t("emailUs")}</div>
 
             {/* Second Row: Email Address */}
             <a href="mailto:support@funblocks.com" className="text-default text-base">

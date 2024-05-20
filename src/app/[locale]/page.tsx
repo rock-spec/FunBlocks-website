@@ -8,7 +8,7 @@ export default function Home() {
 
     return (
         <>
-            <Homee />
+            <Homee n={n} b={b} />
         </>
     )
 }

@@ -843,8 +843,8 @@ const OffBit = localFont({
 export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
     const [showDropdown, setShowDropdown] = useState(false)
     const [showNavDropdown, setShowNavDropdown] = useState(false)
-    const [language, setLanguage] = useState("ENG")
 
+    const s = useTranslations("Search")
     const t = useTranslations("Navbar")
 
     const toggleDropdown = () => {
@@ -882,6 +882,7 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
 
                             <SearchInput
                                 varient="dark"
+                                placeholder={s("navSearch")}
                                 className="ml-0 pl-0 mr-0 pr-0 sm:mx-3 z-[1000]"
                                 onChange={async (e) => {
                                     const val = e.target.value

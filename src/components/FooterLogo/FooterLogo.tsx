@@ -19,7 +19,7 @@ const FooterLogo = () => {
             </div>
 
             {/* Second Row: Text */}
-            <div className="text-shallow text-sm font-normal" style={{ lineHeight: "normal" }}>
+            <div className="text-shallow text-sm font-normal capitalize" style={{ lineHeight: "normal" }}>
                 © 2023 Fun Blocks. {" " + t("allRightReserved")}
             </div>
         </div>

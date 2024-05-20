@@ -28,7 +28,7 @@ const CustomDropDown = ({ text, options = [] }) => {
                     onClick={() => setShowDropdown((prev) => !prev)}
                     className="relative  flex items-center justify-between px-3  bg-[url('/buttons/dropdown_selector_button.svg')] w-full h-full bg-contain bg-center bg-no-repeat "
                 >
-                    <p>{text}</p>
+                    <p className="capitalize">{text}</p>
                     <IoIosArrowDown />
                 </button>
                 {showDropdown && (

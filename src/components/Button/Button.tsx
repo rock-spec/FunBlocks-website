@@ -6,7 +6,6 @@ import localFont from "next/font/local"
 // import Link from "next/link"
 import { Link } from "@/i18n.config"
 
-
 export interface ButtonProps {
     onClick: () => void
     text: string
@@ -79,9 +78,8 @@ export const CustomButton = (props: ButtonProps) => {
                 style={buttonStyles}
             >
                 {/* Display button text and icon */}
-                <Link href={link ?? "#"} className={`${OffBit.className} `}>
-                    {" "}
-                    {text} {icon}{" "}
+                <Link href={link ?? "#"} className={`${OffBit.className} capitalize`}>
+                    {text} {icon}
                 </Link>
             </div>
         </>

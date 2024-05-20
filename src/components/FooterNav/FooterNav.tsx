@@ -7,7 +7,7 @@ const FooterNav = () => {
     const t = useTranslations("Footer")
 
     return (
-        <div className="flex flex-1 items-start gap-4 w-full text-black  font-medium  mb-10 md:0">
+        <div className="flex flex-1 items-start gap-4 w-full text-black  font-medium  mb-10 md:0 capitalize">
             {/* First Sub-Column */}
             <div className="flex flex-col items-start gap-8 w-[180.5px]">
                 <div className=" text-base cursor-pointer hover:underline " style={{ lineHeight: "50%" }}>

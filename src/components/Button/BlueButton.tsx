@@ -5,7 +5,7 @@ import { Link } from "@/i18n.config"
 const OffBit = localFont({
     src: "./font/OffBitTrial-Bold.otf",
 })
-const BlueSmallButton = ({
+const BlueButton = ({
     text,
     link,
     height = "h-10",
@@ -22,11 +22,11 @@ const BlueSmallButton = ({
 }) => {
     return (
         <button
-            className={`${height} ${width} flex justify-center items-center text-white text-lg  bg-cover bg-no-repeat ${bg} ${bg_hover} ${OffBit.className} leading-normal`}
+            className={`${height} ${width} flex justify-center items-center text-white text-lg  bg-cover bg-no-repeat ${bg} ${bg_hover} ${OffBit.className} leading-normal `}
         >
-            <Link href={link}>{text}</Link>
+            <Link href={link} className="capitalize">{text}</Link>
         </button>
     )
 }
 
-export default BlueSmallButton
+export default BlueButton

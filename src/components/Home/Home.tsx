@@ -87,8 +87,7 @@ export interface Data {
     events: Event[]
 }
 
-const Homee = async () => {
-
+const Homee = async ({ n, b }: { n?: any; b?: any }) => {
     const HomeData = await trpcServer().homeData()
     const game = HomeData.games
 
@@ -97,8 +96,8 @@ const Homee = async () => {
             {/* Left Column */}
             <Column
                 variant="game"
-                title="game"
-                buttonText="All Games"
+                title={n("games")}
+                buttonText={b("allGames")}
                 onButtonClick={() => {}}
                 className="sticky top-32"
                 responsive

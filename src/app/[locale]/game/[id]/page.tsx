@@ -3,11 +3,13 @@ import { trpcServer } from "../../_trpc/trpcServer"
 import { Column } from "@/components/Column/Column"
 import { GameDetailColumn } from "@/components/Games/GameDetailColumn"
 import React from "react"
+import { getTranslations } from "next-intl/server"
 
 export const dynamic = "force-dynamic"
 
 const GameDetail = async ({ params }: { params: { id: string } }) => {
     const id = params.id.replace(/%20/g, " ").toString() //to remove string and make it so i can search the data
+    const t = await getTranslations("Tags")
 
     const data = await trpcServer().gameDetailsData(id)
     const relatedNews = data?.relatedNews
@@ -22,7 +24,7 @@ const GameDetail = async ({ params }: { params: { id: string } }) => {
             <Column
                 variant="news"
                 responsive
-                title="related new"
+                title={t("relatedNews")}
                 buttonText=""
                 onButtonClick={() => {}}
                 columnItems={relatedNews?.map((news: any) => ({

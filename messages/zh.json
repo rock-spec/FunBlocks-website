@@ -4,6 +4,7 @@
         "games": "游戏",
         "news": "新闻",
         "article": "文章",
+        "articles": "文章",
         "videos": "视频",
         "more": "更多",
         "events": "活动",
@@ -19,5 +20,37 @@
         "terms&conditions": "条款与条件",
         "2023": "2023",
         "allRightReserved": "版权所有"
+    },
+    "Buttons": {
+        "explore": "探索",
+        "allGames": "所有游戏",
+        "allNews": "所有新闻",
+        "viewMoreArticles": "查看更多文章",
+        "viewMoreVideos": "查看更多视频",
+        "viewMoreEvents": "查看更多活动",
+        "joinEvent": "加入活动",
+        "details": "详情",
+        "category": "类别",
+        "sortBy": "排序",
+        "playNow": "立即游玩"
+    },
+    "Tags": {
+        "featuredGames": "精选游戏",
+        "relatedGames": "相关游戏",
+        "relatedArticles": "相关文章",
+        "relatedNews": "相关新闻",
+        "relatedVideos": "相关视频",
+        "relatedEvents": "相关活动"
+    },
+    "Search": {
+        "navSearch": "搜索任何内容",
+        "blockchainSearch": "搜索区块链",
+        "pageSearch": "搜索关键词"
+    },
+    "Misc": {
+        "engine": "引擎",
+        "gameStudio": "游戏工作室",
+        "more": "更多",
+        "showLess": "显示较少"
     }
 }

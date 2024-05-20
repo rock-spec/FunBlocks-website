@@ -2,17 +2,19 @@ import { trpcServer } from "../../_trpc/trpcServer"
 import { Column } from "@/components/Column/Column"
 import { VideoDetailsColumn } from "@/components/Videos/VideoDetailsColumn"
 import React from "react"
+import { getTranslations } from "next-intl/server"
 
 export const dynamic = "force-dynamic"
 
 const VideoDetails = async ({ params }: { params: { id: string } }) => {
     const id = params.id.replace(/%20/g, " ").replace(/%3A/g, ":").toString() //to remove string and make it so i can search the data// Access the dynamic id parameter
-    console.log("this is id", id)
+
+    const t = await getTranslations("Tags")
+    const n = await getTranslations("Navbar")
 
     const data = await trpcServer().videoDetailsData(id)
     const game = data.relatedData.game
     const relatedArticles = data.relatedData.relatedArticles
-    console.log("this is id", id)
 
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
@@ -23,7 +25,7 @@ const VideoDetails = async ({ params }: { params: { id: string } }) => {
             <div className="flex-col justify-items-start items-center h-fit">
                 <Column
                     variant="game"
-                    title="Related Game"
+                    title={t("relatedGames")}
                     responsive
                     onButtonClick={() => {}}
                     columnItems={game?.map((game) => ({
@@ -38,7 +40,7 @@ const VideoDetails = async ({ params }: { params: { id: string } }) => {
                 <div className="h-[24px] w-full"></div>
                 <Column
                     variant="article"
-                    title="Article"
+                    title={n("article")}
                     responsive
                     onButtonClick={() => {}}
                     columnItems={relatedArticles?.map((article: any) => ({

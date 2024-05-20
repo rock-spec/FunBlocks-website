@@ -8,7 +8,8 @@ import { useState } from "react"
 // import Link from "next/link"
 import { Link } from "@/i18n.config"
 import { Cabin } from "next/font/google"
-import BlueSmallButton from "../Button/BlueSmallButton"
+import { useTranslations } from "next-intl"
+import BlueButton from "../Button/BlueButton"
 
 const cabin = Cabin({
     subsets: ["latin"],
@@ -17,6 +18,7 @@ const cabin = Cabin({
 
 const CarousalHome = ({ data }: any) => {
     const [dataIndex, setDataIndex] = useState(0)
+    const b = useTranslations("Buttons")
 
     const goNext = () => {
         if (dataIndex + 1 < data.length) {
@@ -100,7 +102,7 @@ const CarousalHome = ({ data }: any) => {
                 </div>
 
                 <div className="mb-[-25px] pb-5">
-                    <BlueSmallButton text={"Explore"} link={"#"} />
+                    <BlueButton text={b('explore')} link={"#"} />
                 </div>
             </div>
         </div>
