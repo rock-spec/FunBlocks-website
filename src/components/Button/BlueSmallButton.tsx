@@ -1,5 +1,6 @@
 import localFont from "next/font/local"
-import Link from "next/link"
+// import Link from "next/link"
+import { Link } from "@/i18n.config"
 
 const OffBit = localFont({
     src: "./font/OffBitTrial-Bold.otf",

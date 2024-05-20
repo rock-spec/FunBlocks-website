@@ -2,7 +2,8 @@ import React from "react";
 import Button from "@mui/joy/Button";
 import { Tag } from "@/components/Tag/Tag";
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
+import { Link } from "@/i18n.config"
 import { Cabin } from "next/font/google";
 
 // Define the props interface

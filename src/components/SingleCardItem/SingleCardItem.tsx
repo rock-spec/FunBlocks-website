@@ -3,7 +3,8 @@ import Image from "next/image"
 import Button from "@mui/joy/Button"
 import { Tag } from "../Tag/Tag"
 import { CustomButton } from "../Button/Button"
-import Link from "next/link"
+// import Link from "next/link"
+import { Link } from "@/i18n.config"
 import { Cabin } from "next/font/google"
 
 // Define the props interface

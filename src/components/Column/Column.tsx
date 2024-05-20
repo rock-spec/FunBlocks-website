@@ -24,7 +24,7 @@ export const Column = (props: ColumnProps) => {
 
     return (
         <div
-            className={`border relative border-black bg-floralWhite p-5 lg:w-[285px] h-full lg:min-h-[700px]  ${
+            className={`border relative border-black bg-floralWhite p-5 lg:w-[285px] h-full lg:min-h-[700px] pb-[75px]  ${
                 responsive ? "sm:w-full bg-re mb-10 lg:mb-0" : ""
             } ${className} `}
         >

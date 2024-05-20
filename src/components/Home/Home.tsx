@@ -88,6 +88,7 @@ export interface Data {
 }
 
 const Homee = async () => {
+
     const HomeData = await trpcServer().homeData()
     const game = HomeData.games
 

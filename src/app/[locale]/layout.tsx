@@ -8,6 +8,7 @@ import Provider from "./_trpc/Providers"
 import NavAndSearchComponent from "@/components/NavandSearchComponent/NavAndSearchComponent"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages } from "next-intl/server"
+import { type Locale } from "@/i18n.config"
 
 export const dynamic = "force-dynamic"
 
@@ -26,13 +27,13 @@ async function RootLayout({
     params: { locale },
 }: {
     children: React.ReactNode
-    params: { locale: string }
+    params: { locale: Locale }
 }) {
     const messages = await getMessages()
     const svgBackground = "url('/background.svg')"
 
     return (
-        <html lang="en">
+        <html lang={locale}>
             <body
                 className={`${cabin.className}`}
                 style={{

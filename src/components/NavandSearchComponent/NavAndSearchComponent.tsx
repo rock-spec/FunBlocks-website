@@ -15,7 +15,7 @@ const NavAndSearchComponent: React.FC<NavAndSearchComponentProps> = ({ children 
     return (
         <>
             <nav suppressHydrationWarning={true} className="z-[1000] ">
-                <NavBar setSearchQuery={setSearchQuery} />
+                <NavBar setSearchQuery={setSearchQuery}  />
             </nav>
 
             <div className="min-h-screen flex justify-center items-start pt-[60px] pb-[60px] m-5 lg:mt-28 md:m-16 ">

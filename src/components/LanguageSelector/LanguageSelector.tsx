@@ -2,25 +2,26 @@ import localFont from "next/font/local"
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import { IoIosArrowDown } from "react-icons/io"
+import { localeNames, locales, usePathname, useRouter, type Locale } from "@/i18n.config"
+import { useLocale, useTranslations } from "next-intl"
 
 const OffBit = localFont({
     src: "../Button/font/OffBitTrial-Bold.otf",
 })
 
 const LanguageSelector = () => {
-    const [showDropdown, setShowDropdown] = useState(false)
-    const [selectedLanguage, setSelectedLanguage] = useState("en") // State to manage the selected language
+    const [showDropdown, setShowDropdown] = useState<Boolean>(false)
     const dropDownRef = useRef<any>()
 
-    const switchLanguage = (langCode: string) => {
-        setSelectedLanguage(langCode) // Update the selected language
+    const pathname = usePathname()
+    const router = useRouter()
+    const locale = useLocale() as Locale
+
+    const switchLanguage = (newLocale: Locale) => {
+        console.log(newLocale)
+        router.replace(pathname, { locale: newLocale })
         setShowDropdown(false)
     }
-
-    const languages = [
-        { code: "en", lang: "ENG" },
-        { code: "zh", lang: "CN" },
-    ]
 
     useEffect(() => {
         const dropDownHandler = (event: MouseEvent) => {
@@ -39,7 +40,7 @@ const LanguageSelector = () => {
                 className={`px-3 pe-6 py-1 flex  justify-between  items-center w-[91px] h-[36px] bg-no-repeat bg-contain bg-[url('/buttons/small_button.svg')] `}
                 ref={dropDownRef}
             >
-                <p>{languages.find((lang) => lang.code === selectedLanguage)?.lang}</p>
+                <p>{localeNames[locale]}</p>
                 <IoIosArrowDown />
             </button>
             <ul
@@ -47,16 +48,16 @@ const LanguageSelector = () => {
                     showDropdown ? "h-fit opacity-100" : "h-0 opacity-0"
                 } absolute z-10 bg-white w-[85%] space-y-1 duration-300 .transition-height`}
             >
-                {languages.map((lang, i) => (
+                {locales.map((loc, i) => (
                     <li
                         key={i}
                         onClick={() => {
-                            switchLanguage(lang.code)
+                            switchLanguage(loc)
                         }}
                         className="flex items-center justify-between cursor-pointer px-3 py-2 duration-300 hover:bg-slate-400"
                     >
-                        <p className="">{lang.lang}</p>
-                        {selectedLanguage === lang.code ? (
+                        <p className="">{localeNames[loc]}</p>
+                        {locale === loc ? (
                             <Image
                                 src={"/checkboxIcon/checkbox_selected.svg"}
                                 className=""

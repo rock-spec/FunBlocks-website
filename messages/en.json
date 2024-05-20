@@ -5,6 +5,31 @@
         "news": "news",
         "article": "article",
         "videos": "videos",
-        "more": "more"
+        "more": "more",
+        "events": "events",
+        "engine": "engine"
+    },
+    "Footer": {
+        "emailUs": "email us",
+        "games": "games",
+        "reviews": "reviews",
+        "events": "events",
+        "guides": "guides",
+        "aboutFunBlock": "about fun block",
+        "terms&conditions": "terms & conditions",
+        "2023": "2023",
+        "allRightReserved": "all rights reserved"
+    },
+    "Buttons": {
+        "explore": "explore",
+        "allGames": "all games",
+        "allNews": "all news",
+        "viewMoreArticles": "view more articles",
+        "viewMoreVideos": "view more videos",
+        "viewMoreEvents": "view more events",
+        "joinEvent": "join event",
+        "details": "details",
+        "category": "category",
+        "sortBy": "Sort by"
     }
 }
