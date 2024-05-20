@@ -1,8 +1,12 @@
 import React from "react"
 import Image from "next/image"
-import Link from "next/link"
+// import Link from "next/link"
+import { Link } from "@/i18n.config"
+import { useTranslations } from "next-intl"
 
 const FooterContactCard = () => {
+    const t = useTranslations("Footer")
+
     // Dummy array for social icons
     const socialIcons = [
         {
@@ -50,7 +54,7 @@ const FooterContactCard = () => {
     return (
         <div className="flex flex-col flex-1 items-start gap-3 w-full">
             {/* First Row: EMAIL US */}
-            <div className="text-pictonBlue text-xs font-medium">EMAIL US</div>
+            <div className="text-pictonBlue text-xs font-medium capitalize">{t("emailUs")}</div>
 
             {/* Second Row: Email Address */}
             <a href="mailto:support@funblocks.com" className="text-default text-base">

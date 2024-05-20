@@ -1,23 +1,32 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
-import Button from "@mui/joy/Button";
-import { Tag } from '../Tag/Tag';
-import { CustomButton } from '../Button/Button';
-import { SingleCardItemProps } from '../SingleCardItem/SingleCardItem';
-import Link from 'next/link';
+import React, { useState } from "react"
+import Image from "next/image"
+import Button from "@mui/joy/Button"
+import { Tag } from "../Tag/Tag"
+import { CustomButton } from "../Button/Button"
+import { SingleCardItemProps } from "../SingleCardItem/SingleCardItem"
+import { Link } from "@/i18n.config"
 
 const SingleVideoCardItem = (props: SingleCardItemProps) => {
-    const { variant, imageUrl, zone, title, description = "", id, details = "", onFirstButtonClick, onSecondButtonClick, tags = [], author = "" } = props;
-
+    const {
+        variant,
+        imageUrl,
+        zone,
+        title,
+        description = "",
+        id,
+        details = "",
+        onFirstButtonClick,
+        onSecondButtonClick,
+        tags = [],
+        author = "",
+    } = props
 
     return (
-
         <Link href={`/${variant}/${id}`}>
             <div className=" gap-6 shadow-sm">
                 {/* First Column: Image */}
                 <div className="w-full h-[339px] rounded-lg flex-col justify-start items-start gap-6 inline-flex">
                     <div className="relative w-full rounded-md border border-[#161616]  overflow-hidden ">
-
                         {/* <Image
                             className=' w-full h-full object-cover'
                             src={imageUrl}
@@ -48,29 +57,35 @@ const SingleVideoCardItem = (props: SingleCardItemProps) => {
                             />
 
                         </div> */}
-                        <iframe width="427" height="237" src={imageUrl} title={title} allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className='w-full h-[237px]'></iframe>
+                        <iframe
+                            width="427"
+                            height="237"
+                            src={imageUrl}
+                            title={title}
+                            allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                            className="w-full h-[237px]"
+                        ></iframe>
                     </div>
                     <div className="h-[82px] flex-col justify-center items-start gap-10 flex">
                         <div className="self-stretch h-[82px] flex-col justify-center items-start gap-3 flex">
                             {/* Show only two lines of description */}
-                            <div className={` text-neutral-900 text-md font-bold leading-snug `}>
-                                {title}
-                            </div>
-                            <div className={`self-stretch text-neutral-900 w-full font-normal leading-normal  line-clamp-2`}>
+                            <div className={` text-neutral-900 text-md font-bold leading-snug `}>{title}</div>
+                            <div
+                                className={`self-stretch text-neutral-900 w-full font-normal leading-normal  line-clamp-2`}
+                            >
                                 {description}
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </Link>
-    );
-};
+    )
+}
 
-export default SingleVideoCardItem;
-
+export default SingleVideoCardItem
 
 // Adding Thumbnail feature in future
 

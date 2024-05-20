@@ -2,8 +2,9 @@ import React, { ReactNode } from "react"
 import Image from "next/image"
 import localFont from "next/font/local"
 
-import "../../app/globals.css"
-import Link from "next/link"
+// import "../../app/globals.css"
+// import Link from "next/link"
+import { Link } from "@/i18n.config"
 
 export interface ButtonProps {
     onClick: () => void
@@ -77,9 +78,8 @@ export const CustomButton = (props: ButtonProps) => {
                 style={buttonStyles}
             >
                 {/* Display button text and icon */}
-                <Link href={link ?? "#"} className={`${OffBit.className} `}>
-                    {" "}
-                    {text} {icon}{" "}
+                <Link href={link ?? "#"} className={`${OffBit.className} capitalize`}>
+                    {text} {icon}
                 </Link>
             </div>
         </>

@@ -1,23 +1,28 @@
-import { ArticleColumn } from "@/components/Articles/ArticleColumn"
 import { Column } from "@/components/Column/Column"
-import React, { useState } from "react"
+import { VideoColumn } from "@/components/Videos/VideoColumn"
+import React from "react"
 import { trpcServer } from "../_trpc/trpcServer"
+import { getTranslations } from "next-intl/server"
+
 export const dynamic = "force-dynamic"
 
-const Article = async () => {
-    const { featuredGames, articles } = await trpcServer().articleData()
+const Video = async () => {
+    const t = await getTranslations("Tags")
+    const b = await getTranslations("Buttons")
 
-    
+    const { featuredGames, videos } = await trpcServer().videoData()
+
     return (
-        <div className="w-full max-w-[1200px] flex justify-between gap-x-5 lg:flex-row flex-col">
+        <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
             {/* Main Column  */}
-            <ArticleColumn data={articles} />
+            <VideoColumn data={videos} />
 
             {/* Right Column */}
             <Column
                 variant="game"
-                title="Featured Game"
-                buttonText="All Games"
+                responsive
+                title={t("featuredGames")}
+                buttonText={b("allGames")}
                 onButtonClick={() => {}}
                 columnItems={featuredGames.map((game) => ({
                     id: game.gameid,
@@ -31,4 +36,4 @@ const Article = async () => {
     )
 }
 
-export default Article
+export default Video

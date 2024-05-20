@@ -8,17 +8,20 @@ import CarousalHome from "../Carousel/CarousalHome"
 import formatDate from "@/utils/dateFormat"
 import SupabaseInstance from "../../../supabase"
 import { Cabin } from "next/font/google"
+import { useTranslations } from "next-intl"
 
 export const dynamic = "force-dynamic"
 
 // type RouterOutput = inferReactQueryProcedureOptions<AppRouter>
-
 const cabin = Cabin({
     subsets: ["latin"],
     weight: ["700", "400", "500", "600"],
 })
 
 export const HomeColumn = ({ data }: { data: any }) => {
+    const b = useTranslations("Buttons")
+    const n = useTranslations("Navbar")
+
     const supabase = SupabaseInstance.getSupabaseInstance()
 
     const [sliderData, setSliderData]: any[] = useState([])
@@ -49,8 +52,8 @@ export const HomeColumn = ({ data }: { data: any }) => {
                     <div className=" h-full">
                         <Column
                             variant="news"
-                            title="new"
-                            buttonText="All News"
+                            title={n("news")}
+                            buttonText={b("allNews")}
                             responsive
                             className="mb-0 mt-10 lg:mt-0"
                             onButtonClick={() => {}}
@@ -88,7 +91,7 @@ export const HomeColumn = ({ data }: { data: any }) => {
 
                 <div className="flex mb-10 gap-x-5">
                     <SingleCard
-                        name={"article"}
+                        name={n("articles")}
                         singleCardItemDetails={data.articles.map((article: any) => ({
                             variant: "article",
                             id: article.articleid,
@@ -101,13 +104,13 @@ export const HomeColumn = ({ data }: { data: any }) => {
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},
                         }))}
-                        buttonText={"View More Articles"}
+                        buttonText={b("viewMoreArticles")}
                         onButtonClick={() => {}}
                     />
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <SingleCard
-                        name={"video"}
+                        name={n("videos")}
                         singleCardItemDetails={data.videos.map((video: any) => ({
                             variant: "video",
                             id: video.videoid,
@@ -118,13 +121,13 @@ export const HomeColumn = ({ data }: { data: any }) => {
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},
                         }))}
-                        buttonText={"View More Videos"}
+                        buttonText={b("viewMoreVideos")}
                         onButtonClick={() => {}}
                     />
                 </div>
                 <div className="flex mb-10 gap-x-5 ">
                     <SingleCard
-                        name={"event"}
+                        name={n("events")}
                         singleCardItemDetails={data.events.map((event: any) => ({
                             id: event.eventid,
                             variant: "event",
@@ -137,7 +140,7 @@ export const HomeColumn = ({ data }: { data: any }) => {
                             onSecondButtonClick: () => {},
                             url: event?.joinurl,
                         }))}
-                        buttonText={"View More Events"}
+                        buttonText={b("viewMoreEvents")}
                         onButtonClick={() => {}}
                     />
                 </div>

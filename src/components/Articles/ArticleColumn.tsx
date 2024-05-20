@@ -7,11 +7,14 @@ import CustomDropDown from "../DropDown/DropDown.jsx"
 import SearchInput from "../SearchInput/SearchInput"
 import { IoIosArrowDown } from "react-icons/io"
 import formatDate from "@/utils/dateFormat"
+import { useTranslations } from "next-intl"
 
 export const ArticleColumn = ({ data }: { data: any }) => {
     const [articleFilterData, setArticlesFilterData] = useState(data)
     const [category, setCategory] = useState<string[]>([])
-    console.log(category)
+
+    const b = useTranslations("Buttons")
+    const s = useTranslations("Search")
 
     function filterArticleArray(searchString: string): any[] {
         const articleArray: any[] = data
@@ -62,14 +65,10 @@ export const ArticleColumn = ({ data }: { data: any }) => {
             <div className="lg:w-[895px]  w-full">
                 <div className="flex flex-col lg:flex-row w-full mb-10 gap-x-4">
                     <div className=" w-full">
-                        <SearchInput
-                            varient="light"
-                            placeholder="Search for Keywords"
-                            onChange={handleSearch}
-                        />
+                        <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} />
                     </div>
-                    <CustomDropDown text={"Category"} options={category} />
-                    <CustomDropDown text={"Sort By"} />
+                    <CustomDropDown text={b("category")} options={category} />
+                    <CustomDropDown text={b("sortBy")} />
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <div className="flex flex-col flex-1 items-start gap-5">

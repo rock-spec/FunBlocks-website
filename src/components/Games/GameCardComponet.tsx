@@ -1,7 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { Tag } from '../Tag/Tag';
-import Link from 'next/link';
+// import Link from 'next/link';
+import { Link } from '@/i18n.config';
 import { Cabin } from 'next/font/google';
 
 export interface GameCardComponentProps {

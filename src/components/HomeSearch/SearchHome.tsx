@@ -1,6 +1,7 @@
 "use cleint"
 
-import { trpc } from "@/app/_trpc/client"
+// import { trpc } from "@/app/_trpc/client"
+import { trpc } from "@/app/[locale]/_trpc/client"
 // import { CustomButton } from "@/components/Button/Button"
 // import { Column } from "@/components/Column/Column"
 import GameCardComponet, { GameCardComponentProps } from "@/components/Games/GameCardComponet"

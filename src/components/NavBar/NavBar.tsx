@@ -6,10 +6,12 @@ import SearchInput from "@/components/SearchInput/SearchInput"
 import Button from "@mui/joy/Button"
 import { CustomButton } from "../Button/Button"
 import { IoIosArrowDown } from "react-icons/io"
-import Link from "next/link"
+// import Link from "next/link"
+import { Link } from "@/i18n.config"
 import HomeSearch from "../HomeSearch/SearchHome"
 import localFont from "next/font/local"
 import LanguageSelector from "../LanguageSelector/LanguageSelector"
+import { useTranslations } from "next-intl"
 
 export const BottomSVG = () => {
     return (
@@ -839,19 +841,15 @@ const OffBit = localFont({
 })
 
 export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
-    // export const NavBar: React.FC<NavBarProps> = ({ handleNavigation }) => {
     const [showDropdown, setShowDropdown] = useState(false)
-    // const [showLanguageDropdown, setShowLanguageDropdown] = useState(false)
     const [showNavDropdown, setShowNavDropdown] = useState(false)
-    const [language, setLanguage] = useState("ENG")
+
+    const s = useTranslations("Search")
+    const t = useTranslations("Navbar")
 
     const toggleDropdown = () => {
         setShowDropdown(!showDropdown)
     }
-
-    // const toggleLanguageDropdown = () => {
-    //     setShowLanguageDropdown(!showLanguageDropdown)
-    // }
 
     const handleDropdownItemClick = () => {
         setShowDropdown(false) // Hide dropdown after item click
@@ -860,13 +858,6 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
     const handleDropdownNavItemClick = () => {
         setShowNavDropdown(!showNavDropdown)
     }
-
-    // const handleLanguageItemClick = (language: string) => {
-    //     // Handle language selection here
-    //     setLanguage(language)
-    //     console.log(`Selected language: ${language}`)
-    //     setShowLanguageDropdown(false) // Hide dropdown after language selection
-    // }
 
     return (
         <>
@@ -891,6 +882,7 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
 
                             <SearchInput
                                 varient="dark"
+                                placeholder={s("navSearch")}
                                 className="ml-0 pl-0 mr-0 pr-0 sm:mx-3 z-[1000]"
                                 onChange={async (e) => {
                                     const val = e.target.value
@@ -901,30 +893,25 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
 
                         {/* Page Navigation Links Section */}
                         <div
-                            className={`items-center font-bold hidden lg:flex ${OffBit.className}`}
+                            className={`items-center font-bold hidden lg:flex ${OffBit.className} capitalize`}
                             style={{
                                 fontSize: "18px",
                             }}
                         >
                             <Link className="py-5 px-2" href={"/"}>
-                                {" "}
-                                Home
+                                {t("home")}
                             </Link>
                             <Link className="py-5 px-2" href={"/game"}>
-                                {" "}
-                                Games
+                                {t("games")}
                             </Link>
                             <Link className="py-5 px-2" href={"/news"}>
-                                {" "}
-                                News
+                                {t("news")}
                             </Link>
                             <Link className="py-5 px-2" href={"/article"}>
-                                {" "}
-                                Article
+                                {t("article")}
                             </Link>
                             <Link className="py-5 px-2" href={"/video"}>
-                                {" "}
-                                Videos
+                                {t("videos")}
                             </Link>
 
                             <div className="relative ">
@@ -932,29 +919,25 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
                                     className="py-1 px-2 text-black flex items-center justify-center cursor-pointer"
                                     onClick={toggleDropdown}
                                 >
-                                    More <IoIosArrowDown />
+                                    {t("more")} <IoIosArrowDown />
                                 </div>
                                 <div className="">
                                     {showDropdown && (
                                         <div className="absolute bg-white shadow-lg top-full mt-1 right-0 ">
                                             <Link href={"/event"}>
-                                                {" "}
                                                 <div
                                                     className="mb-2 px-4 hover:bg-slate-400 m-0"
                                                     onClick={handleDropdownItemClick}
                                                 >
-                                                    {" "}
-                                                    Events
+                                                    {t("events")}
                                                 </div>
-                                            </Link>{" "}
+                                            </Link>
                                             <Link href={"/engine"}>
-                                                {" "}
                                                 <div
                                                     className=" px-4 hover:bg-slate-400 m-0"
                                                     onClick={handleDropdownItemClick}
                                                 >
-                                                    {" "}
-                                                    Engine
+                                                    {t("engine")}
                                                 </div>
                                             </Link>
                                         </div>
@@ -977,69 +960,61 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
                                 {showNavDropdown ? (
                                     <div className="absolute top-10 bg-white shadow-lg  right-0 uppercase z-10">
                                         <Link className="py-2 px-2" href={"/"}>
-                                            {" "}
                                             <div
-                                                className="p-2 px-4 hover:bg-slate-400 m-0"
+                                                className="p-2 px-4 hover:bg-slate-400 m-0 capitalize"
                                                 onClick={handleDropdownNavItemClick}
                                             >
-                                                Home
+                                                {t("home")}
                                             </div>
                                         </Link>
                                         <Link className="py-2 px-2" href={"/game"}>
-                                            {" "}
                                             <div
-                                                className="p-2 px-4 hover:bg-slate-400 m-0"
+                                                className="p-2 px-4 hover:bg-slate-400 m-0 capitalize"
                                                 onClick={handleDropdownNavItemClick}
                                             >
-                                                Games
+                                                {t("games")}
                                             </div>
                                         </Link>
                                         <Link className="py-2 px-2" href={"/news"}>
                                             {" "}
                                             <div
-                                                className="p-2 px-4 hover:bg-slate-400 m-0"
+                                                className="p-2 px-4 hover:bg-slate-400 m-0 capitalize"
                                                 onClick={handleDropdownNavItemClick}
                                             >
-                                                news
+                                                {t("news")}
                                             </div>
                                         </Link>
                                         <Link className="py-2 px-2" href={"/article"}>
-                                            {" "}
                                             <div
-                                                className="p-2 px-4 hover:bg-slate-400 m-0"
+                                                className="p-2 px-4 hover:bg-slate-400 m-0 capitalize"
                                                 onClick={handleDropdownNavItemClick}
                                             >
-                                                Article
+                                                {t("article")}
                                             </div>
                                         </Link>
                                         <Link className="py-2 px-2" href={"/video"}>
-                                            {" "}
                                             <div
-                                                className="p-2 px-4 hover:bg-slate-400 m-0"
+                                                className="p-2 px-4 hover:bg-slate-400 m-0 capitalize"
                                                 onClick={handleDropdownNavItemClick}
                                             >
-                                                Videos
+                                                {t("videos")}
                                             </div>
                                         </Link>
                                         <Link href={"/event"}>
-                                            {" "}
                                             <div
-                                                className="p-2 px-4 hover:bg-slate-400 m-0"
+                                                className="p-2 px-4 hover:bg-slate-400 m-0 capitalize"
                                                 onClick={handleDropdownNavItemClick}
                                             >
-                                                {" "}
-                                                Events
+                                                {t("events")}
                                             </div>
-                                        </Link>{" "}
+                                        </Link>
                                         <br />
                                         <Link href={"/engine"}>
-                                            {" "}
                                             <div
-                                                className="p-2 px-4 hover:bg-slate-400 m-0"
+                                                className="p-2 px-4 hover:bg-slate-400 m-0 capitalize"
                                                 onClick={handleDropdownNavItemClick}
                                             >
-                                                {" "}
-                                                Engine
+                                                {t("engine")}
                                             </div>
                                         </Link>
                                     </div>
@@ -1050,27 +1025,6 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
                             <div>
                                 <LanguageSelector />
                             </div>
-                            {/* <div className="relative  lg:block">
-                                <CustomButton
-                                    useSmall={true}
-                                    onClick={toggleLanguageDropdown}
-                                    size="18px"
-                                    text={language}
-                                    width="75px"
-
-                                    // icon={<IoIosArrowDown />}
-                                />
-           
-                                        <a
-                                            href="#"
-                                            className="block py-2 px-4 text-gray-800"
-                                            onClick={() => handleLanguageItemClick("ENG")}
-                                        >
-                                            ENGLISH
-                                        </a>
-                                    </div>
-                                )}
-                            </div> */}
                         </div>
                     </div>
                 </div>

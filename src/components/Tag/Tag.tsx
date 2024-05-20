@@ -1,6 +1,7 @@
 import React from "react"
 import localFont from "next/font/local"
-import Link from "next/link"
+// import Link from "next/link"
+import { Link } from "@/i18n.config"
 
 interface TagProps {
     text: string

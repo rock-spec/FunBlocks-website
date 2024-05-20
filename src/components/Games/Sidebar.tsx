@@ -5,6 +5,7 @@ import CustomCheckbox from "../Checkbox/Checkbox"
 import { useEffect, useState } from "react"
 import localFont from "next/font/local"
 import Search from "./Search"
+import { useTranslations } from "next-intl"
 
 const OffBit = localFont({
     src: "../Button/font/OffBitTrial-Bold.otf",
@@ -29,6 +30,8 @@ const Sidebar = ({ data }: { data: any }) => {
     const displayedGameStudios = showAllGameStudios ? gameStudio : gameStudio.slice(0, itemsToShow)
     const remainingGameStudioCount = showAllGameStudios ? 0 : Math.max(0, gameStudio.length - itemsToShow)
 
+    const m = useTranslations("Misc")
+
     useEffect(() => {
         let uniqEng = new Set<string>()
         let uniqBlock = new Set<string>()
@@ -48,7 +51,7 @@ const Sidebar = ({ data }: { data: any }) => {
         <div className="h-full">
             <div className={`border border-black bg-floralWhite p-5 lg:w-[285px]  `}>
                 <hr className="bg-[rgba(22, 22, 22, 0.20);] h-[2px] mt-1" />
-                <SidebarHeading text={"engine"} />
+                <SidebarHeading text={m("engine")} />
                 {displayedEngines.map((engine, i) => (
                     <CustomCheckbox
                         key={i}
@@ -62,9 +65,9 @@ const Sidebar = ({ data }: { data: any }) => {
                     onClick={() => setShowAllEngines((prev) => !prev)}
                 >
                     {showAllEngines
-                        ? "Show Less"
+                        ? m("showLess")
                         : remainingEnginesCount > 0
-                        ? `+${remainingEnginesCount} More`
+                        ? `+${remainingEnginesCount} ${m("more")}`
                         : ""}
                 </p>
 
@@ -88,7 +91,7 @@ const Sidebar = ({ data }: { data: any }) => {
                 ))}
                 {/* ----- */}
                 <hr className="bg-[rgba(22, 22, 22, 0.20);] h-[2px] mt-4" />
-                <SidebarHeading text={"game studio"} />
+                <SidebarHeading text={m("gameStudio")} />
                 {displayedGameStudios.map((studio, i) => (
                     <CustomCheckbox
                         key={i}
@@ -102,9 +105,9 @@ const Sidebar = ({ data }: { data: any }) => {
                     onClick={() => setShowAllGameStudios((prev) => !prev)}
                 >
                     {showAllGameStudios
-                        ? "Show Less"
+                        ? m("showLess")
                         : remainingGameStudioCount > 0
-                        ? `+${remainingGameStudioCount} More`
+                        ? `+${remainingGameStudioCount} ${m("more")}`
                         : ""}
                 </p>
             </div>

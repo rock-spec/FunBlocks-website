@@ -7,14 +7,18 @@ import { Tag } from "@/components/Tag/Tag"
 import { Column } from "../Column/Column"
 import formatDate from "@/utils/dateFormat"
 import { Cabin } from "next/font/google"
-import BlueSmallButton from "../Button/BlueSmallButton"
+import BlueButton from "../Button/BlueButton"
 const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
+import { useTranslations } from "next-intl"
 
 export const GameDetailColumn = async ({ data }: { data: any }) => {
     const game = data?.game[0]
     const relatedArticles = data?.relatedArticles
     const relatedVideos = data?.relatedVideos
     const relatedEvents = data?.relatedEvents
+
+    const t = useTranslations("Tags")
+    const b = useTranslations("Buttons")
 
     return (
         <>
@@ -40,8 +44,8 @@ export const GameDetailColumn = async ({ data }: { data: any }) => {
 
                             <div className=" text-neutral-900 text-base font-normal">{game?.game_desc}</div>
                             <div className="mt-8">
-                                <BlueSmallButton
-                                    text={"Play Now"}
+                                <BlueButton
+                                    text={b("playNow")}
                                     link={"#"}
                                     width="w-[132px]"
                                     bg={"bg-[url('/buttons/play_now.svg')]"}
@@ -55,7 +59,7 @@ export const GameDetailColumn = async ({ data }: { data: any }) => {
                 <div className="flex mb-10 gap-x-5">
                     <SingleCard
                         name={"article"}
-                        heading="related articles"
+                        heading={t("relatedArticles")}
                         singleCardItemDetails={relatedArticles?.map((article: any) => ({
                             id: article.articleid,
                             variant: "article",
@@ -68,13 +72,13 @@ export const GameDetailColumn = async ({ data }: { data: any }) => {
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},
                         }))}
-                        buttonText={"View More Articles"}
+                        buttonText={b("viewMoreArticles")}
                         onButtonClick={() => {}}
                     />
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <SingleCard
-                        heading="related videos"
+                        heading={t("relatedVideos")}
                         name={"video"}
                         singleCardItemDetails={relatedVideos?.map((video: any) => ({
                             variant: "video",
@@ -86,14 +90,14 @@ export const GameDetailColumn = async ({ data }: { data: any }) => {
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},
                         }))}
-                        buttonText={"View More Videos"}
+                        buttonText={b("viewMoreVideos")}
                         onButtonClick={() => {}}
                     />
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <SingleCard
                         name={"event"}
-                        heading="related events"
+                        heading={t("relatedVideos")}
                         singleCardItemDetails={relatedEvents?.map((event: any) => ({
                             url: event?.joinurl,
                             id: event.eventid,
@@ -106,7 +110,7 @@ export const GameDetailColumn = async ({ data }: { data: any }) => {
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},
                         }))}
-                        buttonText={"View More Events"}
+                        buttonText={b("viewMoreEvents")}
                         onButtonClick={() => {}}
                     />
                 </div>

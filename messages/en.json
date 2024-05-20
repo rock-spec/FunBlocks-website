@@ -1,0 +1,57 @@
+{
+    "Navbar": {
+        "home": "home",
+        "games": "games",
+        "news": "news",
+        "article": "article",
+        "articles": "articles",
+        "video": "video",
+        "videos": "videos",
+        "more": "more",
+        "events": "events",
+        "engine": "engine"
+    },
+    "Footer": {
+        "emailUs": "email us",
+        "games": "games",
+        "reviews": "reviews",
+        "events": "events",
+        "guides": "guides",
+        "aboutFunBlock": "about fun block",
+        "terms&conditions": "terms & conditions",
+        "2023": "2023",
+        "allRightReserved": "all rights reserved"
+    },
+    "Buttons": {
+        "explore": "explore",
+        "allGames": "all games",
+        "allNews": "all news",
+        "viewMoreArticles": "view more articles",
+        "viewMoreVideos": "view more videos",
+        "viewMoreEvents": "view more events",
+        "joinEvent": "join event",
+        "details": "details",
+        "category": "category",
+        "sortBy": "Sort by",
+        "playNow": "play now"
+    },
+    "Tags": {
+        "featuredGames": "featured games",
+        "relatedGames": "related games",
+        "relatedArticles": "related articles",
+        "relatedNews": "related news",
+        "relatedVideos": "related videos",
+        "relatedEvents": "related events"
+    },
+    "Search": {
+        "navSearch": "Search for anything",
+        "blockchainSearch": "Search Blockchain",
+        "pageSearch": "Search for Keywords"
+    },
+    "Misc": {
+        "engine": "engine",
+        "gameStudio": "game studio",
+        "more": "More",
+        "showLess": "Show Less"
+    }
+}
