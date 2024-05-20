@@ -1,33 +1,27 @@
-import SupabaseInstance from "../../supabase";
+import SupabaseInstance from "../../supabase"
 
 const supabase = SupabaseInstance.getSupabaseInstance()
-
 
 const getAllVideos = async () => {
     const { data, error } = await supabase
         .from("videos")
-        .select("videoid,video_name,summary,media_url,gameid")
-
+        .select("category, videoid,video_name,summary,media_url,gameid")
 
     if (error) {
-        throw new Error("Error fetching videos: " + error.message);
+        throw new Error("Error fetching videos: " + error.message)
     }
 
-    return data || [];
+    return data || []
 }
 
-
 const getFeaturedGameData = async () => {
-    const { data, error } = await supabase
-        .from("game")
-        .select("*")
-        .range(0, 5);
+    const { data, error } = await supabase.from("game").select("*").range(0, 5)
 
     if (error) {
-        throw new Error("Error fetching games: " + error.message);
+        throw new Error("Error fetching games: " + error.message)
     }
 
-    return data || [];
+    return data || []
 }
 
 export const getVideosData = async () => {

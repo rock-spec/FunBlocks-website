@@ -3,8 +3,12 @@ import Image from "next/image"
 import Button from "@mui/joy/Button"
 import { Tag } from "../Tag/Tag"
 import { CustomButton } from "../Button/Button"
-import Link from "next/link"
+// import Link from "next/link"
+import { Link } from "@/i18n.config"
 import { Cabin } from "next/font/google"
+import BlueButton from "../Button/BlueButton"
+import { useTranslations } from "next-intl"
+import localFont from "next/font/local"
 
 // Define the props interface
 export interface SingleCardItemProps {
@@ -22,9 +26,13 @@ export interface SingleCardItemProps {
     onSecondButtonClick: () => void
 }
 
+const OffBit = localFont({
+    src: "../Button/font/OffBitTrial-Bold.otf",
+})
 const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
 
 const SingleCardItem = (props: SingleCardItemProps) => {
+    const b = useTranslations("Buttons")
     const {
         variant,
         imageUrl,
@@ -39,14 +47,21 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         tags = [],
         author = "",
     } = props
+
     return (
         <div className="flex md:flex-row w-full flex-col items-start gap-6 ">
             {/* First Column: Image */}
 
-            <Link href={`/${variant}/${id}`} target="blank">
-                <div
+            <Link href={`/${variant}/${id}`} target="blank" className="block ">
+                {/* <div
                     className={
                         "relative rounded-[4px] border border-[#161616] overflow-hidden min-w-[260px] w-full " +
+                        cabin.className
+                    }
+                > */}
+                <div
+                    className={
+                        "relative rounded-[4px] border border-[#161616] overflow-hidden w-[270px] " +
                         cabin.className
                     }
                 >
@@ -54,23 +69,12 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                         className=" w-full h-[153px] object-cover "
                         src={imageUrl}
                         alt="Image"
-                        width={272}
+                        width={300}
                         height={153}
                         layout="fixed"
                         objectFit="cover"
                         objectPosition="center"
                     />
-                    {/* {variant === 'video' && (
-
-          <div className="absolute bottom-5 left-5">
-            <Image
-              src="/play-button.svg"
-              alt="Play"
-              width={50}
-              height={50}
-            />
-          </div>
-        )} */}
                 </div>
             </Link>
             {/* Second Column */}
@@ -133,14 +137,19 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                 {/* Second Row: Buttons */}
                 {variant === "event" ? (
                     <div className="flex  items-center gap-x-4 mt-[52px] ">
+                        <BlueButton
+                            text={b("joinEvent")}
+                            link={url ? url : "#"}
+                            width="w-[140px]"
+                            bg="bg-[url('/buttons/join_event.svg')]"
+                            bg_hover="bg-[url('/buttons/join_event_hover.svg')]"
+                        />
                         <Link
-                            href={url ? url : "#"}
-                            className="flex justify-center items-center bg-[url('/buttons/join_event.svg')]  w-[140px] h-10 duration-300 hover:scale-105 "
-                        ></Link>
-                        <Link
+                            className={`flex justify-center items-center w-[111px] h-10 bg-[url('/buttons/details.svg')] hover:bg-[url('/buttons/details_hover.svg')] capitalize ${OffBit.className}`}
                             href={`/${variant}/${id}`}
-                            className="flex justify-center items-center bg-[url('/buttons/details.svg')]  w-[111px] h-10 duration-300 hover:scale-105"
-                        ></Link>
+                        >
+                            {b("details")}
+                        </Link>
                     </div>
                 ) : (
                     ""

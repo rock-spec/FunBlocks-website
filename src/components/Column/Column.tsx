@@ -24,13 +24,13 @@ export const Column = (props: ColumnProps) => {
 
     return (
         <div
-            className={`border relative border-black bg-floralWhite p-5 lg:w-[285px] h-full lg:min-h-[700px]  ${
+            className={`border relative border-black bg-floralWhite p-5 lg:w-[285px] h-full lg:min-h-[700px] pb-[75px]  ${
                 responsive ? "sm:w-full bg-re mb-10 lg:mb-0" : ""
             } ${className} `}
         >
             {/* Row 1 */}
             <div className="flex justify-between items-center mb-5 ">
-                <Tag text={`${title}s`} type={"section"} />
+                <Tag text={`${title}`} type={"section"} />
                 {/* <Image src={"/filter.svg"} alt="Filter Icon" width={24} height={24} /> */}
             </div>
             <div className=" overflow-x-hidden w-fit max-h-fit">
