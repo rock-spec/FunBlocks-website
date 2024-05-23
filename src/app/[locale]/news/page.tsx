@@ -1,7 +1,7 @@
 import { Column } from "@/components/Column/Column"
 import { NewsColumn } from "@/components/News/NewsColumn"
 import React from "react"
-import { trpcServer } from "../_trpc/trpcServer"
+import { trpcServer } from "@/app/_trpc/trpcServer"
 // import { useTranslations } from "next-intl"
 import { getTranslations } from "next-intl/server"
 
@@ -13,7 +13,7 @@ const News = async () => {
 
     const { featuredGames, news } = await trpcServer().newsData()
     return (
-        <div className="w-full max-w-[1200px] flex flex-col lg:flex-row justify-between gap-x-5">
+        <div className="w-full max-w-[1200px] flex flex-col lg:flex-row justify-between gap-x-5 ">
             {/* Main Column  */}
             <NewsColumn data={news} />
 

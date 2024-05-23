@@ -1,7 +1,7 @@
 import { ArticleColumn } from "@/components/Articles/ArticleColumn"
 import { Column } from "@/components/Column/Column"
 import React, { useState } from "react"
-import { trpcServer } from "../_trpc/trpcServer"
+import { trpcServer } from "@/app/_trpc/trpcServer"
 export const dynamic = "force-dynamic"
 import { getTranslations } from "next-intl/server"
 

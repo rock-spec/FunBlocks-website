@@ -1,33 +1,30 @@
-import getHomeData from '@/controllers/homePageControllers';
-import { publicProcedure, router } from './trpc';
-import { getGameAllData } from '@/controllers/gamePageController';
-import { getNewsData } from '@/controllers/newsPageController';
-import { getarticlesData } from '@/controllers/articlePageController';
-import { getVideosData } from '@/controllers/videoPageController';
-import { getEventsData } from '@/controllers/eventPageController';
-import { getEnginesData } from '@/controllers/enginePageController';
-import { getArticleDetailPageData } from '@/controllers/articleDetailPageController';
-import { z } from 'zod';
-import { getEventDetailPageData } from '@/controllers/eventDetailPageController';
-import { getGameDetailPageData } from '@/controllers/gameDetailPageController';
-import { getGameRelatedData } from '@/controllers/utilControllers';
-import { getnewsDetailPageData } from '@/controllers/newsDetailPageController';
-import { getvideoDetailPageData } from '@/controllers/videoDetailPageController';
-import { getEngineDetailPageData } from '@/controllers/engineDetailPageController';
-import { getSliderData } from '@/controllers/sliderController';
-import getSearchData from '@/controllers/searchController';
-
-
+import getHomeData from "@/controllers/homePageControllers"
+import { publicProcedure, router } from "./trpc"
+import { getGameAllData } from "@/controllers/gamePageController"
+import { getNewsData } from "@/controllers/newsPageController"
+import { getarticlesData } from "@/controllers/articlePageController"
+import { getVideosData } from "@/controllers/videoPageController"
+import { getEventsData } from "@/controllers/eventPageController"
+import { getEnginesData } from "@/controllers/enginePageController"
+import { getArticleDetailPageData } from "@/controllers/articleDetailPageController"
+import { z } from "zod"
+import { getEventDetailPageData } from "@/controllers/eventDetailPageController"
+import { getGameDetailPageData } from "@/controllers/gameDetailPageController"
+import { getGameRelatedData } from "@/controllers/utilControllers"
+import { getnewsDetailPageData } from "@/controllers/newsDetailPageController"
+import { getvideoDetailPageData } from "@/controllers/videoDetailPageController"
+import { getEngineDetailPageData } from "@/controllers/engineDetailPageController"
+import { getSliderData } from "@/controllers/sliderController"
+import getSearchData from "@/controllers/searchController"
 
 export const appRouter = router({
-
     //sliderRoutes
     // sliderData: publicProcedure.query(async () => {
     //     const sliderData = await getSliderData()
     //     return sliderData
     // }),
 
-    // main pages routes 
+    // main pages routes
     homeData: publicProcedure.query(async () => {
         const homeData = await getHomeData()
         return homeData
@@ -57,7 +54,7 @@ export const appRouter = router({
         return engineData
     }),
 
-    // detail pages routes 
+    // detail pages routes
     articleDetailsData: publicProcedure.input(z.string()).query(async (opts) => {
         const { input } = opts
         const articleDetailsData = await getArticleDetailPageData(input)
@@ -92,8 +89,13 @@ export const appRouter = router({
         const { input } = opts
         const engineDetailsData = await getSearchData(input)
         return engineDetailsData
-    })
-});
-
+    }),
+    newsSearchData: publicProcedure.input(z.string()).query(async (qry) => {
+        const { input } = qry
+        console.log(input)
+        // const newsData = await getNewsData()
+        return ["qry"]
+    }),
+})
 
 export type AppRouter = typeof appRouter

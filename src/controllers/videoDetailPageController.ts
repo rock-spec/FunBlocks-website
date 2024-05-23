@@ -8,7 +8,6 @@ const videoData = async (video_id: string) => {
         .from("videos")
         .select("*,user(username)")
         .eq("videoid", video_id)
-    console.log(data);
 
 
     if (error) {

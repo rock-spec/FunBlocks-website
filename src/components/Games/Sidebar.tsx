@@ -77,7 +77,6 @@ const Sidebar = ({ data }: { data: any }) => {
                     <Search
                         onChange={async (e) => {
                             const val = e.target.value
-                            console.log({ val })
                         }}
                     />
                 </div>

@@ -11,6 +11,7 @@ interface NavAndSearchComponentProps {
 
 const NavAndSearchComponent: React.FC<NavAndSearchComponentProps> = ({ children }) => {
     const [searchQuery, setSearchQuery] = useState("")
+    
 
     return (
         <>
