@@ -1,15 +1,12 @@
 "use cleint"
 
 import { trpc } from "@/app/_trpc/client"
-// import { CustomButton } from "@/components/Button/Button"
-// import { Column } from "@/components/Column/Column"
 import GameCardComponet, { GameCardComponentProps } from "@/components/Games/GameCardComponet"
 import SingleVideoCardItem from "@/components/SingleCard/SingleVideoCardItem"
 import SingleCardItem, { SingleCardItemProps } from "@/components/SingleCardItem/SingleCardItem"
 import { Tag } from "@/components/Tag/Tag"
 import formatDate from "@/utils/dateFormat"
 import React, { useEffect, useState } from "react"
-// import { IoIosArrowDown } from "react-icons/io"
 
 export const dynamic = "force-dynamic"
 

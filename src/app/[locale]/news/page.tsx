@@ -13,7 +13,7 @@ const News = async () => {
 
     const { featuredGames, news } = await trpcServer().newsData()
     return (
-        <div className="w-full max-w-[1200px] flex flex-col lg:flex-row justify-between gap-x-5">
+        <div className="w-full max-w-[1200px] flex flex-col lg:flex-row justify-between gap-x-5 ">
             {/* Main Column  */}
             <NewsColumn data={news} />
 
