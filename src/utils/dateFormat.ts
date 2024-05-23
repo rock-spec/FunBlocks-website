@@ -6,7 +6,3 @@ export default function formatDate(dateString: string): string {
 
     return `${formattedDate}`;
 }
-
-// // Example usage:
-// const formattedDateTime: string = formatDate('2024-04-10T02:02:01+00:00');
-// console.log(formattedDateTime); // Output: April 10, 2024 at 2:02 AM

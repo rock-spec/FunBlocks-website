@@ -6,7 +6,7 @@ import { CustomButton } from "../Button/Button"
 import SearchInput from "../SearchInput/SearchInput"
 import { IoIosArrowDown } from "react-icons/io"
 import formatDate from "@/utils/dateFormat"
-import CustomDropDown from "../DropDown/DropDown.jsx"
+import CustomDropDown from "../DropDown/DropDown"
 import { useTranslations } from "next-intl"
 
 export const NewsColumn = ({ data }: { data: any }) => {

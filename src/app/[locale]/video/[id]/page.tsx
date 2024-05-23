@@ -1,4 +1,4 @@
-import { trpcServer } from "../../_trpc/trpcServer"
+import { trpcServer } from "@/app/_trpc/trpcServer"
 import { Column } from "@/components/Column/Column"
 import { VideoDetailsColumn } from "@/components/Videos/VideoDetailsColumn"
 import React from "react"

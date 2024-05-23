@@ -7,6 +7,7 @@ import SearchInput from "../SearchInput/SearchInput"
 // import { IoIosArrowDown } from "react-icons/io"
 import SingleVideoCardItem from "../SingleCard/SingleVideoCardItem"
 import { useTranslations } from "next-intl"
+// import CustomDropDown from "../DropDown/DropDown"
 import CustomDropDown from "../DropDown/DropDown"
 
 export const VideoColumn = ({ data }: { data: any }) => {
@@ -23,7 +24,6 @@ export const VideoColumn = ({ data }: { data: any }) => {
         }
 
         return videoArray.filter((video) => {
-            console.log(video)
 
             return (
                 video?.gameid?.toLowerCase().includes(searchString.toLowerCase()) ||

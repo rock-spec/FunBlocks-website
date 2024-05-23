@@ -15,7 +15,6 @@ export interface SingleCardProps {
 
 const SingleCard = (props: SingleCardProps) => {
     const { name, singleCardItemDetails, buttonText, onButtonClick, heading } = props
-    console.log(singleCardItemDetails)
 
     const title = heading || name
     return (

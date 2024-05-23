@@ -1,7 +1,6 @@
 "use cleint"
 
-// import { trpc } from "@/app/_trpc/client"
-import { trpc } from "@/app/[locale]/_trpc/client"
+import { trpc } from "@/app/_trpc/client"
 // import { CustomButton } from "@/components/Button/Button"
 // import { Column } from "@/components/Column/Column"
 import GameCardComponet, { GameCardComponentProps } from "@/components/Games/GameCardComponet"
@@ -16,6 +15,7 @@ export const dynamic = "force-dynamic"
 
 const HomeSearch = ({ hidden, query }: { hidden?: boolean; query: string }) => {
     const data = trpc.searchPage.useQuery(query) // Assuming query is the search term
+
     const finalData = data.data
 
     const articles = finalData?.articles

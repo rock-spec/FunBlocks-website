@@ -1,7 +1,7 @@
 import { Column } from "@/components/Column/Column"
 import { EventColumn } from "@/components/Events/EventColumn"
 import React from "react"
-import { trpcServer } from "../_trpc/trpcServer"
+import { trpcServer } from "@/app/_trpc/trpcServer"
 import { getTranslations } from "next-intl/server"
 
 export const dynamic = "force-dynamic"
