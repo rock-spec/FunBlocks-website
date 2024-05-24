@@ -21,6 +21,7 @@ export interface ColumnProps {
 
 export const Column = (props: ColumnProps) => {
     const { variant, title, columnItems, buttonText, onButtonClick = () => {}, className, responsive } = props
+    console.log(columnItems)
 
     return (
         <div
@@ -45,9 +46,13 @@ export const Column = (props: ColumnProps) => {
                             : ``
                     }`}
                 >
-                    {columnItems.map((detail, index) => (
-                        <ColumnItems key={index} {...detail} /> // Replace '...detail' with actual props
-                    ))}
+                    {columnItems.length > 0 ? (
+                        columnItems.map((detail, index) => (
+                            <ColumnItems key={index} {...detail} /> // Replace '...detail' with actual props
+                        ))
+                    ) : (
+                        <p></p>
+                    )}
                 </div>
             </div>
 

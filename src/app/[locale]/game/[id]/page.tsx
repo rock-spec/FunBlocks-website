@@ -17,7 +17,6 @@ const GameDetail = async ({ params }: { params: { id: string } }) => {
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5 ">
             {/* Main Column  */}
             <GameDetailColumn data={data} />
-            {/* {JSON.stringify(data)} */}
 
             {/* Right Column */}
             <Column
