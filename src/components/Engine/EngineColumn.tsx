@@ -16,7 +16,6 @@ export const EngineColumn = ({ data }: { data: any }) => {
             return engineArray
         }
         return engineArray.filter((engine) => {
-            console.log(engine)
             return engine?.engineid?.toLowerCase().includes(searchString.toLowerCase())
         })
     }

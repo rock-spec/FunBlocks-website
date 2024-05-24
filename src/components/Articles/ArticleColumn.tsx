@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react"
 import SingleCardItem, { SingleCardItemProps } from "../SingleCardItem/SingleCardItem"
 import { CustomButton } from "../Button/Button"
-import CustomDropDown from "../DropDown/DropDown.jsx"
+import CustomDropDown from "../DropDown/DropDown"
 import SearchInput from "../SearchInput/SearchInput"
 import { IoIosArrowDown } from "react-icons/io"
 import formatDate from "@/utils/dateFormat"

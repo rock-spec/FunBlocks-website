@@ -6,14 +6,14 @@ const OffBit = localFont({
     src: "../Button/font/OffBitTrial-Bold.otf",
 })
 
-const CustomDropDown = ({ text, options = [] }) => {
+const CustomDropDown = ({ text, options = [] }: { text: string; options?: string[] }) => {
     const [showDropdown, setShowDropdown] = useState(false)
-    const dropDownRef = useRef()
+    const dropDownRef = useRef<HTMLDivElement | null>(null)
     // const options = ["cat1", "cat2", "cat3", "cat4"]
 
     useEffect(() => {
-        const dropDownHandler = (event) => {
-            if (!dropDownRef.current.contains(event.target)) setShowDropdown(false)
+        const dropDownHandler = (event: { target: any }) => {
+            if (dropDownRef.current && !dropDownRef.current.contains(event.target)) setShowDropdown(false)
         }
         document.addEventListener("mousedown", dropDownHandler)
         return () => {
@@ -37,7 +37,6 @@ const CustomDropDown = ({ text, options = [] }) => {
                             <li
                                 key={i}
                                 onClick={() => {
-                                    console.log(option)
                                     setShowDropdown(false)
                                 }}
                                 className="cursor-pointer px-3 py-2 duration-300 hover:bg-slate-400"

@@ -84,7 +84,6 @@ export const EventColumn = ({ data }: { data: any }) => {
     const handleSearch = (e: any) => {
         const val = e.target.value
         const updateData = filterEvent(val)
-        console.log(updateData)
 
         setFilteredEvent(updateData)
     }

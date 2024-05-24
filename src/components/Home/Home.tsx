@@ -1,8 +1,8 @@
 import React from "react"
 import { HomeColumn } from "./HomeColumn"
 import { Column } from "../Column/Column"
-// import { trpcServer } from "@/app/_trpc/trpcServer"
-import { trpcServer } from "@/app/[locale]/_trpc/trpcServer"
+import { trpcServer } from "@/app/_trpc/trpcServer"
+// import { trpcServer } from "@/app/[locale]/_trpc/trpcServer"
 
 interface Game {
     gameid: string

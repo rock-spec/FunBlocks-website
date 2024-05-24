@@ -2,11 +2,11 @@
 
 import React, { useEffect, useState } from "react"
 import SingleCardItem, { SingleCardItemProps } from "../SingleCardItem/SingleCardItem"
-import { CustomButton } from "../Button/Button"
+// import { CustomButton } from "../Button/Button"
 import SearchInput from "../SearchInput/SearchInput"
-import { IoIosArrowDown } from "react-icons/io"
+// import { IoIosArrowDown } from "react-icons/io"
 import formatDate from "@/utils/dateFormat"
-import CustomDropDown from "../DropDown/DropDown.jsx"
+import CustomDropDown from "../DropDown/DropDown"
 import { useTranslations } from "next-intl"
 
 export const NewsColumn = ({ data }: { data: any }) => {
@@ -52,6 +52,7 @@ export const NewsColumn = ({ data }: { data: any }) => {
         setNewsFilterData(updateData)
     }
 
+    //Creating options for category dropdown menu
     useEffect(() => {
         let tmp: string[] = []
         data.forEach((news: { category: string }) => {
@@ -73,7 +74,7 @@ export const NewsColumn = ({ data }: { data: any }) => {
                 <div className="flex mb-10 gap-x-5">
                     <div className="flex flex-col flex-1 items-start gap-5">
                         {singleCardItemDetails.map((detail, index) => (
-                            <div className="p-5 border border-[#161616] min-w-full bg-[#FFFCF9]">
+                            <div key={index} className="p-5 border border-[#161616] min-w-full bg-[#FFFCF9]">
                                 <SingleCardItem key={index} {...detail} />
                             </div>
                         ))}
