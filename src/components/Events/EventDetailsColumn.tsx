@@ -52,8 +52,8 @@ export const EventDetailsColumn = ({ data }: { data: any }) => {
                         src={eventDetails.pic}
                     />
 
-                    <div className="flex justify-between items-center  mt-[-40px]">
-                        <div className=" text-neutral-900 text-xl font-semibold  leading-[30px] mb-[12px] mt-[24px]">
+                    <div className="flex justify-between items-center mt-6">
+                        <div className=" text-neutral-900 text-xl font-semibold pb-2 leading-normal mb-[12px] mt-[24px]">
                             Event Details
                         </div>
                         <BlueButton

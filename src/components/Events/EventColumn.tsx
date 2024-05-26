@@ -1,17 +1,23 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import SingleCardItem, { SingleCardItemProps } from "../SingleCardItem/SingleCardItem"
 import { CustomButton } from "../Button/Button"
 import SearchInput from "../SearchInput/SearchInput"
 import { IoIosArrowDown } from "react-icons/io"
 import formatDate from "@/utils/dateFormat"
 import { useTranslations } from "next-intl"
+import CustomDropDown from "../DropDown/DropDown"
 
 export const EventColumn = ({ data }: { data: any }) => {
+    const s = useTranslations("Search")
+    const b = useTranslations("Buttons")
+
+    const [category, setCategory] = useState<string[]>([])
+    const [type, setType] = useState<string[]>([])
     const [filteredEvent, setFilteredEvent] = useState(data || [])
 
-    const s = useTranslations("Search")
+    const sortOptions = ["date"]
 
     const singleCardItemDetails: SingleCardItemProps[] = filteredEvent?.map((event: any) => ({
         url: event?.joinurl,
@@ -88,23 +94,55 @@ export const EventColumn = ({ data }: { data: any }) => {
         setFilteredEvent(updateData)
     }
 
+    //Creating options for category and type dropdown menu
+    useEffect(() => {
+        const uniqueCategories = new Set<string>()
+        const uniqueTypes = new Set<string>()
+
+        data.forEach((news: { category: string; type: string }) => {
+            if (news.category) uniqueCategories.add(news.category)
+            if (news.type) uniqueTypes.add(news.type)
+        })
+
+        setCategory(Array.from(uniqueCategories))
+        setType(Array.from(uniqueTypes))
+    }, [data])
+
     return (
         <>
             <div className="lg:w-[895px] w-full">
-                <div className="flex lg:flex-row flex-col w-full mb-10">
-                    <div className="h-58px w-full">
+                <div className="flex flex-col lg:flex-row w-full mb-10 gap-x-4">
+                    <div className="w-full">
                         <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} />
                     </div>
-                    <div className="flex">
-                        {/* <CustomButton onClick={() => { }} size='13px' text='Type' height='42px' icon={<IoIosArrowDown />} />
+                    <CustomDropDown
+                        bg="bg-[url('/buttons/medium_dropdown.svg')]"
+                        text={b("type")}
+                        options={type}
+                    />
+                    <CustomDropDown
+                        bg="bg-[url('/buttons/medium_dropdown.svg')]"
+                        text={b("category")}
+                        options={category}
+                    />
+                    <CustomDropDown
+                        bg="bg-[url('/buttons/medium_dropdown.svg')]"
+                        text={b("sortBy")}
+                        options={sortOptions}
+                    />
+                    {/* <div className="flex">
+                        <CustomButton onClick={() => { }} size='13px' text='Type' height='42px' icon={<IoIosArrowDown />} />
                         <CustomButton onClick={() => { }} size='13px' text='Status' height='42px' icon={<IoIosArrowDown />} />
-                        <CustomButton onClick={() => { }} size='13px' text='Category' height='42px' icon={<IoIosArrowDown />} /> */}
-                    </div>
+                        <CustomButton onClick={() => { }} size='13px' text='Category' height='42px' icon={<IoIosArrowDown />} />
+                    </div> */}
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <div className="flex flex-col flex-1 items-start gap-5">
                         {singleCardItemDetails.map((detail, index) => (
-                            <div className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[55rem]">
+                            <div
+                                key={index}
+                                className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[55rem]"
+                            >
                                 <SingleCardItem key={index} {...detail} />
                             </div>
                         ))}

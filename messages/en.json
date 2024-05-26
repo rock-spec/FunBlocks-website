@@ -33,6 +33,7 @@
         "details": "details",
         "category": "category",
         "sortBy": "Sort by",
+        "type" : "type",
         "playNow": "play now"
     },
     "Tags": {
@@ -46,12 +47,15 @@
     "Search": {
         "navSearch": "Search for anything",
         "blockchainSearch": "Search Blockchain",
+        "engineSearch": "Search Engine",
+        "gameStudioSearch" : "Search Game Studio",
         "pageSearch": "Search for Keywords"
     },
     "Misc": {
         "engine": "engine",
         "gameStudio": "game studio",
         "more": "More",
-        "showLess": "Show Less"
+        "showLess": "Show Less",
+        "blockchain": "blockchain"
     }
 }

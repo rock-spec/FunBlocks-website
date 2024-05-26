@@ -9,16 +9,17 @@ import formatDate from "@/utils/dateFormat"
 import { Cabin } from "next/font/google"
 import BlueButton from "../Button/BlueButton"
 const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
-import { useTranslations } from "next-intl"
+// import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 
 export const GameDetailColumn = async ({ data }: { data: any }) => {
+    const t = await getTranslations("Tags")
+    const b = await getTranslations("Buttons")
+
     const game = data?.game[0]
     const relatedArticles = data?.relatedArticles
     const relatedVideos = data?.relatedVideos
     const relatedEvents = data?.relatedEvents
-
-    const t = useTranslations("Tags")
-    const b = useTranslations("Buttons")
 
     return (
         <>

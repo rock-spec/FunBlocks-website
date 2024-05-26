@@ -102,15 +102,15 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                                     <Tag text={tag} key={index} type={"relevance"} linkto="game" />
                                 ))}
                             </div>
-                            <div className="justify-start items-center gap-2 flex md:ml-2">
+                            <div className="justify-start items-center gap-2 flex md:ml-2 text-lg">
                                 <Image src="/date-icon.svg" alt="Date" width={14} height={14} />
                                 <div
-                                    className={`text-neutral-900 text-opacity-80 text-lg  font-bold  leading-[16.80px] ${cabin.className}`}
+                                    className={`text-neutral-900 text-opacity-80 font-bold  leading-[16.80px] ${cabin.className}`}
                                 >
                                     {details}
-                                    {/* {zone} */}
                                 </div>
-                                {/* <div className="w-[5px] h-[5px] opacity-80 hidden md:block bg-neutral-900" /> */}
+                                <div className="w-[6px] aspect-square opacity-80 hidden md:block bg-neutral-900" />
+                                <p>EST</p>
                             </div>
                         </div>
                     ) : (
@@ -142,7 +142,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                             link={url ? url : "#"}
                             width="w-[140px]"
                             bg="bg-[url('/buttons/join_event.svg')]"
-                            bg_hover="bg-[url('/buttons/join_event_hover.svg')]"
+                            bg_hover="hover:bg-[url('/buttons/join_event_hover.svg')]"
                         />
                         <Link
                             className={`flex justify-center items-center w-[111px] h-10 bg-[url('/buttons/details.svg')] hover:bg-[url('/buttons/details_hover.svg')] capitalize ${OffBit.className}`}

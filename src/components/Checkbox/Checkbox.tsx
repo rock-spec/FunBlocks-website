@@ -10,12 +10,12 @@ const CustomCheckbox = ({
     setFunction: Dispatch<string[]>
     stateValue: string[]
 }) => {
-
     const handleClick = (option: string) => {
         stateValue.includes(option)
             ? setFunction(stateValue.filter((item) => item !== option))
             : setFunction([...stateValue, option])
     }
+
 
     return (
         <>
