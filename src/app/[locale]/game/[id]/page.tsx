@@ -7,8 +7,8 @@ import { getTranslations } from "next-intl/server"
 export const dynamic = "force-dynamic"
 
 const GameDetail = async ({ params }: { params: { id: string } }) => {
-    const id = params.id.replace(/%20/g, " ").toString() //to remove string and make it so i can search the data
     const t = await getTranslations("Tags")
+    const id = params.id.replace(/%20/g, " ").toString() //to remove string and make it so i can search the data
 
     const data = await trpcServer().gameDetailsData(id)
     const relatedNews = data?.relatedNews

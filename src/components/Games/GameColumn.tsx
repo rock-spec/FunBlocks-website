@@ -1,10 +1,10 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import GameCardComponet, { GameCardComponentProps } from "./GameCardComponet"
 import SearchInput from "../SearchInput/SearchInput"
 
-export const GameColumn = (data: any) => {
+export const GameColumn = (data: any) => {    
     const [gameFilterData, setGameFilterData] = useState(data.data)
 
     function filterGameArray(searchString: string = ""): any[] {
@@ -31,13 +31,13 @@ export const GameColumn = (data: any) => {
     const singleCardItemDetails: GameCardComponentProps[] =
         gameFilterData &&
         gameFilterData.map((game: any) => ({
-            game_id: game.gameid,
-            engine: game.engineid,
-            engine_logo: game.engine.logo,
-            imageUrl: game.pic,
-            title: game.game_name,
+            game_id: game?.gameid,
+            engine: game?.engineid,
+            engine_logo: game?.engine?.logo,
+            imageUrl: game?.pic,
+            title: game?.game_name,
             description: null, //this is like game name : some data
-            tags: [game.engineid],
+            tags: [game?.engineid],
             onClick: () => {},
         }))
 
@@ -46,6 +46,11 @@ export const GameColumn = (data: any) => {
         const updateData = filterGameArray(val)
         setGameFilterData(updateData)
     }
+
+    useEffect(() => {
+        setGameFilterData(data.data)
+    }, [data])
+    
 
     return (
         <>

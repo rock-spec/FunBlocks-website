@@ -5,6 +5,7 @@
         "news": "新闻",
         "article": "文章",
         "articles": "文章",
+        "video": "视频",
         "videos": "视频",
         "more": "更多",
         "events": "活动",
@@ -32,6 +33,7 @@
         "details": "详情",
         "category": "类别",
         "sortBy": "排序",
+        "type": "类型",
         "playNow": "立即游玩"
     },
     "Tags": {
@@ -45,12 +47,15 @@
     "Search": {
         "navSearch": "搜索任何内容",
         "blockchainSearch": "搜索区块链",
-        "pageSearch": "搜索关键词"
+        "pageSearch": "搜索关键词",
+        "engineSearch": "搜索引擎",
+        "gameStudioSearch" : "搜索游戏工作室"
     },
     "Misc": {
         "engine": "引擎",
         "gameStudio": "游戏工作室",
         "more": "更多",
-        "showLess": "显示较少"
+        "showLess": "显示较少",
+        "blockchain": "区块链"
     }
 }
