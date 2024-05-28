@@ -3,19 +3,26 @@ import { Tag } from "../Tag/Tag"
 import Image from "next/image"
 import SingleCard from "../SingleCard/SingleCard"
 import formatDate from "@/utils/dateFormat"
+import { getTranslations } from "next-intl/server"
+import { Cabin } from "next/font/google"
 
-import { useTranslations } from "next-intl"
+const cabin = Cabin({
+    subsets: ["latin"],
+    weight: ["700"],
+})
 
 export const VideoDetailsColumn = async ({ data }: { data: any }) => {
-    const video = data?.video
+    const t = await getTranslations("Tags")
 
-    const t = useTranslations("Tags")
+    const video = data?.video
 
     return (
         <>
             <div className="m-w-[895px] w-full">
-                <div className="flex-col w-full mb-10 p-5 border border-[#161616] bg-[#FFFCF9]">
-                    <div className=" text-neutral-900 text-[28px] font-bold font-['Cabin'] leading-[33.60px] mb-[12px]">
+                <div
+                    className={`flex-col w-full mb-10 p-5 border border-[#161616] bg-[#FFFCF9] ${cabin.className}`}
+                >
+                    <div className={` text-neutral-900 text-[28px] font-bold  leading-[33.60px] mb-[12px] `}>
                         {video?.video_name}
                     </div>
                     <div className="flex gap-1 mb-[24px]">
@@ -23,11 +30,11 @@ export const VideoDetailsColumn = async ({ data }: { data: any }) => {
                             <Tag text={tag} key={index} type={"relevance"} linkto="game" />
                         ))}
                         <div className="justify-start items-center gap-2 flex ml-2">
-                            <div className="opacity-80 text-neutral-900 text-sm font-normal font-['Cabin'] leading-[16.80px]">
+                            <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px]">
                                 By {video?.user?.username}
                             </div>
                             <div className="w-[5px] h-[5px] opacity-80 bg-neutral-900" />
-                            <div className="text-neutral-900 text-opacity-80 text-sm font-normal font-['Cabin'] leading-[16.80px]">
+                            <div className="text-neutral-900 text-opacity-80 text-sm font-normal leading-[16.80px]">
                                 {formatDate(video?.publishdate)}
                             </div>
                         </div>
@@ -49,10 +56,10 @@ export const VideoDetailsColumn = async ({ data }: { data: any }) => {
                         </div>
                     </div>
 
-                    <div className=" text-neutral-900 text-xl font-semibold font-['Cabin'] leading-[30px] mb-[12px] mt-[24px]">
+                    <div className=" text-neutral-900 text-xl font-semibold leading-[30px] mb-[12px] mt-[24px]">
                         Video Summary
                     </div>
-                    <div className=" text-neutral-900 text-base font-normal font-['Cabin'] leading-normal mb-[20.28px]">
+                    <div className=" text-neutral-900 text-base font-normal leading-normal mb-[20.28px]">
                         {video?.summary}
                     </div>
                 </div>

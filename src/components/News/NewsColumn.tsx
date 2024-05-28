@@ -10,11 +10,13 @@ import CustomDropDown from "../DropDown/DropDown"
 import { useTranslations } from "next-intl"
 
 export const NewsColumn = ({ data }: { data: any }) => {
+    const b = useTranslations("Buttons")
+    const s = useTranslations("Search")
+
     const [category, setCategory] = useState<string[]>([])
     const [newsFilterData, setNewsFilterData] = useState(data)
 
-    const b = useTranslations("Buttons")
-    const s = useTranslations("Search")
+    const sortOptions = ["date"]
 
     function filterNewsArray(searchString: string): any[] {
         const newsArray: any[] = data
@@ -54,22 +56,22 @@ export const NewsColumn = ({ data }: { data: any }) => {
 
     //Creating options for category dropdown menu
     useEffect(() => {
-        let tmp: string[] = []
-        data.forEach((news: { category: string }) => {
-            if (news.category) tmp.push(news.category)
+        const uniqueCategories = new Set<string>()
+        data.forEach((news: { category: string; type: string }) => {
+            if (news.category) uniqueCategories.add(news.category)
         })
-        setCategory(tmp)
+        setCategory(Array.from(uniqueCategories))
     }, [data])
 
     return (
         <>
             <div className="lg:w-[895px]  w-full">
                 <div className="flex flex-col lg:flex-row w-full mb-10 gap-x-4">
-                    <div className="] w-full">
+                    <div className=" w-full">
                         <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} />
                     </div>
                     <CustomDropDown text={b("category")} options={category} />
-                    <CustomDropDown text={b("sortBy")} />
+                    <CustomDropDown text={b("sortBy")} options={sortOptions} />
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <div className="flex flex-col flex-1 items-start gap-5">

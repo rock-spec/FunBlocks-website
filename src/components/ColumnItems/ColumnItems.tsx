@@ -2,7 +2,6 @@ import React from "react"
 import Button from "@mui/joy/Button"
 import { Tag } from "@/components/Tag/Tag"
 import Image from "next/image"
-// import Link from "next/link";
 import { Link } from "@/i18n.config"
 import { Cabin } from "next/font/google"
 
@@ -35,7 +34,7 @@ export const ColumnItems = (props: SingleColumnProps) => {
     const classnames = variant === "news" || variant === "article" ? "line-clamp-3" : ""
 
     return (
-        <Link href={`/${variant}/${id || "demoId"}`}>
+        <Link href={`/${variant}/${id}`} className="">
             <div
                 className={`w-[245px] h-[${containerHeight}px] justify-start items-start gap-[15px] inline-flex cursor-pointer `}
             >

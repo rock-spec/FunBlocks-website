@@ -12,6 +12,7 @@ const ArticleDetails = async ({ params }: { params: { id: string } }) => {
 
     const id = params.id // Access the dynamic id parameter
     const data = await trpcServer().articleDetailsData(id)
+    
 
     const { relatedArticles, game } = data.relatedData
 

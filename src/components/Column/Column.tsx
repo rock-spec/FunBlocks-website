@@ -45,9 +45,13 @@ export const Column = (props: ColumnProps) => {
                             : ``
                     }`}
                 >
-                    {columnItems.map((detail, index) => (
-                        <ColumnItems key={index} {...detail} /> // Replace '...detail' with actual props
-                    ))}
+                    {columnItems.length > 0 ? (
+                        columnItems.map((detail, index) => (
+                            <ColumnItems key={index} {...detail} /> // Replace '...detail' with actual props
+                        ))
+                    ) : (
+                       <p></p>
+                    )}
                 </div>
             </div>
 

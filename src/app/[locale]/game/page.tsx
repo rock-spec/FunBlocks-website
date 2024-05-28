@@ -1,24 +1,82 @@
 import { GameColumn } from "@/components/Games/GameColumn"
 import React, { useEffect, useState } from "react"
-// import { trpcServer } from "../_trpc/trpcServer"
 import { trpcServer } from "@/app/_trpc/trpcServer"
-// import { Column } from "@/components/Column/Column"
-// import SidebarHeading from "@/components/SidebarHeading/SidebarHeading"
-// import Checkbox from "@/components/Checkbox/Checkbox"
 import Sidebar from "@/components/Games/Sidebar"
+import { type Locale } from "@/i18n.config"
+import CustomDropDown from "@/components/DropDown/DropDown"
+import SearchInput from "@/components/SearchInput/SearchInput"
+import { getTranslations } from "next-intl/server"
 
 export const dynamic = "force-dynamic"
 
-const Game = async () => {
+interface FilterOptions {
+    blockchainIds?: string
+    engineIds?: string
+    gameStudioIds?: string
+}
+
+const Game = async ({
+    params: { locale },
+    searchParams,
+}: {
+    params: { locale: Locale }
+    searchParams: any
+}) => {
+    const b = await getTranslations("Buttons")
+    const s = await getTranslations("Search")
+
+
+    const sortOptions = ["date"]
+
     // Fetching game data using trpc
-    const gameData = await trpcServer().gameData()
+    const filters: FilterOptions = {
+        blockchainIds: searchParams.blockchain || "",
+        engineIds: searchParams.engine || "",
+        gameStudioIds: searchParams.studio || "",
+    }
+
+    // Parallel fetching of data using Promise.allSettled
+    const [gameDataResult, blockchainsResult, gameStudiosResult, enginesResult] = await Promise.allSettled([
+        trpcServer().gameData(filters),
+        trpcServer().blockchains(),
+        trpcServer().gameStudios(),
+        trpcServer().engines(),
+    ])
+
+    // Extract data from results
+    const gameData = gameDataResult.status === "fulfilled" ? gameDataResult.value : null
+    const blockchains = blockchainsResult.status === "fulfilled" ? blockchainsResult.value : null
+    const gameStudios = gameStudiosResult.status === "fulfilled" ? gameStudiosResult.value : null
+    const engines = enginesResult.status === "fulfilled" ? enginesResult.value : null
+
+    // Error handling for data fetching
+    if (!gameData || !blockchains || !gameStudios || !engines) {
+        return <div>Error loading data</div>
+    }
+
+    const blockchainsList = blockchains.map((bc: any) => bc.blockchainid)
+    const gameStudiosList = gameStudios.map((gs: any) => gs.gamestudioid)
+    const enginesList = engines.map((en: any) => en.engineid)
 
     return (
         <div className="w-full max-w-[1200px] flex flex-col md:flex-row justify-between gap-x-5">
-            <Sidebar data={gameData.game} />
+            <Sidebar
+                blockchainsList={blockchainsList}
+                gameStudiosList={gameStudiosList}
+                enginesList={enginesList}
+                data={gameData.game}
+            />
 
             {/* Main Column  */}
-            <GameColumn data={gameData.game} />
+            <div>
+                <div className="flex justify-between items-center w-full mb-10 gap-x-4">
+                    <div className=" w-full">
+                        <SearchInput varient="light" placeholder={s("pageSearch")}/>
+                    </div>
+                   <CustomDropDown text={b("sortBy")} options={sortOptions} txt_px="px-8"/>
+                </div>
+                <GameColumn data={gameData?.game} />
+            </div>
         </div>
     )
 }
