@@ -9,7 +9,8 @@
         "videos": "videos",
         "more": "more",
         "events": "events",
-        "engine": "engine"
+        "engine": "engine",
+        "all": "all"
     },
     "Footer": {
         "emailUs": "email us",
@@ -33,8 +34,9 @@
         "details": "details",
         "category": "category",
         "sortBy": "Sort by",
-        "type" : "type",
-        "playNow": "play now"
+        "type": "type",
+        "playNow": "play now",
+        "filter by time": "filter by time" 
     },
     "Tags": {
         "featuredGames": "featured games",
@@ -48,7 +50,7 @@
         "navSearch": "Search for anything",
         "blockchainSearch": "Search Blockchain",
         "engineSearch": "Search Engine",
-        "gameStudioSearch" : "Search Game Studio",
+        "gameStudioSearch": "Search Game Studio",
         "pageSearch": "Search for Keywords"
     },
     "Misc": {
@@ -56,6 +58,8 @@
         "gameStudio": "game studio",
         "more": "More",
         "showLess": "Show Less",
-        "blockchain": "blockchain"
+        "blockchain": "blockchain",
+        "filters": "filters",
+        "clear all": "clear all"
     }
 }

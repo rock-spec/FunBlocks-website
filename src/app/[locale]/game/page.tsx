@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react"
 import { trpcServer } from "@/app/_trpc/trpcServer"
 import Sidebar from "@/components/Games/Sidebar"
 import { type Locale } from "@/i18n.config"
+import CustomDropDown from "@/components/DropDown/DropDown"
+import SearchInput from "@/components/SearchInput/SearchInput"
+import { getTranslations } from "next-intl/server"
 
 export const dynamic = "force-dynamic"
 
@@ -19,6 +22,12 @@ const Game = async ({
     params: { locale: Locale }
     searchParams: any
 }) => {
+    const b = await getTranslations("Buttons")
+    const s = await getTranslations("Search")
+
+
+    const sortOptions = ["date"]
+
     // Fetching game data using trpc
     const filters: FilterOptions = {
         blockchainIds: searchParams.blockchain || "",
@@ -44,7 +53,7 @@ const Game = async ({
     if (!gameData || !blockchains || !gameStudios || !engines) {
         return <div>Error loading data</div>
     }
-    
+
     const blockchainsList = blockchains.map((bc: any) => bc.blockchainid)
     const gameStudiosList = gameStudios.map((gs: any) => gs.gamestudioid)
     const enginesList = engines.map((en: any) => en.engineid)
@@ -59,7 +68,15 @@ const Game = async ({
             />
 
             {/* Main Column  */}
-            <GameColumn data={gameData?.game} />
+            <div>
+                <div className="flex justify-between items-center w-full mb-10 gap-x-4">
+                    <div className=" w-full">
+                        <SearchInput varient="light" placeholder={s("pageSearch")}/>
+                    </div>
+                   <CustomDropDown text={b("sortBy")} options={sortOptions} txt_px="px-8"/>
+                </div>
+                <GameColumn data={gameData?.game} />
+            </div>
         </div>
     )
 }

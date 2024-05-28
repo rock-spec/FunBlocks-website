@@ -5,8 +5,9 @@ import { Tag } from "../Tag/Tag"
 import { CustomButton } from "../Button/Button"
 import { SingleCardItemProps } from "../SingleCardItem/SingleCardItem"
 import { Link } from "@/i18n.config"
+import formatDate from "@/utils/dateFormat"
 
-const SingleVideoCardItem = (props: SingleCardItemProps) => {
+const SingleVideoCardItem = (props: any) => {
     const {
         variant,
         imageUrl,
@@ -19,6 +20,8 @@ const SingleVideoCardItem = (props: SingleCardItemProps) => {
         onSecondButtonClick,
         tags = [],
         author = "",
+        gameid,
+        date,
     } = props
 
     return (
@@ -65,18 +68,37 @@ const SingleVideoCardItem = (props: SingleCardItemProps) => {
                             allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerPolicy="strict-origin-when-cross-origin"
                             allowFullScreen
-                            className="w-full h-[237px]"
+                            className="w-full min-h-[237px] aspect-video"
                         ></iframe>
                     </div>
-                    <div className="h-[82px] flex-col justify-center items-start gap-10 flex">
-                        <div className="self-stretch h-[82px] flex-col justify-center items-start gap-3 flex">
+                    <div className="  items-start gap-10 ">
+                        <div className=" flex-col justify-center items-start ">
                             {/* Show only two lines of description */}
-                            <div className={` text-neutral-900 text-md font-bold leading-snug `}>{title}</div>
                             <div
-                                className={`self-stretch text-neutral-900 w-full font-normal leading-normal  line-clamp-2`}
+                                className={` text-neutral-900 text-md font-bold leading-normal line-clamp-1`}
+                            >
+                                {title}
+                            </div>
+                            <div
+                                className={`self-stretch text-neutral-900 w-full font-normal leading-normal  line-clamp-1 mt-2`}
                             >
                                 {description}
                             </div>
+                            {date && (
+                                <div className=" flex my-5 gap-x-3">
+                                    <Tag text={gameid} type={"relevance"} />
+                                    <div className="justify-start md:items-center gap-2 flex md:flex-row flex-col md:ml-2">
+                                        <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px]">
+                                            By {author}
+                                        </div>
+                                        <div className="w-[5px] h-[5px] hidden md:block  opacity-80 bg-neutral-900" />
+                                        
+                                        <div className="text-neutral-900 text-opacity-80 text-sm font-normal  leading-[16.80px]">
+                                            {formatDate(date, true)}
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

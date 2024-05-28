@@ -6,7 +6,9 @@ import SingleVideoCardItem from "@/components/SingleCard/SingleVideoCardItem"
 import SingleCardItem, { SingleCardItemProps } from "@/components/SingleCardItem/SingleCardItem"
 import { Tag } from "@/components/Tag/Tag"
 import formatDate from "@/utils/dateFormat"
+import { Inder } from "next/font/google"
 import React, { useEffect, useState } from "react"
+import TopBar from "./TopBar"
 
 export const dynamic = "force-dynamic"
 
@@ -59,7 +61,8 @@ const HomeSearch = ({ hidden, query }: { hidden?: boolean; query: string }) => {
         })) || []
 
     return (
-        <>
+        <div className="">
+            <TopBar />
             {data.isFetched ? (
                 <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
                     {/* mainCoulumn  */}
@@ -77,7 +80,10 @@ const HomeSearch = ({ hidden, query }: { hidden?: boolean; query: string }) => {
                                     {articles?.map(
                                         (article, index) =>
                                             article.content && (
-                                                <div className="p-5 border min-w-full border-[#161616] bg-[#FFFCF9]">
+                                                <div
+                                                    className="p-5 border min-w-full border-[#161616] bg-[#FFFCF9]"
+                                                    key={index}
+                                                >
                                                     <SingleCardItem
                                                         key={index}
                                                         id={article?.articleid}
@@ -165,7 +171,7 @@ const HomeSearch = ({ hidden, query }: { hidden?: boolean; query: string }) => {
             ) : (
                 "Searching Result...."
             )}
-        </>
+        </div>
     )
 }
 

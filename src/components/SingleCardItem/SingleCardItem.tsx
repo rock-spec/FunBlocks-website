@@ -47,6 +47,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         tags = [],
         author = "",
     } = props
+    
 
     return (
         <div className="flex md:flex-row w-full flex-col items-start gap-6 ">

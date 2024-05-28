@@ -20,15 +20,16 @@ export const GameDetailColumn = async ({ data }: { data: any }) => {
     const relatedArticles = data?.relatedArticles
     const relatedVideos = data?.relatedVideos
     const relatedEvents = data?.relatedEvents
+    const tags = [game?.engineid, game?.gamestudioid, game?.blockchainid]
 
     return (
         <>
             <div className="m-w-[895px] w-full">
-                <div className="h-fit-content items-stretch flex  mb-10 gap-x-5 ">
-                    <div className="w-full p-5 bg-stone-50   border border-neutral-900  justify-end flex md:flex-row flex-col items-start gap-6  h-full">
+                <div className=" items-stretch flex mb-10 gap-x-5">
+                    <div className="w-full relative p-5 bg-stone-50 border border-neutral-900 flex md:flex-row flex-col items-start gap-6 h-full ">
                         {/* image container */}
                         <div className="relative md:w-[50%] w-full">
-                            {/* main banner image  */}
+                            {/* main banner image */}
                             <Image
                                 src={game?.pic}
                                 width={457}
@@ -38,13 +39,27 @@ export const GameDetailColumn = async ({ data }: { data: any }) => {
                             />
                         </div>
 
-                        <div className={"md:w-[50%] w-full " + cabin.className}>
-                            <div className=" text-neutral-900 text-[28px] font-bold leading-[48px] ">
-                                {game?.game_name}
+                        <div
+                            className={
+                                "md:w-[50%] w-full flex flex-col justify-between h-full " + cabin.className
+                            }
+                        >
+                            <div className="">
+                                <div className="text-neutral-900 text-[28px] font-bold leading-[48px]">
+                                    {game?.game_name}
+                                </div>
+
+                                <div className="text-neutral-900 text-base font-normal">
+                                    {game?.game_desc}
+                                </div>
+                                <div className="flex gap-x-1 mt-3">
+                                    {tags.map((tag, i) => (
+                                        <Tag text={tag} type={"relevance"} />
+                                    ))}
+                                </div>
                             </div>
 
-                            <div className=" text-neutral-900 text-base font-normal">{game?.game_desc}</div>
-                            <div className="mt-8">
+                            <div className="absolute bottom-5 mt-auto">
                                 <BlueButton
                                     text={b("playNow")}
                                     link={"#"}
