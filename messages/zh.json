@@ -9,7 +9,8 @@
         "videos": "视频",
         "more": "更多",
         "events": "活动",
-        "engine": "引擎"
+        "engine": "引擎",
+        "all": "全部"
     },
     "Footer": {
         "emailUs": "联系我们",
@@ -34,7 +35,8 @@
         "category": "类别",
         "sortBy": "排序",
         "type": "类型",
-        "playNow": "立即游玩"
+        "playNow": "立即游玩",
+        "filter by time": "按时间过滤"
     },
     "Tags": {
         "featuredGames": "精选游戏",
@@ -49,13 +51,15 @@
         "blockchainSearch": "搜索区块链",
         "pageSearch": "搜索关键词",
         "engineSearch": "搜索引擎",
-        "gameStudioSearch" : "搜索游戏工作室"
+        "gameStudioSearch": "搜索游戏工作室"
     },
     "Misc": {
         "engine": "引擎",
         "gameStudio": "游戏工作室",
         "more": "更多",
         "showLess": "显示较少",
-        "blockchain": "区块链"
+        "blockchain": "区块链",
+        "filters": "过滤器",
+        "clear all": "全部清除"
     }
 }

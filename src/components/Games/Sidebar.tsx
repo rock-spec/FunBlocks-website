@@ -74,6 +74,19 @@ const Sidebar = ({
         <div className="h-full">
             <div className={`border border-black bg-floralWhite p-5 lg:w-[285px]  `}>
                 {/* Engine ----------------------------------------------------------------------------------------------*/}
+                <div className={`flex justify-between ${OffBit.className} font-bold text-lg`}>
+                    <h3 className=" p-2 pb-1 bg-[#E0D7CE] uppercase">{m("filters")}</h3>
+                    <button
+                        className="text-blue-700 capitalize"
+                        onClick={() => {
+                            setSelectedBlockChain([])
+                            setSelectedEngine([])
+                            setSelectedGameStudio([])
+                        }}
+                    >
+                        {m("clear all")}
+                    </button>
+                </div>
                 <hr className="bg-[rgba(22, 22, 22, 0.20);] h-[2px] mt-1" />
                 <div className="mt-4">
                     {!ShowEngineSearch ? (

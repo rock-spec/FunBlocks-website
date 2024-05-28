@@ -19,7 +19,7 @@ const NavAndSearchComponent: React.FC<NavAndSearchComponentProps> = ({ children 
                 <NavBar setSearchQuery={setSearchQuery}  />
             </nav>
 
-            <div className="min-h-screen flex justify-center items-start pt-[60px] pb-[60px] m-5 lg:mt-28 md:m-16 ">
+            <div className="min-h-screen flex justify-center items-start pt-10 pb-[60px] m-5 lg:mt-28 md:m-16 ">
                 <div className="absolute top-[143px] left-0 -z-10" style={{ position: "fixed" }}>
                     <Image src="/bg-svg-left.svg" alt="Left SVG" width={336} height={461} />
                 </div>

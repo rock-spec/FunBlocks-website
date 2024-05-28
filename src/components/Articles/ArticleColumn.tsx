@@ -10,11 +10,13 @@ import formatDate from "@/utils/dateFormat"
 import { useTranslations } from "next-intl"
 
 export const ArticleColumn = ({ data }: { data: any }) => {
+    const b = useTranslations("Buttons")
+    const s = useTranslations("Search")
+
     const [articleFilterData, setArticlesFilterData] = useState(data)
     const [category, setCategory] = useState<string[]>([])
 
-    const b = useTranslations("Buttons")
-    const s = useTranslations("Search")
+    const sortOptions = ["date"]
 
     function filterArticleArray(searchString: string): any[] {
         const articleArray: any[] = data
@@ -68,7 +70,7 @@ export const ArticleColumn = ({ data }: { data: any }) => {
                         <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} />
                     </div>
                     <CustomDropDown text={b("category")} options={category} />
-                    <CustomDropDown text={b("sortBy")} />
+                    <CustomDropDown text={b("sortBy")} options={sortOptions} />
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <div className="flex flex-col flex-1 items-start gap-5">

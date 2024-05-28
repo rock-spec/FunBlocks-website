@@ -15,6 +15,7 @@ const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] }
 
 export const ArticleDetailsColumn = ({ data }: { data: any }) => {
     const t = useTranslations("Tags")
+    console.log(data.article.body)
 
     return (
         <>
@@ -49,7 +50,7 @@ export const ArticleDetailsColumn = ({ data }: { data: any }) => {
                         src={data.article.content.image}
                     />
                     <div className="text-neutral-900 text-base font-normal  leading-normal mb-[20.28px]">
-                        {data?.news?.body && renderHTML(data.news.body)}
+                        {data?.article?.body && renderHTML(data?.article?.body)}
                     </div>{" "}
                 </div>
                 <div className="flex mb-10 gap-x-5">

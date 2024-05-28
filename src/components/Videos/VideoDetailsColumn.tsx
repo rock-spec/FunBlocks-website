@@ -12,9 +12,9 @@ const cabin = Cabin({
 })
 
 export const VideoDetailsColumn = async ({ data }: { data: any }) => {
-    const video = data?.video
-
     const t = await getTranslations("Tags")
+
+    const video = data?.video
 
     return (
         <>

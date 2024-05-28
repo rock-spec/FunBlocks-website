@@ -16,6 +16,8 @@ export const NewsColumn = ({ data }: { data: any }) => {
     const [category, setCategory] = useState<string[]>([])
     const [newsFilterData, setNewsFilterData] = useState(data)
 
+    const sortOptions = ["date"]
+
     function filterNewsArray(searchString: string): any[] {
         const newsArray: any[] = data
         // If searchString is empty, return the original newsArray
@@ -69,7 +71,7 @@ export const NewsColumn = ({ data }: { data: any }) => {
                         <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} />
                     </div>
                     <CustomDropDown text={b("category")} options={category} />
-                    <CustomDropDown text={b("sortBy")} />
+                    <CustomDropDown text={b("sortBy")} options={sortOptions} />
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <div className="flex flex-col flex-1 items-start gap-5">
