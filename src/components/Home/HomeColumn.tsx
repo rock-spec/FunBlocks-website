@@ -39,6 +39,8 @@ export const HomeColumn = ({ data }: { data: any }) => {
         }
     }
 
+    
+
     useEffect(() => {
         fetchData()
     }, [])
