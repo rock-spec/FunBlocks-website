@@ -76,7 +76,9 @@ const HomeSearch = ({ hidden, query }: { hidden?: boolean; query: string }) => {
                                 } Related Articles Found`}
                             />
                             <div className="flex mb-10 gap-x-5">
+                                {/* <div className="flex flex-col flex-1 min-w-full items-start gap-5 mt-5"> */}
                                 <div className="flex flex-col flex-1 min-w-full items-start gap-5 mt-5">
+
                                     {articles?.map(
                                         (article, index) =>
                                             article.content && (
