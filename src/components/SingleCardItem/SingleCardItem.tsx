@@ -47,10 +47,9 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         tags = [],
         author = "",
     } = props
-    
 
     return (
-        <div className="flex md:flex-row w-full flex-col items-start gap-6 ">
+        <div className="flex md:flex-row  flex-col items-start gap-6 w-[863px] ">
             {/* First Column: Image */}
 
             <Link href={`/${variant}/${id}`} target="blank" className="block ">
@@ -91,8 +90,8 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                     </div>
 
                     {/* Details */}
-                    <div className=" text-neutral-900 text-base font-normal  leading-normal overflow-hidden">
-                        <div className={`line-clamp-2 ${cabin.className}`}>{description}</div>
+                    <div className="text-neutral-900 text-base font-normal leading-normal w-full overflow-hidden break-all">
+                        <div className={`line-clamp-2  ${cabin.className}`}>{description}</div>
                     </div>
 
                     {/* Dates  */}
@@ -115,7 +114,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                             </div>
                         </div>
                     ) : (
-                        <div className="flex md:flex-row flex-col gap-3 ">
+                        <div className="flex md:flex-row flex-col gap-3">
                             <div className="flex gap-1">
                                 {tags.map((tag, index) => (
                                     <Tag text={tag} key={index} type={"relevance"} linkto="game" />
@@ -161,3 +160,166 @@ const SingleCardItem = (props: SingleCardItemProps) => {
 }
 
 export default SingleCardItem
+
+// import React from "react"
+// import Image from "next/image"
+// import Button from "@mui/joy/Button"
+// import { Tag } from "../Tag/Tag"
+// import { CustomButton } from "../Button/Button"
+// // import Link from "next/link"
+// import { Link } from "@/i18n.config"
+// import { Cabin } from "next/font/google"
+// import BlueButton from "../Button/BlueButton"
+// import { useTranslations } from "next-intl"
+// import localFont from "next/font/local"
+
+// // Define the props interface
+// export interface SingleCardItemProps {
+//     id?: string
+//     variant: "event" | "article" | "video" | "news"
+//     imageUrl: string
+//     title: string
+//     author?: string
+//     details?: string
+//     description?: string
+//     tags?: string[]
+//     zone?: string
+//     url?: string
+//     onFirstButtonClick: () => void
+//     onSecondButtonClick: () => void
+// }
+
+// const OffBit = localFont({
+//     src: "../Button/font/OffBitTrial-Bold.otf",
+// })
+// const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
+
+// const SingleCardItem = (props: SingleCardItemProps) => {
+//     const b = useTranslations("Buttons")
+//     const {
+//         variant,
+//         imageUrl,
+//         zone,
+//         title,
+//         id,
+//         description = "",
+//         details = "",
+//         url,
+//         onFirstButtonClick,
+//         onSecondButtonClick,
+//         tags = [],
+//         author = "",
+//     } = props
+
+//     return (
+//         <div className="flex md:flex-row w-full flex-col items-start gap-6 ">
+//             {/* First Column: Image */}
+
+//             <Link href={`/${variant}/${id}`} target="blank" className="block ">
+//                 {/* <div
+//                     className={
+//                         "relative rounded-[4px] border border-[#161616] overflow-hidden min-w-[260px] w-full " +
+//                         cabin.className
+//                     }
+//                 > */}
+//                 <div
+//                     className={
+//                         "relative rounded-[4px] border border-[#161616] overflow-hidden w-[270px] " +
+//                         cabin.className
+//                     }
+//                 >
+//                     <Image
+//                         className=" w-full h-[153px] object-cover "
+//                         src={imageUrl}
+//                         alt="Image"
+//                         width={300}
+//                         height={153}
+//                         layout="fixed"
+//                         objectFit="cover"
+//                         objectPosition="center"
+//                     />
+//                 </div>
+//             </Link>
+//             {/* Second Column */}
+//             <div className="flex flex-col w-full">
+//                 {/* First Row */}
+//                 <div className="flex flex-col gap-2 ">
+//                     {/* Title */}
+//                     <div className="text-[#161616] font-bold text-lg leading-[120%] tracking-[-0.32px] line-clamp-2 bg ">
+//                         <Link href={`/${variant}/${id}`} target="blank">
+//                             {" "}
+//                             {title}
+//                         </Link>
+//                     </div>
+
+//                     {/* Details */}
+//                     <div className=" text-neutral-900 text-base font-normal  leading-normal overflow-hidden">
+//                         <div className={`line-clamp-2 ${cabin.className}`}>{description}</div>
+//                     </div>
+
+//                     {/* Dates  */}
+//                     {variant === "event" ? (
+//                         <div className="flex md:flex-row flex-col gap-3 flex-1 ">
+//                             <div className="flex gap-1">
+//                                 {tags.map((tag, index) => (
+//                                     <Tag text={tag} key={index} type={"relevance"} linkto="game" />
+//                                 ))}
+//                             </div>
+//                             <div className="justify-start items-center gap-2 flex md:ml-2 text-lg">
+//                                 <Image src="/date-icon.svg" alt="Date" width={14} height={14} />
+//                                 <div
+//                                     className={`text-neutral-900 text-opacity-80 font-bold  leading-[16.80px] ${cabin.className}`}
+//                                 >
+//                                     {details}
+//                                 </div>
+//                                 <div className="w-[6px] aspect-square opacity-80 hidden md:block bg-neutral-900" />
+//                                 <p>EST</p>
+//                             </div>
+//                         </div>
+//                     ) : (
+//                         <div className="flex md:flex-row flex-col gap-3 ">
+//                             <div className="flex gap-1">
+//                                 {tags.map((tag, index) => (
+//                                     <Tag text={tag} key={index} type={"relevance"} linkto="game" />
+//                                 ))}
+//                             </div>
+
+//                             <div className="justify-start md:items-center gap-2 flex md:flex-row flex-col md:ml-2">
+//                                 <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px]">
+//                                     By {author}
+//                                 </div>
+//                                 <div className="w-[5px] h-[5px] hidden md:block  opacity-80 bg-neutral-900" />
+//                                 <div className="text-neutral-900 text-opacity-80 text-sm font-normal  leading-[16.80px]">
+//                                     {details}
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     )}
+//                 </div>
+
+//                 {/* Second Row: Buttons */}
+//                 {variant === "event" ? (
+//                     <div className="flex  items-center gap-x-4 mt-[52px] ">
+//                         <BlueButton
+//                             text={b("joinEvent")}
+//                             link={url ? url : "#"}
+//                             width="w-[140px]"
+//                             bg="bg-[url('/buttons/join_event.svg')]"
+//                             bg_hover="hover:bg-[url('/buttons/join_event_hover.svg')]"
+//                         />
+//                         <Link
+//                             className={`flex justify-center items-center w-[111px] h-10 bg-[url('/buttons/details.svg')] hover:bg-[url('/buttons/details_hover.svg')] capitalize ${OffBit.className}`}
+//                             href={`/${variant}/${id}`}
+//                         >
+//                             {b("details")}
+//                         </Link>
+//                     </div>
+//                 ) : (
+//                     ""
+//                 )}
+//             </div>
+//         </div>
+//     )
+// }
+
+// export default SingleCardItem
