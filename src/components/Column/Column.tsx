@@ -23,8 +23,13 @@ export const Column = (props: ColumnProps) => {
     const { variant, title, columnItems, buttonText, onButtonClick = () => {}, className, responsive } = props
 
     return (
+    //     <div
+    //     className={`border relative border-black bg-floralWhite p-5 lg:w-[285px] h-full lg:min-h-[700px] pb-[75px]  ${
+    //         responsive ? "sm:w-full bg-re mb-10 lg:mb-0" : ""
+    //     } ${className} `}
+    // >
         <div
-            className={`border relative border-black bg-floralWhite p-5 lg:w-[285px] h-full lg:min-h-[700px] pb-[75px]  ${
+            className={`border relative border-black bg-floralWhite p-5 lg:w-[285px] h-[80%] lg:min-h-[650px] pb-[75px]  ${
                 responsive ? "sm:w-full bg-re mb-10 lg:mb-0" : ""
             } ${className} `}
         >

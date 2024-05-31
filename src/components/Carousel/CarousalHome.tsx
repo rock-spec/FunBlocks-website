@@ -38,7 +38,7 @@ const CarousalHome = ({ data }: any) => {
 
     return (
         <div className="bg-stone-50  w-full flex-1 border box-border border-neutral-900 ">
-            <div className="w-full flex-col p-5 justify-end items-start gap-6 inline-flex h-full">
+            <div className="w-full flex-col p-5 justify-end items-start gap-6 inline-flex ">
                 {/* image container */}
                 <div className="relative w-full ">
                     {/* main banner image  */}
@@ -102,7 +102,7 @@ const CarousalHome = ({ data }: any) => {
                 </div>
 
                 <div className="mb-[-25px] pb-5">
-                    <BlueButton text={b('explore')} link={"#"} />
+                    <BlueButton text={b("explore")} link={"#"} />
                 </div>
             </div>
         </div>

@@ -43,8 +43,20 @@ const GameCardComponet = (props: GameCardComponentProps) => {
                             objectPosition="center"
                             className="object-cover h-[187px] aspect-video"
                         />
-                        <div className="absolute top-3 left-3">
-                            <p className={`${OffBit.className}  p-1 px-2 text-sm font-bold bg-[#F0E5D9]`}>
+                        <div className="absolute flex items-center top-3 left-3">
+                            <Image
+                                src={engine_logo}
+                                alt="Image"
+                                width={24}
+                                height={24}
+                                layout="fixed"
+                                objectFit="cover"
+                                objectPosition="center"
+                                className="object-cover  aspect-square"
+                            />
+                            <p
+                                className={`${OffBit.className}  p-0 px-2 text-sm font-bold bg-[#F0E5D9] leading-normal`}
+                            >
                                 {engine}
                             </p>
                         </div>
