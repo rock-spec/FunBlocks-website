@@ -39,15 +39,13 @@ export const HomeColumn = ({ data }: { data: any }) => {
         }
     }
 
-    
-
     useEffect(() => {
         fetchData()
     }, [])
 
     return (
         <>
-            <div className="w-full  ">
+            <div className="w-full">
                 <div className={`items-stretch flex mb-10 gap-x-5 lg:flex-row flex-col ${cabin.className}`}>
                     {sliderData && <CarousalHome data={sliderData} />}
 

@@ -4,7 +4,9 @@ import React, { useEffect, useState } from "react"
 import GameCardComponet, { GameCardComponentProps } from "./GameCardComponet"
 import SearchInput from "../SearchInput/SearchInput"
 
-export const GameColumn = (data: any) => {    
+export const GameColumn = (data: any) => {   
+     console.log(data);
+     
     const [gameFilterData, setGameFilterData] = useState(data.data)
 
     function filterGameArray(searchString: string = ""): any[] {
@@ -33,7 +35,7 @@ export const GameColumn = (data: any) => {
         gameFilterData.map((game: any) => ({
             game_id: game?.gameid,
             engine: game?.engineid,
-            engine_logo: game?.engine?.logo,
+            engine_logo: game?.logo,
             imageUrl: game?.pic,
             title: game?.game_name,
             description: null, //this is like game name : some data
