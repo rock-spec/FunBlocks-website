@@ -96,20 +96,20 @@ const SingleCardItem = (props: SingleCardItemProps) => {
 
                     {/* Dates  */}
                     {variant === "event" ? (
-                        <div className="flex md:flex-row flex-col gap-3 flex-1 ">
+                        <div className="flex items-center md:flex-row flex-col gap-3 flex-1 ">
                             <div className="flex gap-1">
                                 {tags.map((tag, index) => (
                                     <Tag text={tag} key={index} type={"relevance"} linkto="game" />
                                 ))}
                             </div>
-                            <div className="justify-start items-center gap-2 flex md:ml-2 text-lg">
+                            <div className="justify-start items-center gap-2 flex md:ml-2 text-sm">
                                 <Image src="/date-icon.svg" alt="Date" width={14} height={14} />
                                 <div
-                                    className={`text-neutral-900 text-opacity-80 font-bold  leading-[16.80px] ${cabin.className}`}
+                                    className={`text-neutral-900 text-opacity-90 font-semibold  ${cabin.className}`}
                                 >
                                     {details}
                                 </div>
-                                <div className="w-[6px] aspect-square opacity-80 hidden md:block bg-neutral-900" />
+                                <div className="w-[6px] aspect-square opacity-90 hidden md:block bg-neutral-900" />
                                 <p>EST</p>
                             </div>
                         </div>
