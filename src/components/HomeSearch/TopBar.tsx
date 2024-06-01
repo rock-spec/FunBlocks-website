@@ -33,10 +33,13 @@ const TopBar = () => {
                         {t("news")}
                     </Link>
                     <Link className="hover:text-blue-700" href={"/article"}>
-                        {t("article")}
+                        {t("articles")}
                     </Link>
                     <Link className="hover:text-blue-700" href={"/video"}>
                         {t("videos")}
+                    </Link>
+                    <Link className="hover:text-blue-700" href={"/event"}>
+                        {t("events")}
                     </Link>
                 </div>
             </div>

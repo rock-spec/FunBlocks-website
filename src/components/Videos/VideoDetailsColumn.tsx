@@ -66,7 +66,7 @@ export const VideoDetailsColumn = async ({ data }: { data: any }) => {
 
                 <div className="flex mb-10 gap-x-5">
                     <SingleCard
-                        heading={t("relatedVideos")}
+                        heading={t("featuredVideos")}
                         name={"video"}
                         singleCardItemDetails={data?.relatedData?.relatedVideos.map((video: any) => ({
                             variant: "video",

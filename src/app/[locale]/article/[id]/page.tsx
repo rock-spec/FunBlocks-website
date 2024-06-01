@@ -41,7 +41,7 @@ const ArticleDetails = async ({ params }: { params: { id: string } }) => {
                 <div className="h-[24px] w-full"></div>
                 <Column
                     variant="article"
-                    title={n("articles")}
+                    title={t("featuredArticles")}
                     responsive
                     onButtonClick={() => {}}
                     columnItems={relatedArticles?.map((article: any) => ({

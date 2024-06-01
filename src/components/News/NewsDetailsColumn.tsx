@@ -17,7 +17,7 @@ export const NewsDetailsColumn = ({ data }: { data: any }) => {
 
     return (
         <>
-            <div className="m-w-[895px] w-full">
+            <div className="m-w-[895px] w-full ">
                 <div
                     className={
                         "flex-col w-full mb-10 p-5 border border-[#161616] bg-[#FFFCF9] " + cabin.className

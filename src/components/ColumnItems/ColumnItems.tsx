@@ -8,7 +8,7 @@ import { Cabin } from "next/font/google"
 // Define the props interface
 export interface SingleColumnProps {
     id?: string
-    variant: "game" | "article" | "news"
+    variant: "game" | "article" | "news" | "search"
     title: string
     author?: string
     details?: string
@@ -16,6 +16,7 @@ export interface SingleColumnProps {
     tags?: string[]
     zone?: string
     imageUrl: string
+    search?: boolean
     onClick?: () => void
 }
 
@@ -25,7 +26,7 @@ const cabin = Cabin({
 })
 
 export const ColumnItems = (props: SingleColumnProps) => {
-    const { variant, title, onClick, imageUrl, tags = [], id } = props
+    const {search, variant, title, onClick, imageUrl, tags = [], id } = props
 
     const img_size = 180
     const containerHeight = 80
@@ -38,16 +39,25 @@ export const ColumnItems = (props: SingleColumnProps) => {
             <div
                 className={`w-[245px] h-[${containerHeight}px] justify-start items-start gap-[15px] inline-flex cursor-pointer `}
             >
-                <Image
+                {/* <Image
                     src={imageUrl}
                     height={img_size}
                     width={img_size}
                     alt=""
                     className={`h-[85px] w-[85px] border-[2px] rounded-[7px] border-neutral-900/85 object-cover`}
+                /> */}
+                <Image
+                    src={imageUrl}
+                    height={img_size}
+                    width={img_size}
+                    alt=""
+                    className={`${
+                        search ? "h-[60px] w-[60px]" : "h-[85px] w-[85px]"
+                    } border-[2px] rounded-[7px] border-neutral-900/85 object-cover`}
                 />
                 <div className="grow shrink basis-0 h-full flex-col justify-start items-start gap-2 inline-flex">
                     <div
-                        className={` self-stretch text-neutral-900 text-sm  leading-tight  ${classnames} ${cabin.className} font-bold`}
+                        className={` self-stretch text-neutral-900 ${search ? "text-base line-clamp-3 " :"text-sm" } leading-tight  ${classnames} ${cabin.className} font-bold`}
                     >
                         {title}
                     </div>

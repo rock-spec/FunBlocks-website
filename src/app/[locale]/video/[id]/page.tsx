@@ -40,7 +40,7 @@ const VideoDetails = async ({ params }: { params: { id: string } }) => {
                 <div className="h-[24px] w-full"></div>
                 <Column
                     variant="article"
-                    title={n("article")}
+                    title={t("relatedArticles")}
                     responsive
                     onButtonClick={() => {}}
                     columnItems={relatedArticles?.map((article: any) => ({
