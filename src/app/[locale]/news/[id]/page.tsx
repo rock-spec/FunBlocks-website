@@ -1,4 +1,4 @@
-import { trpcServer } from '@/app/_trpc/trpcServer';
+import { trpcServer } from "@/app/_trpc/trpcServer"
 import { Column } from "@/components/Column/Column"
 import { NewsDetailsColumn } from "@/components/News/NewsDetailsColumn"
 import { VideoDetailsColumn } from "@/components/Videos/VideoDetailsColumn"
@@ -22,7 +22,7 @@ const NewsDetails = async ({ params }: { params: { id: string } }) => {
             <NewsDetailsColumn data={data} />
 
             {/* Right Column */}
-            <div className="flex-col justify-items-start items-center h-fit">
+            <div className="flex-col  justify-items-start items-center h-fit">
                 <Column
                     variant="game"
                     title={t("relatedGames")}
@@ -37,15 +37,16 @@ const NewsDetails = async ({ params }: { params: { id: string } }) => {
                     }))}
                 />
                 {/* for space between them */}
-                <div className="h-[24px] w-full"></div>
+                <div className="h-[28px] w-full"></div>
+
                 <Column
-                    variant="article"
-                    title={n("article")}
+                    variant="news"
+                    title={t("relatedNews")}
                     responsive
                     onButtonClick={() => {}}
                     columnItems={relatedArticles.map((article: any) => ({
                         id: article.articleid,
-                        variant: "article",
+                        variant: "news",
                         tags: [],
                         title: article.content.title,
                         imageUrl: article.content.image,

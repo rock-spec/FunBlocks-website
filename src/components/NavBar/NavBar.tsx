@@ -863,7 +863,7 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
         <>
             {" "}
             <nav className={"bg-floralWhite fixed top-0 left-0 right-0 z-[1000]"}>
-                <div className="w-full mx-auto px-10 py-7.5 h-24 z-[1000]" style={{ height: "98px" }}>
+                <div className="w-full mx-auto px-10 py-7.5  z-[1000]" style={{ height: "80px" }}>
                     <div className="flex justify-between items-center h-full mx-auto max-w-[1200px] w-full z-[1000]">
                         {/* Logo Section */}
                         <div className="flex space-x-4 z-[1000]">
@@ -908,7 +908,7 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
                                 {t("news")}
                             </Link>
                             <Link className="py-5 px-2" href={"/article"}>
-                                {t("article")}
+                                {t("articles")}
                             </Link>
                             <Link className="py-5 px-2" href={"/video"}>
                                 {t("videos")}

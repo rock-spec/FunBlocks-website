@@ -5,7 +5,6 @@ import GameCardComponet, { GameCardComponentProps } from "./GameCardComponet"
 import SearchInput from "../SearchInput/SearchInput"
 
 export const GameColumn = (data: any) => {   
-     console.log(data);
      
     const [gameFilterData, setGameFilterData] = useState(data.data)
 
