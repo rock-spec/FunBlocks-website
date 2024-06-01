@@ -36,7 +36,6 @@ export const Column = (props: ColumnProps) => {
             {/* Row 1 */}
             <div className="flex justify-between items-center mb-5 ">
                 <Tag text={`${title}`} type={"section"} />
-                {/* <Image src={"/filter.svg"} alt="Filter Icon" width={24} height={24} /> */}
             </div>
             <div className=" overflow-x-hidden w-fit max-h-fit">
                 {/* Row 2 */}
