@@ -23,9 +23,24 @@ const getFeaturedGameData = async () => {
     return data || []
 }
 
+const getFeaturedArticlesData = async () => {
+    const { data, error } = await supabase.from("articles").select("articleid,content(title,image)").range(0, 5)
+
+    if (error) {
+        throw new Error("Error fetching articles: " + error.message)
+    }
+
+    return data || []
+}
+
 export const getarticlesData = async () => {
     const articles = await getAllArticles()
     const featuredGames = await getFeaturedGameData()
 
     return { articles, featuredGames }
+}
+
+export const getfeaturedArticles = async () => {
+    const featuredArticles = await getFeaturedArticlesData()
+    return { featuredArticles }
 }

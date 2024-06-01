@@ -113,7 +113,7 @@ export const GameDetailColumn = async ({ data }: { data: any }) => {
                 <div className="flex mb-10 gap-x-5">
                     <SingleCard
                         name={"event"}
-                        heading={t("relatedVideos")}
+                        heading={t("relatedEvents")}
                         singleCardItemDetails={relatedEvents?.map((event: any) => ({
                             url: event?.joinurl,
                             id: event.eventid,

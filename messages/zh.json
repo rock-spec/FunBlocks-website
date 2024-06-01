@@ -40,11 +40,14 @@
     },
     "Tags": {
         "featuredGames": "精选游戏",
+        "featuredVideos": "精选视频",
+        "featuredArticles": "推荐文章",
         "relatedGames": "相关游戏",
         "relatedArticles": "相关文章",
         "relatedNews": "相关新闻",
         "relatedVideos": "相关视频",
-        "relatedEvents": "相关活动"
+        "relatedEvents": "相关活动",
+        "latestNews": "最新消息"
     },
     "Search": {
         "navSearch": "搜索任何内容",

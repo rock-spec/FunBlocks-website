@@ -5,7 +5,7 @@ import { CustomButton } from "../Button/Button"
 
 // Define the props interface
 export interface ColumnProps {
-    variant: "game" | "article" | "news"
+    variant: "game" | "article" | "news" | "search"
     title: string
     author?: string
     details?: string
@@ -23,15 +23,15 @@ export const Column = (props: ColumnProps) => {
     const { variant, title, columnItems, buttonText, onButtonClick = () => {}, className, responsive } = props
 
     return (
-    //     <div
-    //     className={`border relative border-black bg-floralWhite p-5 lg:w-[285px] h-full lg:min-h-[700px] pb-[75px]  ${
-    //         responsive ? "sm:w-full bg-re mb-10 lg:mb-0" : ""
-    //     } ${className} `}
-    // >
+        // <div
+        //     className={`border relative border-black bg-floralWhite p-5 lg:w-[285px] h-[80%] lg:min-h-[650px] pb-[75px]  ${
+        //         responsive ? "sm:w-full bg-re mb-10 lg:mb-0" : ""
+        //     } ${className} `}
+        // >
         <div
-            className={`border relative border-black bg-floralWhite p-5 lg:w-[285px] h-[80%] lg:min-h-[650px] pb-[75px]  ${
-                responsive ? "sm:w-full bg-re mb-10 lg:mb-0" : ""
-            } ${className} `}
+            className={`border relative border-black bg-floralWhite p-5 lg:w-[285px] h-fit ${
+                buttonText ? "h-[80%] lg:min-h-[650px] pb-[75px]" : ""
+            }  ${responsive ? "sm:w-full bg-re mb-10 lg:mb-0" : ""} ${className} `}
         >
             {/* Row 1 */}
             <div className="flex justify-between items-center mb-5 ">
@@ -55,7 +55,7 @@ export const Column = (props: ColumnProps) => {
                             <ColumnItems key={index} {...detail} /> // Replace '...detail' with actual props
                         ))
                     ) : (
-                       <p></p>
+                        <p></p>
                     )}
                 </div>
             </div>

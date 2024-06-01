@@ -25,6 +25,8 @@ export const EngineDetailColumn = ({
 }) => {
     const t = useTranslations("Tags")
 
+    console.log(relatedGames)
+
     const singleCardItemDetails: GameCardComponentProps[] = relatedGames.map((game: any) => ({
         game_id: game?.game_id,
         engine: game?.engineid,
@@ -125,7 +127,8 @@ export const EngineDetailColumn = ({
                         </div>
                     </div>
                 </div>
-               {singleCardItemDetails?.length > 0 &&  <div className="flex mb-10  flex-col  items-start gap-5">
+
+                <div className="flex mb-10  flex-col  items-start gap-5">
                     <Tag text={"MUD V1 GAMES"} type={"section"} />
                     <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
                         {singleCardItemDetails.map((detail, index) => (
@@ -134,7 +137,7 @@ export const EngineDetailColumn = ({
                             </div>
                         ))}
                     </div>
-                </div> }
+                </div>
 
                 <div className="flex mb-10 gap-x-5">
                     <SingleCard

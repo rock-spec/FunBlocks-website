@@ -36,15 +36,18 @@
         "sortBy": "Sort by",
         "type": "type",
         "playNow": "play now",
-        "filter by time": "filter by time" 
+        "filter by time": "filter by time"
     },
     "Tags": {
         "featuredGames": "featured games",
+        "featuredVideos": "featured videos",
+        "featuredArticles": "featured articles",
         "relatedGames": "related games",
         "relatedArticles": "related articles",
         "relatedNews": "related news",
         "relatedVideos": "related videos",
-        "relatedEvents": "related events"
+        "relatedEvents": "related events",
+        "latestNews": "latest news"
     },
     "Search": {
         "navSearch": "Search for anything",

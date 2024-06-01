@@ -2,7 +2,7 @@ import getHomeData from "@/controllers/homePageControllers"
 import { publicProcedure, router } from "./trpc"
 import { getBlockchains, getGameStudios, getEngines, getGameAllData } from "@/controllers/gamePageController"
 import { getNewsData } from "@/controllers/newsPageController"
-import { getarticlesData } from "@/controllers/articlePageController"
+import { getarticlesData, getfeaturedArticles } from "@/controllers/articlePageController"
 import { getVideosData } from "@/controllers/videoPageController"
 import { getEventsData } from "@/controllers/eventPageController"
 import { getEnginesData } from "@/controllers/enginePageController"
@@ -118,6 +118,10 @@ export const appRouter = router({
         console.log(input)
         // const newsData = await getNewsData()
         return ["qry"]
+    }),
+    featuredArticles: publicProcedure.query(async () => {
+        const featuredArticles = await getfeaturedArticles()
+        return featuredArticles
     }),
 })
 
