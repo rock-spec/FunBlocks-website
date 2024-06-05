@@ -9,6 +9,8 @@ import formatDate from "@/utils/dateFormat"
 import SupabaseInstance from "../../../supabase"
 import { Cabin } from "next/font/google"
 import { useTranslations } from "next-intl"
+import { type Locale } from "@/i18n.config"
+import HomeCarousalSkelton from "../LoadingSkelton/HomeCarousalSkelton"
 
 export const dynamic = "force-dynamic"
 
@@ -18,7 +20,7 @@ const cabin = Cabin({
     weight: ["700", "400", "500", "600"],
 })
 
-export const HomeColumn = ({ data }: { data: any }) => {
+export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
     const b = useTranslations("Buttons")
     const n = useTranslations("Navbar")
 
@@ -26,8 +28,10 @@ export const HomeColumn = ({ data }: { data: any }) => {
 
     const [sliderData, setSliderData]: any[] = useState([])
     const [featuredData, setFeaturedData]: any[] = useState([])
+    const [loading, setLoading] = useState<boolean>(true)
 
     const fetchData = async () => {
+        setLoading(true)
         let { data: featured, error } = await supabase.from("featured").select("*")
         if (featured) {
             setFeaturedData(featured)
@@ -37,6 +41,7 @@ export const HomeColumn = ({ data }: { data: any }) => {
         if (sliderData) {
             setSliderData(sliderData)
         }
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -47,7 +52,13 @@ export const HomeColumn = ({ data }: { data: any }) => {
         <>
             <div className="w-full">
                 <div className={`items-stretch flex mb-10 gap-x-5 lg:flex-row flex-col ${cabin.className}`}>
-                    {sliderData && <CarousalHome data={sliderData} />}
+                    {loading ? (
+                        <HomeCarousalSkelton />
+                    ) : (
+                        sliderData && <CarousalHome data={sliderData} />
+                    )}
+
+                    {/* <HomeCarousalSkelton /> */}
 
                     <div className=" h-full ">
                         <Column
@@ -66,7 +77,7 @@ export const HomeColumn = ({ data }: { data: any }) => {
                                     news.content.game.gamestudioid,
                                     news.content.game.blockchainid,
                                 ],
-                                title: news.content.title,
+                                title: news.content[`title_${locale}`],
                                 imageUrl: news.content.image,
                             }))}
                         />
@@ -96,8 +107,8 @@ export const HomeColumn = ({ data }: { data: any }) => {
                             variant: "article",
                             id: article.articleid,
                             imageUrl: `${article.content.image}?height=360&width=720`,
-                            title: article.content.title,
-                            description: article.content.description,
+                            title: article.content[`title_${locale}`],
+                            description: article.content[`description_${locale}`],
                             details: formatDate(article.content.publishdate),
                             tags: [article.content.game.gameid],
                             author: article.content.user.username,

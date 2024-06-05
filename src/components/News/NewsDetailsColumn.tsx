@@ -9,10 +9,11 @@ import SingleCard from "../SingleCard/SingleCard"
 import formatDate from "@/utils/dateFormat"
 import { Cabin } from "next/font/google"
 import { useTranslations } from "next-intl"
+import { type Locale } from "@/i18n.config"
 
 const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
 
-export const NewsDetailsColumn = ({ data }: { data: any }) => {
+export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
     const t = useTranslations("Tags")
 
     return (
@@ -24,7 +25,7 @@ export const NewsDetailsColumn = ({ data }: { data: any }) => {
                     }
                 >
                     <div className=" text-neutral-900 text-[28px] font-bold  leading-[33.60px] mb-[12px]">
-                        {data?.news?.content?.title}
+                        {data?.news?.content?.[`title_${locale}`]}
                     </div>
                     <div className="flex gap-1 mb-[24px]">
                         {[data.relatedData.game[0].gameid].map((tag, index) => (
@@ -41,6 +42,11 @@ export const NewsDetailsColumn = ({ data }: { data: any }) => {
                         </div>
                     </div>
 
+                    <div className="my-6">
+                        <h1 className="font-semibold text-xl mt-6 mb-3">Summary</h1>
+                        <p className="">{data?.news?.content?.[`description_${locale}`]}</p>
+                    </div>
+
                     <Image
                         alt="banner"
                         height={487.44}
@@ -50,7 +56,8 @@ export const NewsDetailsColumn = ({ data }: { data: any }) => {
                     />
 
                     <div
-                        dangerouslySetInnerHTML={{ __html: data?.news?.body }}
+                        // dangerouslySetInnerHTML={{ __html: data?.news?.body }}
+                        dangerouslySetInnerHTML={{ __html: data?.news?.content?.[`content_${locale}`] }}
                         className={
                             "text-neutral-900 text-base font-normal  leading-normal mb-[20.28px] " +
                             cabin.className
@@ -65,11 +72,11 @@ export const NewsDetailsColumn = ({ data }: { data: any }) => {
                             id: article.articleid,
                             variant: "article",
                             imageUrl: `${article.content.image}?height=360&width=720`,
-                            title: article.content.title,
-                            description: article.content.description,
-                            details: formatDate(article.content.publishdate),
-                            tags: [article.content.game.gameid],
-                            author: article.content.user.username,
+                            title: article?.content?.[`title_${locale}`],
+                            description: article?.content?.[`description_${locale}`],
+                            details: formatDate(article?.content?.publishdate),
+                            tags: [article?.content?.game?.gameid],
+                            author: article?.content?.user?.username,
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},
                         }))}

@@ -1,25 +1,25 @@
-import { trpcServer } from '@/app/_trpc/trpcServer';
+import { trpcServer } from "@/app/_trpc/trpcServer"
 import { ArticleDetailsColumn } from "@/components/Articles/ArticleDetailsColumn"
 import { Column } from "@/components/Column/Column"
 import React from "react"
 import { getTranslations } from "next-intl/server"
+import { type Locale } from "@/i18n.config"
 
 export const dynamic = "force-dynamic"
 
-const ArticleDetails = async ({ params }: { params: { id: string } }) => {
+const ArticleDetails = async ({ params }: { params: { id: string; locale: Locale } }) => {
     const t = await getTranslations("Tags")
     const n = await getTranslations("Navbar")
 
-    const id = params.id // Access the dynamic id parameter
-    const data = await trpcServer().articleDetailsData(id)
-    
+    const { id, locale } = params
+    const data = await trpcServer().articleDetailsData({ id, locale })
 
     const { relatedArticles, game } = data.relatedData
 
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
             {/* Main Column  */}
-            <ArticleDetailsColumn data={data} />
+            <ArticleDetailsColumn data={data} locale={locale} />
             {/* {JSON.stringify(articlesDetails)} */}
 
             {/* Right Column */}
@@ -48,7 +48,7 @@ const ArticleDetails = async ({ params }: { params: { id: string } }) => {
                         id: article?.articleid,
                         variant: "article",
                         tags: [],
-                        title: article?.content?.title,
+                        title: article?.content?.[`title_${locale}`],
                         imageUrl: article?.content?.image,
                     }))}
                 />

@@ -8,8 +8,9 @@ import SearchInput from "../SearchInput/SearchInput"
 import { IoIosArrowDown } from "react-icons/io"
 import formatDate from "@/utils/dateFormat"
 import { useTranslations } from "next-intl"
+import { type Locale } from "@/i18n.config"
 
-export const ArticleColumn = ({ data }: { data: any }) => {
+export const ArticleColumn = ({ data, locale }: { data: any; locale: Locale }) => {
     const b = useTranslations("Buttons")
     const s = useTranslations("Search")
 
@@ -37,13 +38,13 @@ export const ArticleColumn = ({ data }: { data: any }) => {
 
     const singleCardItemDetails: SingleCardItemProps[] = articleFilterData?.map((article: any) => ({
         variant: "article",
-        id: article.articleid,
-        imageUrl: `${article.content.image}?height=360&width=720`,
-        title: article.content.title,
-        description: article.content.description,
-        details: formatDate(article.content.publishdate),
-        tags: [article.content.game.gameid],
-        author: article.content.user.username,
+        id: article?.articleid,
+        imageUrl: `${article?.content?.image}?height=360&width=720`,
+        title: article?.content?.[`title_${locale}`],
+        description: article?.content?.[`description_${locale}`],
+        details: formatDate(article?.content?.publishdate),
+        tags: [article?.content?.game?.gameid],
+        author: article?.content?.user?.username,
         onFirstButtonClick: () => {},
         onSecondButtonClick: () => {},
     }))
