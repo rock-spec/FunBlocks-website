@@ -1,14 +1,15 @@
-import { trpcServer } from '@/app/_trpc/trpcServer';
+import { trpcServer } from "@/app/_trpc/trpcServer"
 import { ArticleDetailsColumn } from "@/components/Articles/ArticleDetailsColumn"
 import { Column } from "@/components/Column/Column"
 import { EventDetailsColumn } from "@/components/Events/EventDetailsColumn"
 import React from "react"
 export const dynamic = "force-dynamic"
 import { getTranslations } from "next-intl/server"
+import { Locale } from "@/i18n.config"
 
-const EventDetails = async ({ params }: { params: { id: string } }) => {
-    const id = params.id // Access the dynamic id parameter
-    const data = await trpcServer().eventDetailsData(id)
+const EventDetails = async ({ params }: { params: { id: string; locale: Locale } }) => {
+    const { id, locale } = params
+    const data = await trpcServer().eventDetailsData({ id, locale })
     const games = data.relatedData.game
     const articles = data.relatedData.relatedArticles
 
@@ -18,7 +19,7 @@ const EventDetails = async ({ params }: { params: { id: string } }) => {
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
             {/* Main Column  */}
-            <EventDetailsColumn data={data} />
+            <EventDetailsColumn data={data} locale={locale} />
             {/* Right Column */}
             <div className="flex-col justify-items-start items-center h-fit ">
                 <Column
@@ -45,7 +46,7 @@ const EventDetails = async ({ params }: { params: { id: string } }) => {
                         id: article.articleid,
                         variant: "article",
                         tags: [],
-                        title: article.content.title,
+                        title: article.content[`title_${locale}`],
                         imageUrl: article.content.image,
                     }))}
                 />

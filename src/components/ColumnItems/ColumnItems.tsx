@@ -10,6 +10,7 @@ export interface SingleColumnProps {
     id?: string
     variant: "game" | "article" | "news" | "search"
     title: string
+    content?: string
     author?: string
     details?: string
     description?: string
@@ -26,13 +27,15 @@ const cabin = Cabin({
 })
 
 export const ColumnItems = (props: SingleColumnProps) => {
-    const {search, variant, title, onClick, imageUrl, tags = [], id } = props
+    const { search, variant, title, onClick, imageUrl, tags = [], id } = props
 
     const img_size = 180
     const containerHeight = 80
     const imageHeight = 80
     const imageWidth = 80
     const classnames = variant === "news" || variant === "article" ? "line-clamp-3" : ""
+
+    
 
     return (
         <Link href={`/${variant}/${id}`} className="">
@@ -57,7 +60,9 @@ export const ColumnItems = (props: SingleColumnProps) => {
                 />
                 <div className="grow shrink basis-0 h-full flex-col justify-start items-start gap-2 inline-flex">
                     <div
-                        className={` self-stretch text-neutral-900 ${search ? "text-base line-clamp-3 " :"text-sm" } leading-tight  ${classnames} ${cabin.className} font-bold`}
+                        className={` self-stretch text-neutral-900 ${
+                            search ? "text-base line-clamp-3 " : "text-sm"
+                        } leading-tight  ${classnames} ${cabin.className} font-bold`}
                     >
                         {title}
                     </div>

@@ -1,21 +1,22 @@
+import { Locale } from "@/i18n.config"
 import SupabaseInstance from "../../supabase"
 
 const supabase = SupabaseInstance.getSupabaseInstance()
 
-const getAllArticles = async () => {
+const getAllArticles = async (locale: Locale) => {
     const { data, error } = await supabase
         .from("articles")
-        .select("*,content(*,user(username),game(gameid,engineid,gamestudioid,blockchainid))")
+        .select(
+            `*,content(title_${locale}, description_${locale},content_${locale} ,image, publishdate ,user(username),game(gameid,engineid,gamestudioid,blockchainid))`
+        )
     if (error) {
         throw new Error("Error fetching articles: " + error.message)
     }
-
     return data || []
 }
 
 const getFeaturedGameData = async () => {
     const { data, error } = await supabase.from("game").select("*").range(0, 5)
-
     if (error) {
         throw new Error("Error fetching games: " + error.message)
     }
@@ -24,7 +25,10 @@ const getFeaturedGameData = async () => {
 }
 
 const getFeaturedArticlesData = async () => {
-    const { data, error } = await supabase.from("articles").select("articleid,content(title,image)").range(0, 5)
+    const { data, error } = await supabase
+        .from("articles")
+        .select("articleid,content(title,image)")
+        .range(0, 5)
 
     if (error) {
         throw new Error("Error fetching articles: " + error.message)
@@ -33,8 +37,8 @@ const getFeaturedArticlesData = async () => {
     return data || []
 }
 
-export const getarticlesData = async () => {
-    const articles = await getAllArticles()
+export const getarticlesData = async (locale: Locale) => {
+    const articles = await getAllArticles(locale)
     const featuredGames = await getFeaturedGameData()
 
     return { articles, featuredGames }
