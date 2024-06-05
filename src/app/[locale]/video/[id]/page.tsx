@@ -3,16 +3,17 @@ import { Column } from "@/components/Column/Column"
 import { VideoDetailsColumn } from "@/components/Videos/VideoDetailsColumn"
 import React from "react"
 import { getTranslations } from "next-intl/server"
+import { Locale } from "@/i18n.config"
 
 export const dynamic = "force-dynamic"
 
-const VideoDetails = async ({ params }: { params: { id: string } }) => {
+const VideoDetails = async ({ params }: { params: { id: string; locale: Locale } }) => {
     const t = await getTranslations("Tags")
     const n = await getTranslations("Navbar")
 
     const id = params.id.replace(/%20/g, " ").replace(/%3A/g, ":").toString() //to remove string and make it so i can search the data// Access the dynamic id parameter
-
-    const data = await trpcServer().videoDetailsData(id)
+    const locale = params.locale
+    const data = await trpcServer().videoDetailsData({ id, locale })
     const game = data.relatedData.game
     const relatedArticles = data.relatedData.relatedArticles
 
@@ -38,19 +39,21 @@ const VideoDetails = async ({ params }: { params: { id: string } }) => {
                 />
                 {/* for space between them */}
                 <div className="h-[24px] w-full"></div>
-                <Column
-                    variant="article"
-                    title={t("relatedArticles")}
-                    responsive
-                    onButtonClick={() => {}}
-                    columnItems={relatedArticles?.map((article: any) => ({
-                        id: article?.articleid,
-                        variant: "article",
-                        tags: ["test"],
-                        title: article?.content?.title,
-                        imageUrl: article?.content?.image,
-                    }))}
-                />
+                {relatedArticles.length > 0 && (
+                    <Column
+                        variant="article"
+                        title={t("relatedArticles")}
+                        responsive
+                        onButtonClick={() => {}}
+                        columnItems={relatedArticles?.map((article: any) => ({
+                            id: article?.articleid,
+                            variant: "article",
+                            tags: ["test"],
+                            title: article?.content?.[`title_${locale}`],
+                            imageUrl: article?.content?.image,
+                        }))}
+                    />
+                )}
             </div>
         </div>
     )

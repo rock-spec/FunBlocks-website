@@ -2,6 +2,7 @@ import React from "react"
 import { HomeColumn } from "./HomeColumn"
 import { Column } from "../Column/Column"
 import { trpcServer } from "@/app/_trpc/trpcServer"
+import { type Locale } from "@/i18n.config"
 // import { trpcServer } from "@/app/[locale]/_trpc/trpcServer"
 
 interface Game {
@@ -87,9 +88,10 @@ export interface Data {
     events: Event[]
 }
 
-const Homee = async ({ n, b }: { n?: any; b?: any }) => {
-    const HomeData = await trpcServer().homeData()
+const Homee = async ({ n, b, locale }: { n?: any; b?: any; locale: Locale }) => {
+    const HomeData = await trpcServer().homeData(locale)
     const game = HomeData.games
+
 
     return (
         <div className="relatve w-full max-w-[1200px] flex flex-col  justify-between lg:gap-x-5 lg:flex-row">
@@ -110,7 +112,7 @@ const Homee = async ({ n, b }: { n?: any; b?: any }) => {
                 }))}
             />
             {/* Main Column  */}
-            <HomeColumn data={HomeData} />
+            <HomeColumn data={HomeData} locale={locale}/>
         </div>
     )
 }

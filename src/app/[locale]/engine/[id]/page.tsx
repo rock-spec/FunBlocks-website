@@ -1,15 +1,17 @@
-import { trpcServer } from '@/app/_trpc/trpcServer';
+import { trpcServer } from "@/app/_trpc/trpcServer"
 import { Column } from "@/components/Column/Column"
 import { EngineDetailColumn } from "@/components/Engine/EngineDetailColumn"
 import { GameDetailColumn } from "@/components/Games/GameDetailColumn"
 import React from "react"
 import { getTranslations } from "next-intl/server"
+import { Locale } from "@/i18n.config"
 
 export const dynamic = "force-dynamic"
 
-const EngineDetail = async ({ params }: { params: { id: string } }) => {
+const EngineDetail = async ({ params }: { params: { id: string; locale: Locale } }) => {
     const id = params.id.replace(/%20/g, " ").toString()
-    const data = await trpcServer().engineDetailsData(id)
+    const locale = params.locale
+    const data = await trpcServer().engineDetailsData({ id, locale })
     const relatedNews = data.relatedNews
     const relatedArticles = data.relatedArticles
     const relatedVideos = data.relatedVideos

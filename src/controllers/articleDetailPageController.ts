@@ -1,5 +1,6 @@
 import SupabaseInstance from "../../supabase"
 import { getGameRelatedData } from "./utilControllers"
+import { type Locale } from "@/i18n.config"
 
 const supabase = SupabaseInstance.getSupabaseInstance()
 
@@ -28,11 +29,11 @@ interface Article {
     }
 }
 
-const articleData = async (article_id: string) => {
+const articleData = async (article_id: string, locale: Locale) => {
     const { data, error } = await supabase
         .from("articles")
         .select(
-            "articleid, body,content(*,user(username),gameid,game(gameid,engineid,gamestudioid,blockchainid))"
+            `articleid, body,content(title_${locale}, description_${locale},content_${locale} ,image, publishdate ,user(username),gameid,game(gameid,engineid,gamestudioid,blockchainid))`
         )
         .eq("articleid", article_id)
 
@@ -42,9 +43,10 @@ const articleData = async (article_id: string) => {
     return <Article>(data[0] as unknown) || []
 }
 
-export const getArticleDetailPageData = async (article_id: string) => {
-    const article: Article = await articleData(article_id)
-    const relatedData = await getGameRelatedData(article.content.gameid)
-
+export const getArticleDetailPageData = async ({ id, locale }: { id: string; locale: Locale }) => {
+    const article_id = id
+    const article: Article = await articleData(article_id, locale)
+    const gameId = article?.content?.gameid
+    const relatedData = await getGameRelatedData(gameId, locale)
     return { article, relatedData }
 }

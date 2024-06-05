@@ -2,20 +2,20 @@ import { Column } from "@/components/Column/Column"
 import { NewsColumn } from "@/components/News/NewsColumn"
 import React from "react"
 import { trpcServer } from "@/app/_trpc/trpcServer"
-// import { useTranslations } from "next-intl"
 import { getTranslations } from "next-intl/server"
+import { type Locale } from "@/i18n.config"
 
 export const dynamic = "force-dynamic"
-
-const News = async () => {
+const News = async ({ params: { locale } }: { params: { locale: Locale } }) => {
     const b = await getTranslations("Buttons")
     const t = await getTranslations("Tags")
 
-    const { featuredGames, news } = await trpcServer().newsData()
+    const { featuredGames, news } = await trpcServer().newsData(locale)
+    
     return (
         <div className="w-full max-w-[1200px] flex flex-col lg:flex-row justify-between gap-x-5 ">
             {/* Main Column  */}
-            <NewsColumn data={news} />
+            <NewsColumn data={news} locale={locale}/>
 
             {/* Right Column */}
             <Column

@@ -9,10 +9,10 @@ import formatDate from "@/utils/dateFormat"
 import { Cabin } from "next/font/google"
 import BlueButton from "../Button/BlueButton"
 const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
-// import { useTranslations } from "next-intl"
 import { getTranslations } from "next-intl/server"
+import { type Locale } from "@/i18n.config"
 
-export const GameDetailColumn = async ({ data }: { data: any }) => {
+export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Locale }) => {
     const t = await getTranslations("Tags")
     const b = await getTranslations("Buttons")
 
@@ -80,8 +80,8 @@ export const GameDetailColumn = async ({ data }: { data: any }) => {
                             id: article.articleid,
                             variant: "article",
                             imageUrl: `${article.content.image}?height=360&width=720`,
-                            title: article.content.title,
-                            description: article.content.description,
+                            title: article.content[`title_${locale}`],
+                            description: article.content[`description_${locale}`],
                             details: formatDate(article.content.publishdate),
                             tags: [article.content.game.gameid],
                             author: article.content.user.username,

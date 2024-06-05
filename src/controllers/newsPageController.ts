@@ -1,11 +1,15 @@
 import SupabaseInstance from "../../supabase"
+import { type Locale } from "@/i18n.config"
 
 const supabase = SupabaseInstance.getSupabaseInstance()
 
-const getAllNews = async () => {
+const getAllNews = async (locale: Locale) => {
+    locale
     const { data, error } = await supabase
         .from("news")
-        .select("newsid, category, content(*,user(username),game(gameid,engineid,gamestudioid,blockchainid))")
+        .select(
+            `newsid, category, content(title_${locale}, description_${locale}, publishdate, image, user(username),game(gameid,engineid,gamestudioid,blockchainid))`
+        )
     if (error) {
         throw new Error("Error fetching news: " + error.message)
     }
@@ -22,8 +26,8 @@ const getFeaturedGameData = async () => {
     return data || []
 }
 
-export const getNewsData = async () => {
-    const news = await getAllNews()
+export const getNewsData = async (locale: Locale) => {
+    const news = await getAllNews(locale)
     const featuredGames = await getFeaturedGameData()
 
     return { news, featuredGames }

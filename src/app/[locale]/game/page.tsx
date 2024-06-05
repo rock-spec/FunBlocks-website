@@ -13,6 +13,7 @@ interface FilterOptions {
     blockchainIds?: string
     engineIds?: string
     gameStudioIds?: string
+    locale: Locale
 }
 
 const Game = async ({
@@ -32,6 +33,7 @@ const Game = async ({
         blockchainIds: searchParams.blockchain || "",
         engineIds: searchParams.engine || "",
         gameStudioIds: searchParams.studio || "",
+        locale: locale,
     }
 
     // Parallel fetching of data using Promise.allSettled
@@ -65,7 +67,6 @@ const Game = async ({
                 enginesList={enginesList}
                 data={gameData.game}
             />
-
             {/* Main Column  */}
             <div>
                 <div className="flex justify-between items-center w-full mb-10 gap-x-4">

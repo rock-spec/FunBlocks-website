@@ -1,4 +1,5 @@
 import SupabaseInstance from "../../supabase"
+import { type Locale } from "@/i18n.config"
 
 const supabase = SupabaseInstance.getSupabaseInstance()
 
@@ -8,10 +9,10 @@ interface FilterOptions {
     gameStudioIds?: string[]
 }
 
-const getNews = async () => {
+const getNews = async (locale: Locale) => {
     const { data, error } = await supabase
         .from("news")
-        .select("newsid,content(title,image,game(gameid,engineid,gamestudioid,blockchainid))")
+        .select(`newsid,content(title_${locale},image,game(gameid,engineid,gamestudioid,blockchainid))`)
         .range(0, 3)
 
     if (error) {
@@ -21,7 +22,7 @@ const getNews = async () => {
     return data || []
 }
 
-export const getGameAllData = async (filters: FilterOptions) => {
+export const getGameAllData = async (filters: FilterOptions, locale: Locale) => {
     const blockchainIds = filters.blockchainIds || []
     const engineIds = filters.engineIds || []
     const gameStudioIds = filters.gameStudioIds || []
@@ -39,23 +40,19 @@ export const getGameAllData = async (filters: FilterOptions) => {
     // Construct the query
     let query = supabase.from("game").select()
     // let query = supabase.from("game").select("*, engine(engineid,logo)")
-    
 
     // Apply the OR condition if there are any combined conditions
     if (combinedConditions) {
         query = query.or(combinedConditions)
     }
-
     const { data, error } = await query
-
     if (error) {
         console.error("Error fetching data:", error)
         throw new Error("Error fetching games: " + error.message)
     }
-
-    const news = await getNews()
-
-    return { game: data, news }
+    // const news = await getNews(locale)
+    // return { game: data, news }
+    return { game: data }
 }
 
 export const getBlockchains = async () => {

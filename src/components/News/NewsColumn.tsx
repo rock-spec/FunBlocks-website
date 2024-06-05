@@ -2,14 +2,14 @@
 
 import React, { useEffect, useState } from "react"
 import SingleCardItem, { SingleCardItemProps } from "../SingleCardItem/SingleCardItem"
-// import { CustomButton } from "../Button/Button"
 import SearchInput from "../SearchInput/SearchInput"
-// import { IoIosArrowDown } from "react-icons/io"
 import formatDate from "@/utils/dateFormat"
 import CustomDropDown from "../DropDown/DropDown"
 import { useTranslations } from "next-intl"
+import { type Locale } from "@/i18n.config"
 
-export const NewsColumn = ({ data }: { data: any }) => {
+export const NewsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
+    
     const b = useTranslations("Buttons")
     const s = useTranslations("Search")
 
@@ -39,8 +39,8 @@ export const NewsColumn = ({ data }: { data: any }) => {
         variant: "news",
         id: news.newsid,
         imageUrl: `${news.content.image}?height=360&width=720`,
-        title: news.content.title,
-        description: news.content.description,
+        title: news.content[`title_${locale}`],
+        description: news.content[`description_${locale}`],
         details: formatDate(news.content.publishdate),
         tags: [news.content.game.gameid],
         author: news.content.user.username,
