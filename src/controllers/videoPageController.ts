@@ -5,7 +5,7 @@ const supabase = SupabaseInstance.getSupabaseInstance()
 const getAllVideos = async () => {
     const { data, error } = await supabase
         .from("videos")
-        .select("category, videoid,video_name,summary,media_url,gameid, publishdate, user(username)")
+        .select("category, videoid,video_name,summary,media_url,gameid, publishdate, author(name)")
 
     if (error) {
         throw new Error("Error fetching videos: " + error.message)

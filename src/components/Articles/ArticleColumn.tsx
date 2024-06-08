@@ -35,7 +35,7 @@ export const ArticleColumn = ({ data, locale }: { data: any; locale: Locale }) =
             )
         })
     }
-
+    
     const singleCardItemDetails: SingleCardItemProps[] = articleFilterData?.map((article: any) => ({
         variant: "article",
         id: article?.articleid,
@@ -44,7 +44,7 @@ export const ArticleColumn = ({ data, locale }: { data: any; locale: Locale }) =
         description: article?.content?.[`description_${locale}`],
         details: formatDate(article?.content?.publishdate),
         tags: [article?.content?.game?.gameid],
-        author: article?.content?.user?.username,
+        author: article?.content?.author?.name,
         onFirstButtonClick: () => {},
         onSecondButtonClick: () => {},
     }))

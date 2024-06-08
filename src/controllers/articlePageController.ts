@@ -7,7 +7,7 @@ const getAllArticles = async (locale: Locale) => {
     const { data, error } = await supabase
         .from("articles")
         .select(
-            `*,content(title_${locale}, description_${locale},content_${locale} ,image, publishdate ,user(username),game(gameid,engineid,gamestudioid,blockchainid))`
+            `*,content(title_${locale}, description_${locale},content_${locale} ,image, publishdate ,author(name),game(gameid,engineid,gamestudioid,blockchainid))`
         )
     if (error) {
         throw new Error("Error fetching articles: " + error.message)
