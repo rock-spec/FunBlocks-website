@@ -5,7 +5,7 @@ import { getGameRelatedData } from "./utilControllers"
 const supabase = SupabaseInstance.getSupabaseInstance()
 
 const videoData = async (video_id: string) => {
-    const { data, error } = await supabase.from("videos").select("*,user(username)").eq("videoid", video_id)
+    const { data, error } = await supabase.from("videos").select("*,author(name)").eq("videoid", video_id)
 
     if (error) {
         throw new Error("Error fetching videos: " + error.message)

@@ -11,7 +11,6 @@ import { useTranslations } from "next-intl"
 import CustomDropDown from "../DropDown/DropDown"
 
 export const VideoColumn = ({ data }: { data: any }) => {
-    console.log({ VideoColumn: data })
 
     const [videoFilterData, setVideoFilterData] = useState(data)
     const [category, setCategory] = useState<string[]>([])
@@ -35,17 +34,6 @@ export const VideoColumn = ({ data }: { data: any }) => {
         })
     }
 
-    // const singleCardItemDetails: SingleCardItemProps[] = videoFilterData.map((video: any) => ({
-    //     key: video?.videoid,
-    //     variant: "video",
-    //     id: video.videoid,
-    //     imageUrl: video.media_url, //This is video url for video
-    //     title: video.video_name,
-    //     description: video.summary,
-    //     tags: [],
-    //     onFirstButtonClick: () => {},
-    //     onSecondButtonClick: () => {},
-    // }))
     const singleCardItemDetails: any[] = videoFilterData.map((video: any) => ({
         key: video?.videoid,
         variant: "video",
@@ -56,7 +44,7 @@ export const VideoColumn = ({ data }: { data: any }) => {
         tags: [],
         gameid: video.gameid,
         date:video.publishdate,
-        author:video.user.username,
+        author:video.author.name,
         onFirstButtonClick: () => {},
         onSecondButtonClick: () => {},
     }))

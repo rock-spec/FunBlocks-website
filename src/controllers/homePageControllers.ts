@@ -30,7 +30,7 @@ const getArticles = async (locale: string) => {
     const { data, error } = await supabase
         .from("articles")
         .select(
-            `articleid,content(contentid,image, title_${locale}, description_${locale}, publishdate,user(*),game(gameid,engineid,gamestudioid,blockchainid,engine(logo,pic)))`
+            `articleid,content(contentid,image, title_${locale}, description_${locale}, publishdate,author(*),game(gameid,engineid,gamestudioid,blockchainid,engine(logo,pic)))`
         )
         .eq("isHome", true)
 

@@ -8,7 +8,7 @@ const getAllNews = async (locale: Locale) => {
     const { data, error } = await supabase
         .from("news")
         .select(
-            `newsid, category, content(title_${locale}, description_${locale}, publishdate, image, user(username),game(gameid,engineid,gamestudioid,blockchainid))`
+            `newsid, category, content(title_${locale}, description_${locale}, publishdate, image, author(name),game(gameid,engineid,gamestudioid,blockchainid))`
         )
     if (error) {
         throw new Error("Error fetching news: " + error.message)

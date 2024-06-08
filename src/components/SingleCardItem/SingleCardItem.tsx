@@ -20,7 +20,7 @@ export interface SingleCardItemProps {
     details?: string
     description?: string
     tags?: string[]
-    zone?: string
+    timezone?: string
     url?: string
     onFirstButtonClick: () => void
     onSecondButtonClick: () => void
@@ -36,7 +36,6 @@ const SingleCardItem = (props: SingleCardItemProps) => {
     const {
         variant,
         imageUrl,
-        zone,
         title,
         id,
         description = "",
@@ -46,6 +45,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         onSecondButtonClick,
         tags = [],
         author = "",
+        timezone = ""
     } = props
 
     return (
@@ -110,7 +110,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                                     {details}
                                 </div>
                                 <div className="w-[6px] aspect-square opacity-90 hidden md:block bg-neutral-900" />
-                                <p>EST</p>
+                                <p className="uppercase">{timezone}</p>
                             </div>
                         </div>
                     ) : (
@@ -122,8 +122,8 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                             </div>
 
                             <div className="justify-start md:items-center gap-2 flex md:flex-row flex-col md:ml-2">
-                                <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px]">
-                                    By {author}
+                                <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px] capitalize">
+                                    By {author ? author : "Editor"}
                                 </div>
                                 <div className="w-[5px] h-[5px] hidden md:block  opacity-80 bg-neutral-900" />
                                 <div className="text-neutral-900 text-opacity-80 text-sm font-normal  leading-[16.80px]">
