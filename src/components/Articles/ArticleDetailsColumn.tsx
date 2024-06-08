@@ -1,8 +1,3 @@
-import React from "react"
-// import SingleCardItem, { SingleCardItemProps } from "../SingleCardItem/SingleCardItem"
-// import { CustomButton } from "../Button/Button"
-// import SearchInput from "../SearchInput/SearchInput"
-// import { IoIosArrowDown } from "react-icons/io"
 import { Tag } from "../Tag/Tag"
 import Image from "next/image"
 import SingleCard from "../SingleCard/SingleCard"
@@ -19,7 +14,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
 
     return (
         <>
-            <div className="m-w-[895px] w-full ">
+            <div className="w-[895px] ">
                 <div
                     className={
                         "flex-col w-full mb-10 p-5 border border-[#161616] bg-[#FFFCF9] " + cabin.className
@@ -33,8 +28,8 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                             <Tag text={tag} key={index} type={"relevance"} linkto="game" />
                         ))}
                         <div className="justify-start items-center gap-2 flex ml-2">
-                            <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px]">
-                                {data.article.content.user.username}
+                            <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px] capitalize">
+                                By {data?.article?.content?.author?.name}
                             </div>
                             <div className="w-[5px] h-[5px] opacity-80 bg-neutral-900" />
                             <div className="text-neutral-900 text-opacity-80 text-sm font-normal  leading-[16.80px]">
@@ -53,7 +48,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         className="mb-[24px] object-cover object-center w-[855.58px] "
                         src={data.article.content.image}
                     />
-                    <div className="text-neutral-900 text-base font-normal  leading-normal mb-[20.28px]">
+                    <div className="text-neutral-900 text-base font-normal  leading-normal mb-[20.28px] break-words">
                         {data?.article?.content?.[`content_${locale}`] &&
                             renderHTML(data?.article?.content?.[`content_${locale}`])}
                     </div>

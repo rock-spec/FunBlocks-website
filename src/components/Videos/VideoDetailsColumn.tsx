@@ -1,18 +1,22 @@
+// "use client"
+
 import React from "react"
 import { Tag } from "../Tag/Tag"
 import Image from "next/image"
 import SingleCard from "../SingleCard/SingleCard"
 import formatDate from "@/utils/dateFormat"
-import { getTranslations } from "next-intl/server"
+// import { getTranslations } from "next-intl/server"
+import { useTranslations } from "next-intl"
 import { Cabin } from "next/font/google"
+import VideoPlayer from "./VideoPlayer"
 
 const cabin = Cabin({
     subsets: ["latin"],
     weight: ["700"],
 })
 
-export const VideoDetailsColumn = async ({ data }: { data: any }) => {
-    const t = await getTranslations("Tags")
+export const VideoDetailsColumn = ({ data }: { data: any }) => {
+    const t = useTranslations("Tags")
 
     const video = data?.video
 
@@ -30,8 +34,8 @@ export const VideoDetailsColumn = async ({ data }: { data: any }) => {
                             <Tag text={tag} key={index} type={"relevance"} linkto="game" />
                         ))}
                         <div className="justify-start items-center gap-2 flex ml-2">
-                            <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px]">
-                                By {video?.user?.username}
+                            <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px] capitalize">
+                                By {video?.author?.name}
                             </div>
                             <div className="w-[5px] h-[5px] opacity-80 bg-neutral-900" />
                             <div className="text-neutral-900 text-opacity-80 text-sm font-normal leading-[16.80px]">
@@ -43,7 +47,10 @@ export const VideoDetailsColumn = async ({ data }: { data: any }) => {
                     <div className="relative">
                         <div className="w-full h-full">
                             <div style={{ position: "relative", width: "100%", height: "100%" }}>
-                                <iframe
+                                <VideoPlayer videoUrl={video?.media_url} />
+                                {/* <ReactPlayer width={"857px"} height={"487px"} url={video?.media_url} /> */}
+
+                                {/* <iframe
                                     src={video?.media_url}
                                     title={video?.video_name}
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -51,7 +58,7 @@ export const VideoDetailsColumn = async ({ data }: { data: any }) => {
                                     allowFullScreen
                                     style={{ top: 0, left: 0 }}
                                     className="lg:h-[487.44px] h-full w-full lg:w-[857.55px]"
-                                ></iframe>
+                                ></iframe> */}
                             </div>
                         </div>
                     </div>

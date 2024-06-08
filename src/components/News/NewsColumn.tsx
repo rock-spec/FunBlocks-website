@@ -9,7 +9,6 @@ import { useTranslations } from "next-intl"
 import { type Locale } from "@/i18n.config"
 
 export const NewsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
-    
     const b = useTranslations("Buttons")
     const s = useTranslations("Search")
 
@@ -43,7 +42,7 @@ export const NewsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
         description: news.content[`description_${locale}`],
         details: formatDate(news.content.publishdate),
         tags: [news.content.game.gameid],
-        author: news.content.user.username,
+        author: news?.content?.author?.name,
         onFirstButtonClick: () => {},
         onSecondButtonClick: () => {},
     }))

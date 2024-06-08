@@ -7,6 +7,7 @@ import { Tag } from "../Tag/Tag"
 import Image from "next/image"
 import SingleCard from "../SingleCard/SingleCard"
 import formatDate from "@/utils/dateFormat"
+import formatTimestamp from "@/utils/formatdateInoriginalForm"
 import { Cabin } from "next/font/google"
 import BlueButton from "../Button/BlueButton"
 import { useTranslations } from "next-intl"
@@ -69,11 +70,12 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                     <div className="justify-start items-center gap-2 flex ">
                         <Image src="/date-icon.svg" alt="Date" width={12} height={12} />
                         <div className="text-neutral-900 text-opacity-80 text-sm font-normal  leading-[16.80px]">
-                            {formatDate(eventDetails.startdate)} - {formatDate(eventDetails.enddate)}
+                            {formatTimestamp(eventDetails.startdate)} -{" "}
+                            {formatTimestamp(eventDetails.enddate)}
                         </div>
                         <div className="w-[5px] h-[5px] opacity-80 bg-neutral-900" />
                         <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px]">
-                            {/* EST */}
+                            {eventDetails.timezone}
                         </div>
                     </div>
                     <div className="justify-start items-center gap-2 flex mt-2">

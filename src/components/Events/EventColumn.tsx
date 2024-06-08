@@ -6,10 +6,12 @@ import { CustomButton } from "../Button/Button"
 import SearchInput from "../SearchInput/SearchInput"
 import { IoIosArrowDown } from "react-icons/io"
 import formatDate from "@/utils/dateFormat"
+import formatTimestamp from "@/utils/formatdateInoriginalForm"
 import { useTranslations } from "next-intl"
 import CustomDropDown from "../DropDown/DropDown"
 
 export const EventColumn = ({ data }: { data: any }) => {
+
     const s = useTranslations("Search")
     const b = useTranslations("Buttons")
 
@@ -25,8 +27,8 @@ export const EventColumn = ({ data }: { data: any }) => {
         variant: "event",
         imageUrl: `${event.pic}?height=360&width=720`,
         title: event.title,
-        details: `${formatDate(event.startdate)} - ${formatDate(event.enddate)}`,
-        // 'zone': "EST",
+        details: `${formatTimestamp(event.startdate)} - ${formatTimestamp(event.enddate)}`,
+        timezone: event.timezone,
         tags: [event.game.gameid],
         onFirstButtonClick: () => {},
         onSecondButtonClick: () => {},
