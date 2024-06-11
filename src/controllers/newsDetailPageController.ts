@@ -34,7 +34,7 @@ const newsData = async (news_id: string, locale: Locale) => {
         const { data, error } = await supabase
             .from("news")
             .select(
-                `*,content(title_${locale}, description_${locale},content_${locale} ,image, publishdate ,user(username),gameid,game(gameid,engineid,gamestudioid,blockchainid))`
+                `*,content(title_${locale}, description_${locale},content_${locale} ,image, publishdate ,author(authorid, name),gameid,game(gameid,engineid,gamestudioid,blockchainid))`
             )
             .eq("newsid", news_id)
 

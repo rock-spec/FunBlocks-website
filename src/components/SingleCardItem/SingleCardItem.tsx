@@ -1,9 +1,6 @@
 import React from "react"
 import Image from "next/image"
-import Button from "@mui/joy/Button"
 import { Tag } from "../Tag/Tag"
-import { CustomButton } from "../Button/Button"
-// import Link from "next/link"
 import { Link } from "@/i18n.config"
 import { Cabin } from "next/font/google"
 import BlueButton from "../Button/BlueButton"
@@ -61,24 +58,21 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                 > */}
                 <div
                     className={
-                        "relative rounded-[4px] border border-[#161616] overflow-hidden w-[270px] " +
+                        "relative rounded-[4px] border border-[#161616] overflow-hidden " +
                         cabin.className
                     }
                 >
                     <Image
-                        className=" w-full h-[153px] object-cover "
+                        className=""
                         src={imageUrl}
                         alt="Image"
                         width={300}
-                        height={153}
-                        layout="fixed"
-                        objectFit="cover"
-                        objectPosition="center"
+                        height={150}
                     />
                 </div>
             </Link>
             {/* Second Column */}
-            <div className="flex flex-col w-full">
+            <div className="flex flex-col w-full h-full">
                 {/* First Row */}
                 <div className="flex flex-col gap-2 ">
                     {/* Title */}
@@ -96,7 +90,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
 
                     {/* Dates  */}
                     {variant === "event" ? (
-                        <div className="flex items-center md:flex-row flex-col gap-3 flex-1 ">
+                        <div className="flex items-center md:flex-row flex-col gap-3 flex-1">
                             <div className="flex gap-1">
                                 {tags.map((tag, index) => (
                                     <Tag text={tag} key={index} type={"relevance"} linkto="game" />
@@ -114,7 +108,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                             </div>
                         </div>
                     ) : (
-                        <div className="flex md:flex-row flex-col gap-3">
+                        <div className="flex md:flex-row flex-col gap-3 mt-2">
                             <div className="flex gap-1">
                                 {tags.map((tag, index) => (
                                     <Tag text={tag} key={index} type={"relevance"} linkto="game" />
@@ -136,7 +130,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
 
                 {/* Second Row: Buttons */}
                 {variant === "event" ? (
-                    <div className="flex  items-center gap-x-4 mt-[52px] ">
+                    <div className="flex  items-center gap-x-4 mt-[22px] ">
                         <BlueButton
                             text={b("joinEvent")}
                             link={url ? url : "#"}

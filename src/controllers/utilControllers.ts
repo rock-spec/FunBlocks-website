@@ -4,7 +4,10 @@ import { type Locale } from "@/i18n.config"
 const supabase = SupabaseInstance.getSupabaseInstance()
 
 export const getGameData = async (game_id: string) => {
-    const { data, error } = await supabase.from("game").select("*").eq("gameid", game_id)
+    const { data, error } = await supabase
+        .from("game")
+        .select("gameid, game_name, game_desc, pic, engineid, gamestudioid, blockchainid")
+        .eq("gameid", game_id)
 
     if (error) {
         throw new Error("Error fetching games: " + error.message)
@@ -17,7 +20,7 @@ export const getRelatedArticles = async (game_id: string, locale: Locale) => {
     const { data, error } = await supabase
         .from("articles")
         .select(
-            `*,content(title_${locale}, description_${locale}, image, publishdate,game(*),author(name))`
+            `*,content(title_${locale}, description_${locale}, image, publishdate,game(gameid),author(name))`
         )
         .eq("content.gameid", game_id) //Filter through referenced table
 
@@ -29,7 +32,10 @@ export const getRelatedArticles = async (game_id: string, locale: Locale) => {
 }
 
 export const getRelatedEvents = async (game_id: string) => {
-    const { data, error } = await supabase.from("events").select("*,game(*)").eq("gameid", game_id)
+    const { data, error } = await supabase
+        .from("events")
+        .select("eventid,title,pic,joinurl,startdate,enddate, timezone,game(gameid)")
+        .eq("gameid", game_id)
 
     if (error) {
         throw new Error("Error fetching games: " + error.message)
@@ -41,7 +47,7 @@ export const getRelatedEvents = async (game_id: string) => {
 export const getRelatedNews = async (game_id: string, locale: Locale) => {
     const { data, error } = await supabase
         .from("news")
-        .select(`*,content(title_${locale},image,game(*),author(name))`)
+        .select(`*,content(title_${locale},image,game(gameid),author(name))`)
         .eq("content.gameid", game_id) //Filter through referenced table
 
     if (error) {
@@ -64,12 +70,16 @@ export const getRelatedVideos = async (game_id: string) => {
     return data || []
 }
 
-export const getGameRelatedData = async (game_id: string, locale: Locale) => {
-    const game = await getGameData(game_id)
-    const relatedArticles = await getRelatedArticles(game_id, locale)
-    const relatedNews = await getRelatedNews(game_id, locale)
-    const relatedVideos = await getRelatedVideos(game_id)
-    const relatedEvents = await getRelatedEvents(game_id)
+export const getGameRelatedData = async (gameid: string, locale: Locale) => {
+    const game_id = decodeURIComponent(gameid)
+
+    const [game, relatedArticles, relatedNews, relatedVideos, relatedEvents] = await Promise.allSettled([
+        getGameData(game_id),
+        getRelatedArticles(game_id, locale),
+        getRelatedNews(game_id, locale),
+        getRelatedVideos(game_id),
+        getRelatedEvents(game_id),
+    ])
 
     return {
         game,
@@ -78,4 +88,19 @@ export const getGameRelatedData = async (game_id: string, locale: Locale) => {
         relatedVideos,
         relatedEvents,
     }
+
+    // const game_id = decodeURIComponent(gameid)
+    // const game = await getGameData(game_id)
+    // const relatedArticles = await getRelatedArticles(game_id, locale)
+    // const relatedNews = await getRelatedNews(game_id, locale)
+    // const relatedVideos = await getRelatedVideos(game_id)
+    // const relatedEvents = await getRelatedEvents(game_id)
+
+    // return {
+    //     game,
+    //     relatedArticles,
+    //     relatedNews,
+    //     relatedVideos,
+    //     relatedEvents,
+    // }
 }

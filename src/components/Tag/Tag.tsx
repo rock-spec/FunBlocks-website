@@ -5,7 +5,7 @@ import { Link } from "@/i18n.config"
 
 interface TagProps {
     text: string
-    type?: "section" | "relevance" | "more"
+    type?: "section" | "relevance" | "more" | "justTag"
     numberOfMore?: number
     linkto?: string
 }
@@ -34,8 +34,15 @@ export const Tag = (prop: TagProps) => {
                     className={`flex justify-center items-center  bg-merino  tracking-wider  uppercase  text-lg border-nero font-bold border-[1px] text-nowrap ${neueBit.className} `}
                 >
                     <Link href={`/${linkto}/${text} `} className="px-1 pt-1 leading-[16px]">
-                        {text}
+                        {text?.split(":")[0]}
                     </Link>
+                </div>
+            )}
+            {type === "justTag" && (
+                <div
+                    className={`flex justify-center items-center  bg-merino  tracking-wider  uppercase  text-lg border-nero font-bold border-[1px] text-nowrap ${neueBit.className} `}
+                >
+                    <p className="px-1 pt-1 leading-[16px]">{text?.split(":")[0]}</p>
                 </div>
             )}
             {type === "more" && (

@@ -1,10 +1,7 @@
 import React from "react"
-import ArticleCard from "@/components/ArticleCard/ArticleCard"
 import SingleCard from "@/components/SingleCard/SingleCard"
-import { CustomButton } from "@/components/Button/Button"
 import Image from "next/image"
 import { Tag } from "@/components/Tag/Tag"
-import { Column } from "../Column/Column"
 import formatDate from "@/utils/dateFormat"
 import { Cabin } from "next/font/google"
 import BlueButton from "../Button/BlueButton"
@@ -16,11 +13,21 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
     const t = await getTranslations("Tags")
     const b = await getTranslations("Buttons")
 
-    const game = data?.game[0]
-    const relatedArticles = data?.relatedArticles
-    const relatedVideos = data?.relatedVideos
-    const relatedEvents = data?.relatedEvents
+    let game: any = {}
+    if (data?.game?.status === "fulfilled") game = data?.game?.value[0]
     const tags = [game?.engineid, game?.gamestudioid, game?.blockchainid]
+
+    let relatedArticles: any[] = []
+    if (data?.relatedArticles?.status === "fulfilled") relatedArticles = data?.relatedArticles?.value
+
+    let relatedVideos: any[] = []
+    if (data?.relatedVideos?.status === "fulfilled") relatedVideos = data?.relatedVideos?.value
+
+    let relatedEvents: any[] = []
+    if (data?.relatedEvents?.status === "fulfilled") relatedEvents = data?.relatedEvents?.value
+
+console.log(relatedEvents);
+
 
     return (
         <>
@@ -72,64 +79,70 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
                     </div>
                 </div>
 
-                <div className="flex mb-10 gap-x-5">
-                    <SingleCard
-                        name={"article"}
-                        heading={t("relatedArticles")}
-                        singleCardItemDetails={relatedArticles?.map((article: any) => ({
-                            id: article.articleid,
-                            variant: "article",
-                            imageUrl: `${article.content.image}?height=360&width=720`,
-                            title: article.content[`title_${locale}`],
-                            description: article.content[`description_${locale}`],
-                            details: formatDate(article.content.publishdate),
-                            tags: [article.content.game.gameid],
-                            author: article.content.user.username,
-                            onFirstButtonClick: () => {},
-                            onSecondButtonClick: () => {},
-                        }))}
-                        buttonText={b("viewMoreArticles")}
-                        onButtonClick={() => {}}
-                    />
-                </div>
-                <div className="flex mb-10 gap-x-5">
-                    <SingleCard
-                        heading={t("relatedVideos")}
-                        name={"video"}
-                        singleCardItemDetails={relatedVideos?.map((video: any) => ({
-                            variant: "video",
-                            id: video.videoid,
-                            imageUrl: video.media_url, //This is video url for video
-                            title: video.video_name,
-                            description: video.summary,
-                            tags: [],
-                            onFirstButtonClick: () => {},
-                            onSecondButtonClick: () => {},
-                        }))}
-                        buttonText={b("viewMoreVideos")}
-                        onButtonClick={() => {}}
-                    />
-                </div>
-                <div className="flex mb-10 gap-x-5">
-                    <SingleCard
-                        name={"event"}
-                        heading={t("relatedEvents")}
-                        singleCardItemDetails={relatedEvents?.map((event: any) => ({
-                            url: event?.joinurl,
-                            id: event.eventid,
-                            variant: "event",
-                            imageUrl: `${event.pic}?height=360&width=720`,
-                            title: event.title,
-                            details: `${formatDate(event.startdate)} - ${formatDate(event.enddate)}`,
-                            // 'zone': "EST",
-                            tags: [event?.game?.gameid],
-                            onFirstButtonClick: () => {},
-                            onSecondButtonClick: () => {},
-                        }))}
-                        buttonText={b("viewMoreEvents")}
-                        onButtonClick={() => {}}
-                    />
-                </div>
+                {relatedArticles.length > 0 && (
+                    <div className="flex mb-10 gap-x-5 ">
+                        <SingleCard
+                            name={"article"}
+                            heading={t("relatedArticles")}
+                            singleCardItemDetails={relatedArticles?.map((article: any) => ({
+                                id: article?.articleid,
+                                variant: "article",
+                                imageUrl: `${article?.content?.image}?height=360&width=720`,
+                                title: article?.content?.[`title_${locale}`],
+                                description: article?.content?.[`description_${locale}`],
+                                details: formatDate(article?.content?.publishdate),
+                                tags: [article?.content?.game.gameid],
+                                author: article?.content?.author?.name,
+                                onFirstButtonClick: () => {},
+                                onSecondButtonClick: () => {},
+                            }))}
+                            buttonText={b("viewMoreArticles")}
+                            onButtonClick={() => {}}
+                        />
+                    </div>
+                )}
+                {relatedVideos.length > 0 && (
+                    <div className="flex mb-10 gap-x-5">
+                        <SingleCard
+                            heading={t("relatedVideos")}
+                            name={"videos"}
+                            singleCardItemDetails={relatedVideos?.map((video: any) => ({
+                                variant: "video",
+                                id: video.videoid,
+                                imageUrl: video.media_url, //This is video url for video
+                                title: video.video_name,
+                                description: video.summary,
+                                tags: [],
+                                onFirstButtonClick: () => {},
+                                onSecondButtonClick: () => {},
+                            }))}
+                            buttonText={b("viewMoreVideos")}
+                            onButtonClick={() => {}}
+                        />
+                    </div>
+                )}
+                {relatedEvents.length > 0 && (
+                    <div className="flex mb-10 gap-x-5">
+                        <SingleCard
+                            name={"event"}
+                            heading={t("relatedEvents")}
+                            singleCardItemDetails={relatedEvents?.map((event: any) => ({
+                                url: event?.joinurl,
+                                id: event.eventid,
+                                variant: "event",
+                                imageUrl: `${event.pic}?height=360&width=720`,
+                                title: event.title,
+                                details: `${formatDate(event.startdate)} - ${formatDate(event.enddate)}`,
+                                timezone: event?.timezone,
+                                tags: [event?.game?.gameid],
+                                onFirstButtonClick: () => {},
+                                onSecondButtonClick: () => {},
+                            }))}
+                            buttonText={b("viewMoreEvents")}
+                            onButtonClick={() => {}}
+                        />
+                    </div>
+                )}
             </div>
         </>
     )

@@ -90,8 +90,11 @@ export interface Data {
 
 const Homee = async ({ n, b, locale }: { n?: any; b?: any; locale: Locale }) => {
     const HomeData = await trpcServer().homeData(locale)
-    const game = HomeData.games
 
+    let games: any[] = []
+    if (HomeData.games?.status === "fulfilled") {
+        games = HomeData.games.value
+    }
 
     return (
         <div className="relatve w-full max-w-[1200px] flex flex-col  justify-between lg:gap-x-5 lg:flex-row">
@@ -103,16 +106,16 @@ const Homee = async ({ n, b, locale }: { n?: any; b?: any; locale: Locale }) => 
                 onButtonClick={() => {}}
                 className="sticky top-32"
                 responsive
-                columnItems={game.map((game) => ({
-                    id: game.gameid,
+                columnItems={games?.map((game) => ({
+                    id: game?.gameid,
                     variant: "game",
-                    tags: [game.engineid, game.gamestudioid, game.blockchainid],
-                    title: game.game_name,
-                    imageUrl: game.pic,
+                    tags: [game?.engineid, game?.gamestudioid, game?.blockchainid],
+                    title: game?.game_name,
+                    imageUrl: game?.pic,
                 }))}
             />
             {/* Main Column  */}
-            <HomeColumn data={HomeData} locale={locale}/>
+            <HomeColumn data={HomeData} locale={locale} />
         </div>
     )
 }

@@ -1,8 +1,4 @@
 import React from "react"
-import SingleCardItem, { SingleCardItemProps } from "../SingleCardItem/SingleCardItem"
-import { CustomButton } from "../Button/Button"
-import SearchInput from "../SearchInput/SearchInput"
-import { IoIosArrowDown } from "react-icons/io"
 import { Tag } from "../Tag/Tag"
 import Image from "next/image"
 import SingleCard from "../SingleCard/SingleCard"
@@ -100,14 +96,14 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                             heading={t("relatedArticles")}
                             name={"article"}
                             singleCardItemDetails={relatedArticles.map((article: any) => ({
-                                id: article.articleid,
+                                id: article?.articleid,
                                 variant: "article",
-                                imageUrl: `${article.content.image}?height=360&width=720`,
-                                title: article.content[`title_${locale}`],
-                                description: article.content[`description_${locale}`],
-                                details: formatDate(article.content.publishdate),
-                                tags: [article.content.game.gameid],
-                                author: article.content.user.username,
+                                imageUrl: `${article?.content?.image}?height=360&width=720`,
+                                title: article?.content?.[`title_${locale}`],
+                                description: article?.content?.[`description_${locale}`],
+                                details: formatDate(article?.content?.publishdate),
+                                tags: [article?.content?.game?.gameid],
+                                author: article?.content?.author?.name,
                                 onFirstButtonClick: () => {},
                                 onSecondButtonClick: () => {},
                             }))}

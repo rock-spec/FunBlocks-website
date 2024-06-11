@@ -29,26 +29,19 @@ const cabin = Cabin({
 export const ColumnItems = (props: SingleColumnProps) => {
     const { search, variant, title, onClick, imageUrl, tags = [], id } = props
 
+    const validTags = tags.filter((element) => element !== null && element !== undefined)
+
     const img_size = 180
     const containerHeight = 80
     const imageHeight = 80
     const imageWidth = 80
     const classnames = variant === "news" || variant === "article" ? "line-clamp-3" : ""
 
-    
-
     return (
-        <Link href={`/${variant}/${id}`} className="">
+        <Link href={`/${variant}/${id}`} className="" target="_blank">
             <div
                 className={`w-[245px] h-[${containerHeight}px] justify-start items-start gap-[15px] inline-flex cursor-pointer `}
             >
-                {/* <Image
-                    src={imageUrl}
-                    height={img_size}
-                    width={img_size}
-                    alt=""
-                    className={`h-[85px] w-[85px] border-[2px] rounded-[7px] border-neutral-900/85 object-cover`}
-                /> */}
                 <Image
                     src={imageUrl}
                     height={img_size}
@@ -68,8 +61,9 @@ export const ColumnItems = (props: SingleColumnProps) => {
                     </div>
                     <div className="self-stretch justify-start items-end gap-[5px] inline-flex ">
                         {variant !== "article" &&
+                            validTags.length > 0 &&
                             tags
-                                .slice(0, 1)
+                                .slice(0, 2)
                                 .map((tag, index) => (
                                     <Tag
                                         text={tag}
