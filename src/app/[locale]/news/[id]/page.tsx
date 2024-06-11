@@ -33,7 +33,7 @@ const NewsDetails = async ({ params }: { params: { id: string; locale: Locale } 
                     columnItems={game.map((game) => ({
                         id: game.gameid,
                         variant: "game",
-                        tags: [game.engineid, game.gamestudioid],
+                        tags: [game.engineid, game.gamestudioid, game.blockchainid],
                         title: game.game_name,
                         imageUrl: game.pic,
                     }))}

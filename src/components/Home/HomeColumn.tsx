@@ -32,11 +32,6 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
 
     const fetchData = async () => {
         setLoading(true)
-        let { data: featured, error } = await supabase.from("featured").select("*")
-        if (featured) {
-            setFeaturedData(featured)
-        }
-
         let { data: sliderData, error: sliderError } = await supabase.from("slider").select("*")
         if (sliderData) {
             setSliderData(sliderData)
@@ -48,17 +43,36 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
         fetchData()
     }, [])
 
+    let latestNews: any[] = []
+    if (data?.latestNews?.status === "fulfilled") {
+        latestNews = data.latestNews.value
+    }
+
+    let articles: any[] = []
+    if (data?.articles?.status === "fulfilled") {
+        articles = data.articles.value
+    }
+
+    let videos: any[] = []
+    if (data?.videos?.status === "fulfilled") {
+        videos = data.videos.value
+    }
+
+    let events: any[] = []
+    if (data?.events?.status === "fulfilled") {
+        events = data.events.value
+    }
+
+    let featuredNews: any[] = []
+    if (data?.featuredNews?.status === "fulfilled") {
+        featuredNews = data.featuredNews.value
+    }
+    
     return (
         <>
             <div className="w-full">
                 <div className={`items-stretch flex mb-10 gap-x-5 lg:flex-row flex-col ${cabin.className}`}>
-                    {loading ? (
-                        <HomeCarousalSkelton />
-                    ) : (
-                        sliderData && <CarousalHome data={sliderData} />
-                    )}
-
-                    {/* <HomeCarousalSkelton /> */}
+                    {loading ? <HomeCarousalSkelton /> : sliderData && <CarousalHome data={sliderData} />}
 
                     <div className=" h-full ">
                         <Column
@@ -68,14 +82,14 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                             responsive
                             className="mb-0 mt-10 lg:mt-0"
                             onButtonClick={() => {}}
-                            columnItems={data.news.map((news: any) => ({
+                            columnItems={latestNews?.map((news: any) => ({
                                 id: news.newsid,
                                 variant: "news",
                                 tags: [
-                                    news.content.game.gameid,
-                                    news.content.game.engineid,
-                                    news.content.game.gamestudioid,
-                                    news.content.game.blockchainid,
+                                    news?.content?.game?.gameid,
+                                    news?.content?.game?.engineid,
+                                    news?.content?.game?.gamestudioid,
+                                    news?.content?.game?.blockchainid,
                                 ],
                                 title: news.content[`title_${locale}`],
                                 imageUrl: news.content.image,
@@ -88,30 +102,30 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                     className="flex mb-10  w-full md:justify-between flex-col md:flex-row 
                     "
                 >
-                    {featuredData?.slice(0, 3).map((feature: any) => (
-                        <ArticleCard
-                            id={feature.featuredid}
-                            key={feature.featuredid} // Ensure to provide a unique key for each iterated element
-                            imageUrl={feature.image}
-                            title={feature.title}
-                            url={feature.url}
-                            tags={[feature.gameid]} // Assuming you want to display the gameid as a tag
-                        />
-                    ))}
+                    {featuredNews?.length > 0 &&
+                        featuredNews?.map((featured: any) => (
+                            <ArticleCard
+                                id={featured?.newsid}
+                                key={featured?.newsid} // Ensure to provide a unique key for each iterated element
+                                imageUrl={featured?.content?.image}
+                                title={featured?.content?.[`title_${locale}`]}
+                                tags={featured?.game?.length > 0 ? [featured?.game] : []} // Assuming you want to display the gameid as a tag
+                            />
+                        ))}
                 </div>
 
                 <div className="flex mb-10 gap-x-5">
                     <SingleCard
                         name={n("articles")}
-                        singleCardItemDetails={data.articles.map((article: any) => ({
+                        singleCardItemDetails={articles?.map((article: any) => ({
                             variant: "article",
-                            id: article.articleid,
-                            imageUrl: `${article.content.image}?height=360&width=720`,
-                            title: article.content[`title_${locale}`],
-                            description: article.content[`description_${locale}`],
-                            details: formatDate(article.content.publishdate),
-                            tags: [article.content.game.gameid],
-                            author: article.content.user.username,
+                            id: article?.articleid,
+                            imageUrl: `${article?.content.image}?height=360&width=720`,
+                            title: article?.content[`title_${locale}`],
+                            description: article?.content[`description_${locale}`],
+                            details: formatDate(article?.content.publishdate),
+                            tags: [article?.content?.game?.gameid],
+                            author: article?.content?.author?.name,
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},
                         }))}
@@ -122,12 +136,12 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                 <div className="flex mb-10 gap-x-5">
                     <SingleCard
                         name={n("videos")}
-                        singleCardItemDetails={data.videos.map((video: any) => ({
+                        singleCardItemDetails={videos?.map((video: any) => ({
                             variant: "video",
-                            id: video.videoid,
-                            imageUrl: video.media_url, //This is video url for video
-                            title: video.video_name,
-                            description: video.summary,
+                            id: video?.videoid,
+                            imageUrl: video?.media_url, //This is video url for video
+                            title: video?.video_name,
+                            description: video?.summary,
                             tags: [],
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},
@@ -139,14 +153,14 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                 <div className="flex mb-10 gap-x-5 ">
                     <SingleCard
                         name={n("events")}
-                        singleCardItemDetails={data.events.map((event: any) => ({
-                            id: event.eventid,
+                        singleCardItemDetails={events?.map((event: any) => ({
+                            id: event?.eventid,
                             variant: "event",
-                            imageUrl: `${event.pic}?height=360&width=720`,
-                            title: event.title,
-                            details: `${formatDate(event.startdate)} - ${formatDate(event.enddate)}`,
+                            imageUrl: `${event?.pic}?height=360&width=720`,
+                            title: event?.title,
+                            details: `${formatDate(event?.startdate)} - ${formatDate(event?.enddate)}`,
                             // 'zone': "EST",
-                            tags: [event.game.gameid],
+                            tags: [event?.game.gameid],
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},
                             url: event?.joinurl,

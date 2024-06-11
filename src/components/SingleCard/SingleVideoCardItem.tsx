@@ -28,11 +28,11 @@ const SingleVideoCardItem = (props: any) => {
         <Link href={`/${variant}/${id}`}>
             <div className=" gap-6 shadow-sm">
                 {/* First Column: Image */}
-                <div className="w-full h-[339px] rounded-lg flex-col justify-start items-start gap-6 inline-flex">
+                <div className="w-full h-[339px] rounded-lg flex-col justify-start items-start gap-y-5 inline-flex">
                     <div className="relative w-full rounded-md border border-[#161616]  overflow-hidden ">
                         <ReactPlayer width={"427px"} height={"237px"} url={imageUrl} controls={true} />
                     </div>
-                    <div className="  items-start gap-10 ">
+                    <div className=" ">
                         <div className=" flex-col justify-center items-start ">
                             {/* Show only two lines of description */}
                             <div
@@ -41,7 +41,7 @@ const SingleVideoCardItem = (props: any) => {
                                 {title}
                             </div>
                             <div
-                                className={`self-stretch text-neutral-900 w-full font-normal leading-normal  line-clamp-1 mt-2`}
+                                className={`self-stretch text-neutral-900 w-full font-normal leading-normal  line-clamp-2 mt-2 pb-1`}
                             >
                                 {description}
                             </div>

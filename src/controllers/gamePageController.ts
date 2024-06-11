@@ -38,8 +38,10 @@ export const getGameAllData = async (filters: FilterOptions, locale: Locale) => 
         .join(",")
 
     // Construct the query
-    let query = supabase.from("game").select()
-    // let query = supabase.from("game").select("*, engine(engineid,logo)")
+    // let query = supabase.from("game").select()
+    let query = supabase
+        .from("game")
+        .select(`gameid, game_name, logo, pic, engine(engineid, logo), blockchainid, gamestudioid`)
 
     // Apply the OR condition if there are any combined conditions
     if (combinedConditions) {
