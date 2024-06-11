@@ -36,12 +36,12 @@ export const NewsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
 
     const singleCardItemDetails: SingleCardItemProps[] = newsFilterData?.map((news: any) => ({
         variant: "news",
-        id: news.newsid,
-        imageUrl: `${news.content.image}?height=360&width=720`,
-        title: news.content[`title_${locale}`],
-        description: news.content[`description_${locale}`],
-        details: formatDate(news.content.publishdate),
-        tags: [news.content.game.gameid],
+        id: news?.newsid,
+        imageUrl: `${news?.content.image}?height=360&width=720`,
+        title: news?.content[`title_${locale}`],
+        description: news?.content[`description_${locale}`],
+        details: formatDate(news?.content.publishdate),
+        tags: [news?.content?.game?.gameid],
         author: news?.content?.author?.name,
         onFirstButtonClick: () => {},
         onSecondButtonClick: () => {},
@@ -54,13 +54,13 @@ export const NewsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
     }
 
     //Creating options for category dropdown menu
-    useEffect(() => {
-        const uniqueCategories = new Set<string>()
-        data.forEach((news: { category: string; type: string }) => {
-            if (news.category) uniqueCategories.add(news.category)
-        })
-        setCategory(Array.from(uniqueCategories))
-    }, [data])
+    // useEffect(() => {
+    //     const uniqueCategories = new Set<string>()
+    //     data.forEach((news: { category: string; type: string }) => {
+    //         if (news.category) uniqueCategories.add(news.category)
+    //     })
+    //     setCategory(Array.from(uniqueCategories))
+    // }, [data])
 
     return (
         <>

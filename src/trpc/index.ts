@@ -55,17 +55,6 @@ export const appRouter = router({
         const gameData = await getGameAllData(filters, input.locale)
         return gameData
     }),
-    // gameData: publicProcedure.input(FilterOptionsSchema).query(async ({ input }) => {
-    //     console.log(input);
-
-    //     const filters = {
-    //         blockchainIds: input.blockchainIds ? input.blockchainIds.split(",") : [],
-    //         engineIds: input.engineIds ? input.engineIds.split(",") : [],
-    //         gameStudioIds: input.gameStudioIds ? input.gameStudioIds.split(",") : [],
-    //     }
-    //     const gameData = await getGameAllData(filters)
-    //     return gameData
-    // }),
     blockchains: publicProcedure.query(async () => {
         const blockchains = await getBlockchains()
         return blockchains

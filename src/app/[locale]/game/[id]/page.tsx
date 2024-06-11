@@ -8,13 +8,14 @@ import { type Locale } from "@/i18n.config"
 export const dynamic = "force-dynamic"
 
 const GameDetail = async ({ params }: { params: { id: string; locale: Locale } }) => {
-
     const t = await getTranslations("Tags")
     const id = params.id.replace(/%20/g, " ").toString() //to remove string and make it so i can search the data
     const locale = params.locale
 
-    const data = await trpcServer().gameDetailsData({id, locale})
-    const relatedNews = data?.relatedNews
+    const data = await trpcServer().gameDetailsData({ id, locale })
+
+    let relatedNews: any[] = []
+    if (data?.relatedNews?.status === "fulfilled") relatedNews = data?.relatedNews?.value
 
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5 ">

@@ -3,11 +3,12 @@ import { type Locale } from "@/i18n.config"
 
 const supabase = SupabaseInstance.getSupabaseInstance()
 
-const getNews = async (locale: string) => {
+const getfeaturedNews = async (locale: string) => {
     const { data, error } = await supabase
         .from("news")
         .select(`newsid,content(title_${locale},image,game(gameid,engineid,gamestudioid,blockchainid))`)
         .eq("isHome", true)
+        .limit(3)
 
     if (error) {
         throw new Error("Error fetching news: " + error.message)
@@ -16,9 +17,35 @@ const getNews = async (locale: string) => {
     return data || []
 }
 
-const getGames = async () => {
-    const { data, error } = await supabase.from("game").select("*").eq("isHome", true)
+const getLatestNews = async (locale: string) => {
+    try {
+        const { data, error } = await supabase
+            .from("news")
+            .select(
+                `newsid, content(title_${locale}, image, game(gameid, game_name, engineid, gamestudioid, blockchainid))`
+            )
+            .order("content_id->publishdate", { ascending: false })
+            .limit(5)
 
+        if (error) {
+            console.log(error)
+
+            throw new Error("Error fetching news: " + error.message)
+        }
+
+        return data || []
+    } catch (error) {
+        console.error(error) // Log the error for debugging
+        return []
+    }
+}
+
+const getFeaturedGames = async () => {
+    const { data, error } = await supabase
+        .from("game")
+        .select("gameid, game_name, pic, engineid, gamestudioid, blockchainid")
+        .eq("isHome", true)
+        .limit(5)
     if (error) {
         throw new Error("Error fetching games: " + error.message)
     }
@@ -26,7 +53,7 @@ const getGames = async () => {
     return data || []
 }
 
-const getArticles = async (locale: string) => {
+const getFeaturedArticles = async (locale: string) => {
     const { data, error } = await supabase
         .from("articles")
         .select(
@@ -41,11 +68,11 @@ const getArticles = async (locale: string) => {
     return data || []
 }
 
-const getVideos = async () => {
+const getFeturedVideos = async () => {
     const { data, error } = await supabase
         .from("videos")
         .select("videoid,video_name,summary,media_url")
-        .range(0, 3)
+        .range(0, 4)
 
     if (error) {
         throw new Error("Error fetching videos: " + error.message)
@@ -54,11 +81,14 @@ const getVideos = async () => {
     return data || []
 }
 
-const getEvents = async () => {
+const getfeaturedEvents = async () => {
     const { data, error } = await supabase
         .from("events")
-        .select("*,game(gameid,engineid,gamestudioid,blockchainid)")
+        .select(
+            "eventid, pic,title, startdate, enddate, joinurl, game(gameid,engineid,gamestudioid,blockchainid)"
+        )
         .eq("isHome", true)
+        .limit(2)
 
     if (error) {
         throw new Error("Error fetching events: " + error.message)
@@ -68,18 +98,22 @@ const getEvents = async () => {
 }
 
 const getHomeData = async (locale: string) => {
-    const news = await getNews(locale)
-    const games = await getGames()
-    const articles = await getArticles(locale)
-    const videos = await getVideos()
-    const events = await getEvents()
+    const [featuredNews, games, articles, videos, events, latestNews] = await Promise.allSettled([
+        getfeaturedNews(locale),
+        getFeaturedGames(),
+        getFeaturedArticles(locale),
+        getFeturedVideos(),
+        getfeaturedEvents(),
+        getLatestNews(locale),
+    ])
 
     return {
-        news,
+        featuredNews,
         games,
         articles,
         videos,
         events,
+        latestNews,
     }
 }
 
