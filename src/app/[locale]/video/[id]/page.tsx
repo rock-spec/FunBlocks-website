@@ -14,8 +14,17 @@ const VideoDetails = async ({ params }: { params: { id: string; locale: Locale }
     const id = params.id.replace(/%20/g, " ").replace(/%3A/g, ":").toString() //to remove string and make it so i can search the data// Access the dynamic id parameter
     const locale = params.locale
     const data = await trpcServer().videoDetailsData({ id, locale })
-    const game = data.relatedData.game
-    const relatedArticles = data.relatedData.relatedArticles
+    // const game = data.relatedData.game
+    // const relatedArticles = data.relatedData.relatedArticles
+
+    const relatedData = data?.relatedData
+
+    let game: any[] = []
+    if (relatedData?.game?.status === "fulfilled") game = relatedData?.game?.value
+
+    let relatedArticles: any[] = []
+    if (relatedData?.relatedArticles?.status === "fulfilled")
+        relatedArticles = relatedData?.relatedArticles?.value
 
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">

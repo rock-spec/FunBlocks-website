@@ -1,5 +1,7 @@
 import SupabaseInstance from "../../supabase"
 import { type Locale } from "@/i18n.config"
+import { getFeaturedGames } from "./featuredController"
+import { getCategories } from "./utilControllers"
 
 const supabase = SupabaseInstance.getSupabaseInstance()
 
@@ -16,19 +18,18 @@ const getAllNews = async (locale: Locale) => {
     return data || []
 }
 
-const getFeaturedGameData = async () => {
-    const { data, error } = await supabase.from("game").select("*").range(0, 5)
+// const getFeaturedGameData = async () => {
+//     const { data, error } = await supabase.from("game").select("*").range(0, 5)
 
-    if (error) {
-        throw new Error("Error fetching games: " + error.message)
-    }
+//     if (error) {
+//         throw new Error("Error fetching games: " + error.message)
+//     }
 
-    return data || []
-}
+//     return data || []
+// }
 
 export const getNewsData = async (locale: Locale) => {
-    const news = await getAllNews(locale)
-    const featuredGames = await getFeaturedGameData()
+    const [news, featuredGames] = await Promise.allSettled([getAllNews(locale), getFeaturedGames()])
 
     return { news, featuredGames }
 }

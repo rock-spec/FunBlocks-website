@@ -10,7 +10,7 @@ import { getArticleDetailPageData } from "@/controllers/articleDetailPageControl
 import { z } from "zod"
 import { getEventDetailPageData } from "@/controllers/eventDetailPageController"
 // import { getGameDetailPageData } from "@/controllers/gameDetailPageController"
-import { getGameRelatedData } from "@/controllers/utilControllers"
+import { getGameRelatedData, getCategories } from "@/controllers/utilControllers"
 import { getnewsDetailPageData } from "@/controllers/newsDetailPageController"
 import { getvideoDetailPageData } from "@/controllers/videoDetailPageController"
 import { getEngineDetailPageData } from "@/controllers/engineDetailPageController"
@@ -133,6 +133,10 @@ export const appRouter = router({
         const featuredArticles = await getfeaturedArticles()
         return featuredArticles
     }),
+    fetchCategories: publicProcedure.query(async () => {
+        const categories = await getCategories()
+        return categories
+    })
 })
 
 export type AppRouter = typeof appRouter

@@ -16,9 +16,19 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
     const t = useTranslations("Tags")
 
     const eventDetails = data?.event
+
     const relatedGame = data?.relatedData?.game[0]
-    const relatedArticles = data?.relatedData?.relatedArticles
+    // const relatedArticles = data?.relatedData?.relatedArticles
     const relatedVideos = data?.relatedData?.relatedVideos
+
+    const relatedData = data?.relatedData
+
+    let game: any[] = []
+    if (relatedData?.game?.status === "fulfilled") game = relatedData?.game?.value
+
+    let relatedArticles: any[] = []
+    if (relatedData?.relatedArticles?.status === "fulfilled")
+        relatedArticles = relatedData?.relatedArticles?.value
 
     return (
         <>
@@ -32,7 +42,7 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                         {eventDetails.title}
                     </div>
                     <div className="flex gap-1 mb-[24px]">
-                        {[eventDetails.gameid, relatedGame.engineid].map((tag, index) => (
+                        {[game[0]?.gameid, game[0]?.engineid].map((tag, index) => (
                             <Tag
                                 text={tag}
                                 key={index}

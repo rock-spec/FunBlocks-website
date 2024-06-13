@@ -14,7 +14,16 @@ const ArticleDetails = async ({ params }: { params: { id: string; locale: Locale
     const { id, locale } = params
     const data = await trpcServer().articleDetailsData({ id, locale })
 
-    const { relatedArticles, game } = data.relatedData
+    const relatedData = data?.relatedData
+
+    let game: any[] = []
+    if (relatedData?.game?.status === "fulfilled") game = relatedData?.game?.value
+
+    let relatedArticles: any[] = []
+    if (relatedData?.relatedArticles?.status === "fulfilled")
+        relatedArticles = relatedData?.relatedArticles?.value
+
+    // const { relatedArticles, game } = data.relatedData
 
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
