@@ -9,17 +9,20 @@ import formatDate from "@/utils/dateFormat"
 import formatTimestamp from "@/utils/formatdateInoriginalForm"
 import { useTranslations } from "next-intl"
 import CustomDropDown from "../DropDown/DropDown"
+import { trpc } from "@/app/_trpc/client"
 
 export const EventColumn = ({ data }: { data: any }) => {
-
     const s = useTranslations("Search")
     const b = useTranslations("Buttons")
+
+    const fetchData = trpc.fetchCategories.useQuery()
+    const fetchedCategories = fetchData?.data
 
     const [category, setCategory] = useState<string[]>([])
     const [type, setType] = useState<string[]>([])
     const [filteredEvent, setFilteredEvent] = useState(data || [])
 
-    const sortOptions = ["date"]
+    const sortOptions = [{ name: "date" }]
 
     const singleCardItemDetails: SingleCardItemProps[] = filteredEvent?.map((event: any) => ({
         url: event?.joinurl,
@@ -97,18 +100,18 @@ export const EventColumn = ({ data }: { data: any }) => {
     }
 
     //Creating options for category and type dropdown menu
-    useEffect(() => {
-        const uniqueCategories = new Set<string>()
-        const uniqueTypes = new Set<string>()
+    // useEffect(() => {
+    //     const uniqueCategories = new Set<string>()
+    //     const uniqueTypes = new Set<string>()
 
-        data.forEach((news: { category: string; type: string }) => {
-            if (news.category) uniqueCategories.add(news.category)
-            if (news.type) uniqueTypes.add(news.type)
-        })
+    //     data.forEach((news: { category: string; type: string }) => {
+    //         if (news.category) uniqueCategories.add(news.category)
+    //         if (news.type) uniqueTypes.add(news.type)
+    //     })
 
-        setCategory(Array.from(uniqueCategories))
-        setType(Array.from(uniqueTypes))
-    }, [data])
+    //     setCategory(Array.from(uniqueCategories))
+    //     setType(Array.from(uniqueTypes))
+    // }, [data])
 
     return (
         <>
@@ -125,7 +128,7 @@ export const EventColumn = ({ data }: { data: any }) => {
                     <CustomDropDown
                         bg="bg-[url('/buttons/medium_dropdown.svg')]"
                         text={b("category")}
-                        options={category}
+                        options={fetchedCategories}
                     />
                     <CustomDropDown
                         bg="bg-[url('/buttons/medium_dropdown.svg')]"

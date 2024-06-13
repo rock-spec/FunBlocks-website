@@ -6,16 +6,20 @@ import SearchInput from "../SearchInput/SearchInput"
 import EngineCardComponet, { EngineCardComponentProps } from "./EngineCardComponet"
 import { useTranslations } from "next-intl"
 import CustomDropDown from "../DropDown/DropDown"
+import { trpc } from "@/app/_trpc/client"
 
 export const EngineColumn = ({ data }: { data: any }) => {
     const s = useTranslations("Search")
     const b = useTranslations("Buttons")
 
+    const fetchData = trpc.fetchCategories.useQuery()
+    const fetchedCategories = fetchData?.data
+
     const [category, setCategory] = useState<string[]>([])
     const [type, setType] = useState<string[]>([])
     const [filteredEngine, setFileteredEngine] = useState(data)
 
-    const sortOptions = ["date"]
+    const sortOptions = [{ name: "date" }]
 
     function filterEngine(searchString: string = "") {
         const engineArray: any[] = data
@@ -39,7 +43,6 @@ export const EngineColumn = ({ data }: { data: any }) => {
         const updateData = filterEngine(val)
         setFileteredEngine(updateData)
     }
-    
 
     //Creating options for category and type dropdown menu
     useEffect(() => {
@@ -70,7 +73,7 @@ export const EngineColumn = ({ data }: { data: any }) => {
                     <CustomDropDown
                         bg="bg-[url('/buttons/medium_dropdown.svg')]"
                         text={b("category")}
-                        options={category}
+                        options={fetchedCategories}
                     />
                     <CustomDropDown
                         bg="bg-[url('/buttons/medium_dropdown.svg')]"

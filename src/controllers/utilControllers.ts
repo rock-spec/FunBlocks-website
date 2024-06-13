@@ -70,6 +70,16 @@ export const getRelatedVideos = async (game_id: string) => {
     return data || []
 }
 
+export const getCategories = async () => {
+    const { data, error } = await supabase.from("category").select("*")
+
+    if (error) {
+        throw new Error("Error fetching videos: " + error.message)
+    }
+
+    return data || []
+}
+
 export const getGameRelatedData = async (gameid: string, locale: Locale) => {
     const game_id = decodeURIComponent(gameid)
 
@@ -88,19 +98,4 @@ export const getGameRelatedData = async (gameid: string, locale: Locale) => {
         relatedVideos,
         relatedEvents,
     }
-
-    // const game_id = decodeURIComponent(gameid)
-    // const game = await getGameData(game_id)
-    // const relatedArticles = await getRelatedArticles(game_id, locale)
-    // const relatedNews = await getRelatedNews(game_id, locale)
-    // const relatedVideos = await getRelatedVideos(game_id)
-    // const relatedEvents = await getRelatedEvents(game_id)
-
-    // return {
-    //     game,
-    //     relatedArticles,
-    //     relatedNews,
-    //     relatedVideos,
-    //     relatedEvents,
-    // }
 }

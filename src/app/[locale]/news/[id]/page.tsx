@@ -15,8 +15,14 @@ const NewsDetails = async ({ params }: { params: { id: string; locale: Locale } 
     const id = params.id // Access the dynamic id parameter
     const locale = params.locale
     const data = await trpcServer().newsDetailsData({ id, locale })
+    const relatedData = data?.relatedData
+    
+    let game: any[] = []
+    if (relatedData?.game?.status === "fulfilled") game = relatedData?.game?.value
 
-    const { relatedArticles, game } = data?.relatedData
+    let relatedNews: any[] = []
+    if (relatedData?.relatedNews?.status === "fulfilled")
+        relatedNews = relatedData?.relatedNews?.value
 
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
@@ -46,12 +52,12 @@ const NewsDetails = async ({ params }: { params: { id: string; locale: Locale } 
                     title={t("relatedNews")}
                     responsive
                     onButtonClick={() => {}}
-                    columnItems={relatedArticles.map((article: any) => ({
-                        id: article?.articleid,
+                    columnItems={relatedNews.map((news: any) => ({
+                        id: news?.newsid,
                         variant: "news",
                         tags: [],
-                        title: article?.content?.[`title_${locale}`],
-                        imageUrl: article?.content?.image,
+                        title: news?.content?.[`title_${locale}`],
+                        imageUrl: news?.content?.image,
                     }))}
                 />
             </div>

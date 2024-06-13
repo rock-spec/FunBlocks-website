@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import Image from "next/image"
 import { Tag } from "../Tag/Tag"
@@ -18,7 +20,7 @@ export interface GameCardComponentProps {
     title: string
     description?: string
     tags: string[]
-    onClick: () => void
+    onClick?: () => void
 }
 const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
 

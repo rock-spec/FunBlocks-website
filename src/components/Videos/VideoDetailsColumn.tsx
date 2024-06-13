@@ -19,6 +19,10 @@ export const VideoDetailsColumn = ({ data }: { data: any }) => {
     const t = useTranslations("Tags")
 
     const video = data?.video
+    const relatedData = data?.relatedData
+
+    let relatedVideos: any[] = []
+    if (relatedData?.relatedVideos?.status === "fulfilled") relatedVideos = relatedData?.relatedVideos?.value
 
     return (
         <>
@@ -75,7 +79,7 @@ export const VideoDetailsColumn = ({ data }: { data: any }) => {
                     <SingleCard
                         heading={t("featuredVideos")}
                         name={"video"}
-                        singleCardItemDetails={data?.relatedData?.relatedVideos.map((video: any) => ({
+                        singleCardItemDetails={relatedVideos.map((video: any) => ({
                             variant: "video",
                             id: video.videoid,
                             imageUrl: video.media_url, //This is video url for video
