@@ -7,15 +7,19 @@ import formatDate from "@/utils/dateFormat"
 import CustomDropDown from "../DropDown/DropDown"
 import { useTranslations } from "next-intl"
 import { type Locale } from "@/i18n.config"
+import { trpc } from "@/app/_trpc/client"
 
 export const NewsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
     const b = useTranslations("Buttons")
     const s = useTranslations("Search")
 
-    const [category, setCategory] = useState<string[]>([])
+    const fetchData = trpc.fetchCategories.useQuery()
+    const fetchedCategories = fetchData?.data
+
+    const [category, setCategory] = useState<any[]>([])
     const [newsFilterData, setNewsFilterData] = useState(data)
 
-    const sortOptions = ["date"]
+    const sortOptions = [{ name: "date" }]
 
     function filterNewsArray(searchString: string): any[] {
         const newsArray: any[] = data
@@ -69,7 +73,7 @@ export const NewsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                     <div className=" w-full">
                         <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} />
                     </div>
-                    <CustomDropDown text={b("category")} options={category} />
+                    <CustomDropDown text={b("category")} options={fetchedCategories} />
                     <CustomDropDown text={b("sortBy")} options={sortOptions} />
                 </div>
                 <div className="flex mb-10 gap-x-5">

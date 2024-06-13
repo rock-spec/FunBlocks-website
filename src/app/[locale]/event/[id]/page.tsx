@@ -9,12 +9,21 @@ import { Locale } from "@/i18n.config"
 
 const EventDetails = async ({ params }: { params: { id: string; locale: Locale } }) => {
     const { id, locale } = params
-    const data = await trpcServer().eventDetailsData({ id, locale })
-    const games = data.relatedData.game
-    const articles = data.relatedData.relatedArticles
 
     const t = await getTranslations("Tags")
     const n = await getTranslations("Navbar")
+
+    const data = await trpcServer().eventDetailsData({ id, locale })
+    // const games = data.relatedData.game
+    // const articles = data.relatedData.relatedArticles
+    const relatedData = data?.relatedData
+
+    let games: any[] = []
+    if (relatedData?.game?.status === "fulfilled") games = relatedData?.game?.value
+
+    let relatedArticles: any[] = []
+    if (relatedData?.relatedArticles?.status === "fulfilled")
+        relatedArticles = relatedData?.relatedArticles?.value
 
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
@@ -42,7 +51,7 @@ const EventDetails = async ({ params }: { params: { id: string; locale: Locale }
                     responsive
                     title={n("articles")}
                     onButtonClick={() => {}}
-                    columnItems={articles.map((article: any) => ({
+                    columnItems={relatedArticles.map((article: any) => ({
                         id: article.articleid,
                         variant: "article",
                         tags: [],

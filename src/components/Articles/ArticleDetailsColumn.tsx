@@ -12,6 +12,15 @@ const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] }
 export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
     const t = useTranslations("Tags")
 
+    const relatedData = data?.relatedData
+
+    let game: any[] = []
+    if (relatedData?.game?.status === "fulfilled") game = relatedData?.game?.value
+
+    let relatedArticles: any[] = []
+    if (relatedData?.relatedArticles?.status === "fulfilled")
+        relatedArticles = relatedData?.relatedArticles?.value
+
     return (
         <>
             <div className="w-[895px] ">
@@ -24,7 +33,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         {data.article.content[`title_${locale}`]}
                     </div>
                     <div className="flex gap-1 mb-[24px]">
-                        {[data.relatedData.game[0].gameid].map((tag, index) => (
+                        {[game[0].gameid].map((tag, index) => (
                             <Tag text={tag} key={index} type={"relevance"} linkto="game" />
                         ))}
                         <div className="justify-start items-center gap-2 flex ml-2">
@@ -58,7 +67,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         <SingleCard
                             heading={t("relatedArticles")}
                             name={"article"}
-                            singleCardItemDetails={data.relatedData.relatedArticles.map((article: any) => ({
+                            singleCardItemDetails={relatedArticles.map((article: any) => ({
                                 id: article?.articleid,
                                 variant: "article",
                                 imageUrl: `${article?.content?.image}?height=360&width=720`,

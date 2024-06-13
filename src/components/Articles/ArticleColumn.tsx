@@ -9,15 +9,20 @@ import { IoIosArrowDown } from "react-icons/io"
 import formatDate from "@/utils/dateFormat"
 import { useTranslations } from "next-intl"
 import { type Locale } from "@/i18n.config"
+import { trpc } from "@/app/_trpc/client"
+
 
 export const ArticleColumn = ({ data, locale }: { data: any; locale: Locale }) => {
     const b = useTranslations("Buttons")
     const s = useTranslations("Search")
 
+    const fetchData = trpc.fetchCategories.useQuery()
+    const fetchedCategories = fetchData?.data
+
     const [articleFilterData, setArticlesFilterData] = useState(data)
     const [category, setCategory] = useState<string[]>([])
 
-    const sortOptions = ["date"]
+    const sortOptions = [{ name: "date" }]
 
     function filterArticleArray(searchString: string): any[] {
         const articleArray: any[] = data
@@ -55,13 +60,13 @@ export const ArticleColumn = ({ data, locale }: { data: any; locale: Locale }) =
         setArticlesFilterData(updateData)
     }
 
-    useEffect(() => {
-        let tmp: string[] = []
-        data.forEach((news: { category: string }) => {
-            if (news.category) tmp.push(news.category)
-        })
-        setCategory(tmp)
-    }, [data])
+    // useEffect(() => {
+    //     let tmp: string[] = []
+    //     data.forEach((news: { category: string }) => {
+    //         if (news.category) tmp.push(news.category)
+    //     })
+    //     setCategory(tmp)
+    // }, [data])
 
     return (
         <>
@@ -70,7 +75,7 @@ export const ArticleColumn = ({ data, locale }: { data: any; locale: Locale }) =
                     <div className=" w-full">
                         <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} />
                     </div>
-                    <CustomDropDown text={b("category")} options={category} />
+                    <CustomDropDown text={b("category")} options={fetchedCategories} />
                     <CustomDropDown text={b("sortBy")} options={sortOptions} />
                 </div>
                 <div className="flex mb-10 gap-x-5">

@@ -12,10 +12,10 @@ const CustomDropDown = ({
     options = [],
     btn_width = "w-[250px]",
     bg = "bg-[url('/buttons/dropdown_selector_button.svg')]",
-    txt_px = "px-3"
+    txt_px = "px-3",
 }: {
     text: string
-    options?: string[]
+    options?: any[]
     btn_width?: string
     bg?: string
     txt_px?: string
@@ -43,7 +43,7 @@ const CustomDropDown = ({
                     <p className="capitalize">{text}</p>
                     <IoIosArrowDown />
                 </button>
-                {showDropdown  && (
+                {showDropdown && (
                     <ul className="absolute z-10 bg-white w-full space-y-1 ">
                         {options.map((option, i) => (
                             <li
@@ -53,7 +53,7 @@ const CustomDropDown = ({
                                 }}
                                 className="cursor-pointer px-3 py-2 duration-300 hover:bg-slate-400 capitalize"
                             >
-                                {option}
+                                {option.name}
                             </li>
                         ))}
                     </ul>

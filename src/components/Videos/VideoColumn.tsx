@@ -2,21 +2,23 @@
 
 import React, { useEffect, useState } from "react"
 import SingleCardItem, { SingleCardItemProps } from "../SingleCardItem/SingleCardItem"
-// import { CustomButton } from "../Button/Button"
 import SearchInput from "../SearchInput/SearchInput"
-// import { IoIosArrowDown } from "react-icons/io"
 import SingleVideoCardItem from "../SingleCard/SingleVideoCardItem"
 import { useTranslations } from "next-intl"
-// import CustomDropDown from "../DropDown/DropDown"
 import CustomDropDown from "../DropDown/DropDown"
+import { trpc } from "@/app/_trpc/client"
 
 export const VideoColumn = ({ data }: { data: any }) => {
+    const b = useTranslations("Buttons")
+    const s = useTranslations("Search")
+
+    const fetchData = trpc.fetchCategories.useQuery()
+    const fetchedCategories = fetchData?.data
+
+    const sortOptions = [{ name: "date" }]
 
     const [videoFilterData, setVideoFilterData] = useState(data)
     const [category, setCategory] = useState<string[]>([])
-
-    const b = useTranslations("Buttons")
-    const s = useTranslations("Search")
 
     function filterVideo(searchString: string = "") {
         const videoArray: any[] = data
@@ -43,8 +45,8 @@ export const VideoColumn = ({ data }: { data: any }) => {
         description: video.summary,
         tags: [],
         gameid: video.gameid,
-        date:video.publishdate,
-        author:video.author.name,
+        date: video.publishdate,
+        author: video.author.name,
         onFirstButtonClick: () => {},
         onSecondButtonClick: () => {},
     }))
@@ -55,13 +57,13 @@ export const VideoColumn = ({ data }: { data: any }) => {
         setVideoFilterData(updateData)
     }
 
-    useEffect(() => {
-        let tmp: string[] = []
-        data.forEach((news: { category: string }) => {
-            if (news.category) tmp.push(news.category)
-        })
-        setCategory(tmp)
-    }, [data])
+    // useEffect(() => {
+    //     let tmp: string[] = []
+    //     data.forEach((news: { category: string }) => {
+    //         if (news.category) tmp.push(news.category)
+    //     })
+    //     setCategory(tmp)
+    // }, [data])
 
     return (
         <>
@@ -70,8 +72,8 @@ export const VideoColumn = ({ data }: { data: any }) => {
                     <div className=" w-full">
                         <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} />
                     </div>
-                    <CustomDropDown text={b("category")} options={category} />
-                    <CustomDropDown text={b("sortBy")} />
+                    <CustomDropDown text={b("category")} options={fetchedCategories} />
+                    <CustomDropDown text={b("sortBy")} options={sortOptions} />
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <div>
