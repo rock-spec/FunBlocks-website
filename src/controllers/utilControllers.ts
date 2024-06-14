@@ -3,10 +3,14 @@ import { type Locale } from "@/i18n.config"
 
 const supabase = SupabaseInstance.getSupabaseInstance()
 
+type FilterOptions = {
+    query?: string
+}
+
 export const getGameData = async (game_id: string) => {
     const { data, error } = await supabase
         .from("game")
-        .select("gameid, game_name, game_desc, pic, engineid, gamestudioid, blockchainid")
+        .select("gameid, game_name, website, game_desc, pic, engineid, gamestudioid, blockchainid")
         .eq("gameid", game_id)
 
     if (error) {
@@ -71,6 +75,7 @@ export const getRelatedVideos = async (game_id: string) => {
 }
 
 export const getCategories = async () => {
+
     const { data, error } = await supabase.from("category").select("*")
 
     if (error) {

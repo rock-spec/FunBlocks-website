@@ -67,7 +67,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
     if (data?.featuredNews?.status === "fulfilled") {
         featuredNews = data.featuredNews.value
     }
-    
+
     return (
         <>
             <div className="w-full">
@@ -163,7 +163,8 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                             tags: [event?.game.gameid],
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},
-                            url: event?.joinurl,
+                            // url: event?.joinurl,
+                            url: `/event/${event?.eventid}`,
                         }))}
                         buttonText={b("viewMoreEvents")}
                         onButtonClick={() => {}}

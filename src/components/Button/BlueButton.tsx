@@ -20,11 +20,15 @@ const BlueButton = ({
     bg?: string
     bg_hover?: string
 }) => {
+    console.log(link)
+
     return (
         <button
             className={`${height} ${width} flex justify-center items-center text-white text-lg  bg-cover bg-no-repeat ${bg} ${bg_hover} ${OffBit.className} leading-normal `}
         >
-            <Link href={link} className="capitalize">{text}</Link>
+            <Link href={link ? link : "#"} className="capitalize" target="_blank">
+                {text}
+            </Link>
         </button>
     )
 }

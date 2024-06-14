@@ -63,13 +63,13 @@ export const EngineColumn = ({ data }: { data: any }) => {
             <div className="w-full  lg:w-[895px] ">
                 <div className="flex flex-col lg:flex-row w-full mb-10 gap-x-4">
                     <div className="w-full">
-                        <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} />
+                        <SearchInput varient="light" placeholder={s("pageSearch")} />
                     </div>
-                    <CustomDropDown
+                    {/* <CustomDropDown
                         bg="bg-[url('/buttons/medium_dropdown.svg')]"
                         text={b("type")}
                         options={type}
-                    />
+                    /> */}
                     <CustomDropDown
                         bg="bg-[url('/buttons/medium_dropdown.svg')]"
                         text={b("category")}
@@ -98,28 +98,4 @@ export const EngineColumn = ({ data }: { data: any }) => {
             </div>
         </>
     )
-
-    // return (
-    //     <>
-    //         <div className="w-full  lg:w-[895px] ">
-    //             <div className="flex w-full mb-10">
-    //                 <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} />
-    //             </div>
-    //             <div className="flex mb-10 gap-x-5">
-    //                 <div>
-    //                     <div className="grid lg:grid-cols-3 grid-rows-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
-    //                         {singleCardItemDetails.map((detail, index) => (
-    //                             <div className="p-5 border border-[#161616] bg-[#FFFCF9] min-h-[285px]">
-    //                                 <EngineCardComponet key={index} {...detail} />
-    //                             </div>
-    //                         ))}
-    //                     </div>
-    //                     <div className="flex item-center w-full justify-center">
-    //                         {/* <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" /> */}
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </>
-    // )
 }
