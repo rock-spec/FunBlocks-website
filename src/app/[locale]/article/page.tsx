@@ -6,15 +6,34 @@ export const dynamic = "force-dynamic"
 import { getTranslations } from "next-intl/server"
 import { type Locale } from "@/i18n.config"
 
-const Article = async ({ params: { locale } }: { params: { locale: Locale } }) => {
-    const { featuredGames, articles } = await trpcServer().articleData(locale)
+type FilterOptions = {
+    query?: string
+    locale: Locale
+
+}
+
+const Article = async ({
+    params: { locale },
+    searchParams,
+}: {
+    params: { locale: Locale }
+    searchParams: any
+}) => {
+    const filters: FilterOptions = {
+        query: searchParams?.qry || "",
+        locale
+    }
+
+    const { featuredGames, articles } = await trpcServer().articleData(filters )
     const t = await getTranslations("Tags")
     const b = await getTranslations("Buttons")
+
+    
 
     return (
         <div className="w-full max-w-[1200px] flex justify-between gap-x-5 lg:flex-row flex-col">
             {/* Main Column  */}
-            <ArticleColumn data={articles} locale={locale}/>
+            <ArticleColumn data={articles} locale={locale} />
 
             {/* Right Column */}
             <Column

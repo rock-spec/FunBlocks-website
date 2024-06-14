@@ -7,6 +7,7 @@ interface FilterOptions {
     blockchainIds?: string[]
     engineIds?: string[]
     gameStudioIds?: string[]
+    query?: string
 }
 
 const getNews = async (locale: Locale) => {
@@ -23,9 +24,10 @@ const getNews = async (locale: Locale) => {
 }
 
 export const getGameAllData = async (filters: FilterOptions, locale: Locale) => {
-    const blockchainIds = filters.blockchainIds || []
-    const engineIds = filters.engineIds || []
-    const gameStudioIds = filters.gameStudioIds || []
+    const blockchainIds = filters?.blockchainIds || []
+    const engineIds = filters?.engineIds || []
+    const gameStudioIds = filters?.gameStudioIds || []
+    const searchQuery = filters?.query || ""
 
     // Create arrays of conditions for each filter
     const blockchainConditions = blockchainIds.map((id) => `blockchainid.eq.${id}`).join(",")
@@ -47,6 +49,11 @@ export const getGameAllData = async (filters: FilterOptions, locale: Locale) => 
     if (combinedConditions) {
         query = query.or(combinedConditions)
     }
+    // Apply the search query condition if it's not empty
+    if (searchQuery) {
+        query = query.ilike("game_name", `%${searchQuery}%`)
+    }
+
     const { data, error } = await query
     if (error) {
         console.error("Error fetching data:", error)

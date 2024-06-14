@@ -11,20 +11,24 @@ import React, { useEffect, useState } from "react"
 import TopBar from "./TopBar"
 import { Column } from "../Column/Column"
 import { useTranslations } from "next-intl"
+import { type Locale } from "@/i18n.config"
+
 // import getfetchFeaturedArticles from "@/actions/articles/action"
 
 export const dynamic = "force-dynamic"
 
-const HomeSearch = ({ hidden, query }: { hidden?: boolean; query: string }) => {
+const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale: Locale }) => {
     const t = useTranslations("Tags")
 
-    const data = trpc.searchPage.useQuery(query) // Assuming query is the search term
-    const featuredArticlesData = trpc.featuredArticles.useQuery()
+    const data = trpc.searchPage.useQuery({ query, locale }) // Assuming query is the search term
+    const featuredArticlesData = trpc.featuredArticles.useQuery(locale)
 
     const finalData = data.data
     const featuredArticles = featuredArticlesData.data?.featuredArticles
 
     const articles = finalData?.articles
+    console.log(articles)
+
     const news = finalData?.news
     const videos = finalData?.videos
     const events = finalData?.events
@@ -86,11 +90,13 @@ const HomeSearch = ({ hidden, query }: { hidden?: boolean; query: string }) => {
                                                             id={article?.articleid}
                                                             variant="article"
                                                             imageUrl={article?.content?.image}
-                                                            title={article?.content?.title}
-                                                            description={article?.content?.description}
+                                                            title={article?.content?.[`title_${locale}`]}
+                                                            description={
+                                                                article?.content?.[`description_${locale}`]
+                                                            }
                                                             details={article?.content?.publishdate}
-                                                            tags={[article?.content?.gameid]}
-                                                            author={article?.content?.user?.username}
+                                                            tags={[article?.content?.game?.gameid]}
+                                                            author={article?.content?.author?.name}
                                                             onFirstButtonClick={() => {}}
                                                             onSecondButtonClick={() => {}}
                                                         />
@@ -125,7 +131,7 @@ const HomeSearch = ({ hidden, query }: { hidden?: boolean; query: string }) => {
                                 <Tag type="section" text={`${videos?.length} Related Videos Found`} />
                                 <div className="grid  md:grid-cols-2 grid-cols-1  gap-4 mt-5">
                                     {singleVideoCardItemDetails?.map((detail, index) => (
-                                        <div className="p-5 border border-[#161616] bg-[#FFFCF9]">
+                                        <div className="p-5 border border-[#161616] bg-[#FFFCF9]" key={index}>
                                             <SingleVideoCardItem key={index} {...detail} />
                                         </div>
                                     ))}
@@ -152,11 +158,11 @@ const HomeSearch = ({ hidden, query }: { hidden?: boolean; query: string }) => {
                                                         variant="news"
                                                         id={news?.newsid}
                                                         imageUrl={`${news?.content?.image}`}
-                                                        title={news?.content?.title}
-                                                        description={news?.content?.description}
+                                                        title={news?.content?.[`title_${locale}`]}
+                                                        description={news?.content?.[`description_${locale}`]}
                                                         details={formatDate(news?.content?.publishdate)}
                                                         tags={[news?.content?.game?.gameid]}
-                                                        author={news?.content?.user?.username}
+                                                        author={news?.content?.author?.name}
                                                         onFirstButtonClick={() => {}}
                                                         onSecondButtonClick={() => {}}
                                                     />
@@ -181,7 +187,7 @@ const HomeSearch = ({ hidden, query }: { hidden?: boolean; query: string }) => {
                                 id: article?.articleid,
                                 variant: "article",
                                 search: true,
-                                title: article?.content?.title,
+                                title: article?.content?.[`title_${locale}`],
                                 imageUrl: article?.content?.image,
                             }))}
                         />

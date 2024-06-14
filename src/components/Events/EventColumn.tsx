@@ -25,7 +25,8 @@ export const EventColumn = ({ data }: { data: any }) => {
     const sortOptions = [{ name: "date" }]
 
     const singleCardItemDetails: SingleCardItemProps[] = filteredEvent?.map((event: any) => ({
-        url: event?.joinurl,
+        // url: event?.joinurl,
+        url: `/event/${event?.eventid}`,
         id: event.eventid,
         variant: "event",
         imageUrl: `${event.pic}?height=360&width=720`,
@@ -98,20 +99,6 @@ export const EventColumn = ({ data }: { data: any }) => {
 
         setFilteredEvent(updateData)
     }
-
-    //Creating options for category and type dropdown menu
-    // useEffect(() => {
-    //     const uniqueCategories = new Set<string>()
-    //     const uniqueTypes = new Set<string>()
-
-    //     data.forEach((news: { category: string; type: string }) => {
-    //         if (news.category) uniqueCategories.add(news.category)
-    //         if (news.type) uniqueTypes.add(news.type)
-    //     })
-
-    //     setCategory(Array.from(uniqueCategories))
-    //     setType(Array.from(uniqueTypes))
-    // }, [data])
 
     return (
         <>

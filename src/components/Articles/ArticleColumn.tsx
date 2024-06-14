@@ -2,46 +2,30 @@
 
 import React, { useEffect, useState } from "react"
 import SingleCardItem, { SingleCardItemProps } from "../SingleCardItem/SingleCardItem"
-import { CustomButton } from "../Button/Button"
 import CustomDropDown from "../DropDown/DropDown"
 import SearchInput from "../SearchInput/SearchInput"
-import { IoIosArrowDown } from "react-icons/io"
 import formatDate from "@/utils/dateFormat"
 import { useTranslations } from "next-intl"
 import { type Locale } from "@/i18n.config"
 import { trpc } from "@/app/_trpc/client"
 
-
 export const ArticleColumn = ({ data, locale }: { data: any; locale: Locale }) => {
     const b = useTranslations("Buttons")
     const s = useTranslations("Search")
 
+    const [articles, setArticles] = useState(data)
+    const [category, setCategory] = useState<string[]>([])
+
     const fetchData = trpc.fetchCategories.useQuery()
     const fetchedCategories = fetchData?.data
 
-    const [articleFilterData, setArticlesFilterData] = useState(data)
-    const [category, setCategory] = useState<string[]>([])
-
     const sortOptions = [{ name: "date" }]
 
-    function filterArticleArray(searchString: string): any[] {
-        const articleArray: any[] = data
-        // If searchString is empty, return the original newsArray
-        if (!searchString.trim()) {
-            return articleArray
-        }
+    useEffect(() => {
+        setArticles(data)
+    }, [data])
 
-        // Filter the articleArray based on the search string
-        return articleArray.filter((article) => {
-            return (
-                article?.articleid?.toLowerCase().includes(searchString.toLowerCase()) ||
-                article?.game?.gameid?.toLowerCase().includes(searchString.toLowerCase()) ||
-                article?.content?.title?.toLowerCase().includes(searchString.toLowerCase())
-            )
-        })
-    }
-    
-    const singleCardItemDetails: SingleCardItemProps[] = articleFilterData?.map((article: any) => ({
+    const singleCardItemDetails: SingleCardItemProps[] = articles?.map((article: any) => ({
         variant: "article",
         id: article?.articleid,
         imageUrl: `${article?.content?.image}?height=360&width=720`,
@@ -54,26 +38,12 @@ export const ArticleColumn = ({ data, locale }: { data: any; locale: Locale }) =
         onSecondButtonClick: () => {},
     }))
 
-    const handleSearch = (e: any) => {
-        const val = e.target.value
-        const updateData = filterArticleArray(val)
-        setArticlesFilterData(updateData)
-    }
-
-    // useEffect(() => {
-    //     let tmp: string[] = []
-    //     data.forEach((news: { category: string }) => {
-    //         if (news.category) tmp.push(news.category)
-    //     })
-    //     setCategory(tmp)
-    // }, [data])
-
     return (
         <>
             <div className="lg:w-[895px]  w-full">
                 <div className="flex flex-col lg:flex-row w-full mb-10 gap-x-4">
                     <div className=" w-full">
-                        <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} />
+                        <SearchInput varient="light" placeholder={s("pageSearch")} />
                     </div>
                     <CustomDropDown text={b("category")} options={fetchedCategories} />
                     <CustomDropDown text={b("sortBy")} options={sortOptions} />

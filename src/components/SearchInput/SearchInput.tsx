@@ -1,17 +1,44 @@
 "use client"
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Image from "next/image"
+import { useRouter, usePathname } from "next/navigation"
+import { useDebounce } from "./hooks"
 
 export interface SearchInputProps {
     varient?: "light" | "dark"
     placeholder?: string
     className?: string
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void // Modify the onChange type
+    searchParams?: any
 }
 
 const SearchInput = (props: SearchInputProps) => {
-    const { varient = "dark", placeholder = "Search for anything", onChange = () => {} } = props
+    const [path, setpath] = useState("")
+    const pathname = usePathname()
+    // const path = pathname?.split("/")[2]
+
+    const [qry, setQry] = useState("")
+    const debouncedSearch = useDebounce(qry)
+    const { varient = "dark", placeholder = "Search for anything", searchParams } = props
+
+    const router = useRouter()
+
+    useEffect(() => {
+        if (pathname) setpath(pathname?.split("/")[2])
+    }, [pathname])
+
+    useEffect(() => {
+        if (path === "game") {
+            router.push(
+                `game?engine=${searchParams?.engine ? searchParams?.engine : ""}&blockchain=${
+                    searchParams?.blockchain ? searchParams?.blockchain : ""
+                }&studio=${searchParams?.studio ? searchParams?.studio : ""}${qry ? `&qry=${qry}` : ""}`
+            )
+            router.refresh()
+        } else {
+            router.push(path + qry ? `?qry=${qry}` : "")
+        }
+    }, [debouncedSearch])
 
     return (
         <div
@@ -22,7 +49,7 @@ const SearchInput = (props: SearchInputProps) => {
       h-[41px] px-6 py-4.5 ${props.className} `}
         >
             <input
-                onChange={onChange} // Use the passed onChange function here
+                onChange={(e) => setQry(e.target.value)}
                 type="text"
                 className="  bg-transparent outline-none placeholder-default w-full"
                 placeholder={placeholder}

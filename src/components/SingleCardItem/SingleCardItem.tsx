@@ -45,6 +45,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         timezone = ""
     } = props
 
+
     return (
         <div className="flex md:flex-row  flex-col items-start gap-6 w-[863px] ">
             {/* First Column: Image */}

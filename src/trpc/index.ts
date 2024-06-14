@@ -27,10 +27,22 @@ const idAndLocaleSchema = z.object({
     locale: localeSchema,
 })
 
-const FilterOptionsSchema = z.object({
+const queryAndLocaleSchema = z.object({
+    query: z.string(),
+    locale: localeSchema,
+})
+
+// filter schema for game
+const gameFilterOptionsSchema = z.object({
     blockchainIds: z.string().optional(),
     engineIds: z.string().optional(),
     gameStudioIds: z.string().optional(),
+    query: z.string().optional(),
+    locale: localeSchema,
+})
+
+const articleFilterSchema = z.object({
+    query: z.string().optional(),
     locale: localeSchema,
 })
 
@@ -46,11 +58,12 @@ export const appRouter = router({
         const homeData = await getHomeData(input)
         return homeData
     }),
-    gameData: publicProcedure.input(FilterOptionsSchema).query(async ({ input }) => {
+    gameData: publicProcedure.input(gameFilterOptionsSchema).query(async ({ input }) => {
         const filters = {
             blockchainIds: input.blockchainIds ? input.blockchainIds.split(",") : [],
             engineIds: input.engineIds ? input.engineIds.split(",") : [],
             gameStudioIds: input.gameStudioIds ? input.gameStudioIds.split(",") : [],
+            query: input?.query ? input?.query : "",
         }
         const gameData = await getGameAllData(filters, input.locale)
         return gameData
@@ -71,11 +84,8 @@ export const appRouter = router({
         const newsData = await getNewsData(input)
         return newsData
     }),
-    // articleData: publicProcedure.query(async (opts:any) => {
-    //     const articleData = await getarticlesData(opts)
-    //     return articleData
-    // }),
-    articleData: publicProcedure.input(localeSchema).query(async ({ input }: { input: Locale }) => {
+
+    articleData: publicProcedure.input(articleFilterSchema).query(async ({ input }) => {        
         const articleData = await getarticlesData(input)
         return articleData
     }),
@@ -110,7 +120,7 @@ export const appRouter = router({
         const gameDetailsData = await getGameRelatedData(id, locale)
         return gameDetailsData
     }),
-    videoDetailsData: publicProcedure.input(idAndLocaleSchema).query(async ({input}) => {
+    videoDetailsData: publicProcedure.input(idAndLocaleSchema).query(async ({ input }) => {
         const videoDetailsData = await getvideoDetailPageData(input)
         return videoDetailsData
     }),
@@ -118,9 +128,9 @@ export const appRouter = router({
         const engineDetailsData = await getEngineDetailPageData(input)
         return engineDetailsData
     }),
-    searchPage: publicProcedure.input(z.string()).query(async (opts) => {
-        const { input } = opts
-        const engineDetailsData = await getSearchData(input)
+    searchPage: publicProcedure.input(queryAndLocaleSchema).query(async ({ input }) => {
+        const { query, locale } = input
+        const engineDetailsData = await getSearchData(query, locale)
         return engineDetailsData
     }),
     newsSearchData: publicProcedure.input(z.string()).query(async (qry) => {
@@ -129,14 +139,14 @@ export const appRouter = router({
         // const newsData = await getNewsData()
         return ["qry"]
     }),
-    featuredArticles: publicProcedure.query(async () => {
-        const featuredArticles = await getfeaturedArticles()
+    featuredArticles: publicProcedure.input(localeSchema).query(async ({ input }) => {
+        const featuredArticles = await getfeaturedArticles(input)
         return featuredArticles
     }),
-    fetchCategories: publicProcedure.query(async () => {
+    fetchCategories: publicProcedure.query(async () => {    
         const categories = await getCategories()
         return categories
-    })
+    }),
 })
 
 export type AppRouter = typeof appRouter
