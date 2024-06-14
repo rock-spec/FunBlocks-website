@@ -39,10 +39,7 @@ export const CustomButton = (props: ButtonProps) => {
         useMedium,
     } = props
 
-    // Define image sources for different button types
-
     // const imageSrc = "/buttons/medium-button.svg"
-
     const imageSrc = useSmall
         ? "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/button-nx98psh0NxJo08FqKnaafixQss0KAI.svg"
         : useMedium

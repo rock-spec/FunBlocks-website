@@ -26,17 +26,13 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
     let relatedEvents: any[] = []
     if (data?.relatedEvents?.status === "fulfilled") relatedEvents = data?.relatedEvents?.value
 
-console.log(relatedEvents);
-
 
     return (
         <>
             <div className="m-w-[895px] w-full">
                 <div className=" items-stretch flex mb-10 gap-x-5">
                     <div className="w-full relative p-5 bg-stone-50 border border-neutral-900 flex md:flex-row flex-col items-start gap-6 h-full ">
-                        {/* image container */}
                         <div className="relative md:w-[50%] w-full">
-                            {/* main banner image */}
                             <Image
                                 src={game?.pic}
                                 width={457}
@@ -61,7 +57,7 @@ console.log(relatedEvents);
                                 </div>
                                 <div className="flex gap-x-1 mt-3">
                                     {tags.map((tag, i) => (
-                                        <Tag text={tag} type={"relevance"} />
+                                        <Tag text={tag} type={"justTag"} />
                                     ))}
                                 </div>
                             </div>
@@ -69,7 +65,7 @@ console.log(relatedEvents);
                             <div className="absolute bottom-5 mt-auto">
                                 <BlueButton
                                     text={b("playNow")}
-                                    link={"#"}
+                                    link={game?.website}
                                     width="w-[132px]"
                                     bg={"bg-[url('/buttons/play_now.svg')]"}
                                     bg_hover={"hover:bg-[url('/buttons/play_now_hover.svg')]"}

@@ -30,7 +30,6 @@ const GameCardComponet = (props: GameCardComponentProps) => {
     return (
         <Link href={`/game/${game_id}`} target="_blank">
             <div className={"gap-6 shadow-sm flex flex-col  " + cabin.className}>
-
                 <div className="rounded-lg relative">
                     <div className=" relative rounded-md border border-[#161616] overflow-hidden">
                         <Image
@@ -44,21 +43,25 @@ const GameCardComponet = (props: GameCardComponentProps) => {
                             className="object-cover h-[187px] aspect-video"
                         />
                         <div className="absolute flex items-center top-3 left-3">
-                            <Image
-                                src={engine_logo}
-                                alt="Image"
-                                width={24}
-                                height={24}
-                                layout="fixed"
-                                objectFit="cover"
-                                objectPosition="center"
-                                className="object-cover  aspect-square"
-                            />
-                            <p
-                                className={`${OffBit.className}  p-0 px-2 text-sm font-bold bg-[#F0E5D9] leading-normal uppercase`}
-                            >
-                                {engine}
-                            </p>
+                            {engine_logo && (
+                                <Image
+                                    src={engine_logo}
+                                    alt="Image"
+                                    width={24}
+                                    height={24}
+                                    layout="fixed"
+                                    objectFit="cover"
+                                    objectPosition="center"
+                                    className="object-cover  aspect-square"
+                                />
+                            )}
+                            {engine && (
+                                <p
+                                    className={`${OffBit.className}  p-0 px-2 text-sm font-bold bg-[#F0E5D9] leading-normal uppercase`}
+                                >
+                                    {engine}
+                                </p>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -73,9 +76,10 @@ const GameCardComponet = (props: GameCardComponentProps) => {
                         className="self-stretch justify-start items-end gap-1 inline-flex"
                         onClick={(e) => e.preventDefault()}
                     >
-                        {tags.map((tag, index) => (
-                            <Tag text={tag} key={index} type={"justTag"} linkto="engine" />
-                        ))}
+                        {tags.map(
+                            (tag, index) =>
+                                <Tag text={tag} key={index} type={"justTag"} linkto="engine" />
+                        )}
                     </div>
                 </div>
             </div>

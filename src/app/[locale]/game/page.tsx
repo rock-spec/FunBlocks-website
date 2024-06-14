@@ -13,6 +13,7 @@ interface FilterOptions {
     blockchainIds?: string
     engineIds?: string
     gameStudioIds?: string
+    query?: string
     locale: Locale
 }
 
@@ -26,13 +27,14 @@ const Game = async ({
     const b = await getTranslations("Buttons")
     const s = await getTranslations("Search")
 
-    const sortOptions = ["date"]
+    const sortOptions = [{ name: "date" }]
 
     // Fetching game data using trpc
     const filters: FilterOptions = {
-        blockchainIds: searchParams.blockchain || "",
-        engineIds: searchParams.engine || "",
-        gameStudioIds: searchParams.studio || "",
+        blockchainIds: searchParams?.blockchain || "",
+        engineIds: searchParams?.engine || "",
+        gameStudioIds: searchParams?.studio || "",
+        query: searchParams?.qry || "",
         locale: locale,
     }
 
@@ -66,12 +68,17 @@ const Game = async ({
                 gameStudiosList={gameStudiosList}
                 enginesList={enginesList}
                 data={gameData.game}
+                searchParams={searchParams}
             />
             {/* Main Column  */}
             <div>
                 <div className="flex justify-between items-center w-full mb-10 gap-x-4">
                     <div className=" w-full">
-                        <SearchInput varient="light" placeholder={s("pageSearch")} />
+                        <SearchInput
+                            varient="light"
+                            placeholder={s("pageSearch")}
+                            searchParams={searchParams}
+                        />
                     </div>
                     <CustomDropDown text={b("sortBy")} options={sortOptions} txt_px="px-8" />
                 </div>

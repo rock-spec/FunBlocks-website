@@ -4,19 +4,20 @@ import { useState } from "react"
 import HomeSearch from "@/components/HomeSearch/SearchHome"
 import { NavBar } from "../NavBar/NavBar"
 import Image from "next/image"
+import { type Locale } from "@/i18n.config"
 
 interface NavAndSearchComponentProps {
     children: React.ReactNode
+    locale: Locale
 }
 
-const NavAndSearchComponent: React.FC<NavAndSearchComponentProps> = ({ children }) => {
+const NavAndSearchComponent: React.FC<NavAndSearchComponentProps> = ({ children, locale }) => {
     const [searchQuery, setSearchQuery] = useState("")
-    
 
     return (
         <>
             <nav suppressHydrationWarning={true} className="z-[1000] ">
-                <NavBar setSearchQuery={setSearchQuery}  />
+                <NavBar setSearchQuery={setSearchQuery} />
             </nav>
 
             <div className="min-h-screen flex justify-center items-start pt-10 pb-[60px] m-5 lg:mt-28 md:m-16 ">
@@ -28,7 +29,7 @@ const NavAndSearchComponent: React.FC<NavAndSearchComponentProps> = ({ children 
                     <Image src="/bg-svg-right.svg" alt="Right SVG" width={221} height={557} />
                 </div>
 
-                {!searchQuery ? children : <HomeSearch query={searchQuery} />}
+                {!searchQuery ? children : <HomeSearch query={searchQuery} locale={locale} />}
             </div>
         </>
     )

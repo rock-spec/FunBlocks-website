@@ -43,7 +43,7 @@ async function RootLayout({
             >
                 <NextIntlClientProvider messages={messages}>
                     <Provider>
-                        <NavAndSearchComponent>{children}</NavAndSearchComponent>
+                        <NavAndSearchComponent locale={locale}>{children}</NavAndSearchComponent>
                         <footer className="w-full">
                             <Footer />
                         </footer>
