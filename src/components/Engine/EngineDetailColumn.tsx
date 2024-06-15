@@ -73,7 +73,7 @@ export const EngineDetailColumn = ({
                                         className="h-6 mr-1"
                                     />
                                     <p>
-                                        <Link href={engineData?.website} target="blank">
+                                        <Link href={engineData?.website} target="_blank">
                                             {engineData?.engineid}
                                         </Link>
                                     </p>
@@ -91,7 +91,7 @@ export const EngineDetailColumn = ({
                                     />
                                     <p>
                                         {" "}
-                                        <Link href={engineData?.blogurl} target="blank">
+                                        <Link href={engineData?.blogurl} target="_blank">
                                             Docs
                                         </Link>
                                     </p>

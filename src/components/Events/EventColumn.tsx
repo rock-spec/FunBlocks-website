@@ -27,78 +27,17 @@ export const EventColumn = ({ data, searchParams }: { data: any; searchParams: a
     const singleCardItemDetails: SingleCardItemProps[] = events?.map((event: any) => ({
         // url: event?.joinurl,
         url: `/event/${event?.eventid}`,
-        id: event.eventid,
+        id: event?.eventid,
         variant: "event",
-        imageUrl: `${event.pic}?height=360&width=720`,
-        title: event.title,
-        details: `${formatTimestamp(event.startdate)} - ${formatTimestamp(event.enddate)}`,
-        timezone: event.timezone,
-        tags: [event.game.gameid],
+        imageUrl: `${event?.pic}?height=360&width=720`,
+        title: event?.title,
+        details: `${formatTimestamp(event?.startdate)} - ${formatTimestamp(event?.enddate)}`,
+        timezone: event?.timezone,
+        joinurl: event?.joinurl,
+        tags: [event?.game.gameid],
         onFirstButtonClick: () => {},
         onSecondButtonClick: () => {},
     }))
-
-    // function filterEvent(searchString: string = ""): any[] {
-    //     const events = data
-
-    //     // If searchString is empty, return the original eventArray
-    //     if (!searchString.trim()) {
-    //         return events
-    //     }
-
-    //     // Filter the eventArray based on the search string
-    //     return events.filter((event: any) => {
-    //         const lowerSearchString = searchString.toLowerCase()
-    //         const lowerStartDate = event?.startdate?.toLowerCase()
-    //         const lowerEndDate = event?.enddate?.toLowerCase()
-
-    //         // Check if the search string matches any part of the startdate or enddate
-    //         const startDateMatch = lowerStartDate?.includes(lowerSearchString)
-    //         const endDateMatch = lowerEndDate?.includes(lowerSearchString)
-
-    //         // Check if the search string matches any part of the title, detail, gameid, or eventid
-    //         const otherMatches =
-    //             event?.gameid?.toLowerCase().includes(lowerSearchString) ||
-    //             event?.eventid?.toLowerCase().includes(lowerSearchString) ||
-    //             event?.title?.toLowerCase().includes(lowerSearchString) ||
-    //             event?.detail?.toLowerCase().includes(lowerSearchString)
-
-    //         // Check if the search string represents a month (e.g., "April")
-    //         const isMonth = (dateString: string) => {
-    //             const months = [
-    //                 "january",
-    //                 "february",
-    //                 "march",
-    //                 "april",
-    //                 "may",
-    //                 "june",
-    //                 "july",
-    //                 "august",
-    //                 "september",
-    //                 "october",
-    //                 "november",
-    //                 "december",
-    //             ]
-    //             return months.some((month) => dateString.includes(month))
-    //         }
-
-    //         // Return true if any of the matches are found
-    //         return (
-    //             startDateMatch ||
-    //             endDateMatch ||
-    //             otherMatches ||
-    //             (isMonth(lowerSearchString) &&
-    //                 (lowerStartDate.includes(lowerSearchString) || lowerEndDate.includes(lowerSearchString)))
-    //         )
-    //     })
-    // }
-
-    // const handleSearch = (e: any) => {
-    //     const val = e.target.value
-    //     const updateData = filterEvent(val)
-
-    //     setFilteredEvent(updateData)
-    // }
 
     useEffect(() => {
         setEvents(data)

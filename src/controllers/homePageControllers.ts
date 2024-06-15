@@ -76,7 +76,7 @@ const getfeaturedEvents = async () => {
             "eventid, pic,title, startdate, enddate, joinurl, game(gameid,engineid,gamestudioid,blockchainid)"
         )
         .eq("isHome", true)
-        .limit(2)
+        .limit(4)
 
     if (error) {
         throw new Error("Error fetching events: " + error.message)

@@ -68,6 +68,8 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
         featuredNews = data.featuredNews.value
     }
 
+    
+
     return (
         <>
             <div className="w-full">
@@ -161,6 +163,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                             title: event?.title,
                             details: `${formatDate(event?.startdate)} - ${formatDate(event?.enddate)}`,
                             // 'zone': "EST",
+                            joinurl: event?.joinurl,
                             tags: [event?.game.gameid],
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},

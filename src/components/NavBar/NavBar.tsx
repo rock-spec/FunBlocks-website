@@ -878,7 +878,6 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
                             </Link>
                         </div>
                         <div className="flex-1 mx-5">
-                            {/* THIS IS SEACH INPUT  */}
 
                             <SearchInput
                                 varient="dark"
