@@ -30,19 +30,21 @@ const EngineDetail = async ({ params }: { params: { id: string; locale: Locale }
                 relatedArticles={relatedArticles}
             />
             {/* Right Column */}
-            <Column
-                variant="news"
-                title={t("relatedNews")}
-                responsive
-                onButtonClick={() => {}}
-                columnItems={relatedNews?.map((news: any) => ({
-                    id: news?.newsid,
-                    variant: "news",
-                    tags: [news?.content?.game?.gameid],
-                    title: news?.content?.title,
-                    imageUrl: news?.content?.image,
-                }))}
-            />
+            {relatedNews.length > 0 && (
+                <Column
+                    variant="news"
+                    title={t("relatedNews")}
+                    responsive
+                    onButtonClick={() => {}}
+                    columnItems={relatedNews?.map((news: any) => ({
+                        id: news?.newsid,
+                        variant: "news",
+                        tags: [news?.content?.game?.gameid],
+                        title: news?.content?.[`title_${locale}`] || news?.content?.title_en,
+                        imageUrl: news?.content?.image,
+                    }))}
+                />
+            )}
         </div>
     )
 }

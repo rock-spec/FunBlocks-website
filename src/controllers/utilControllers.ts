@@ -24,7 +24,7 @@ export const getRelatedArticles = async (game_id: string, locale: Locale) => {
     const { data, error } = await supabase
         .from("articles")
         .select(
-            `*,content(title_${locale}, description_${locale}, image, publishdate,game(gameid),author(name))`
+            `*,content(title_en, title_zh, description_en, description_en, image, publishdate,game(gameid),author(name))`
         )
         .eq("content.gameid", game_id) //Filter through referenced table
 
@@ -51,7 +51,7 @@ export const getRelatedEvents = async (game_id: string) => {
 export const getRelatedNews = async (game_id: string, locale: Locale) => {
     const { data, error } = await supabase
         .from("news")
-        .select(`*,content(title_${locale},image,game(gameid),author(name))`)
+        .select(`*,content(title_en, title_zh,image,game(gameid),author(name))`)
         .eq("content.gameid", game_id) //Filter through referenced table
 
     if (error) {
@@ -75,7 +75,6 @@ export const getRelatedVideos = async (game_id: string) => {
 }
 
 export const getCategories = async () => {
-
     const { data, error } = await supabase.from("category").select("*")
 
     if (error) {

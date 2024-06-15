@@ -91,7 +91,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                                     news?.content?.game?.gamestudioid,
                                     news?.content?.game?.blockchainid,
                                 ],
-                                title: news.content[`title_${locale}`],
+                                title: news?.content?.[`title_${locale}`] || news?.content?.title_en,
                                 imageUrl: news.content.image,
                             }))}
                         />
@@ -108,7 +108,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                                 id={featured?.newsid}
                                 key={featured?.newsid} // Ensure to provide a unique key for each iterated element
                                 imageUrl={featured?.content?.image}
-                                title={featured?.content?.[`title_${locale}`]}
+                                title={featured?.content?.[`title_${locale}`] || featured?.content?.title_en}
                                 tags={featured?.game?.length > 0 ? [featured?.game] : []} // Assuming you want to display the gameid as a tag
                             />
                         ))}
@@ -121,8 +121,9 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                             variant: "article",
                             id: article?.articleid,
                             imageUrl: `${article?.content.image}?height=360&width=720`,
-                            title: article?.content[`title_${locale}`],
-                            description: article?.content[`description_${locale}`],
+                            title: article?.content[`title_${locale}`] || article?.content?.title_en,
+                            description:
+                                article?.content[`description_${locale}`] || article?.content?.description_en,
                             details: formatDate(article?.content.publishdate),
                             tags: [article?.content?.game?.gameid],
                             author: article?.content?.author?.name,

@@ -105,13 +105,15 @@ export const EventColumn = ({ data }: { data: any }) => {
             <div className="lg:w-[895px] w-full">
                 <div className="flex flex-col lg:flex-row w-full mb-10 gap-x-4">
                     <div className="w-full">
-                        <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} />
+                        {/* <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} /> */}
+                        <SearchInput varient="light" placeholder={s("pageSearch")}  />
+
                     </div>
-                    <CustomDropDown
+                    {/* <CustomDropDown
                         bg="bg-[url('/buttons/medium_dropdown.svg')]"
                         text={b("type")}
                         options={type}
-                    />
+                    /> */}
                     <CustomDropDown
                         bg="bg-[url('/buttons/medium_dropdown.svg')]"
                         text={b("category")}
@@ -122,11 +124,6 @@ export const EventColumn = ({ data }: { data: any }) => {
                         text={b("sortBy")}
                         options={sortOptions}
                     />
-                    {/* <div className="flex">
-                        <CustomButton onClick={() => { }} size='13px' text='Type' height='42px' icon={<IoIosArrowDown />} />
-                        <CustomButton onClick={() => { }} size='13px' text='Status' height='42px' icon={<IoIosArrowDown />} />
-                        <CustomButton onClick={() => { }} size='13px' text='Category' height='42px' icon={<IoIosArrowDown />} />
-                    </div> */}
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <div className="flex flex-col flex-1 items-start gap-5">

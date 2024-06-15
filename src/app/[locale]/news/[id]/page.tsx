@@ -16,13 +16,12 @@ const NewsDetails = async ({ params }: { params: { id: string; locale: Locale } 
     const locale = params.locale
     const data = await trpcServer().newsDetailsData({ id, locale })
     const relatedData = data?.relatedData
-    
+
     let game: any[] = []
     if (relatedData?.game?.status === "fulfilled") game = relatedData?.game?.value
 
     let relatedNews: any[] = []
-    if (relatedData?.relatedNews?.status === "fulfilled")
-        relatedNews = relatedData?.relatedNews?.value
+    if (relatedData?.relatedNews?.status === "fulfilled") relatedNews = relatedData?.relatedNews?.value
 
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
@@ -56,7 +55,7 @@ const NewsDetails = async ({ params }: { params: { id: string; locale: Locale } 
                         id: news?.newsid,
                         variant: "news",
                         tags: [],
-                        title: news?.content?.[`title_${locale}`],
+                        title: news?.content?.[`title_${locale}`] || news?.content?.title_en,
                         imageUrl: news?.content?.image,
                     }))}
                 />

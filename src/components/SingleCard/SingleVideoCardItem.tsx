@@ -47,7 +47,9 @@ const SingleVideoCardItem = (props: any) => {
                             </div>
                             {date && (
                                 <div className=" flex my-5 gap-x-3">
-                                    <Tag text={gameid} type={"relevance"} />
+                                    {/* <Tag text={gameid} type={"relevance"} /> */}
+                                    <Tag text={gameid} type={"justTag"} />
+
                                     <div className="justify-start md:items-center gap-2 flex md:flex-row flex-col md:ml-2">
                                         <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px] capitalize">
                                             By {author}
