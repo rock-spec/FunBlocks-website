@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl"
 import CustomDropDown from "../DropDown/DropDown"
 import { trpc } from "@/app/_trpc/client"
 
-export const VideoColumn = ({ data }: { data: any }) => {
+export const VideoColumn = ({ data, searchParams }: { data: any; searchParams: any }) => {
     const b = useTranslations("Buttons")
     const s = useTranslations("Search")
 
@@ -17,7 +17,7 @@ export const VideoColumn = ({ data }: { data: any }) => {
 
     const sortOptions = [{ name: "date" }]
 
-    const [videoFilterData, setVideoFilterData] = useState(data)
+    const [videos, setVideos] = useState(data)
     const [category, setCategory] = useState<string[]>([])
 
     function filterVideo(searchString: string = "") {
@@ -36,7 +36,7 @@ export const VideoColumn = ({ data }: { data: any }) => {
         })
     }
 
-    const singleCardItemDetails: any[] = videoFilterData.map((video: any) => ({
+    const singleCardItemDetails: any[] = videos.map((video: any) => ({
         key: video?.videoid,
         variant: "video",
         id: video.videoid,
@@ -51,29 +51,34 @@ export const VideoColumn = ({ data }: { data: any }) => {
         onSecondButtonClick: () => {},
     }))
 
-    const handleSearch = (e: any) => {
-        const val = e.target.value
-        const updateData = filterVideo(val)
-        setVideoFilterData(updateData)
-    }
-
-    // useEffect(() => {
-    //     let tmp: string[] = []
-    //     data.forEach((news: { category: string }) => {
-    //         if (news.category) tmp.push(news.category)
-    //     })
-    //     setCategory(tmp)
-    // }, [data])
+    useEffect(() => {
+        setVideos(data)
+    }, [data])
 
     return (
         <>
             <div className="lg:w-[895px]  w-full">
                 <div className="flex flex-col lg:flex-row w-full mb-10 gap-x-4">
                     <div className=" w-full">
-                        <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} />
+                        {/* <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} /> */}
+                        <SearchInput
+                            varient="light"
+                            placeholder={s("pageSearch")}
+                            searchParams={searchParams}
+                        />
                     </div>
-                    <CustomDropDown text={b("category")} options={fetchedCategories} />
-                    <CustomDropDown text={b("sortBy")} options={sortOptions} />
+                    <CustomDropDown
+                        text={b("category")}
+                        options={fetchedCategories}
+                        item={"category"}
+                        searchParams={searchParams}
+                    />
+                    <CustomDropDown
+                        text={b("sortBy")}
+                        options={sortOptions}
+                        item={"sort"}
+                        searchParams={searchParams}
+                    />
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <div>

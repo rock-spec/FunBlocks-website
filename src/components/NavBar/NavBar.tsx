@@ -884,10 +884,6 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
                                 varient="dark"
                                 placeholder={s("navSearch")}
                                 className="ml-0 pl-0 mr-0 pr-0 sm:mx-3 z-[1000]"
-                                onChange={async (e) => {
-                                    const val = e.target.value
-                                    setSearchQuery(val)
-                                }}
                             />
                         </div>
 

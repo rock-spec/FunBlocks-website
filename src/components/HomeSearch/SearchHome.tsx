@@ -20,7 +20,8 @@ export const dynamic = "force-dynamic"
 const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale: Locale }) => {
     const t = useTranslations("Tags")
 
-    const data = trpc.searchPage.useQuery({ query, locale }) // Assuming query is the search term
+    const data = trpc.searchPage.useQuery({ query, locale })
+     // Assuming query is the search term
     const featuredArticlesData = trpc.featuredArticles.useQuery(locale)
 
     const finalData = data.data

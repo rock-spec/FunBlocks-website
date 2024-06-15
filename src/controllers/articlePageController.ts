@@ -5,32 +5,37 @@ const supabase = SupabaseInstance.getSupabaseInstance()
 
 type filterSchema = {
     query?: string
+    categoryid?: string
+    sort?: string
     locale: Locale
 }
 
 const getAllArticles = async (filter: filterSchema) => {
     const locale = filter?.locale
     const searchQuery = filter?.query
+    const categoryid = filter?.categoryid
+    const sort = filter?.sort
 
     let query = supabase.from("articles").select(
-        `articleid, isHome, categoryid, 
+        `articleid, 
             content(
                 title_en, title_zh, description_en,description_zh, content_en,content_zh, image, publishdate, author:authorid(name), game:gameid(gameid, engineid, gamestudioid, blockchainid)
             )`
     )
-
-    if (searchQuery) {
-        query = query.ilike(`content.title_${locale}`, `%${searchQuery}%`)
-    }
-
+    if (categoryid) query = query.eq("categoryid", categoryid)
+    if (searchQuery) query = query.ilike(`content.title_${locale}`, `%${searchQuery}%`)
+    if (sort) query = query.order("content_id->publishdate", { ascending: false }) // Add sorting by publishdate in descending order
     const { data, error } = await query
+    if (error) throw new Error("Error fetching articles: " + error.message)
 
-    if (error) {
-        throw new Error("Error fetching articles: " + error.message)
-    }
-
+    // let sortedData = data
+    // if (sort) {
+    //     sortedData = data.sort(
+    //         (a, b) =>
+    //             new Date(b?.content?.publishdate).getTime() - new Date(a?.content?.publishdate).getTime()
+    //     )
+    // }
     if (searchQuery) {
-        // search
         const filteredData = data.filter((item) => item.content !== null)
         return filteredData || []
     }

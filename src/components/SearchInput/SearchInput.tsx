@@ -15,13 +15,12 @@ export interface SearchInputProps {
 const SearchInput = (props: SearchInputProps) => {
     const [path, setpath] = useState("")
     const pathname = usePathname()
+    const router = useRouter()
     // const path = pathname?.split("/")[2]
 
     const [qry, setQry] = useState("")
     const debouncedSearch = useDebounce(qry)
     const { varient = "dark", placeholder = "Search for anything", searchParams } = props
-
-    const router = useRouter()
 
     useEffect(() => {
         if (pathname) setpath(pathname?.split("/")[2])
@@ -36,7 +35,9 @@ const SearchInput = (props: SearchInputProps) => {
             )
             router.refresh()
         } else {
-            router.push(path + qry ? `?qry=${qry}` : "")
+            router.push(
+                `${path}?category=${searchParams?.category || ""}&sort=${searchParams?.sort || ""}&qry=${qry}`
+            )
         }
     }, [debouncedSearch])
 
