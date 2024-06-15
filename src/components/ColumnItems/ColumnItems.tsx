@@ -68,7 +68,7 @@ export const ColumnItems = (props: SingleColumnProps) => {
                                     <Tag
                                         text={tag}
                                         key={index}
-                                        type={"relevance"}
+                                        type={"justTag"}
                                         linkto={variant === "game" ? "engine" : "game"}
                                     />
                                 ))}

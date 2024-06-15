@@ -58,7 +58,7 @@ const VideoDetails = async ({ params }: { params: { id: string; locale: Locale }
                             id: article?.articleid,
                             variant: "article",
                             tags: ["test"],
-                            title: article?.content?.[`title_${locale}`],
+                            title: article?.content?.[`title_${locale}`] || article?.content?.title_en,
                             imageUrl: article?.content?.image,
                         }))}
                     />

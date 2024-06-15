@@ -42,8 +42,8 @@ export const NewsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
         variant: "news",
         id: news?.newsid,
         imageUrl: `${news?.content.image}?height=360&width=720`,
-        title: news?.content[`title_${locale}`],
-        description: news?.content[`description_${locale}`],
+        title: news?.content[`title_${locale}`] || news?.content?.title_en,
+        description: news?.content[`description_${locale}`] || news?.content?.description_en,
         details: formatDate(news?.content.publishdate),
         tags: [news?.content?.game?.gameid],
         author: news?.content?.author?.name,
@@ -51,27 +51,19 @@ export const NewsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
         onSecondButtonClick: () => {},
     }))
 
-    const handleSearch = (e: any) => {
-        const val = e.target.value
-        const updateData = filterNewsArray(val)
-        setNewsFilterData(updateData)
-    }
-
-    //Creating options for category dropdown menu
-    // useEffect(() => {
-    //     const uniqueCategories = new Set<string>()
-    //     data.forEach((news: { category: string; type: string }) => {
-    //         if (news.category) uniqueCategories.add(news.category)
-    //     })
-    //     setCategory(Array.from(uniqueCategories))
-    // }, [data])
+    // const handleSearch = (e: any) => {
+    //     const val = e.target.value
+    //     const updateData = filterNewsArray(val)
+    //     setNewsFilterData(updateData)
+    // }
 
     return (
         <>
             <div className="lg:w-[895px]  w-full">
                 <div className="flex flex-col lg:flex-row w-full mb-10 gap-x-4">
                     <div className=" w-full">
-                        <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} />
+                        {/* <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} /> */}
+                        <SearchInput varient="light" placeholder={s("pageSearch")} />
                     </div>
                     <CustomDropDown text={b("category")} options={fetchedCategories} />
                     <CustomDropDown text={b("sortBy")} options={sortOptions} />

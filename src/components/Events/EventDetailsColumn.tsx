@@ -109,8 +109,10 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                                 id: article?.articleid,
                                 variant: "article",
                                 imageUrl: `${article?.content?.image}?height=360&width=720`,
-                                title: article?.content?.[`title_${locale}`],
-                                description: article?.content?.[`description_${locale}`],
+                                title: article?.content?.[`title_${locale}`] || article?.content?.title_en,
+                                description:
+                                    article?.content?.[`description_${locale}`] ||
+                                    article?.content?.description_en,
                                 details: formatDate(article?.content?.publishdate),
                                 tags: [article?.content?.game?.gameid],
                                 author: article?.content?.author?.name,

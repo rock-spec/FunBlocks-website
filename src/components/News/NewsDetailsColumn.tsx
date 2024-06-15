@@ -34,7 +34,7 @@ export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale 
                     }
                 >
                     <div className=" text-neutral-900 text-[28px] font-bold  leading-[33.60px] mb-[12px]">
-                        {data?.news?.content?.[`title_${locale}`]}
+                        {data?.news?.content?.[`title_${locale}`] || data?.news?.content?.title_en}
                     </div>
                     <div className="flex gap-1 mb-[24px]">
                         {[game[0]?.gameid].map((tag, index) => (
@@ -53,7 +53,10 @@ export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale 
 
                     <div className="my-6">
                         <h1 className="font-semibold text-xl mt-6 mb-3">Summary</h1>
-                        <p className="">{data?.news?.content?.[`description_${locale}`]}</p>
+                        <p className="">
+                            {data?.news?.content?.[`description_${locale}`] ||
+                                data?.news?.content?.description_en}
+                        </p>
                     </div>
 
                     <Image
@@ -66,7 +69,10 @@ export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale 
 
                     <div
                         // dangerouslySetInnerHTML={{ __html: data?.news?.body }}
-                        dangerouslySetInnerHTML={{ __html: data?.news?.content?.[`content_${locale}`] }}
+                        dangerouslySetInnerHTML={{
+                            __html:
+                                data?.news?.content?.[`content_${locale}`] || data?.news?.content?.content_en,
+                        }}
                         className={
                             "text-neutral-900 text-base font-normal  leading-normal mb-[20.28px] " +
                             cabin.className
@@ -81,8 +87,10 @@ export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale 
                             id: article.articleid,
                             variant: "article",
                             imageUrl: `${article.content.image}?height=360&width=720`,
-                            title: article?.content?.[`title_${locale}`],
-                            description: article?.content?.[`description_${locale}`],
+                            title: article?.content?.[`title_${locale}`] || article?.content?.title_en,
+                            description:
+                                article?.content?.[`description_${locale}`] ||
+                                article?.content?.description_en,
                             details: formatDate(article?.content?.publishdate),
                             tags: [article?.content?.game?.gameid],
                             author: article?.content?.user?.username,

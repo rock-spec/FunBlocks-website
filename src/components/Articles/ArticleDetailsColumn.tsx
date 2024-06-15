@@ -30,7 +30,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                     }
                 >
                     <div className=" text-neutral-900 text-[28px] font-bold  leading-[33.60px] mb-[12px]">
-                        {data.article.content[`title_${locale}`]}
+                        {data.article.content[`title_${locale}`] || data.article.content?.title_en}
                     </div>
                     <div className="flex gap-1 mb-[24px]">
                         {[game[0].gameid].map((tag, index) => (
@@ -48,7 +48,10 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                     </div>
                     <div className="my-6">
                         <h1 className="font-semibold text-xl mt-6 mb-3">Summary</h1>
-                        <p className="">{data?.article?.content?.[`description_${locale}`]}</p>
+                        <p className="">
+                            {data?.article?.content?.[`description_${locale}`] ||
+                                data?.article?.content?.description_en}
+                        </p>
                     </div>
                     <Image
                         alt="banner"
@@ -58,8 +61,12 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         src={data.article.content.image}
                     />
                     <div className="text-neutral-900 text-base font-normal  leading-normal mb-[20.28px] break-words">
-                        {data?.article?.content?.[`content_${locale}`] &&
-                            renderHTML(data?.article?.content?.[`content_${locale}`])}
+                        {(data?.article?.content?.[`content_${locale}`] ||
+                            data?.article?.content?.content_en) &&
+                            renderHTML(
+                                data?.article?.content?.[`content_${locale}`] ||
+                                    data?.article?.content?.content_en
+                            )}
                     </div>
                 </div>
                 {data?.relatedData?.relatedArticles?.length > 0 && (

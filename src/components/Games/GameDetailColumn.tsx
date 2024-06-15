@@ -26,7 +26,6 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
     let relatedEvents: any[] = []
     if (data?.relatedEvents?.status === "fulfilled") relatedEvents = data?.relatedEvents?.value
 
-
     return (
         <>
             <div className="m-w-[895px] w-full">
@@ -84,8 +83,10 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
                                 id: article?.articleid,
                                 variant: "article",
                                 imageUrl: `${article?.content?.image}?height=360&width=720`,
-                                title: article?.content?.[`title_${locale}`],
-                                description: article?.content?.[`description_${locale}`],
+                                title: article?.content?.[`title_${locale}`] || article?.content?.title_en,
+                                description:
+                                    article?.content?.[`description_${locale}`] ||
+                                    article?.content?.description_en,
                                 details: formatDate(article?.content?.publishdate),
                                 tags: [article?.content?.game.gameid],
                                 author: article?.content?.author?.name,

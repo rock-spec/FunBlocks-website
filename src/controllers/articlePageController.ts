@@ -15,7 +15,7 @@ const getAllArticles = async (filter: filterSchema) => {
     let query = supabase.from("articles").select(
         `articleid, isHome, categoryid, 
             content(
-                title_${locale}, description_${locale}, content_${locale}, image, publishdate, author:authorid(name), game:gameid(gameid, engineid, gamestudioid, blockchainid)
+                title_en, title_zh, description_en,description_zh, content_en,content_zh, image, publishdate, author:authorid(name), game:gameid(gameid, engineid, gamestudioid, blockchainid)
             )`
     )
 

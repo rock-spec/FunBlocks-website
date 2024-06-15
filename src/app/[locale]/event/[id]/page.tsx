@@ -46,19 +46,21 @@ const EventDetails = async ({ params }: { params: { id: string; locale: Locale }
                 />
                 {/* for space between them */}
                 <div className="h-[24px] w-full"></div>
-                <Column
-                    variant="article"
-                    responsive
-                    title={n("articles")}
-                    onButtonClick={() => {}}
-                    columnItems={relatedArticles.map((article: any) => ({
-                        id: article.articleid,
-                        variant: "article",
-                        tags: [],
-                        title: article.content[`title_${locale}`],
-                        imageUrl: article.content.image,
-                    }))}
-                />
+                {relatedArticles.length > 0 && (
+                    <Column
+                        variant="article"
+                        responsive
+                        title={n("articles")}
+                        onButtonClick={() => {}}
+                        columnItems={relatedArticles.map((article: any) => ({
+                            id: article.articleid,
+                            variant: "article",
+                            tags: [],
+                            title: article.content[`title_${locale}`] || article.content?.title_en,
+                            imageUrl: article.content.image,
+                        }))}
+                    />
+                )}
             </div>
         </div>
     )

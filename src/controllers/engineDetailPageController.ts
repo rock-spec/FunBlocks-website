@@ -45,32 +45,7 @@ async function fetchGameRelatedData(relatedGames: Game[], locale: Locale): Promi
     const promises = relatedGames.map((game) => getGameRelatedData(game.gameid, locale))
     return Promise.all(promises)
 }
-// function extractRelatedContent(jsonData: any[], contentType: string): any[] {
-//     const relatedContent: any[] = []
 
-//     console.log(jsonData)
-
-//     // Iterate through each entry in the jsonData array
-//     jsonData.forEach((entry: any) => {
-//         // Extract content of the specified type for the current entry
-//         const contentArray: any[] = entry[contentType] || []
-
-//         console.log(contentArray);
-
-//         // Iterate through each content item and append it to the overall array
-//         contentArray.forEach((contentItem: any) => {
-//             // Create a new object containing content, newsid, and articleid
-//             const itemWithIds = {
-//                 content: contentItem.content,
-//                 newsid: contentItem.newsid,
-//                 articleid: contentItem.articleid,
-//             }
-//             relatedContent.push(itemWithIds)
-//         })
-//     })
-
-//     return relatedContent
-// }
 
 function extractRelatedVideos(jsonData: any[]): any[] {
     const relatedVideos: any[] = []
@@ -105,33 +80,6 @@ function extractRelatedContent(jsonData: any[], contentType: string): any[] {
     return relatedContent
 }
 
-// function extractRelatedVideos(jsonData: any[]): any[] {
-//     const relatedVideos: any[] = []
-
-//     // Iterate through each entry in the jsonData array
-//     jsonData.forEach((entry: any) => {
-//         // Extract related videos for the current entry
-//         const videosArray: any[] = entry.relatedVideos || []
-//         // Push each video to the overall array
-//         relatedVideos.push(...videosArray)
-//     })
-
-//     return relatedVideos
-// }
-
-// function extractRelatedEvents(jsonData: any[]): any[] {
-//     const relatedEvents: any[] = []
-
-//     // Iterate through each entry in the jsonData array
-//     jsonData.forEach((entry: any) => {
-//         // Extract related events for the current entry
-//         const eventsArray: any[] = entry.relatedEvents || []
-//         // Push each event to the overall array
-//         relatedEvents.push(...eventsArray)
-//     })
-
-//     return relatedEvents
-// }
 
 function extractAllGames(jsonData: any): any[] {
     const allGames: any[] = []
