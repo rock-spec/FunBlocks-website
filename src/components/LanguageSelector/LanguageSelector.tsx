@@ -18,7 +18,8 @@ const LanguageSelector = () => {
     const locale = useLocale() as Locale
 
     const switchLanguage = (newLocale: Locale) => {
-        router.replace(pathname, { locale: newLocale })
+        router.push(newLocale)
+        router.refresh()
         setShowDropdown(false)
     }
 

@@ -1,4 +1,4 @@
-"use cleint"
+"use client"
 
 import { trpc } from "@/app/_trpc/client"
 import GameCardComponet, { GameCardComponentProps } from "@/components/Games/GameCardComponet"
@@ -21,14 +21,13 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
     const t = useTranslations("Tags")
 
     const data = trpc.searchPage.useQuery({ query, locale })
-     // Assuming query is the search term
+    // Assuming query is the search term
     const featuredArticlesData = trpc.featuredArticles.useQuery(locale)
 
     const finalData = data.data
     const featuredArticles = featuredArticlesData.data?.featuredArticles
 
     const articles = finalData?.articles
-    console.log(articles)
 
     const news = finalData?.news
     const videos = finalData?.videos
