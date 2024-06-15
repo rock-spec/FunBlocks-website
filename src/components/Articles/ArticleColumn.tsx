@@ -9,7 +9,15 @@ import { useTranslations } from "next-intl"
 import { type Locale } from "@/i18n.config"
 import { trpc } from "@/app/_trpc/client"
 
-export const ArticleColumn = ({ data, locale }: { data: any; locale: Locale }) => {
+export const ArticleColumn = ({
+    data,
+    locale,
+    searchParams,
+}: {
+    data: any
+    locale: Locale
+    searchParams: any
+}) => {
     const b = useTranslations("Buttons")
     const s = useTranslations("Search")
 
@@ -43,10 +51,24 @@ export const ArticleColumn = ({ data, locale }: { data: any; locale: Locale }) =
             <div className="lg:w-[895px]  w-full">
                 <div className="flex flex-col lg:flex-row w-full mb-10 gap-x-4">
                     <div className=" w-full">
-                        <SearchInput varient="light" placeholder={s("pageSearch")} />
+                        <SearchInput
+                            varient="light"
+                            placeholder={s("pageSearch")}
+                            searchParams={searchParams}
+                        />
                     </div>
-                    <CustomDropDown text={b("category")} options={fetchedCategories} />
-                    <CustomDropDown text={b("sortBy")} options={sortOptions} />
+                    <CustomDropDown
+                        text={b("category")}
+                        options={fetchedCategories}
+                        item={"category"}
+                        searchParams={searchParams}
+                    />
+                    <CustomDropDown
+                        text={b("sortBy")}
+                        options={sortOptions}
+                        item={"sort"}
+                        searchParams={searchParams}
+                    />
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <div className="flex flex-col flex-1 items-start gap-5">

@@ -9,7 +9,15 @@ import { useTranslations } from "next-intl"
 import { type Locale } from "@/i18n.config"
 import { trpc } from "@/app/_trpc/client"
 
-export const NewsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
+export const NewsColumn = ({
+    data,
+    locale,
+    searchParams,
+}: {
+    data: any
+    locale: Locale
+    searchParams: any
+}) => {
     const b = useTranslations("Buttons")
     const s = useTranslations("Search")
 
@@ -18,27 +26,11 @@ export const NewsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
 
     const [category, setCategory] = useState<any[]>([])
     const [newsFilterData, setNewsFilterData] = useState(data)
+    const [news, setNews] = useState(data)
 
     const sortOptions = [{ name: "date" }]
 
-    function filterNewsArray(searchString: string): any[] {
-        const newsArray: any[] = data
-        // If searchString is empty, return the original newsArray
-        if (!searchString.trim()) {
-            return newsArray
-        }
-
-        // Filter the newsArray based on the search string
-        return newsArray.filter((news) => {
-            return (
-                news?.newsid?.toLowerCase().includes(searchString.toLowerCase()) ||
-                news?.game?.gameid?.toLowerCase().includes(searchString.toLowerCase()) ||
-                news?.content?.title?.toLowerCase().includes(searchString.toLowerCase())
-            )
-        })
-    }
-
-    const singleCardItemDetails: SingleCardItemProps[] = newsFilterData?.map((news: any) => ({
+    const singleCardItemDetails: SingleCardItemProps[] = news?.map((news: any) => ({
         variant: "news",
         id: news?.newsid,
         imageUrl: `${news?.content.image}?height=360&width=720`,
@@ -51,11 +43,9 @@ export const NewsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
         onSecondButtonClick: () => {},
     }))
 
-    // const handleSearch = (e: any) => {
-    //     const val = e.target.value
-    //     const updateData = filterNewsArray(val)
-    //     setNewsFilterData(updateData)
-    // }
+    useEffect(() => {
+        setNews(data)
+    }, [data])
 
     return (
         <>
@@ -65,8 +55,18 @@ export const NewsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                         {/* <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} /> */}
                         <SearchInput varient="light" placeholder={s("pageSearch")} />
                     </div>
-                    <CustomDropDown text={b("category")} options={fetchedCategories} />
-                    <CustomDropDown text={b("sortBy")} options={sortOptions} />
+                    <CustomDropDown
+                        text={b("category")}
+                        options={fetchedCategories}
+                        item={"category"}
+                        searchParams={searchParams}
+                    />
+                    <CustomDropDown
+                        text={b("sortBy")}
+                        options={sortOptions}
+                        item={"sort"}
+                        searchParams={searchParams}
+                    />
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <div className="flex flex-col flex-1 items-start gap-5">
