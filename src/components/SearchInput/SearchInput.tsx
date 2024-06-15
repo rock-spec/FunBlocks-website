@@ -10,6 +10,7 @@ export interface SearchInputProps {
     placeholder?: string
     className?: string
     searchParams?: any
+    component?: string
 }
 
 const SearchInput = (props: SearchInputProps) => {
@@ -26,8 +27,13 @@ const SearchInput = (props: SearchInputProps) => {
         if (pathname) setpath(pathname?.split("/")[2])
     }, [pathname])
 
+    // console.log(pathname);
+    
+
     useEffect(() => {
-        if (path === "game") {
+        if (props.component === "navbar") {
+            qry ?  router.push(`${pathname}?search=${qry}`) : router.push(`/`)
+        } else if (path === "game") {
             router.push(
                 `game?engine=${searchParams?.engine ? searchParams?.engine : ""}&blockchain=${
                     searchParams?.blockchain ? searchParams?.blockchain : ""

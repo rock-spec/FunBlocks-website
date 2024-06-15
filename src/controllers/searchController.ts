@@ -19,7 +19,6 @@ const getNews = async (query: string, locale: Locale) => {
             `newsid,content(title_${locale},description_${locale},image, publishdate, author(*),game(gameid,engineid,gamestudioid,blockchainid))`
         )
         .ilike(`content.title_${locale}`, `%${query}%`)
-
     if (error) {
         throw new Error("Error fetching news: " + error.message)
     }
@@ -68,8 +67,6 @@ const getEvents = async (query: string) => {
 }
 
 const getSearchData = async (query: string, locale: Locale) => {
-    console.log(locale)
-
     try {
         const results = await Promise.allSettled([
             getNews(query, locale),

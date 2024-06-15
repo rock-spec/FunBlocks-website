@@ -42,29 +42,21 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         onSecondButtonClick,
         tags = [],
         author = "",
-        timezone = ""
+        timezone = "",
     } = props
-
 
     return (
         <div className="flex md:flex-row  flex-col items-start gap-6 w-[863px] ">
             {/* First Column: Image */}
 
             <Link href={`/${variant}/${id}`} target="blank" className="block ">
-                {/* <div
-                    className={
-                        "relative rounded-[4px] border border-[#161616] overflow-hidden min-w-[260px] w-full " +
-                        cabin.className
-                    }
-                > */}
                 <div
                     className={
-                        "relative rounded-[4px] border border-[#161616] overflow-hidden " +
-                        cabin.className
+                        "relative rounded-[4px] border border-[#161616] overflow-hidden " + cabin.className
                     }
                 >
                     <Image
-                        className=""
+                        className="w-[300px] h-[150px] object-cover"
                         src={imageUrl}
                         alt="Image"
                         width={300}
@@ -79,7 +71,6 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                     {/* Title */}
                     <div className="text-[#161616] font-bold text-lg leading-[120%] tracking-[-0.32px] line-clamp-2 bg ">
                         <Link href={`/${variant}/${id}`} target="blank">
-                            {" "}
                             {title}
                         </Link>
                     </div>

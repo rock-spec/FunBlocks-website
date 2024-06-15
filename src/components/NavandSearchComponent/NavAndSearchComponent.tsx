@@ -29,7 +29,8 @@ const NavAndSearchComponent: React.FC<NavAndSearchComponentProps> = ({ children,
                     <Image src="/bg-svg-right.svg" alt="Right SVG" width={221} height={557} />
                 </div>
 
-                {!searchQuery ? children : <HomeSearch query={searchQuery} locale={locale} />}
+                {/* {!searchQuery ? children : <HomeSearch query={searchQuery} locale={locale} />} */}
+                {children}
             </div>
         </>
     )

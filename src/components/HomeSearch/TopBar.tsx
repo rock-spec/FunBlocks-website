@@ -44,9 +44,9 @@ const TopBar = () => {
                 </div>
             </div>
 
-            <div className="w-fit ">
+            {/* <div className="w-fit ">
                 <CustomDropDown text={b("filter by time")} options={sortOptions} txt_px={"px-12"} />
-            </div>
+            </div> */}
         </div>
     )
 }
