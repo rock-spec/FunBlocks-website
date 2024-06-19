@@ -36,12 +36,14 @@ export const NewsColumn = ({
         imageUrl: `${news?.content.image}?height=360&width=720`,
         title: news?.content[`title_${locale}`] || news?.content?.title_en,
         description: news?.content[`description_${locale}`] || news?.content?.description_en,
-        details: formatDate(news?.content.publishdate),
+        details: formatDate(news?.publishdate),
         tags: [news?.content?.game?.gameid],
         author: news?.content?.author?.name,
         onFirstButtonClick: () => {},
         onSecondButtonClick: () => {},
     }))
+
+    console.log(singleCardItemDetails)
 
     useEffect(() => {
         setNews(data)
@@ -73,19 +75,23 @@ export const NewsColumn = ({
                     />
                 </div>
                 <div className="flex mb-10 gap-x-5">
-                    <div className="flex flex-col flex-1 items-start gap-5">
-                        {singleCardItemDetails.map((detail, index) => (
-                            <div
-                                key={index}
-                                className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[55rem]"
-                            >
-                                <SingleCardItem key={index} {...detail} />
+                    {singleCardItemDetails.length > 0 ? (
+                        <div className="flex flex-col flex-1 items-start gap-5">
+                            {singleCardItemDetails.map((detail, index) => (
+                                <div
+                                    key={index}
+                                    className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[55rem]"
+                                >
+                                    <SingleCardItem key={index} {...detail} />
+                                </div>
+                            ))}
+                            <div className="flex item-center w-full justify-center">
+                                {/* <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" /> */}
                             </div>
-                        ))}
-                        <div className="flex item-center w-full justify-center">
-                            {/* <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" /> */}
                         </div>
-                    </div>
+                    ) : (
+                        <div className="border">No news found.</div>
+                    )}
                 </div>
             </div>
         </>

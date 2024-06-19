@@ -33,7 +33,7 @@ const articleData = async (article_id: string, locale: Locale) => {
     const { data, error } = await supabase
         .from("articles")
         .select(
-            `articleid,content(title_en,title_zh, description_en,description_zh,content_en,content_zh ,image, publishdate ,author(name),gameid,game(gameid,engineid,gamestudioid,blockchainid))`
+            `articleid, publishdate, content(title_en,title_zh, description_en,description_zh,content_en,content_zh ,image ,author(name),gameid,game(gameid,engineid,gamestudioid,blockchainid))`
         )
         .eq("articleid", article_id)
 

@@ -45,7 +45,7 @@ const getFeaturedArticles = async (locale: string) => {
     const { data, error } = await supabase
         .from("articles")
         .select(
-            `articleid,content(contentid,image, title_en, title_zh, description_en,description_zh, publishdate,author(*),game(gameid,engineid,gamestudioid,blockchainid,engine(logo,pic)))`
+            `articleid, publishdate, content(contentid,image, title_en, title_zh, description_en,description_zh,author(*),game(gameid,engineid,gamestudioid,blockchainid,engine(logo,pic)))`
         )
         .eq("isHome", true)
 

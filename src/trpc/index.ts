@@ -38,6 +38,7 @@ const gameFilterOptionsSchema = z.object({
     engineIds: z.string().optional(),
     gameStudioIds: z.string().optional(),
     query: z.string().optional(),
+    sort: z.string().optional(),
     locale: localeSchema,
 })
 
@@ -71,6 +72,7 @@ export const appRouter = router({
             blockchainIds: input.blockchainIds ? input.blockchainIds.split(",") : [],
             engineIds: input.engineIds ? input.engineIds.split(",") : [],
             gameStudioIds: input.gameStudioIds ? input.gameStudioIds.split(",") : [],
+            sort: input.sort ? input.sort : "",
             query: input?.query ? input?.query : "",
         }
         const gameData = await getGameAllData(filters, input.locale)
@@ -105,7 +107,7 @@ export const appRouter = router({
         const eventData = await getEventsData(input)
         return eventData
     }),
-    engineData: publicProcedure.input(pageFilterSchema).query(async ({input}) => {
+    engineData: publicProcedure.input(pageFilterSchema).query(async ({ input }) => {
         const engineData = await getEnginesData(input)
         return engineData
     }),

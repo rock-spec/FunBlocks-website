@@ -28,6 +28,7 @@ const EngineDetail = async ({ params }: { params: { id: string; locale: Locale }
                 engine={engine}
                 relatedGames={relatedGames}
                 relatedArticles={relatedArticles}
+                locale={locale}
             />
             {/* Right Column */}
             {relatedNews.length > 0 && (

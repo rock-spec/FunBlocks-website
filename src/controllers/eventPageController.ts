@@ -16,7 +16,7 @@ const getAllEvents = async (filter: filterSchema) => {
     let query = supabase.from("events").select("*,game(gameid,engineid,gamestudioid,blockchainid)")
     if (categoryid) query = query.eq("categoryid", categoryid)
     if (searchQuery) query = query.ilike(`title`, `%${searchQuery}%`)
-    if (sort) query = query.order("startdate", { ascending: false }) // Add sorting by publishdate in descending order
+    if (sort) query = query.order("startdate", { ascending: true }) // Add sorting by publishdate in descending order
     const { data, error } = await query
     if (error) throw new Error("Error fetching articles: " + error.message)
 

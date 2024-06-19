@@ -19,8 +19,9 @@ const LanguageSelector = () => {
 
     const switchLanguage = (newLocale: Locale) => {
         const search = window.location.search
-        const regex = new RegExp(`^/(${locales.join("|")})`)
-        let newPathname = pathname.replace(regex, `/${newLocale}`)
+        const regex = new RegExp(`^/(${locales.join("|")})`);
+        // let newPathname = pathname.replace(regex, `/${newLocale}`)
+        let newPathname = pathname
         if (search) {
             newPathname = newPathname + search
         }

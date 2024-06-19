@@ -6,6 +6,7 @@ import { renderHTML } from "@/utils/renderhtml"
 import { Cabin } from "next/font/google"
 import { useTranslations } from "next-intl"
 import { Locale } from "@/i18n.config"
+import MarkDownview from "../MarkdownViewer/MarkdownVew"
 
 const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
 
@@ -42,7 +43,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                             </div>
                             <div className="w-[5px] h-[5px] opacity-80 bg-neutral-900" />
                             <div className="text-neutral-900 text-opacity-80 text-sm font-normal  leading-[16.80px]">
-                                {formatDate(data.article.content.publishdate)}
+                                {formatDate(data?.article?.publishdate)}
                             </div>
                         </div>
                     </div>
@@ -60,17 +61,14 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         className="mb-[24px] object-cover object-center w-[855.58px] "
                         src={data.article.content.image}
                     />
-                    <div
-                        dangerouslySetInnerHTML={{
-                            __html:
+                    <div>
+                        <MarkDownview
+                            source={
                                 data?.article?.content?.[`content_${locale}`] ||
-                                data?.article?.content?.content_en,
-                        }}
-                        className={
-                            "render text-neutral-900 text-base font-normal  leading-normal mb-[20.28px] " +
-                            cabin.className
-                        }
-                    />
+                                data?.article?.content?.content_en
+                            }
+                        />
+                    </div>
                 </div>
                 {data?.relatedData?.relatedArticles?.length > 0 && (
                     <div className="flex mb-10 gap-x-5">
@@ -83,7 +81,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                                 imageUrl: `${article?.content?.image}?height=360&width=720`,
                                 title: article?.content?.[`title_${locale}`],
                                 description: article?.content?.[`description_${locale}`],
-                                details: formatDate(article?.content?.publishdate),
+                                details: formatDate(article?.publishdate),
                                 tags: [article?.content?.game?.gameid],
                                 author: article?.content?.user?.username,
                                 onFirstButtonClick: () => {},
@@ -113,6 +111,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                     </div>
                 )}
             </div>
+
         </>
     )
 }

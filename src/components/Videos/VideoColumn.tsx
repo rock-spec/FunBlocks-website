@@ -83,11 +83,15 @@ export const VideoColumn = ({ data, searchParams }: { data: any; searchParams: a
                 <div className="flex mb-10 gap-x-5">
                     <div>
                         <div className="grid grid-cols-1 md:grid-cols-2  grid-rows-2 gap-4">
-                            {singleCardItemDetails.map((detail, index) => (
-                                <div className="p-5 border border-[#161616] bg-[#FFFCF9]" key={index}>
-                                    <SingleVideoCardItem key={index} {...detail} />
-                                </div>
-                            ))}
+                            {singleCardItemDetails.length > 0 ? (
+                                singleCardItemDetails.map((detail, index) => (
+                                    <div className="p-5 border border-[#161616] bg-[#FFFCF9]" key={index}>
+                                        <SingleVideoCardItem key={index} {...detail} />
+                                    </div>
+                                ))
+                            ) : (
+                                <div>No videos found</div>
+                            )}
                         </div>
                         <div className="flex item-center w-full justify-center">
                             {/* <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" /> */}

@@ -17,14 +17,14 @@ const getAllArticles = async (filter: filterSchema) => {
     const sort = filter?.sort
 
     let query = supabase.from("articles").select(
-        `articleid, 
+        `articleid, publishdate,
             content(
-                title_en, title_zh, description_en,description_zh, content_en,content_zh, image, publishdate, author:authorid(name), game:gameid(gameid, engineid, gamestudioid, blockchainid)
+                title_en, title_zh, description_en,description_zh, content_en,content_zh, image, author:authorid(name), game:gameid(gameid, engineid, gamestudioid, blockchainid)
             )`
     )
     if (categoryid) query = query.eq("categoryid", categoryid)
     if (searchQuery) query = query.ilike(`content.title_${locale}`, `%${searchQuery}%`)
-    if (sort) query = query.order("content_id->publishdate", { ascending: false }) // Add sorting by publishdate in descending order
+    if (sort) query = query.order("publishdate", { ascending: false }) // Add sorting by publishdate in descending order
     const { data, error } = await query
     if (error) throw new Error("Error fetching articles: " + error.message)
 

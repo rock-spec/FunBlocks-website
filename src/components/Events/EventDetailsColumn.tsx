@@ -115,7 +115,7 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                                 description:
                                     article?.content?.[`description_${locale}`] ||
                                     article?.content?.description_en,
-                                details: formatDate(article?.content?.publishdate),
+                                details: formatDate(article?.publishdate),
                                 tags: [article?.content?.game?.gameid],
                                 author: article?.content?.author?.name,
                                 onFirstButtonClick: () => {},

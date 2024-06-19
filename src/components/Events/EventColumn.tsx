@@ -22,7 +22,7 @@ export const EventColumn = ({ data, searchParams }: { data: any; searchParams: a
     const [type, setType] = useState<string[]>([])
     const [events, setEvents] = useState(data || [])
 
-    const sortOptions = [{ name: "date" }]
+    const sortOptions = [{ name: "Event date" }]
 
     const singleCardItemDetails: SingleCardItemProps[] = events?.map((event: any) => ({
         // url: event?.joinurl,
@@ -48,7 +48,7 @@ export const EventColumn = ({ data, searchParams }: { data: any; searchParams: a
         <>
             <div className="lg:w-[895px] w-full">
                 <div className="flex flex-col lg:flex-row w-[880px] mb-10 gap-x-4 ">
-                {/* <div className="flex flex-col lg:flex-row justify-between w-[863px] mb-10 gap-x-4"> */}
+                    {/* <div className="flex flex-col lg:flex-row justify-between w-[863px] mb-10 gap-x-4"> */}
                     <div className="w-full">
                         <SearchInput
                             varient="light"
@@ -77,14 +77,18 @@ export const EventColumn = ({ data, searchParams }: { data: any; searchParams: a
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <div className="flex flex-col flex-1 items-start gap-5">
-                        {singleCardItemDetails.map((detail, index) => (
-                            <div
-                                key={index}
-                                className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[55rem]"
-                            >
-                                <SingleCardItem key={index} {...detail} />
-                            </div>
-                        ))}
+                        {singleCardItemDetails.length > 0 ? (
+                            singleCardItemDetails.map((detail, index) => (
+                                <div
+                                    key={index}
+                                    className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[55rem]"
+                                >
+                                    <SingleCardItem key={index} {...detail} />
+                                </div>
+                            ))
+                        ) : (
+                            <div>No events found.</div>
+                        )}
                         <div className="flex item-center w-full justify-center">
                             {/* <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" /> */}
                         </div>

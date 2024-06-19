@@ -95,7 +95,7 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
                                                             description={
                                                                 article?.content?.[`description_${locale}`]
                                                             }
-                                                            details={article?.content?.publishdate}
+                                                            details={article?.publishdate}
                                                             tags={[article?.content?.game?.gameid]}
                                                             author={article?.content?.author?.name}
                                                             onFirstButtonClick={() => {}}
