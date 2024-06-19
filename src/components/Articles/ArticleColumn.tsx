@@ -39,7 +39,7 @@ export const ArticleColumn = ({
         imageUrl: `${article?.content?.image}?height=360&width=720`,
         title: article?.content?.[`title_${locale}`] || article?.content?.title_en,
         description: article?.content?.[`description_${locale}`] || article?.content?.description_en,
-        details: formatDate(article?.content?.publishdate),
+        details: formatDate(article?.publishdate),
         tags: [article?.content?.game?.gameid],
         author: article?.content?.author?.name,
         onFirstButtonClick: () => {},
@@ -49,7 +49,7 @@ export const ArticleColumn = ({
     return (
         <>
             <div className="lg:w-[895px]  w-full">
-                <div className="flex flex-col lg:flex-row w-full mb-10 gap-x-4">
+                <div className="flex flex-col lg:flex-row w-[880px] mb-10 gap-x-4 ">
                     <div className=" w-full">
                         <SearchInput
                             varient="light"
@@ -72,14 +72,18 @@ export const ArticleColumn = ({
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <div className="flex flex-col flex-1 items-start gap-5">
-                        {singleCardItemDetails.map((detail, index) => (
-                            <div
-                                key={index}
-                                className="p-5 border border-[#161616] bg-[#FFFCF9] w-full lg:w-[55rem]"
-                            >
-                                <SingleCardItem key={index} {...detail} />
-                            </div>
-                        ))}
+                        {singleCardItemDetails.length > 0 ? (
+                            singleCardItemDetails.map((detail, index) => (
+                                <div
+                                    key={index}
+                                    className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[55rem]"
+                                >
+                                    <SingleCardItem key={index} {...detail} />
+                                </div>
+                            ))
+                        ) : (
+                            <div className="border">No articles found.</div>
+                        )}
                         <div className="flex item-center w-full justify-center">
                             {/* <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" /> */}
                         </div>

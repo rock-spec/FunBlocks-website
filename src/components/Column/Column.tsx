@@ -5,7 +5,7 @@ import { CustomButton } from "../Button/Button"
 
 // Define the props interface
 export interface ColumnProps {
-    variant: "game" | "article" | "news" | "search"
+    variant?: "game" | "article" | "news" | "search" | "featuredArticles"
     title: string
     author?: string
     details?: string

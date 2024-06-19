@@ -68,6 +68,8 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
         featuredNews = data.featuredNews.value
     }
 
+    
+
     return (
         <>
             <div className="w-full">
@@ -124,7 +126,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                             title: article?.content[`title_${locale}`] || article?.content?.title_en,
                             description:
                                 article?.content[`description_${locale}`] || article?.content?.description_en,
-                            details: formatDate(article?.content.publishdate),
+                            details: formatDate(article?.publishdate),
                             tags: [article?.content?.game?.gameid],
                             author: article?.content?.author?.name,
                             onFirstButtonClick: () => {},
@@ -161,6 +163,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                             title: event?.title,
                             details: `${formatDate(event?.startdate)} - ${formatDate(event?.enddate)}`,
                             // 'zone': "EST",
+                            joinurl: event?.joinurl,
                             tags: [event?.game.gameid],
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},

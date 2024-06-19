@@ -16,7 +16,7 @@ const getNews = async (query: string, locale: Locale) => {
     const { data, error } = await supabase
         .from("news")
         .select(
-            `newsid,content(title_${locale},description_${locale},image, publishdate, author(*),game(gameid,engineid,gamestudioid,blockchainid))`
+            `newsid,content(title_en,title_zh,description_en,description_zh,image, publishdate, author(*),game(gameid,engineid,gamestudioid,blockchainid))`
         )
         .ilike(`content.title_${locale}`, `%${query}%`)
     if (error) {
@@ -30,7 +30,7 @@ const getArticles = async (query: string, locale: Locale) => {
     const { data, error } = await supabase
         .from("articles")
         .select(
-            `articleid,content(title_${locale},description_${locale},image, publishdate, author(*),game(gameid,engineid))`
+            `articleid,content(title_en,title_zh,description_en,description_zh,image, publishdate, author(*),game(gameid,engineid))`
         )
         .ilike(`content.title_${locale}`, `%${query}%`)
 

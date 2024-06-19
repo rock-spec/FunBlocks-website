@@ -11,6 +11,7 @@ import { Link } from "@/i18n.config"
 import formatDate from "@/utils/dateFormat"
 import { Cabin } from "next/font/google"
 import { useTranslations } from "next-intl"
+import { type Locale } from "@/i18n.config"
 
 const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
 
@@ -18,10 +19,12 @@ export const EngineDetailColumn = ({
     engine,
     relatedGames,
     relatedArticles,
+    locale,
 }: {
     engine: any
     relatedGames: any
     relatedArticles: any
+    locale: Locale
 }) => {
     const t = useTranslations("Tags")
 
@@ -36,6 +39,8 @@ export const EngineDetailColumn = ({
         tags: [game?.gamestudioid],
     }))
     const engineData = engine && engine[0]
+
+
     return (
         <>
             <div className="max-w-[895px] w-full ">
@@ -54,72 +59,89 @@ export const EngineDetailColumn = ({
                         </div>
 
                         <div className="md:w-[50%] w-full">
-                            <div className=" text-neutral-900 text-[28px] font-bold leading-[48px] ">
+                            <div className=" text-neutral-900 text-[28px] font-bold leading-[48px] capitalize">
                                 {engineData?.engineid}
                             </div>
 
-                            <div className=" text-neutral-900 text-base font-normal">{engineData?.desc}</div>
+                            <div className=" text-neutral-900 text-base font-normal max-h-[190px] overflow-y-auto">
+                                {engineData?.desc}
+                            </div>
                             <br />
 
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
-                                <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
-                                    <Image
-                                        src={
-                                            "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-bSRcfFmN2KJ4lSUyJxVUZBs8dZu8k9.svg"
-                                        }
-                                        height={24}
-                                        width={24}
-                                        alt=""
-                                        className="h-6 mr-1"
-                                    />
-                                    <p>
-                                        <Link href={engineData?.website} target="blank">
-                                            {engineData?.engineid}
-                                        </Link>
-                                    </p>
-                                </div>
+                                {engineData?.website && (
+                                    <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
+                                        <Image
+                                            src={
+                                                "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-bSRcfFmN2KJ4lSUyJxVUZBs8dZu8k9.svg"
+                                            }
+                                            height={24}
+                                            width={24}
+                                            alt=""
+                                            className="h-6 mr-1"
+                                        />
+                                        <p>
+                                            <Link href={engineData?.website} target="_blank">
+                                                {engineData?.engineid}
+                                            </Link>
+                                        </p>
+                                    </div>
+                                )}
 
-                                <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
-                                    <Image
-                                        src={
-                                            "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-1-PZh4LhAvRZK9PlN7UP5ctTh11SfFFQ.svg"
-                                        }
-                                        height={24}
-                                        width={24}
-                                        alt=""
-                                        className="h-6 mr-1"
-                                    />
-                                    <p>
-                                        {" "}
-                                        <Link href={engineData?.blogurl} target="blank">
-                                            Docs
-                                        </Link>
-                                    </p>
-                                </div>
-                                <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
-                                    <Image
-                                        src={
-                                            "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-2-AnqrY48rvFGY6C4mxEVx1GoEZfBpiN.svg"
-                                        }
-                                        height={24}
-                                        width={24}
-                                        alt=""
-                                        className="h-6 mr-1"
-                                    />
-                                    <p>Twitter</p>
-                                </div>
-                                <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
-                                    <Image
-                                        src={
-                                            "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-3-nw373W2KTWzNMkQ8ZL6ejHFaOyckdZ.svg"
-                                        }
-                                        height={24}
-                                        width={24}
-                                        alt=""
-                                        className="h-6 mr-1"
-                                    />
-                                    <p>Github</p>
-                                </div>
+                                {engineData?.blogurl && (
+                                    <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
+                                        <Image
+                                            src={
+                                                "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-1-PZh4LhAvRZK9PlN7UP5ctTh11SfFFQ.svg"
+                                            }
+                                            height={24}
+                                            width={24}
+                                            alt=""
+                                            className="h-6 mr-1"
+                                        />
+                                        <p>
+                                            <Link href={engineData?.blogurl} target="_blank">
+                                                Docs
+                                            </Link>
+                                        </p>
+                                    </div>
+                                )}
+                                {engineData?.twitte && (
+                                    <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
+                                        <Image
+                                            src={
+                                                "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-2-AnqrY48rvFGY6C4mxEVx1GoEZfBpiN.svg"
+                                            }
+                                            height={24}
+                                            width={24}
+                                            alt=""
+                                            className="h-6 mr-1"
+                                        />
+                                        <p>
+                                            <Link href={engineData?.twitter} target="_blank">
+                                                Twitter
+                                            </Link>
+                                        </p>
+                                    </div>
+                                )}
+                                {engineData?.github && (
+                                    <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
+                                        <Image
+                                            src={
+                                                "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Frame%203184932-3-nw373W2KTWzNMkQ8ZL6ejHFaOyckdZ.svg"
+                                            }
+                                            height={24}
+                                            width={24}
+                                            alt=""
+                                            className="h-6 mr-1"
+                                        />
+                                        <p>
+                                            <Link href={engineData?.github} target="_blank">
+                                                Github
+                                            </Link>
+                                        </p>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -127,7 +149,7 @@ export const EngineDetailColumn = ({
 
                 {relatedGames.length > 0 && (
                     <div className="flex mb-10  flex-col  items-start gap-5">
-                        <Tag text={"MUD V1 GAMES"} type={"section"} />
+                        <Tag text={`${engineData?.engineid} GAMES`} type={"section"} />
                         <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
                             {singleCardItemDetails.map((detail, index) => (
                                 <div className="p-5 border border-[#161616] bg-[#FFFCF9]" key={index}>
@@ -147,11 +169,13 @@ export const EngineDetailColumn = ({
                                 variant: "article",
                                 id: article.articleid,
                                 imageUrl: `${article.content.image}?height=360&width=720`,
-                                title: article.content.title,
-                                description: article.content.description,
-                                details: formatDate(article.content.publishdate),
+                                title: article.content?.[`title_${locale}`] || article.content?.[`title_en`],
+                                description:
+                                    article.content?.[`description_${locale}`] ||
+                                    article.content?.[`description_en`],
+                                details: formatDate(article?.publishdate),
                                 tags: [article.content.game.gameid],
-                                author: article.content.user.username,
+                                author: article.content.author.name,
                                 onFirstButtonClick: () => {},
                                 onSecondButtonClick: () => {},
                             }))}

@@ -12,6 +12,7 @@ import HomeSearch from "../HomeSearch/SearchHome"
 import localFont from "next/font/local"
 import LanguageSelector from "../LanguageSelector/LanguageSelector"
 import { useTranslations } from "next-intl"
+import { type Locale } from "@/i18n.config"
 
 export const BottomSVG = () => {
     return (
@@ -833,6 +834,7 @@ export const BottomSVG = () => {
 
 interface NavBarProps {
     setSearchQuery: (query: string) => void
+    locale: Locale
 }
 
 const OffBit = localFont({
@@ -840,7 +842,7 @@ const OffBit = localFont({
     display: "swap",
 })
 
-export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
+export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery, locale }) => {
     const [showDropdown, setShowDropdown] = useState(false)
     const [showNavDropdown, setShowNavDropdown] = useState(false)
 
@@ -878,13 +880,12 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery }) => {
                             </Link>
                         </div>
                         <div className="flex-1 mx-5">
-                            {/* THIS IS SEACH INPUT  */}
-
                             <SearchInput
                                 varient="dark"
                                 placeholder={s("navSearch")}
                                 className="ml-0 pl-0 mr-0 pr-0 sm:mx-3 z-[1000]"
                                 component="navbar"
+                                locale={locale}
                             />
                         </div>
 

@@ -8,6 +8,7 @@ interface FilterOptions {
     engineIds?: string[]
     gameStudioIds?: string[]
     query?: string
+    sort?: string
 }
 
 const getNews = async (locale: Locale) => {
@@ -28,6 +29,7 @@ export const getGameAllData = async (filters: FilterOptions, locale: Locale) => 
     const engineIds = filters?.engineIds || []
     const gameStudioIds = filters?.gameStudioIds || []
     const searchQuery = filters?.query || ""
+    const sort = filters?.sort || ""
 
     // Create arrays of conditions for each filter
     const blockchainConditions = blockchainIds.map((id) => `blockchainid.eq.${id}`).join(",")
@@ -52,6 +54,10 @@ export const getGameAllData = async (filters: FilterOptions, locale: Locale) => 
     // Apply the search query condition if it's not empty
     if (searchQuery) {
         query = query.ilike("game_name", `%${searchQuery}%`)
+    }
+
+    if (sort) {
+        query = query.order("game_name", { ascending: sort === "A-Z" })
     }
 
     const { data, error } = await query

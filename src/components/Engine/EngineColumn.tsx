@@ -47,7 +47,7 @@ export const EngineColumn = ({ data, searchParams }: { data: any; searchParams: 
                         options={type}
                     /> */}
                     <CustomDropDown
-                        bg="bg-[url('/buttons/medium_dropdown.svg')]"
+                        // bg="bg-[url('/buttons/medium_dropdown.svg')]"
                         text={b("category")}
                         options={fetchedCategories}
                         item={"category"}
@@ -55,7 +55,7 @@ export const EngineColumn = ({ data, searchParams }: { data: any; searchParams: 
                         // txt_px={"px-8"}
                     />
                     <CustomDropDown
-                        bg="bg-[url('/buttons/medium_dropdown.svg')]"
+                        // bg="bg-[url('/buttons/medium_dropdown.svg')]"
                         text={b("sortBy")}
                         options={sortOptions}
                         item={"sort"}
@@ -65,11 +65,15 @@ export const EngineColumn = ({ data, searchParams }: { data: any; searchParams: 
                 <div className="flex mb-10 gap-x-5">
                     <div>
                         <div className="grid lg:grid-cols-3 grid-rows-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
-                            {singleCardItemDetails.map((detail, index) => (
-                                <div className="p-5 border border-[#161616] bg-[#FFFCF9] min-h-[285px]">
-                                    <EngineCardComponet key={index} {...detail} />
-                                </div>
-                            ))}
+                            {singleCardItemDetails.length > 0 ? (
+                                singleCardItemDetails.map((detail, index) => (
+                                    <div className="p-5 border border-[#161616] bg-[#FFFCF9] min-h-[285px]">
+                                        <EngineCardComponet key={index} {...detail} />
+                                    </div>
+                                ))
+                            ) : (
+                                <div>No engines found.</div>
+                            )}
                         </div>
                         <div className="flex item-center w-full justify-center">
                             {/* <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" /> */}

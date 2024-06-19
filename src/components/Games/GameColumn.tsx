@@ -56,13 +56,17 @@ export const GameColumn = (data: any) => {
             <div className="w-full md:w-[895px] flex flex-col items-center ">
                 <div className="flex mb-10 gap-5">
                     <div>
-                        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-flow-col-1 gap-4">
-                            {singleCardItemDetails.map((detail, index) => (
-                                <div className="p-5 border border-[#161616] bg-[#FFFCF9]" key={index}>
-                                    <GameCardComponet {...detail} />
-                                </div>
-                            ))}
-                        </div>
+                        {singleCardItemDetails.length > 0 ? (
+                            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-flow-col-1 gap-4">
+                                {singleCardItemDetails.map((detail, index) => (
+                                    <div className="p-5 border border-[#161616] bg-[#FFFCF9]" key={index}>
+                                        <GameCardComponet {...detail} />
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div>No games found.</div>
+                        )}
                         <div className="flex item-center w-full justify-center">
                             {/* <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" /> */}
                         </div>

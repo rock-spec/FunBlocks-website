@@ -45,7 +45,7 @@ const getFeaturedArticles = async (locale: string) => {
     const { data, error } = await supabase
         .from("articles")
         .select(
-            `articleid,content(contentid,image, title_en, title_zh, description_en,description_zh, publishdate,author(*),game(gameid,engineid,gamestudioid,blockchainid,engine(logo,pic)))`
+            `articleid, publishdate, content(contentid,image, title_en, title_zh, description_en,description_zh,author(*),game(gameid,engineid,gamestudioid,blockchainid,engine(logo,pic)))`
         )
         .eq("isHome", true)
 
@@ -76,7 +76,7 @@ const getfeaturedEvents = async () => {
             "eventid, pic,title, startdate, enddate, joinurl, game(gameid,engineid,gamestudioid,blockchainid)"
         )
         .eq("isHome", true)
-        .limit(2)
+        .limit(4)
 
     if (error) {
         throw new Error("Error fetching events: " + error.message)

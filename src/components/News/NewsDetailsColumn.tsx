@@ -1,8 +1,3 @@
-import React from "react"
-import SingleCardItem, { SingleCardItemProps } from "../SingleCardItem/SingleCardItem"
-import { CustomButton } from "../Button/Button"
-import SearchInput from "../SearchInput/SearchInput"
-import { IoIosArrowDown } from "react-icons/io"
 import { Tag } from "../Tag/Tag"
 import Image from "next/image"
 import SingleCard from "../SingleCard/SingleCard"
@@ -10,6 +5,7 @@ import formatDate from "@/utils/dateFormat"
 import { Cabin } from "next/font/google"
 import { useTranslations } from "next-intl"
 import { type Locale } from "@/i18n.config"
+import MarkDownview from "../MarkdownViewer/MarkdownVew"
 
 const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
 
@@ -37,16 +33,17 @@ export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale 
                         {data?.news?.content?.[`title_${locale}`] || data?.news?.content?.title_en}
                     </div>
                     <div className="flex gap-1 mb-[24px]">
-                        {[game[0]?.gameid].map((tag, index) => (
-                            <Tag text={tag} key={index} type={"relevance"} />
-                        ))}
+                        {game[0]?.gameid &&
+                            [game[0]?.gameid].map((tag, index) => (
+                                <Tag text={tag} key={index} type={"justTag"} />
+                            ))}
                         <div className="justify-start items-center gap-2 flex ml-2">
                             <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px]">
                                 {data?.news?.content?.author.name}
                             </div>
                             <div className="w-[5px] h-[5px] opacity-80 bg-neutral-900" />
                             <div className="text-neutral-900 text-opacity-80 text-sm font-normal  leading-[16.80px]">
-                                {formatDate(data?.news?.content?.publishdate)}
+                                {formatDate(data?.news?.publishdate)}
                             </div>
                         </div>
                     </div>
@@ -66,18 +63,13 @@ export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale 
                         className="mb-[24px] w-[855.58px] "
                         src={data?.news?.content?.image}
                     />
-
-                    <div
-                        // dangerouslySetInnerHTML={{ __html: data?.news?.body }}
-                        dangerouslySetInnerHTML={{
-                            __html:
-                                data?.news?.content?.[`content_${locale}`] || data?.news?.content?.content_en,
-                        }}
-                        className={
-                            "text-neutral-900 text-base font-normal  leading-normal mb-[20.28px] " +
-                            cabin.className
-                        }
-                    />
+                    <div>
+                        <MarkDownview
+                            source={
+                                data?.news?.content?.[`content_${locale}`] || data?.news?.content?.content_en
+                            }
+                        />
+                    </div>
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <SingleCard
@@ -91,8 +83,8 @@ export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale 
                             description:
                                 article?.content?.[`description_${locale}`] ||
                                 article?.content?.description_en,
-                            details: formatDate(article?.content?.publishdate),
-                            tags: [article?.content?.game?.gameid],
+                            details: formatDate(article?.publishdate),
+                            tags: [article?.category?.name],
                             author: article?.content?.user?.username,
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},

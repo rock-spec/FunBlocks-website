@@ -64,13 +64,15 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                         <div className=" text-neutral-900 text-xl font-semibold pb-2 leading-normal mb-[12px] mt-[24px]">
                             Event Details
                         </div>
-                        <BlueButton
-                            text={b("joinEvent")}
-                            link={"#"}
-                            width="w-[140px]"
-                            bg="bg-[url('/buttons/join_event.svg')]"
-                            bg_hover="bg-[url('/buttons/join_event_hover.svg')]"
-                        />
+                        {eventDetails?.joinurl && (
+                            <BlueButton
+                                text={b("joinEvent")}
+                                link={eventDetails?.joinurl}
+                                width="w-[140px]"
+                                bg="bg-[url('/buttons/join_event.svg')]"
+                                bg_hover="bg-[url('/buttons/join_event_hover.svg')]"
+                            />
+                        )}
                     </div>
 
                     <div className="justify-start items-center gap-2 flex ">
@@ -113,7 +115,7 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                                 description:
                                     article?.content?.[`description_${locale}`] ||
                                     article?.content?.description_en,
-                                details: formatDate(article?.content?.publishdate),
+                                details: formatDate(article?.publishdate),
                                 tags: [article?.content?.game?.gameid],
                                 author: article?.content?.author?.name,
                                 onFirstButtonClick: () => {},

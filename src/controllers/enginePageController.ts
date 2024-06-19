@@ -16,7 +16,7 @@ const getAllEngines = async (filter: filterSchema) => {
     let query = supabase.from("engine").select("*")
     if (categoryid) query = query.eq("categoryid", categoryid)
     if (searchQuery) query = query.ilike(`engineid`, `%${searchQuery}%`)
-    if (sort) query = query.order("engineid", { ascending: sort === "A-Z" }) // Add sorting by publishdate in descending order
+    if (sort) query = query.order("engineid", { ascending: sort === "A-Z" }) 
     const { data, error } = await query
     if (error) throw new Error("Error fetching articles: " + error.message)
 

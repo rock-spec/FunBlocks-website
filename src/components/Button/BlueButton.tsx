@@ -20,7 +20,6 @@ const BlueButton = ({
     bg?: string
     bg_hover?: string
 }) => {
-    console.log(link)
 
     return (
         <button
