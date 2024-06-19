@@ -54,11 +54,13 @@ export const EngineDetailColumn = ({
                         </div>
 
                         <div className="md:w-[50%] w-full">
-                            <div className=" text-neutral-900 text-[28px] font-bold leading-[48px] ">
+                            <div className=" text-neutral-900 text-[28px] font-bold leading-[48px] capitalize">
                                 {engineData?.engineid}
                             </div>
 
-                            <div className=" text-neutral-900 text-base font-normal">{engineData?.desc}</div>
+                            <div className=" text-neutral-900 text-base font-normal h-[190px] overflow-y-auto">
+                                {engineData?.desc}
+                            </div>
                             <br />
 
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
@@ -127,7 +129,7 @@ export const EngineDetailColumn = ({
 
                 {relatedGames.length > 0 && (
                     <div className="flex mb-10  flex-col  items-start gap-5">
-                        <Tag text={"MUD V1 GAMES"} type={"section"} />
+                        <Tag text={`${engineData?.engineid} GAMES`} type={"section"} />
                         <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
                             {singleCardItemDetails.map((detail, index) => (
                                 <div className="p-5 border border-[#161616] bg-[#FFFCF9]" key={index}>

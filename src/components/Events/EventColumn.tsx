@@ -44,9 +44,11 @@ export const EventColumn = ({ data, searchParams }: { data: any; searchParams: a
     }, [data])
 
     return (
+        // w-[863px]
         <>
             <div className="lg:w-[895px] w-full">
-                <div className="flex flex-col lg:flex-row w-full mb-10 gap-x-4">
+                <div className="flex flex-col lg:flex-row w-[880px] mb-10 gap-x-4 ">
+                {/* <div className="flex flex-col lg:flex-row justify-between w-[863px] mb-10 gap-x-4"> */}
                     <div className="w-full">
                         <SearchInput
                             varient="light"
@@ -59,15 +61,14 @@ export const EventColumn = ({ data, searchParams }: { data: any; searchParams: a
                         text={b("type")}
                         options={type}
                     /> */}
+
                     <CustomDropDown
-                        bg="bg-[url('/buttons/medium_dropdown.svg')]"
                         text={b("category")}
                         options={fetchedCategories}
                         item={"category"}
                         searchParams={searchParams}
                     />
                     <CustomDropDown
-                        bg="bg-[url('/buttons/medium_dropdown.svg')]"
                         text={b("sortBy")}
                         options={sortOptions}
                         item={"sort"}

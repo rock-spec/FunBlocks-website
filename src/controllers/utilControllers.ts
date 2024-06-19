@@ -24,7 +24,7 @@ export const getRelatedArticles = async (game_id: string, locale: Locale) => {
     const { data, error } = await supabase
         .from("articles")
         .select(
-            `*,content(title_en, title_zh, description_en, description_en, image, publishdate,game(gameid),author(name))`
+            `*,category(name),content(title_en, title_zh, description_en, description_en, image, publishdate,game(gameid),author(name))`
         )
         .eq("content.gameid", game_id) //Filter through referenced table
 

@@ -54,7 +54,7 @@ const getFeaturedGameData = async () => {
 const getFeaturedArticlesData = async (locale: Locale) => {
     const { data, error } = await supabase
         .from("articles")
-        .select(`articleid,content(title_${locale},image)`)
+        .select(`articleid,content(title_en, title_zh,image)`)
         .range(0, 5)
     if (error) {
         throw new Error("Error fetching articles: " + error.message)

@@ -49,7 +49,7 @@ export const ArticleColumn = ({
     return (
         <>
             <div className="lg:w-[895px]  w-full">
-                <div className="flex flex-col lg:flex-row w-full mb-10 gap-x-4">
+                <div className="flex flex-col lg:flex-row w-[880px] mb-10 gap-x-4 ">
                     <div className=" w-full">
                         <SearchInput
                             varient="light"
@@ -75,7 +75,7 @@ export const ArticleColumn = ({
                         {singleCardItemDetails.map((detail, index) => (
                             <div
                                 key={index}
-                                className="p-5 border border-[#161616] bg-[#FFFCF9] w-full lg:w-[55rem]"
+                                className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[55rem]"
                             >
                                 <SingleCardItem key={index} {...detail} />
                             </div>

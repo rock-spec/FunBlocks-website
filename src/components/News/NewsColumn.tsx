@@ -50,10 +50,14 @@ export const NewsColumn = ({
     return (
         <>
             <div className="lg:w-[895px]  w-full">
-                <div className="flex flex-col lg:flex-row w-full mb-10 gap-x-4">
+                <div className="flex flex-col lg:flex-row w-[880px] mb-10 gap-x-4 ">
                     <div className=" w-full">
                         {/* <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} /> */}
-                        <SearchInput varient="light" placeholder={s("pageSearch")} />
+                        <SearchInput
+                            varient="light"
+                            placeholder={s("pageSearch")}
+                            searchParams={searchParams}
+                        />
                     </div>
                     <CustomDropDown
                         text={b("category")}
@@ -71,7 +75,10 @@ export const NewsColumn = ({
                 <div className="flex mb-10 gap-x-5">
                     <div className="flex flex-col flex-1 items-start gap-5">
                         {singleCardItemDetails.map((detail, index) => (
-                            <div key={index} className="p-5 border border-[#161616] min-w-full bg-[#FFFCF9]">
+                            <div
+                                key={index}
+                                className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[55rem]"
+                            >
                                 <SingleCardItem key={index} {...detail} />
                             </div>
                         ))}

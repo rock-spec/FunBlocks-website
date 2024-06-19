@@ -1,8 +1,3 @@
-import React from "react"
-import SingleCardItem, { SingleCardItemProps } from "../SingleCardItem/SingleCardItem"
-import { CustomButton } from "../Button/Button"
-import SearchInput from "../SearchInput/SearchInput"
-import { IoIosArrowDown } from "react-icons/io"
 import { Tag } from "../Tag/Tag"
 import Image from "next/image"
 import SingleCard from "../SingleCard/SingleCard"
@@ -37,9 +32,10 @@ export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale 
                         {data?.news?.content?.[`title_${locale}`] || data?.news?.content?.title_en}
                     </div>
                     <div className="flex gap-1 mb-[24px]">
-                        {[game[0]?.gameid].map((tag, index) => (
-                            <Tag text={tag} key={index} type={"relevance"} />
-                        ))}
+                        {game[0]?.gameid &&
+                            [game[0]?.gameid].map((tag, index) => (
+                                <Tag text={tag} key={index}  type={"justTag"} />
+                            ))}
                         <div className="justify-start items-center gap-2 flex ml-2">
                             <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px]">
                                 {data?.news?.content?.author.name}
@@ -74,7 +70,7 @@ export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale 
                                 data?.news?.content?.[`content_${locale}`] || data?.news?.content?.content_en,
                         }}
                         className={
-                            "text-neutral-900 text-base font-normal  leading-normal mb-[20.28px] " +
+                            "render text-neutral-900 text-base font-normal  leading-normal mb-[20.28px] " +
                             cabin.className
                         }
                     />
@@ -92,7 +88,7 @@ export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale 
                                 article?.content?.[`description_${locale}`] ||
                                 article?.content?.description_en,
                             details: formatDate(article?.content?.publishdate),
-                            tags: [article?.content?.game?.gameid],
+                            tags: [article?.category?.name],
                             author: article?.content?.user?.username,
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},

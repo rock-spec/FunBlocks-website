@@ -48,7 +48,6 @@ const SingleCardItem = (props: SingleCardItemProps) => {
     } = props
 
     // console.log(joinurl);
-    
 
     return (
         <div className="flex md:flex-row  flex-col items-start gap-6 w-[863px] ">
@@ -72,15 +71,17 @@ const SingleCardItem = (props: SingleCardItemProps) => {
             {/* Second Column */}
             <div className="flex flex-col w-full h-full">
                 {/* First Row */}
-                <div className="flex flex-col gap-2 ">
+                <div className="flex flex-col gap-2 pe-5">
                     {/* Title */}
                     <div className="text-[#161616] font-bold text-lg leading-[120%] tracking-[-0.32px] line-clamp-2 bg ">
                         <Link href={`/${variant}/${id}`}>{title}</Link>
                     </div>
 
                     {/* Details */}
-                    <div className="text-neutral-900 text-base font-normal leading-normal w-full overflow-hidden break-all">
-                        <div className={`line-clamp-2  ${cabin.className}`}>{description}</div>
+                    <div className="text-neutral-900 text-base font-normal leading-normal w-full overflow-hidden break-all ">
+                        <Link href={`/${variant}/${id}`}>
+                            <div className={`line-clamp-2  ${cabin.className}`}>{description}</div>
+                        </Link>
                     </div>
 
                     {/* Dates  */}
@@ -106,7 +107,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                         <div className="flex md:flex-row flex-col gap-3 mt-2">
                             <div className="flex gap-1">
                                 {tags.map((tag, index) => (
-                                    <Tag text={tag} key={index} type={"relevance"} linkto="game" />
+                                    <Tag text={tag} key={index} type={"justTag"} />
                                 ))}
                             </div>
 
@@ -126,13 +127,15 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                 {/* Second Row: Buttons */}
                 {variant === "event" ? (
                     <div className="flex  items-center gap-x-4 mt-[22px] ">
-                        {joinurl && <BlueButton
-                            text={b("joinEvent")}
-                            link={joinurl}
-                            width="w-[140px]"
-                            bg="bg-[url('/buttons/join_event.svg')]"
-                            bg_hover="hover:bg-[url('/buttons/join_event_hover.svg')]"
-                        />}
+                        {joinurl && (
+                            <BlueButton
+                                text={b("joinEvent")}
+                                link={joinurl}
+                                width="w-[140px]"
+                                bg="bg-[url('/buttons/join_event.svg')]"
+                                bg_hover="hover:bg-[url('/buttons/join_event_hover.svg')]"
+                            />
+                        )}
                         <Link
                             className={`flex justify-center items-center w-[111px] h-10 bg-[url('/buttons/details.svg')] hover:bg-[url('/buttons/details_hover.svg')] capitalize ${OffBit.className}`}
                             href={`/${variant}/${id}`}

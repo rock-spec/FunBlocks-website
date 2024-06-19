@@ -7,6 +7,8 @@ import NavAndSearchComponent from "@/components/NavandSearchComponent/NavAndSear
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages } from "next-intl/server"
 import { type Locale } from "@/i18n.config"
+import { headers } from 'next/headers';
+
 
 export const dynamic = "force-dynamic"
 
@@ -43,11 +45,9 @@ async function RootLayout({
             >
                 <NextIntlClientProvider messages={messages}>
                     <Provider>
-                        <NavAndSearchComponent  locale={locale}>
-                            {children}
-                        </NavAndSearchComponent>
+                        <NavAndSearchComponent locale={locale}>{children}</NavAndSearchComponent>
                         <footer className="w-full">
-                            <Footer />
+                            <Footer locale={locale}/>
                         </footer>
                     </Provider>
                 </NextIntlClientProvider>

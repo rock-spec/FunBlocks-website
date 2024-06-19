@@ -47,7 +47,7 @@ export const EngineColumn = ({ data, searchParams }: { data: any; searchParams: 
                         options={type}
                     /> */}
                     <CustomDropDown
-                        bg="bg-[url('/buttons/medium_dropdown.svg')]"
+                        // bg="bg-[url('/buttons/medium_dropdown.svg')]"
                         text={b("category")}
                         options={fetchedCategories}
                         item={"category"}
@@ -55,7 +55,7 @@ export const EngineColumn = ({ data, searchParams }: { data: any; searchParams: 
                         // txt_px={"px-8"}
                     />
                     <CustomDropDown
-                        bg="bg-[url('/buttons/medium_dropdown.svg')]"
+                        // bg="bg-[url('/buttons/medium_dropdown.svg')]"
                         text={b("sortBy")}
                         options={sortOptions}
                         item={"sort"}

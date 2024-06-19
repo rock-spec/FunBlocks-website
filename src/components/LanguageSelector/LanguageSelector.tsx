@@ -18,8 +18,13 @@ const LanguageSelector = () => {
     const locale = useLocale() as Locale
 
     const switchLanguage = (newLocale: Locale) => {
-        router.push(newLocale)
-        router.refresh()
+        const search = window.location.search
+        const regex = new RegExp(`^/(${locales.join("|")})`)
+        let newPathname = pathname.replace(regex, `/${newLocale}`)
+        if (search) {
+            newPathname = newPathname + search
+        }
+        router.replace(newPathname, { locale: newLocale })
         setShowDropdown(false)
     }
 

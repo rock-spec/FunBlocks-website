@@ -23,8 +23,6 @@ const ArticleDetails = async ({ params }: { params: { id: string; locale: Locale
     if (relatedData?.relatedArticles?.status === "fulfilled")
         relatedArticles = relatedData?.relatedArticles?.value
 
-    // const { relatedArticles, game } = data.relatedData
-
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
             {/* Main Column  */}
@@ -49,14 +47,14 @@ const ArticleDetails = async ({ params }: { params: { id: string; locale: Locale
                 {/* for space between them */}
                 <div className="h-[24px] w-full"></div>
                 <Column
-                    variant="article"
+                    variant="featuredArticles"
                     title={t("featuredArticles")}
                     responsive
                     onButtonClick={() => {}}
                     columnItems={relatedArticles?.map((article: any) => ({
                         id: article?.articleid,
-                        variant: "article",
-                        tags: [],
+                        variant: "featuredArticles",
+                        tags: [article?.category?.name],
                         title: article?.content?.[`title_${locale}`] || article?.content?.title_en,
                         imageUrl: article?.content?.image,
                     }))}

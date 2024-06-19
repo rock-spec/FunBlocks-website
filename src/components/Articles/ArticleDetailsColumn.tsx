@@ -60,14 +60,17 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         className="mb-[24px] object-cover object-center w-[855.58px] "
                         src={data.article.content.image}
                     />
-                    <div className="text-neutral-900 text-base font-normal  leading-normal mb-[20.28px] break-words">
-                        {(data?.article?.content?.[`content_${locale}`] ||
-                            data?.article?.content?.content_en) &&
-                            renderHTML(
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html:
                                 data?.article?.content?.[`content_${locale}`] ||
-                                    data?.article?.content?.content_en
-                            )}
-                    </div>
+                                data?.article?.content?.content_en,
+                        }}
+                        className={
+                            "render text-neutral-900 text-base font-normal  leading-normal mb-[20.28px] " +
+                            cabin.className
+                        }
+                    />
                 </div>
                 {data?.relatedData?.relatedArticles?.length > 0 && (
                     <div className="flex mb-10 gap-x-5">
