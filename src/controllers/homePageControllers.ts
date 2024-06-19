@@ -7,7 +7,7 @@ const supabase = SupabaseInstance.getSupabaseInstance()
 const getfeaturedNews = async (locale: string) => {
     const { data, error } = await supabase
         .from("news")
-        .select(`newsid,content(title_${locale},image,game(gameid,engineid,gamestudioid,blockchainid))`)
+        .select(`newsid,content(title_en, title_zh,image,game(gameid,engineid,gamestudioid,blockchainid))`)
         .eq("isHome", true)
         .limit(3)
 
@@ -23,7 +23,7 @@ const getLatestNews = async (locale: string) => {
         const { data, error } = await supabase
             .from("news")
             .select(
-                `newsid, content(title_${locale}, image, game(gameid, game_name, engineid, gamestudioid, blockchainid))`
+                `newsid, content(title_en, title_zh, image, game(gameid, game_name, engineid, gamestudioid, blockchainid))`
             )
             .order("content_id->publishdate", { ascending: false })
             .limit(5)
@@ -41,24 +41,11 @@ const getLatestNews = async (locale: string) => {
     }
 }
 
-// const getFeaturedGames = async () => {
-//     const { data, error } = await supabase
-//         .from("game")
-//         .select("gameid, game_name, pic, engineid, gamestudioid, blockchainid")
-//         .eq("isHome", true)
-//         .limit(5)
-//     if (error) {
-//         throw new Error("Error fetching games: " + error.message)
-//     }
-
-//     return data || []
-// }
-
 const getFeaturedArticles = async (locale: string) => {
     const { data, error } = await supabase
         .from("articles")
         .select(
-            `articleid,content(contentid,image, title_${locale}, description_${locale}, publishdate,author(*),game(gameid,engineid,gamestudioid,blockchainid,engine(logo,pic)))`
+            `articleid, publishdate, content(contentid,image, title_en, title_zh, description_en,description_zh,author(*),game(gameid,engineid,gamestudioid,blockchainid,engine(logo,pic)))`
         )
         .eq("isHome", true)
 
@@ -89,7 +76,7 @@ const getfeaturedEvents = async () => {
             "eventid, pic,title, startdate, enddate, joinurl, game(gameid,engineid,gamestudioid,blockchainid)"
         )
         .eq("isHome", true)
-        .limit(2)
+        .limit(4)
 
     if (error) {
         throw new Error("Error fetching events: " + error.message)

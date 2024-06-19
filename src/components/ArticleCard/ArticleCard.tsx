@@ -33,16 +33,19 @@ const ArticleCard = (props: ArticleCardProps) => {
                         className="h-[180px] w-[245px]"
                     />
                 </div>
-                {/* <div className="self-stretch overflow-hidden text-nero text-lg font-bold leading-[120%] tracking-[-0.36px] line-clamp-2 "> */}
                 <div className="self-stretch overflow-hidden text-nero text-lg font-bold leading-[110%]  line-clamp-2 ">
-
                     {title}
                 </div>
 
                 {/* Third Row: Tags */}
-                <div className="flex gap-x-1 ">
+                {/* <div className="flex gap-x-1 ">
                     {(tags.length > 0 ? tags : defaultTags).map((tag, index) => (
                         <Tag text={tag} key={index} type={"relevance"} />
+                    ))}
+                </div> */}
+                <div className="flex gap-x-1 ">
+                    {(tags.length > 0 ? tags : defaultTags).map((tag, index) => (
+                        <Tag text={tag} key={index} type={"justTag"} />
                     ))}
                 </div>
             </div>

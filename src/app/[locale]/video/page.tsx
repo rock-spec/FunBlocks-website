@@ -6,16 +6,28 @@ import { getTranslations } from "next-intl/server"
 
 export const dynamic = "force-dynamic"
 
-const Video = async () => {
+type FilterOptions = {
+    query?: string
+    categoryid?: string
+    sort?: string
+}
+
+const Video = async ({ searchParams }: { searchParams: any }) => {
     const t = await getTranslations("Tags")
     const b = await getTranslations("Buttons")
 
-    const { featuredGames, videos } = await trpcServer().videoData()
+    const filters: FilterOptions = {
+        query: searchParams?.qry || "",
+        categoryid: searchParams?.category || "",
+        sort: searchParams?.sort || "",
+    }
+
+    const { featuredGames, videos } = await trpcServer().videoData(filters)
 
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
             {/* Main Column  */}
-            <VideoColumn data={videos} />
+            <VideoColumn data={videos} searchParams={searchParams} />
 
             {/* Right Column */}
             <Column

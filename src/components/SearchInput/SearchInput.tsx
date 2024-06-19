@@ -4,31 +4,37 @@ import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import { useRouter, usePathname } from "next/navigation"
 import { useDebounce } from "./hooks"
+import { type Locale } from "@/i18n.config"
 
 export interface SearchInputProps {
     varient?: "light" | "dark"
     placeholder?: string
     className?: string
     searchParams?: any
+    component?: string
+    locale?: Locale
 }
 
 const SearchInput = (props: SearchInputProps) => {
     const [path, setpath] = useState("")
     const pathname = usePathname()
+    const router = useRouter()
     // const path = pathname?.split("/")[2]
 
     const [qry, setQry] = useState("")
     const debouncedSearch = useDebounce(qry)
-    const { varient = "dark", placeholder = "Search for anything", searchParams } = props
-
-    const router = useRouter()
+    const { varient = "dark", placeholder = "Search for anything", searchParams, locale } = props
 
     useEffect(() => {
         if (pathname) setpath(pathname?.split("/")[2])
     }, [pathname])
 
+    // console.log(pathname);
+
     useEffect(() => {
-        if (path === "game") {
+        if (props.component === "navbar") {
+            qry ? router.push(`/${locale}/search?search=${qry}`) : ""
+        } else if (path === "game") {
             router.push(
                 `game?engine=${searchParams?.engine ? searchParams?.engine : ""}&blockchain=${
                     searchParams?.blockchain ? searchParams?.blockchain : ""
@@ -36,7 +42,9 @@ const SearchInput = (props: SearchInputProps) => {
             )
             router.refresh()
         } else {
-            router.push(path + qry ? `?qry=${qry}` : "")
+            router.push(
+                `${path}?category=${searchParams?.category || ""}&sort=${searchParams?.sort || ""}&qry=${qry}`
+            )
         }
     }, [debouncedSearch])
 

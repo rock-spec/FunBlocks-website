@@ -28,7 +28,7 @@ const GameCardComponet = (props: GameCardComponentProps) => {
     const { imageUrl, title, tags, engine, description, onClick, engine_logo, game_id } = props
 
     return (
-        <Link href={`/game/${game_id}`} target="_blank">
+        <Link href={`/game/${game_id}`} >
             <div className={"gap-6 shadow-sm flex flex-col  " + cabin.className}>
                 <div className="rounded-lg relative">
                     <div className=" relative rounded-md border border-[#161616] overflow-hidden">

@@ -1,4 +1,4 @@
-"use cleint"
+"use client"
 
 import { trpc } from "@/app/_trpc/client"
 import GameCardComponet, { GameCardComponentProps } from "@/components/Games/GameCardComponet"
@@ -20,19 +20,20 @@ export const dynamic = "force-dynamic"
 const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale: Locale }) => {
     const t = useTranslations("Tags")
 
-    const data = trpc.searchPage.useQuery({ query, locale }) // Assuming query is the search term
+    const data = trpc.searchPage.useQuery({ query, locale })
+    // Assuming query is the search term
     const featuredArticlesData = trpc.featuredArticles.useQuery(locale)
 
     const finalData = data.data
     const featuredArticles = featuredArticlesData.data?.featuredArticles
 
     const articles = finalData?.articles
-    console.log(articles)
 
     const news = finalData?.news
     const videos = finalData?.videos
     const events = finalData?.events
     const games = finalData?.games
+
 
     const singleGameCardItemDetails: any =
         games?.map((game: any) => ({
@@ -66,13 +67,13 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
                 {data.isFetched ? (
                     <div className="w-full max-w-[1000px] flex lg:flex-row flex-col justify-between gap-x-5">
                         {/* mainCoulumn  */}
-                        <div className="m-w-[895px] w-full ">
+                        <div className="min-w-[895px] w-full ">
                             {/* Related Articles Section  */}
                             <div>
                                 <Tag
                                     type="section"
                                     text={`${
-                                        articles?.filter((item) => item.content)?.length
+                                        articles?.filter((item) => item.content)?.length || 0
                                     } Related Articles Found`}
                                 />
                                 <div className="flex mb-10 gap-x-5">
@@ -94,7 +95,7 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
                                                             description={
                                                                 article?.content?.[`description_${locale}`]
                                                             }
-                                                            details={article?.content?.publishdate}
+                                                            details={article?.publishdate}
                                                             tags={[article?.content?.game?.gameid]}
                                                             author={article?.content?.author?.name}
                                                             onFirstButtonClick={() => {}}
@@ -109,7 +110,7 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
 
                             {/* Related Game Section  */}
                             <div>
-                                <Tag type="section" text={`${games?.length} Related Games Found`} />
+                                <Tag type="section" text={`${games?.length || 0} Related Games Found`} />
                                 <div className="flex mb-10 gap-x-5 mt-5">
                                     <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
                                         {singleGameCardItemDetails?.map(
@@ -128,7 +129,7 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
 
                             {/* Related Video Section  */}
                             <div>
-                                <Tag type="section" text={`${videos?.length} Related Videos Found`} />
+                                <Tag type="section" text={`${videos?.length || 0} Related Videos Found`} />
                                 <div className="grid  md:grid-cols-2 grid-cols-1  gap-4 mt-5">
                                     {singleVideoCardItemDetails?.map((detail, index) => (
                                         <div className="p-5 border border-[#161616] bg-[#FFFCF9]" key={index}>
@@ -143,7 +144,7 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
                                 <Tag
                                     type="section"
                                     text={`${
-                                        news?.filter((item) => item.content)?.length
+                                        news?.filter((item) => item.content)?.length || 0
                                     } Related News Found`}
                                 />
                                 <div className="flex flex-col flex-1 min-w-full items-start gap-5 mt-5">
@@ -174,7 +175,7 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
                         </div>
                     </div>
                 ) : (
-                    "Searching Result...."
+                    <div className="min-w-[900px] w-full ">Searching Result....</div>
                 )}
                 {featuredArticles && (
                     <div className="ms-auto">
@@ -187,7 +188,7 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
                                 id: article?.articleid,
                                 variant: "article",
                                 search: true,
-                                title: article?.content?.[`title_${locale}`],
+                                title: article?.content?.[`title_${locale}`] || article?.content?.title_en,
                                 imageUrl: article?.content?.image,
                             }))}
                         />

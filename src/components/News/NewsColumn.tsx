@@ -9,7 +9,15 @@ import { useTranslations } from "next-intl"
 import { type Locale } from "@/i18n.config"
 import { trpc } from "@/app/_trpc/client"
 
-export const NewsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
+export const NewsColumn = ({
+    data,
+    locale,
+    searchParams,
+}: {
+    data: any
+    locale: Locale
+    searchParams: any
+}) => {
     const b = useTranslations("Buttons")
     const s = useTranslations("Search")
 
@@ -18,75 +26,72 @@ export const NewsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
 
     const [category, setCategory] = useState<any[]>([])
     const [newsFilterData, setNewsFilterData] = useState(data)
+    const [news, setNews] = useState(data)
 
     const sortOptions = [{ name: "date" }]
 
-    function filterNewsArray(searchString: string): any[] {
-        const newsArray: any[] = data
-        // If searchString is empty, return the original newsArray
-        if (!searchString.trim()) {
-            return newsArray
-        }
-
-        // Filter the newsArray based on the search string
-        return newsArray.filter((news) => {
-            return (
-                news?.newsid?.toLowerCase().includes(searchString.toLowerCase()) ||
-                news?.game?.gameid?.toLowerCase().includes(searchString.toLowerCase()) ||
-                news?.content?.title?.toLowerCase().includes(searchString.toLowerCase())
-            )
-        })
-    }
-
-    const singleCardItemDetails: SingleCardItemProps[] = newsFilterData?.map((news: any) => ({
+    const singleCardItemDetails: SingleCardItemProps[] = news?.map((news: any) => ({
         variant: "news",
         id: news?.newsid,
         imageUrl: `${news?.content.image}?height=360&width=720`,
-        title: news?.content[`title_${locale}`],
-        description: news?.content[`description_${locale}`],
-        details: formatDate(news?.content.publishdate),
+        title: news?.content[`title_${locale}`] || news?.content?.title_en,
+        description: news?.content[`description_${locale}`] || news?.content?.description_en,
+        details: formatDate(news?.publishdate),
         tags: [news?.content?.game?.gameid],
         author: news?.content?.author?.name,
         onFirstButtonClick: () => {},
         onSecondButtonClick: () => {},
     }))
 
-    const handleSearch = (e: any) => {
-        const val = e.target.value
-        const updateData = filterNewsArray(val)
-        setNewsFilterData(updateData)
-    }
+    console.log(singleCardItemDetails)
 
-    //Creating options for category dropdown menu
-    // useEffect(() => {
-    //     const uniqueCategories = new Set<string>()
-    //     data.forEach((news: { category: string; type: string }) => {
-    //         if (news.category) uniqueCategories.add(news.category)
-    //     })
-    //     setCategory(Array.from(uniqueCategories))
-    // }, [data])
+    useEffect(() => {
+        setNews(data)
+    }, [data])
 
     return (
         <>
             <div className="lg:w-[895px]  w-full">
-                <div className="flex flex-col lg:flex-row w-full mb-10 gap-x-4">
+                <div className="flex flex-col lg:flex-row w-[880px] mb-10 gap-x-4 ">
                     <div className=" w-full">
-                        <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} />
+                        {/* <SearchInput varient="light" placeholder={s("pageSearch")} onChange={handleSearch} /> */}
+                        <SearchInput
+                            varient="light"
+                            placeholder={s("pageSearch")}
+                            searchParams={searchParams}
+                        />
                     </div>
-                    <CustomDropDown text={b("category")} options={fetchedCategories} />
-                    <CustomDropDown text={b("sortBy")} options={sortOptions} />
+                    <CustomDropDown
+                        text={b("category")}
+                        options={fetchedCategories}
+                        item={"category"}
+                        searchParams={searchParams}
+                    />
+                    <CustomDropDown
+                        text={b("sortBy")}
+                        options={sortOptions}
+                        item={"sort"}
+                        searchParams={searchParams}
+                    />
                 </div>
                 <div className="flex mb-10 gap-x-5">
-                    <div className="flex flex-col flex-1 items-start gap-5">
-                        {singleCardItemDetails.map((detail, index) => (
-                            <div key={index} className="p-5 border border-[#161616] min-w-full bg-[#FFFCF9]">
-                                <SingleCardItem key={index} {...detail} />
+                    {singleCardItemDetails.length > 0 ? (
+                        <div className="flex flex-col flex-1 items-start gap-5">
+                            {singleCardItemDetails.map((detail, index) => (
+                                <div
+                                    key={index}
+                                    className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[55rem]"
+                                >
+                                    <SingleCardItem key={index} {...detail} />
+                                </div>
+                            ))}
+                            <div className="flex item-center w-full justify-center">
+                                {/* <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" /> */}
                             </div>
-                        ))}
-                        <div className="flex item-center w-full justify-center">
-                            {/* <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" /> */}
                         </div>
-                    </div>
+                    ) : (
+                        <div className="border">No news found.</div>
+                    )}
                 </div>
             </div>
         </>

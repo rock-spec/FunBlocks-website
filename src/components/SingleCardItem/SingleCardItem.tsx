@@ -19,6 +19,7 @@ export interface SingleCardItemProps {
     tags?: string[]
     timezone?: string
     url?: string
+    joinurl?: string
     onFirstButtonClick: () => void
     onSecondButtonClick: () => void
 }
@@ -42,29 +43,24 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         onSecondButtonClick,
         tags = [],
         author = "",
-        timezone = ""
+        timezone = "",
+        joinurl,
     } = props
 
+    // console.log(joinurl);
 
     return (
         <div className="flex md:flex-row  flex-col items-start gap-6 w-[863px] ">
             {/* First Column: Image */}
 
-            <Link href={`/${variant}/${id}`} target="blank" className="block ">
-                {/* <div
-                    className={
-                        "relative rounded-[4px] border border-[#161616] overflow-hidden min-w-[260px] w-full " +
-                        cabin.className
-                    }
-                > */}
+            <Link href={`/${variant}/${id}`} className="block ">
                 <div
                     className={
-                        "relative rounded-[4px] border border-[#161616] overflow-hidden " +
-                        cabin.className
+                        "relative rounded-[4px] border border-[#161616] overflow-hidden " + cabin.className
                     }
                 >
                     <Image
-                        className=""
+                        className="w-[300px] h-[150px] object-cover"
                         src={imageUrl}
                         alt="Image"
                         width={300}
@@ -75,18 +71,17 @@ const SingleCardItem = (props: SingleCardItemProps) => {
             {/* Second Column */}
             <div className="flex flex-col w-full h-full">
                 {/* First Row */}
-                <div className="flex flex-col gap-2 ">
+                <div className="flex flex-col gap-2 pe-5">
                     {/* Title */}
                     <div className="text-[#161616] font-bold text-lg leading-[120%] tracking-[-0.32px] line-clamp-2 bg ">
-                        <Link href={`/${variant}/${id}`} target="blank">
-                            {" "}
-                            {title}
-                        </Link>
+                        <Link href={`/${variant}/${id}`}>{title}</Link>
                     </div>
 
                     {/* Details */}
-                    <div className="text-neutral-900 text-base font-normal leading-normal w-full overflow-hidden break-all">
-                        <div className={`line-clamp-2  ${cabin.className}`}>{description}</div>
+                    <div className="text-neutral-900 text-base font-normal leading-normal w-full overflow-hidden break-all ">
+                        <Link href={`/${variant}/${id}`}>
+                            <div className={`line-clamp-2  ${cabin.className}`}>{description}</div>
+                        </Link>
                     </div>
 
                     {/* Dates  */}
@@ -112,7 +107,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                         <div className="flex md:flex-row flex-col gap-3 mt-2">
                             <div className="flex gap-1">
                                 {tags.map((tag, index) => (
-                                    <Tag text={tag} key={index} type={"relevance"} linkto="game" />
+                                    <Tag text={tag} key={index} type={"justTag"} />
                                 ))}
                             </div>
 
@@ -132,13 +127,15 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                 {/* Second Row: Buttons */}
                 {variant === "event" ? (
                     <div className="flex  items-center gap-x-4 mt-[22px] ">
-                        <BlueButton
-                            text={b("joinEvent")}
-                            link={url ? url : "#"}
-                            width="w-[140px]"
-                            bg="bg-[url('/buttons/join_event.svg')]"
-                            bg_hover="hover:bg-[url('/buttons/join_event_hover.svg')]"
-                        />
+                        {joinurl && (
+                            <BlueButton
+                                text={b("joinEvent")}
+                                link={joinurl}
+                                width="w-[140px]"
+                                bg="bg-[url('/buttons/join_event.svg')]"
+                                bg_hover="hover:bg-[url('/buttons/join_event_hover.svg')]"
+                            />
+                        )}
                         <Link
                             className={`flex justify-center items-center w-[111px] h-10 bg-[url('/buttons/details.svg')] hover:bg-[url('/buttons/details_hover.svg')] capitalize ${OffBit.className}`}
                             href={`/${variant}/${id}`}

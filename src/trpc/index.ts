@@ -38,12 +38,21 @@ const gameFilterOptionsSchema = z.object({
     engineIds: z.string().optional(),
     gameStudioIds: z.string().optional(),
     query: z.string().optional(),
+    sort: z.string().optional(),
     locale: localeSchema,
 })
 
-const articleFilterSchema = z.object({
+const pageFilterSchemaWithLocale = z.object({
     query: z.string().optional(),
+    categoryid: z.string().optional(),
+    sort: z.string().optional(),
     locale: localeSchema,
+})
+
+const pageFilterSchema = z.object({
+    query: z.string().optional(),
+    categoryid: z.string().optional(),
+    sort: z.string().optional(),
 })
 
 export const appRouter = router({
@@ -63,6 +72,7 @@ export const appRouter = router({
             blockchainIds: input.blockchainIds ? input.blockchainIds.split(",") : [],
             engineIds: input.engineIds ? input.engineIds.split(",") : [],
             gameStudioIds: input.gameStudioIds ? input.gameStudioIds.split(",") : [],
+            sort: input.sort ? input.sort : "",
             query: input?.query ? input?.query : "",
         }
         const gameData = await getGameAllData(filters, input.locale)
@@ -80,25 +90,25 @@ export const appRouter = router({
         const engines = await getEngines()
         return engines
     }),
-    newsData: publicProcedure.input(localeSchema).query(async ({ input }: { input: Locale }) => {
+    newsData: publicProcedure.input(pageFilterSchemaWithLocale).query(async ({ input }) => {
         const newsData = await getNewsData(input)
         return newsData
     }),
 
-    articleData: publicProcedure.input(articleFilterSchema).query(async ({ input }) => {        
+    articleData: publicProcedure.input(pageFilterSchemaWithLocale).query(async ({ input }) => {
         const articleData = await getarticlesData(input)
         return articleData
     }),
-    videoData: publicProcedure.query(async () => {
-        const videoData = await getVideosData()
+    videoData: publicProcedure.input(pageFilterSchema).query(async ({ input }) => {
+        const videoData = await getVideosData(input)
         return videoData
     }),
-    eventData: publicProcedure.query(async () => {
-        const eventData = await getEventsData()
+    eventData: publicProcedure.input(pageFilterSchema).query(async ({ input }) => {
+        const eventData = await getEventsData(input)
         return eventData
     }),
-    engineData: publicProcedure.query(async () => {
-        const engineData = await getEnginesData()
+    engineData: publicProcedure.input(pageFilterSchema).query(async ({ input }) => {
+        const engineData = await getEnginesData(input)
         return engineData
     }),
 
@@ -143,7 +153,7 @@ export const appRouter = router({
         const featuredArticles = await getfeaturedArticles(input)
         return featuredArticles
     }),
-    fetchCategories: publicProcedure.query(async () => {    
+    fetchCategories: publicProcedure.query(async () => {
         const categories = await getCategories()
         return categories
     }),

@@ -14,6 +14,7 @@ interface FilterOptions {
     engineIds?: string
     gameStudioIds?: string
     query?: string
+    sort?: string
     locale: Locale
 }
 
@@ -27,7 +28,7 @@ const Game = async ({
     const b = await getTranslations("Buttons")
     const s = await getTranslations("Search")
 
-    const sortOptions = [{ name: "date" }]
+    const sortOptions = [{ name: "A-Z" }, { name: "Z-A" }]
 
     // Fetching game data using trpc
     const filters: FilterOptions = {
@@ -35,8 +36,10 @@ const Game = async ({
         engineIds: searchParams?.engine || "",
         gameStudioIds: searchParams?.studio || "",
         query: searchParams?.qry || "",
+        sort: searchParams?.sort || "",
         locale: locale,
     }
+    
 
     // Parallel fetching of data using Promise.allSettled
     const [gameDataResult, blockchainsResult, gameStudiosResult, enginesResult] = await Promise.allSettled([
@@ -80,7 +83,7 @@ const Game = async ({
                             searchParams={searchParams}
                         />
                     </div>
-                    <CustomDropDown text={b("sortBy")} options={sortOptions} txt_px="px-8" />
+                    {/* <CustomDropDown text={b("sortBy")} options={sortOptions} txt_px="px-8" searchParams={searchParams}/> */}
                 </div>
                 <GameColumn data={gameData?.game} />
             </div>

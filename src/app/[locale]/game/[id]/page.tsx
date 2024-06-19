@@ -33,7 +33,7 @@ const GameDetail = async ({ params }: { params: { id: string; locale: Locale } }
                     id: news?.newsid,
                     variant: "news",
                     tags: [news?.content?.game?.gameid],
-                    title: news?.content?.[`title_${locale}`],
+                    title: news?.content?.[`title_${locale}`] || news?.content?.title_en,
                     imageUrl: news?.content?.image,
                 }))}
             />

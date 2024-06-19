@@ -8,7 +8,7 @@ import { Cabin } from "next/font/google"
 // Define the props interface
 export interface SingleColumnProps {
     id?: string
-    variant: "game" | "article" | "news" | "search"
+    variant: "game" | "article" | "news" | "search" | "featuredArticles"
     title: string
     content?: string
     author?: string
@@ -38,7 +38,7 @@ export const ColumnItems = (props: SingleColumnProps) => {
     const classnames = variant === "news" || variant === "article" ? "line-clamp-3" : ""
 
     return (
-        <Link href={`/${variant}/${id}`} className="" target="_blank">
+        <Link href={`/${variant}/${id}`} className="">
             <div
                 className={`w-[245px] h-[${containerHeight}px] justify-start items-start gap-[15px] inline-flex cursor-pointer `}
             >
@@ -53,8 +53,8 @@ export const ColumnItems = (props: SingleColumnProps) => {
                 />
                 <div className="grow shrink basis-0 h-full flex-col justify-start items-start gap-2 inline-flex">
                     <div
-                        className={` self-stretch text-neutral-900 ${
-                            search ? "text-base line-clamp-3 " : "text-sm"
+                        className={` self-stretch text-neutral-900 line-clamp-3 ${
+                            search ? "text-base  " : "text-sm"
                         } leading-tight  ${classnames} ${cabin.className} font-bold`}
                     >
                         {title}
@@ -68,7 +68,7 @@ export const ColumnItems = (props: SingleColumnProps) => {
                                     <Tag
                                         text={tag}
                                         key={index}
-                                        type={"relevance"}
+                                        type={"justTag"}
                                         linkto={variant === "game" ? "engine" : "game"}
                                     />
                                 ))}

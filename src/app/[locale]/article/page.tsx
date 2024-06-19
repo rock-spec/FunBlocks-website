@@ -8,8 +8,9 @@ import { type Locale } from "@/i18n.config"
 
 type FilterOptions = {
     query?: string
+    categoryid?: string
+    sort?: string
     locale: Locale
-
 }
 
 const Article = async ({
@@ -19,21 +20,22 @@ const Article = async ({
     params: { locale: Locale }
     searchParams: any
 }) => {
-    const filters: FilterOptions = {
-        query: searchParams?.qry || "",
-        locale
-    }
-
-    const { featuredGames, articles } = await trpcServer().articleData(filters )
     const t = await getTranslations("Tags")
     const b = await getTranslations("Buttons")
 
-    
+    const filters: FilterOptions = {
+        query: searchParams?.qry || "",
+        categoryid: searchParams?.category || "",
+        sort: searchParams?.sort || "",
+        locale,
+    }
+
+    const { featuredGames, articles } = await trpcServer().articleData(filters)
 
     return (
         <div className="w-full max-w-[1200px] flex justify-between gap-x-5 lg:flex-row flex-col">
             {/* Main Column  */}
-            <ArticleColumn data={articles} locale={locale} />
+            <ArticleColumn data={articles} locale={locale} searchParams={searchParams} />
 
             {/* Right Column */}
             <Column
