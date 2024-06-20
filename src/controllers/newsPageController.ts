@@ -9,38 +9,26 @@ type filterSchema = {
     categoryid?: string
     sort?: string
     locale: Locale
+    page: number
+    pageSize: number
 }
 
-// const getAllNews = async (filter: filterSchema) => {
-//     locale
-//     const { data, error } = await supabase
-//         .from("news")
-//         .select(
-//             `newsid, category(*), content(title_en, title_zh, description_en, description_zh, publishdate, image, author(name),game(gameid,engineid,gamestudioid,blockchainid))`
-//         )
-//     if (error) {
-//         throw new Error("Error fetching news: " + error.message)
-//     }
-//     return data || []
-// }
-
 const getAllNews = async (filter: filterSchema) => {
-    const locale = filter?.locale
-    const searchQuery = filter?.query
-    const categoryid = filter?.categoryid
-    const sort = filter?.sort
+    const { locale, query, categoryid, sort, page, pageSize } = filter
 
-    let query = supabase
+    let queryBuilder = supabase
         .from("news")
         .select(
             `newsid,publishdate, category(*), content(title_en, title_zh, description_en, description_zh, image, author(name),game(gameid,engineid,gamestudioid,blockchainid))`
         )
-    if (categoryid) query = query.eq("categoryid", categoryid)
-    if (searchQuery) query = query.ilike(`content.title_${locale}`, `%${searchQuery}%`)
-    if (sort) query = query.order("publishdate", { ascending: false }) // Add sorting by publishdate in descending order
-    const { data, error } = await query
+    if (categoryid) queryBuilder = queryBuilder.eq("categoryid", categoryid)
+    if (query) queryBuilder = queryBuilder.ilike(`content.title_${locale}`, `%${query}%`)
+    if (sort) queryBuilder = queryBuilder.order("publishdate", { ascending: false })
+    queryBuilder = queryBuilder.range(page * pageSize, (page + 1) * pageSize - 1)
+
+    const { data, error } = await queryBuilder
     if (error) throw new Error("Error fetching articles: " + error.message)
-    if (searchQuery) {
+    if (query) {
         const filteredData = data.filter((item) => item.content !== null)
         return filteredData || []
     }

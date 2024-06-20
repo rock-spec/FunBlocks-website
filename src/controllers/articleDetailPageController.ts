@@ -47,6 +47,7 @@ export const getArticleDetailPageData = async ({ id, locale }: { id: string; loc
     const article_id = id
     const article: Article = await articleData(article_id, locale)
     const gameId = article?.content?.gameid
+    
     const relatedData = await getGameRelatedData(gameId, locale)
     return { article, relatedData }
 }

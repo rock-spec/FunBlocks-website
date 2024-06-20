@@ -9,7 +9,7 @@ const Search = ({
     placeholder?: string
 }) => {
     return (
-        <div className="flex justify-between items-center border-b-2 border-nero">
+        <div className="flex justify-between items-center border-b-2 border-nero my-3">
             <input
                 onChange={onChange} // Use the passed onChange function here
                 type="text"

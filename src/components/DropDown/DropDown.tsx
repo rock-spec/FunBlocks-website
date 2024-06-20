@@ -86,7 +86,7 @@ const CustomDropDown = ({
                             <li
                                 key={i}
                                 onClick={() => {
-                                    setShowDropdown(false)                                    
+                                    setShowDropdown(false)
                                     if (item == "category") setSelectedcategory(option.categoryid)
                                     if (item == "sort") setSortOption(option.name)
                                 }}

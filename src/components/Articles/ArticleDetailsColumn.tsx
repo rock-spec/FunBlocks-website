@@ -22,6 +22,10 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
     if (relatedData?.relatedArticles?.status === "fulfilled")
         relatedArticles = relatedData?.relatedArticles?.value
 
+    let relatedVideos: any[] = []
+    if (relatedData?.relatedVideos?.status === "fulfilled") relatedVideos = relatedData?.relatedVideos?.value
+
+    
     return (
         <>
             <div className="w-[895px] ">
@@ -70,48 +74,44 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         />
                     </div>
                 </div>
-                {data?.relatedData?.relatedArticles?.length > 0 && (
-                    <div className="flex mb-10 gap-x-5">
-                        <SingleCard
-                            heading={t("relatedArticles")}
-                            name={"article"}
-                            singleCardItemDetails={relatedArticles.map((article: any) => ({
-                                id: article?.articleid,
-                                variant: "article",
-                                imageUrl: `${article?.content?.image}?height=360&width=720`,
-                                title: article?.content?.[`title_${locale}`],
-                                description: article?.content?.[`description_${locale}`],
-                                details: formatDate(article?.publishdate),
-                                tags: [article?.content?.game?.gameid],
-                                author: article?.content?.user?.username,
-                                onFirstButtonClick: () => {},
-                                onSecondButtonClick: () => {},
-                            }))}
-                            onButtonClick={() => {}}
-                        />
-                    </div>
-                )}
-                {data?.relatedData?.relatedVideos?.length > 0 && (
-                    <div className="flex mb-10 gap-x-5">
-                        <SingleCard
-                            heading={t("relatedVideos")}
-                            name={"video"}
-                            singleCardItemDetails={data.relatedData.relatedVideos.map((video: any) => ({
-                                variant: "video",
-                                id: video.videoid,
-                                imageUrl: video.media_url, //This is video url for video
-                                title: video.video_name,
-                                description: video.summary,
-                                tags: [],
-                                onFirstButtonClick: () => {},
-                                onSecondButtonClick: () => {},
-                            }))}
-                            onButtonClick={() => {}}
-                        />
-                    </div>
-                )}
-            </div>
+                <div className="flex mb-10 gap-x-5">
+                    <SingleCard
+                        heading={t("relatedArticles")}
+                        name={"article"}
+                        singleCardItemDetails={relatedArticles.map((article: any) => ({
+                            id: article?.articleid,
+                            variant: "article",
+                            imageUrl: `${article?.content?.image}?height=360&width=720`,
+                            title: article?.content?.[`title_${locale}`],
+                            description: article?.content?.[`description_${locale}`],
+                            details: formatDate(article?.publishdate),
+                            tags: [article?.content?.game?.gameid],
+                            author: article?.content?.user?.username,
+                            onFirstButtonClick: () => {},
+                            onSecondButtonClick: () => {},
+                        }))}
+                        onButtonClick={() => {}}
+                    />
+                </div>
 
+                <div className="flex mb-10 gap-x-5">
+                    <SingleCard
+                        heading={t("relatedVideos")}
+                        name={"video"}
+                        singleCardItemDetails={relatedVideos.map((video: any) => ({
+                            variant: "video",
+                            id: video?.videoid,
+                            imageUrl: video?.media_url, //This is video url for video
+                            title: video?.video_name,
+                            description: video?.summary,
+                            tags: [],
+                            onFirstButtonClick: () => {},
+                            onSecondButtonClick: () => {},
+                        }))}
+                        onButtonClick={() => {}}
+                    />
+                </div>
+            </div>
         </>
     )
 }

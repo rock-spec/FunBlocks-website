@@ -1,5 +1,6 @@
 import SupabaseInstance from "../../supabase"
 import { type Locale } from "@/i18n.config"
+import { getfeaturedArticles } from "./articlePageController"
 
 const supabase = SupabaseInstance.getSupabaseInstance()
 
@@ -87,12 +88,13 @@ export const getCategories = async () => {
 export const getGameRelatedData = async (gameid: string, locale: Locale) => {
     const game_id = decodeURIComponent(gameid)
 
-    const [game, relatedArticles, relatedNews, relatedVideos, relatedEvents] = await Promise.allSettled([
+    const [game, relatedArticles, relatedNews, relatedVideos, relatedEvents, featuredArticles] = await Promise.allSettled([
         getGameData(game_id),
         getRelatedArticles(game_id, locale),
         getRelatedNews(game_id, locale),
         getRelatedVideos(game_id),
         getRelatedEvents(game_id),
+        getfeaturedArticles(locale)
     ])
 
     return {
@@ -101,5 +103,6 @@ export const getGameRelatedData = async (gameid: string, locale: Locale) => {
         relatedNews,
         relatedVideos,
         relatedEvents,
+        featuredArticles
     }
 }
