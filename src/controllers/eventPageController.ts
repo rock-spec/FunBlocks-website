@@ -6,25 +6,27 @@ type filterSchema = {
     query?: string
     categoryid?: string
     sort?: string
+    page: number
+    pageSize: number
 }
 
 const getAllEvents = async (filter: filterSchema) => {
-    const searchQuery = filter?.query
-    const categoryid = filter?.categoryid
-    const sort = filter?.sort
+    const { query, categoryid, sort, page, pageSize } = filter
 
-    let query = supabase.from("events").select("*,game(gameid,engineid,gamestudioid,blockchainid)")
-    if (categoryid) query = query.eq("categoryid", categoryid)
-    if (searchQuery) query = query.ilike(`title`, `%${searchQuery}%`)
-    if (sort) query = query.order("startdate", { ascending: true }) // Add sorting by publishdate in descending order
-    const { data, error } = await query
+    let queryBuilder = supabase.from("events").select("*,game(gameid,engineid,gamestudioid,blockchainid)")
+    if (categoryid) queryBuilder = queryBuilder.eq("categoryid", categoryid)
+    if (query) queryBuilder = queryBuilder.ilike(`title`, `%${query}%`)
+    if (sort) queryBuilder = queryBuilder.order("startdate", { ascending: true })
+    queryBuilder = queryBuilder.range(page * pageSize, (page + 1) * pageSize - 1)
+
+    const { data, error } = await queryBuilder
     if (error) throw new Error("Error fetching articles: " + error.message)
 
     return data || []
 }
 
 const getFeaturedGameData = async () => {
-    const { data, error } = await supabase.from("game").select("*").range(0, 5)
+    const { data, error } = await supabase.from("game").select("*").limit(5)
 
     if (error) {
         throw new Error("Error fetching games: " + error.message)

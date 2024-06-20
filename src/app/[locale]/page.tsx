@@ -13,7 +13,6 @@ export default function Home({
     const b = useTranslations("Buttons")
     const n = useTranslations("Navbar")
 
-    const search = searchParams.search
     return (
         <>
             <Homee n={n} b={b} locale={locale} />

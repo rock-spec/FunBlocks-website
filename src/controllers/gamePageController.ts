@@ -9,27 +9,31 @@ interface FilterOptions {
     gameStudioIds?: string[]
     query?: string
     sort?: string
+    page: number
+    pageSize: number
 }
 
-const getNews = async (locale: Locale) => {
-    const { data, error } = await supabase
-        .from("news")
-        .select(`newsid,content(title_${locale},image,game(gameid,engineid,gamestudioid,blockchainid))`)
-        .range(0, 3)
+// const getNews = async (locale: Locale) => {
+//     const { data, error } = await supabase
+//         .from("news")
+//         .select(`newsid,content(title_${locale},image,game(gameid,engineid,gamestudioid,blockchainid))`)
+//         .range(0, 3)
 
-    if (error) {
-        throw new Error("Error fetching news: " + error.message)
-    }
+//     if (error) {
+//         throw new Error("Error fetching news: " + error.message)
+//     }
 
-    return data || []
-}
+//     return data || []
+// }
 
-export const getGameAllData = async (filters: FilterOptions, locale: Locale) => {
+export const getGames = async (filters: FilterOptions) => {
     const blockchainIds = filters?.blockchainIds || []
     const engineIds = filters?.engineIds || []
     const gameStudioIds = filters?.gameStudioIds || []
     const searchQuery = filters?.query || ""
     const sort = filters?.sort || ""
+    const page = filters?.page
+    const pageSize = filters?.pageSize
 
     // Create arrays of conditions for each filter
     const blockchainConditions = blockchainIds.map((id) => `blockchainid.eq.${id}`).join(",")
@@ -42,31 +46,21 @@ export const getGameAllData = async (filters: FilterOptions, locale: Locale) => 
         .join(",")
 
     // Construct the query
-    // let query = supabase.from("game").select()
-    let query = supabase
+    let queryBuilder = supabase
         .from("game")
         .select(`gameid, game_name, logo, pic, engine(engineid, logo), blockchainid, gamestudioid`)
 
-    // Apply the OR condition if there are any combined conditions
-    if (combinedConditions) {
-        query = query.or(combinedConditions)
-    }
-    // Apply the search query condition if it's not empty
-    if (searchQuery) {
-        query = query.ilike("game_name", `%${searchQuery}%`)
-    }
+    if (combinedConditions) queryBuilder = queryBuilder.or(combinedConditions)
+    if (searchQuery) queryBuilder = queryBuilder.ilike("game_name", `%${searchQuery}%`)
+    if (sort) queryBuilder = queryBuilder.order("game_name", { ascending: sort === "A-Z" })
+    queryBuilder = queryBuilder.range(page * pageSize, (page + 1) * pageSize - 1)
+    const { data, error } = await queryBuilder
 
-    if (sort) {
-        query = query.order("game_name", { ascending: sort === "A-Z" })
-    }
-
-    const { data, error } = await query
     if (error) {
         console.error("Error fetching data:", error)
         throw new Error("Error fetching games: " + error.message)
     }
-    // const news = await getNews(locale)
-    // return { game: data, news }
+
     return { game: data }
 }
 
@@ -98,4 +92,29 @@ export const getEngines = async () => {
     }
 
     return data || []
+}
+
+// export const getGamesAllData = async (filters: FilterOptions) => {
+//     const [games, blockchains, gameStudios, engines] = await Promise.allSettled([
+//         getGames(filters),
+//         getBlockchains(),
+//         getGameStudios(),
+//         getEngines(),
+//     ])
+
+//     return { games, blockchains, gameStudios, engines }
+// }
+
+export const getGamesAllData = async (filters: FilterOptions) => {
+    const [games] = await Promise.allSettled([getGames(filters)])
+    return { games }
+}
+
+export const getAllSidebarOptions = async () => {
+    const [blockchains, gameStudios, engines] = await Promise.allSettled([
+        getBlockchains(),
+        getGameStudios(),
+        getEngines(),
+    ])
+    return { blockchains, gameStudios, engines }
 }

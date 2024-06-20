@@ -1,3 +1,5 @@
+
+
 import Image from "next/image"
 import { Dispatch } from "react"
 
@@ -5,17 +7,18 @@ const CustomCheckbox = ({
     text,
     setFunction,
     stateValue,
+    searchParams,
 }: {
     text: string
     setFunction: Dispatch<string[]>
     stateValue: string[]
+    searchParams?: any
 }) => {
     const handleClick = (option: string) => {
         stateValue.includes(option)
             ? setFunction(stateValue.filter((item) => item !== option))
             : setFunction([...stateValue, option])
     }
-
 
     return (
         <>

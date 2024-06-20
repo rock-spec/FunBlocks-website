@@ -1,6 +1,6 @@
 import getHomeData from "@/controllers/homePageControllers"
 import { publicProcedure, router } from "./trpc"
-import { getBlockchains, getGameStudios, getEngines, getGameAllData } from "@/controllers/gamePageController"
+import { getBlockchains, getGameStudios, getEngines, getGames, getGamesAllData, getAllSidebarOptions } from "@/controllers/gamePageController"
 import { getNewsData } from "@/controllers/newsPageController"
 import { getarticlesData, getfeaturedArticles } from "@/controllers/articlePageController"
 import { getVideosData } from "@/controllers/videoPageController"
@@ -17,6 +17,7 @@ import { getEngineDetailPageData } from "@/controllers/engineDetailPageControlle
 import { getSliderData } from "@/controllers/sliderController"
 import getSearchData from "@/controllers/searchController"
 import { type Locale } from "@/i18n.config"
+import Sidebar from "@/components/Games/Sidebar"
 
 const localeSchema = z.string().refine((val) => val === "en" || val === "zh", {
     message: "Invalid locale",
@@ -40,6 +41,8 @@ const gameFilterOptionsSchema = z.object({
     query: z.string().optional(),
     sort: z.string().optional(),
     locale: localeSchema,
+    page: z.number().default(0), // Page number for pagination
+    pageSize: z.number().default(5),
 })
 
 const pageFilterSchemaWithLocale = z.object({
@@ -47,12 +50,16 @@ const pageFilterSchemaWithLocale = z.object({
     categoryid: z.string().optional(),
     sort: z.string().optional(),
     locale: localeSchema,
+    page: z.number().default(0), // Page number for pagination
+    pageSize: z.number().default(5), // Number of items per page  
 })
 
 const pageFilterSchema = z.object({
     query: z.string().optional(),
     categoryid: z.string().optional(),
     sort: z.string().optional(),
+    page: z.number().default(0), // Page number for pagination
+    pageSize: z.number().default(5)
 })
 
 export const appRouter = router({
@@ -68,15 +75,23 @@ export const appRouter = router({
         return homeData
     }),
     gameData: publicProcedure.input(gameFilterOptionsSchema).query(async ({ input }) => {
+        console.log(input);
+        
         const filters = {
             blockchainIds: input.blockchainIds ? input.blockchainIds.split(",") : [],
             engineIds: input.engineIds ? input.engineIds.split(",") : [],
             gameStudioIds: input.gameStudioIds ? input.gameStudioIds.split(",") : [],
             sort: input.sort ? input.sort : "",
             query: input?.query ? input?.query : "",
+            page: input.page,
+            pageSize: input.pageSize
         }
-        const gameData = await getGameAllData(filters, input.locale)
-        return gameData
+        const gamesData = await getGamesAllData(filters)
+        return gamesData
+    }),
+    sidebarOptions: publicProcedure.query(async() => {
+        const options = await getAllSidebarOptions()
+        return options
     }),
     blockchains: publicProcedure.query(async () => {
         const blockchains = await getBlockchains()

@@ -29,24 +29,48 @@ const SearchInput = (props: SearchInputProps) => {
         if (pathname) setpath(pathname?.split("/")[2])
     }, [pathname])
 
-    // console.log(pathname);
+
 
     useEffect(() => {
-        if (props.component === "navbar") {
-            qry ? router.push(`/${locale}/search?search=${qry}`) : ""
-        } else if (path === "game") {
-            router.push(
-                `game?engine=${searchParams?.engine ? searchParams?.engine : ""}&blockchain=${
-                    searchParams?.blockchain ? searchParams?.blockchain : ""
-                }&studio=${searchParams?.studio ? searchParams?.studio : ""}${qry ? `&qry=${qry}` : ""}`
-            )
-            router.refresh()
-        } else {
-            router.push(
-                `${path}?category=${searchParams?.category || ""}&sort=${searchParams?.sort || ""}&qry=${qry}`
-            )
+        if (debouncedSearch) {
+            if (props.component === "navbar") {
+                router.push(`/${locale}/search?search=${qry}`)
+            } else if (path === "game") {
+                router.push(
+                    `game?engine=${searchParams?.engine ? searchParams?.engine : ""}&blockchain=${
+                        searchParams?.blockchain ? searchParams?.blockchain : ""
+                    }&studio=${searchParams?.studio ? searchParams?.studio : ""}&qry=${qry}`
+                )
+                // router.refresh()
+            } else if (path !== "game") {
+                router.push(
+                    `${path}?category=${searchParams?.category || ""}&sort=${
+                        searchParams?.sort || ""
+                    }&qry=${qry}`
+                )
+            }
         }
     }, [debouncedSearch])
+
+    // useEffect(() => {
+    //     if (props.component === "navbar") {
+    //         qry ? router.push(`/${locale}/search?search=${qry}`) : ""
+    //     } else if (path === "game") {
+    //         router.push(
+    //             `game?engine=${searchParams?.engine ? searchParams?.engine : ""}&blockchain=${
+    //                 searchParams?.blockchain ? searchParams?.blockchain : ""
+    //             }&studio=${searchParams?.studio ? searchParams?.studio : ""}${qry ? `&qry=${qry}` : ""}`
+    //         )
+    //         // router.refresh()
+    //     } else if (path !== "game") {
+    //         qry &&
+    //             router.push(
+    //                 `${path}?category=${searchParams?.category || ""}&sort=${
+    //                     searchParams?.sort || ""
+    //                 }&qry=${qry}`
+    //             )
+    //     }
+    // }, [debouncedSearch])
 
     return (
         <div

@@ -1,8 +1,11 @@
+"use client"
+
 import { Column } from "@/components/Column/Column"
 import { EventColumn } from "@/components/Events/EventColumn"
-import React from "react"
-import { trpcServer } from "@/app/_trpc/trpcServer"
-import { getTranslations } from "next-intl/server"
+import { trpc } from "@/app/_trpc/client"
+import { useTranslations } from "next-intl"
+import ShowMoreButton from "@/components/Button/ShowMoreButton"
+import { useEffect, useState } from "react"
 
 export const dynamic = "force-dynamic"
 
@@ -10,42 +13,94 @@ type FilterOptions = {
     query?: string
     categoryid?: string
     sort?: string
+    page: number
+    pageSize: number
 }
 
-const Event = async ({ searchParams }: { searchParams: any }) => {
-    const t = await getTranslations("Tags")
-    const b = await getTranslations("Buttons")
+const Event = ({ searchParams }: { searchParams: any }) => {
+    const t = useTranslations("Tags")
+    const b = useTranslations("Buttons")
+
+    const [page, setPage] = useState(0)
+    const pageSize = 6
+    const [events, setEvents] = useState<any[]>([])
+    const [hasMore, setHasMore] = useState(true)
+    const [featuredGames, setFeaturedGames] = useState<any[]>([])
 
     const filters: FilterOptions = {
         query: searchParams?.qry || "",
         categoryid: searchParams?.category || "",
         sort: searchParams?.sort || "",
+        page,
+        pageSize,
     }
 
-    const { featuredGames, events } = await trpcServer().eventData(filters)
+    const { data, isLoading, isError } = trpc.eventData.useQuery(filters)
+
+    useEffect(() => {
+        setPage(0)
+    }, [searchParams])
+
+    useEffect(() => {
+        if (data) {
+            if (data?.events?.length < pageSize) {
+                setHasMore(false)
+            }
+            if (page === 0) setEvents([...data?.events])
+            else setEvents((prev) => [...prev, ...data?.events])
+            setFeaturedGames(data?.featuredGames || [])
+        }
+    }, [data])
+
+    const loadMore = () => {
+        setPage((prev) => prev + 1)
+    }
+
+    if (isLoading && page === 0) return <div>Loading...</div>
+    if (isError) return <div>Error loading data</div>
 
     return (
-        <div className="w-full max-w-[1200px]  flex lg:flex-row flex-col justify-between gap-x-5">
-            {/* Main Column  */}
-            <EventColumn data={events} searchParams={searchParams}/>
+        <>
+            <div className="w-full max-w-[1200px]  flex lg:flex-row flex-col justify-between gap-x-5">
+                {/* Main Column  */}
+                <EventColumn data={events} searchParams={searchParams} />
 
-            {/* Right Column */}
-            <Column
-                variant="game"
-                responsive
-                title={t("featuredGames")}
-                buttonText={b("allGames")}
-                onButtonClick={() => {}}
-                columnItems={featuredGames.map((game) => ({
-                    key: game.gameid,
-                    id: game.gameid,
-                    variant: "game",
-                    tags: [game.engineid, game.gamestudioid, game.blockchainid],
-                    title: game.game_name,
-                    imageUrl: game.pic,
-                }))}
-            />
-        </div>
+                {/* Right Column */}
+                {featuredGames && featuredGames.length > 0 && (
+                    <Column
+                        variant="game"
+                        title={t("featuredGames")}
+                        buttonText={b("allGames")}
+                        onButtonClick={() => {}}
+                        columnItems={featuredGames?.map(
+                            (game: {
+                                gameid: any
+                                engineid: any
+                                gamestudioid: any
+                                blockchainid: any
+                                game_name: any
+                                pic: any
+                            }) => ({
+                                id: game.gameid,
+                                variant: "game",
+                                tags: [game.engineid, game.gamestudioid, game.blockchainid],
+                                title: game.game_name,
+                                imageUrl: game.pic,
+                            })
+                        )}
+                    />
+                )}
+            </div>
+            {hasMore && (
+                <div className="w-[880px]">
+                    <ShowMoreButton
+                        onClick={loadMore}
+                        disabled={isLoading}
+                        text={isLoading ? "Loading..." : "Show More"}
+                    />
+                </div>
+            )}
+        </>
     )
 }
 
