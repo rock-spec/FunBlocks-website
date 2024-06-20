@@ -19,9 +19,10 @@ const ArticleDetails = async ({ params }: { params: { id: string; locale: Locale
     let game: any[] = []
     if (relatedData?.game?.status === "fulfilled") game = relatedData?.game?.value
 
-    let relatedArticles: any[] = []
-    if (relatedData?.relatedArticles?.status === "fulfilled")
-        relatedArticles = relatedData?.relatedArticles?.value
+    let featuredArticles: any[] = []
+    if (relatedData?.featuredArticles?.status === "fulfilled")
+        featuredArticles = relatedData?.featuredArticles?.value?.featuredArticles
+
 
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
@@ -51,7 +52,7 @@ const ArticleDetails = async ({ params }: { params: { id: string; locale: Locale
                     title={t("featuredArticles")}
                     responsive
                     onButtonClick={() => {}}
-                    columnItems={relatedArticles?.map((article: any) => ({
+                    columnItems={featuredArticles?.map((article: any) => ({
                         id: article?.articleid,
                         variant: "featuredArticles",
                         tags: [article?.category?.name],

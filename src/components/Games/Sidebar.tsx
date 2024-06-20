@@ -6,6 +6,7 @@ import localFont from "next/font/local"
 import Search from "./Search"
 import { useTranslations } from "next-intl"
 import { useRouter } from "next/navigation"
+import { trpc } from "@/app/_trpc/client"
 
 const OffBit = localFont({
     src: "../Button/font/OffBitTrial-Bold.otf",
@@ -13,13 +14,11 @@ const OffBit = localFont({
 })
 
 const Sidebar = ({
-    data,
     blockchainsList,
     gameStudiosList,
     enginesList,
     searchParams,
 }: {
-    data: any
     blockchainsList: string[]
     gameStudiosList: string[]
     enginesList: string[]
@@ -73,7 +72,8 @@ const Sidebar = ({
                 searchParams?.qry ? `&qry=${searchParams.qry}` : ""
             }`
         )
-        router.refresh()
+
+        // router.refresh()
     }, [selectedEngine, selectedBlockChain, selectedGameStudio])
 
     return (
@@ -94,6 +94,7 @@ const Sidebar = ({
                     </button>
                 </div>
                 <hr className="bg-[rgba(22, 22, 22, 0.20);] h-[2px] mt-1" />
+
                 <div className="mt-4">
                     {!ShowEngineSearch ? (
                         <SidebarHeading
@@ -115,6 +116,9 @@ const Sidebar = ({
                         />
                     )}
                 </div>
+                <button className="font-semibold ms-auto block" onClick={() => setSelectedEngine([])}>
+                    Clear
+                </button>
                 {(engineSearchInput.trim() ? FilteredEngines : displayedEngines).map((engine, i) => (
                     <CustomCheckbox
                         key={i}
@@ -161,6 +165,13 @@ const Sidebar = ({
                         />
                     )}
                 </div>
+                <button
+                    className="font-semibold ms-auto block hover:text-blue-500"
+                    onClick={() => setSelectedEngine([])}
+                >
+                    Clear
+                </button>
+
                 {(blockChainSearchInput.trim() ? FilteredBlockChains : displayedBlockChains).map(
                     (chain, i) => (
                         <CustomCheckbox
@@ -207,6 +218,10 @@ const Sidebar = ({
                             }}
                         />
                     )}
+                    <button className="font-semibold ms-auto block" onClick={() => setSelectedEngine([])}>
+                        Clear
+                    </button>
+
                     {(gameStudioSearchInput.trim() ? FilteredGameStudios : displayedGameStudios).map(
                         (studio, i) => (
                             <CustomCheckbox

@@ -33,6 +33,7 @@ export const ArticleColumn = ({
         setArticles(data)
     }, [data])
 
+    
     const singleCardItemDetails: SingleCardItemProps[] = articles?.map((article: any) => ({
         variant: "article",
         id: article?.articleid,
@@ -72,8 +73,8 @@ export const ArticleColumn = ({
                 </div>
                 <div className="flex mb-10 gap-x-5">
                     <div className="flex flex-col flex-1 items-start gap-5">
-                        {singleCardItemDetails.length > 0 ? (
-                            singleCardItemDetails.map((detail, index) => (
+                        {singleCardItemDetails?.length > 0 ? (
+                            singleCardItemDetails?.map((detail, index) => (
                                 <div
                                     key={index}
                                     className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[55rem]"

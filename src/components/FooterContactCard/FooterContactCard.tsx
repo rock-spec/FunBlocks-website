@@ -33,6 +33,12 @@ const FooterContactCard = ({ locale }: { locale: Locale }) => {
             name: "Telegram",
             URL: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/telegramicons-j0W4B0nSj497SihxtgJENrSVGy3AXZ.svg",
         },
+        {
+            link_en: "https://mirror.xyz/funblocks.eth",
+            link_zh: "https://mirror.xyz/funblocks.eth",
+            name: "Mirror",
+            URL: "/social/mirrorxyz.svg",
+        },
         // {
         //     link_en: "#",
         //     link_zh: "#",
@@ -61,7 +67,7 @@ const FooterContactCard = ({ locale }: { locale: Locale }) => {
             link_en: "https://www.youtube.com/channel/UCw1mNEgQCgjWcYup5WjXaCg",
             link_zh: "https://www.youtube.com/channel/UCw1mNEgQCgjWcYup5WjXaCg",
             name: "youtube",
-            URL: "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/Group%2010718icons-0eLsc77r9odxjRNohFgeYkCtcEJ4Y8.svg",
+            URL: "/social/yticon.svg",
         },
     ]
 
@@ -79,13 +85,14 @@ const FooterContactCard = ({ locale }: { locale: Locale }) => {
             <div className="flex items-start gap-2">
                 {socialIcons.map((icon, index) => (
                     <div key={index} className="cursor-pointer hover:scale-105 transition-all" style={{}}>
-                        <Link href={icon?.[`link_${locale}`]}>
+                        <Link href={icon?.[`link_${locale}`]} target="_blank">
                             <Image
                                 src={icon.URL}
                                 alt={`${icon.name}`}
                                 width={30.496}
                                 height={30.496}
                                 layout="fixed"
+                                className="rounded-full"
                             />
                         </Link>
                     </div>
