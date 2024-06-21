@@ -48,7 +48,7 @@ export const ColumnItems = (props: SingleColumnProps) => {
                     width={img_size}
                     alt=""
                     className={`${
-                        search ? "h-[60px] w-[60px]" : "h-[85px] w-[85px]"
+                         "h-[85px] w-[85px]"
                     } border-[2px] rounded-[7px] border-neutral-900/85 object-cover`}
                 />
                 <div className="grow shrink basis-0 h-full flex-col justify-start items-start gap-2 inline-flex">

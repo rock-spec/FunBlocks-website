@@ -3,7 +3,7 @@ const supabase = SupabaseInstance.getSupabaseInstance()
 import { type Locale } from "@/i18n.config"
 
 const getGames = async (query: string) => {
-    const { data, error } = await supabase.from("game").select("*").ilike("game_name", `%${query}%`)
+    const { data, error } = await supabase.from("game").select("*,engine(*)").ilike("game_name", `%${query}%`)
 
     if (error) {
         throw new Error("Error fetching games: " + error.message)

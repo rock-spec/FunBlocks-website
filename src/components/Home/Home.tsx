@@ -96,6 +96,7 @@ const Homee = async ({ n, b, locale }: { n?: any; b?: any; locale: Locale }) => 
         games = HomeData.games.value
     }
 
+    
     return (
         <div className="relatve w-full max-w-[1200px] flex flex-col  justify-between lg:gap-x-5 lg:flex-row">
             {/* Left Column */}
