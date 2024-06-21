@@ -22,8 +22,6 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
     const t = useTranslations("Tags")
 
     const data = trpc.searchPage.useQuery({ query, locale })
-
-    // Assuming query is the search term
     const featuredArticlesData = trpc.featuredArticles.useQuery(locale)
 
     const finalData = data.data
@@ -89,7 +87,7 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
                             {(selectedSection === "ALL" || selectedSection === "ARTICLES") && (
                                 <div>
                                     <Tag
-                                        type="section"
+                                        type="searchResult"
                                         text={`${
                                             articles?.filter((item) => item.content)?.length || 0
                                         } Related Articles Found`}
@@ -154,7 +152,7 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
                             {(selectedSection === "ALL" || selectedSection === "VIDEOS") && (
                                 <div>
                                     <Tag
-                                        type="section"
+                                        type="searchResult"
                                         text={`${videos?.length || 0} Related Videos Found`}
                                     />
                                     <div className="grid  md:grid-cols-2 grid-cols-1  gap-4 mt-5">
@@ -174,7 +172,7 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
                             {(selectedSection === "ALL" || selectedSection === "NEWS") && (
                                 <div className="mt-10">
                                     <Tag
-                                        type="section"
+                                        type="searchResult"
                                         text={`${
                                             news?.filter((item) => item.content)?.length || 0
                                         } Related News Found`}
@@ -207,10 +205,11 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
                                     </div>
                                 </div>
                             )}
+                            {/* events section */}
                             {(selectedSection === "ALL" || selectedSection === "EVENTS") && (
                                 <div>
                                     <Tag
-                                        type="section"
+                                        type="searchResult"
                                         text={`${events?.length || 0} Related events Found`}
                                     />
                                     <div className="flex mb-10 gap-x-5 mt-5">
@@ -219,7 +218,7 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
                                                 singleeventCardItemDetails.map((detail: React.JSX.IntrinsicAttributes & SingleCardItemProps, index: React.Key | null | undefined) => (
                                                     <div
                                                         key={index}
-                                                        className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[55rem]"
+                                                        className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[62.5rem] "
                                                     >
                                                         <SingleCardItem key={index} {...detail} />
                                                     </div>

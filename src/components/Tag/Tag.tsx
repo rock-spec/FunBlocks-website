@@ -5,7 +5,7 @@ import { Link } from "@/i18n.config"
 
 interface TagProps {
     text: string
-    type?: "section" | "relevance" | "more" | "justTag"
+    type?: "section" | "relevance" | "more" | "justTag" | "searchResult"
     numberOfMore?: number
     linkto?: string
 }
@@ -26,10 +26,13 @@ export const Tag = (prop: TagProps) => {
     if (text) {
         return (
             <>
+                {type === "searchResult" && (
+                    <div className={`uppercase bg-merino px-2.5 pt-1.5 pb-0.5 text-base ${OffBit.className} w-[63rem]`}>
+                        {text}
+                    </div>
+                )}
                 {type === "section" && (
-                    <div
-                        className={`uppercase bg-merino px-2.5 pt-1.5 pb-0.5 text-base ${OffBit.className} `}
-                    >
+                    <div className={`uppercase bg-merino px-2.5 pt-1.5 pb-0.5 text-base ${OffBit.className}`}>
                         {text}
                     </div>
                 )}

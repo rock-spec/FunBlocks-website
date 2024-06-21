@@ -7,6 +7,7 @@ import { Cabin } from "next/font/google"
 import { useTranslations } from "next-intl"
 import { Locale } from "@/i18n.config"
 import MarkDownview from "../MarkdownViewer/MarkdownVew"
+import SingleVideoCardItem from "../SingleCard/SingleVideoCardItem"
 
 const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
 
@@ -25,7 +26,18 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
     let relatedVideos: any[] = []
     if (relatedData?.relatedVideos?.status === "fulfilled") relatedVideos = relatedData?.relatedVideos?.value
 
-    
+    const singleCardItemDetails: any[] = relatedVideos.map((video: any) => ({
+        key: video?.videoid,
+        variant: "video",
+        id: video.videoid,
+        imageUrl: video.media_url, //This is video url for video
+        title: video.video_name,
+        description: video.summary,
+        tags: [],
+        gameid: video.gameid,
+        date: video.publishdate,
+    }))
+
     return (
         <>
             <div className="w-[895px] ">
@@ -93,23 +105,23 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         onButtonClick={() => {}}
                     />
                 </div>
-
-                <div className="flex mb-10 gap-x-5">
-                    <SingleCard
-                        heading={t("relatedVideos")}
-                        name={"video"}
-                        singleCardItemDetails={relatedVideos.map((video: any) => ({
-                            variant: "video",
-                            id: video?.videoid,
-                            imageUrl: video?.media_url, //This is video url for video
-                            title: video?.video_name,
-                            description: video?.summary,
-                            tags: [],
-                            onFirstButtonClick: () => {},
-                            onSecondButtonClick: () => {},
-                        }))}
-                        onButtonClick={() => {}}
-                    />
+                <div className="bg-[#FFFCF9] p-5">
+                    <div className="w-fit mb-5">
+                        <Tag text={`${"title"}`} type={"section"} />
+                    </div>
+                    <div className="flex gap-x-5">
+                        <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
+                            {singleCardItemDetails.length > 0 ? (
+                                singleCardItemDetails.map((detail, index) => (
+                                    <div className="p-5 border  bg-[#FFFCF9]" key={index}>
+                                        <SingleVideoCardItem key={index} {...detail} />
+                                    </div>
+                                ))
+                            ) : (
+                                <div>No videos found</div>
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

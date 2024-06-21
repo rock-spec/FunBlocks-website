@@ -43,6 +43,8 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
         fetchData()
     }, [])
 
+    
+
     let latestNews: any[] = []
     if (data?.latestNews?.status === "fulfilled") {
         latestNews = data.latestNews.value
@@ -67,8 +69,6 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
     if (data?.featuredNews?.status === "fulfilled") {
         featuredNews = data.featuredNews.value
     }
-
-    
 
     return (
         <>
