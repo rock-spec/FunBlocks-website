@@ -51,6 +51,7 @@ const getFeaturedArticlesData = async (locale: Locale) => {
         .from("articles")
         .select(`articleid,content(title_en, title_zh,image)`)
         .range(0, 5)
+        
     if (error) {
         throw new Error("Error fetching articles: " + error.message)
     }

@@ -1,3 +1,4 @@
+import { any } from "zod"
 import SupabaseInstance from "../../supabase"
 import { getGameRelatedData } from "./utilControllers"
 import { type Locale } from "@/i18n.config"
@@ -6,13 +7,13 @@ const supabase = SupabaseInstance.getSupabaseInstance()
 
 interface Article {
     articleid: string
+    games: {
+        gameid: string;
+        engineid: string;
+        blockchainid: string;
+        gamestudioid: string;
+    }[]
     content: {
-        game: {
-            gameid: string
-            engineid: string
-            blockchainid: string
-            gamestudioid: string
-        }
         user: {
             username: string
         }
@@ -33,10 +34,9 @@ const articleData = async (article_id: string, locale: Locale) => {
     const { data, error } = await supabase
         .from("articles")
         .select(
-            `articleid, publishdate, content(title_en,title_zh, description_en,description_zh,content_en,content_zh ,image ,author(name),gameid,game(gameid,engineid,gamestudioid,blockchainid))`
+            `articleid, publishdate, games:content_gameids(gameid, game(gameid, engineid, gamestudioid, blockchainid)), content(title_en, title_zh, description_en, description_zh, content_en, content_zh, image, author(name))`
         )
         .eq("articleid", article_id)
-
     if (error) {
         throw new Error("Error fetching articles: " + error.message)
     }
@@ -46,8 +46,11 @@ const articleData = async (article_id: string, locale: Locale) => {
 export const getArticleDetailPageData = async ({ id, locale }: { id: string; locale: Locale }) => {
     const article_id = id
     const article: Article = await articleData(article_id, locale)
-    const gameId = article?.content?.gameid
-    
-    const relatedData = await getGameRelatedData(gameId, locale)
-    return { article, relatedData }
+    if (article?.games.length > 0) {
+        let gamesIds = article?.games.map((game: any) => game.gameid)
+        const relatedData = await getGameRelatedData(gamesIds, locale)
+        return { article, relatedData }
+    }else{
+        return {article}
+    }
 }
