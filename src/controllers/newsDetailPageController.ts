@@ -1,5 +1,5 @@
 import SupabaseInstance from "../../supabase"
-import { getGameRelatedData } from "./utilControllers"
+import { getGameRelatedDataForOthers } from "./utilControllers"
 import { type Locale } from "@/i18n.config"
 
 const supabase = SupabaseInstance.getSupabaseInstance()
@@ -53,6 +53,8 @@ export const getnewsDetailPageData = async ({ id, locale }: { id: string; locale
     const news_id = id
     const news: news = await newsData(news_id, locale)
     const gameid = news?.content?.gameid
-    const relatedData = await getGameRelatedData(gameid, locale)
+    console.log(gameid);
+    
+    const relatedData = await getGameRelatedDataForOthers(gameid, locale)
     return { news, relatedData }
 }

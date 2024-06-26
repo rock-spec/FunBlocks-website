@@ -16,6 +16,7 @@ export interface SingleCardProps {
 const SingleCard = (props: SingleCardProps) => {
     const { name, singleCardItemDetails, buttonText, onButtonClick, heading } = props
 
+
     const title = heading || name
     return (
         <div className="flex flex-col flex-1 items-start gap-5 p-5 border border-[#161616] bg-[#FFFCF9] ">

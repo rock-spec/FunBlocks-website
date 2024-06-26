@@ -7,11 +7,15 @@ const supabase = SupabaseInstance.getSupabaseInstance()
 const getfeaturedNews = async (locale: string) => {
     const { data, error } = await supabase
         .from("news")
-        .select(`newsid,content(title_en, title_zh,image,game(gameid,engineid,gamestudioid,blockchainid))`)
+        .select(
+            `newsid, content(title_en, title_zh, image, game!content_gameid_fkey(gameid, game_name, engineid, gamestudioid, blockchainid))`
+        )
         .eq("isHome", true)
         .limit(3)
 
     if (error) {
+        console.log(error);
+
         throw new Error("Error fetching news: " + error.message)
     }
 
@@ -21,13 +25,13 @@ const getfeaturedNews = async (locale: string) => {
 const getLatestNews = async (locale: string) => {
     try {
         const { data, error } = await supabase
+
             .from("news")
             .select(
-                `newsid, content(title_en, title_zh, image, game(gameid, game_name, engineid, gamestudioid, blockchainid))`
+                `newsid, content(title_en, title_zh, image, game!content_gameid_fkey(gameid, game_name, engineid, gamestudioid, blockchainid))`
             )
             .order("content_id->publishdate", { ascending: false })
             .limit(5)
-
         if (error) {
             console.log(error)
 
@@ -36,7 +40,7 @@ const getLatestNews = async (locale: string) => {
 
         return data || []
     } catch (error) {
-        console.error(error) // Log the error for debugging
+        console.error(error) 
         return []
     }
 }
@@ -45,11 +49,13 @@ const getFeaturedArticles = async (locale: string) => {
     const { data, error } = await supabase
         .from("articles")
         .select(
-            `articleid, publishdate, content(contentid,image, title_en, title_zh, description_en,description_zh,author(*),game(gameid,engineid,gamestudioid,blockchainid,engine(logo,pic)))`
+            `articleid, publishdate,games:content_gameids(gameid, game(gameid, engineid, gamestudioid, blockchainid, engine(logo, pic))), content(contentid, image, title_en, title_zh, description_en, description_zh, author(*))`
         )
         .eq("isHome", true)
-
+    
     if (error) {
+        console.log(error, "error in article");
+
         throw new Error("Error fetching articles: " + error.message)
     }
 
@@ -63,6 +69,7 @@ const getFeturedVideos = async () => {
         .range(0, 4)
 
     if (error) {
+        console.log(error);
         throw new Error("Error fetching videos: " + error.message)
     }
 
@@ -79,6 +86,7 @@ const getfeaturedEvents = async () => {
         .limit(4)
 
     if (error) {
+        console.log(error);
         throw new Error("Error fetching events: " + error.message)
     }
 

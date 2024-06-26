@@ -28,8 +28,8 @@ const SingleVideoCardItem = (props: any) => {
         <Link href={`/${variant}/${id}`}>
             <div className=" gap-6 shadow-sm">
                 {/* First Column: Image */}
-                <div className="w-full h-[339px] rounded-lg flex-col justify-start items-start gap-y-5 inline-flex">
-                    <div className="relative w-full rounded-md border border-[#161616]  overflow-hidden ">
+                <div className="w-full  rounded-lg flex-col justify-start items-start gap-y-5 inline-flex">
+                    <div className="relative w-full rounded-md border border-[#161616] h-[230px] overflow-hidden ">
                         <ReactPlayer width={"427px"} height={"237px"} url={imageUrl} controls={true} />
                     </div>
                     <div className=" ">

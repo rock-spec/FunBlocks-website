@@ -25,7 +25,7 @@ interface Game {
 interface Article {
     articleid: string
     content: {
-        game: {
+        game:[ {
             engine: {
                 pic: string
                 logo: string
@@ -34,7 +34,7 @@ interface Article {
             engineid: string
             blockchainid: string
             gamestudioid: string
-        }
+        }]
         image: string
         title: string
     }
@@ -96,6 +96,7 @@ const Homee = async ({ n, b, locale }: { n?: any; b?: any; locale: Locale }) => 
         games = HomeData.games.value
     }
 
+    
     return (
         <div className="relatve w-full max-w-[1200px] flex flex-col  justify-between lg:gap-x-5 lg:flex-row">
             {/* Left Column */}

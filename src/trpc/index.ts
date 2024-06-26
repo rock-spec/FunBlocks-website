@@ -10,7 +10,7 @@ import { getArticleDetailPageData } from "@/controllers/articleDetailPageControl
 import { z } from "zod"
 import { getEventDetailPageData } from "@/controllers/eventDetailPageController"
 // import { getGameDetailPageData } from "@/controllers/gameDetailPageController"
-import { getGameRelatedData, getCategories } from "@/controllers/utilControllers"
+import { getGameRelatedData, getCategories, getGameRelatedDataForOthers } from "@/controllers/utilControllers"
 import { getnewsDetailPageData } from "@/controllers/newsDetailPageController"
 import { getvideoDetailPageData } from "@/controllers/videoDetailPageController"
 import { getEngineDetailPageData } from "@/controllers/engineDetailPageController"
@@ -142,7 +142,7 @@ export const appRouter = router({
     }),
     gameDetailsData: publicProcedure.input(idAndLocaleSchema).query(async ({ input }) => {
         const { id, locale } = input
-        const gameDetailsData = await getGameRelatedData(id, locale)
+        const gameDetailsData = await getGameRelatedDataForOthers(id, locale)
         return gameDetailsData
     }),
     videoDetailsData: publicProcedure.input(idAndLocaleSchema).query(async ({ input }) => {
