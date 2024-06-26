@@ -114,3 +114,27 @@ export const getGameRelatedData = async (gameids: any, locale: Locale) => {
     }));
     return results;
 }
+
+export const getGameRelatedDataForOthers:any = async (gameid: any, locale: Locale) => {
+    const decodedGameId =  decodeURIComponent(gameid)
+        const [game, relatedArticles, relatedNews, relatedVideos, relatedEvents, featuredArticles] = await Promise.allSettled([
+            getGameData(decodedGameId),
+            getRelatedArticles(decodedGameId, locale),
+            getRelatedNews(decodedGameId, locale),
+            getRelatedVideos(decodedGameId),
+            getRelatedEvents(decodedGameId),
+            getfeaturedArticles(locale)
+        ]);
+
+        return {
+            gameid,
+            game,
+            relatedArticles,
+            relatedNews,
+            relatedVideos,
+            relatedEvents,
+            featuredArticles
+        };
+    
+}
+

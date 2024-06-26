@@ -117,7 +117,7 @@ const Sidebar = ({
                     )}
                 </div>
                 <button className="font-semibold ms-auto block" onClick={() => setSelectedEngine([])}>
-                    Clear
+                <img className="w-4 h-4" src="/buttons/refresh.svg" alt="refreshBtn" />
                 </button>
                 {(engineSearchInput.trim() ? FilteredEngines : displayedEngines).map((engine, i) => (
                     <CustomCheckbox
@@ -167,9 +167,9 @@ const Sidebar = ({
                 </div>
                 <button
                     className="font-semibold ms-auto block hover:text-blue-500"
-                    onClick={() => setSelectedEngine([])}
+                    onClick={() => setSelectedBlockChain([])}
                 >
-                    Clear
+                   <img className="w-4 h-4" src="/buttons/refresh.svg" alt="refreshBtn" />
                 </button>
 
                 {(blockChainSearchInput.trim() ? FilteredBlockChains : displayedBlockChains).map(
@@ -218,8 +218,8 @@ const Sidebar = ({
                             }}
                         />
                     )}
-                    <button className="font-semibold ms-auto block" onClick={() => setSelectedEngine([])}>
-                        Clear
+                    <button className="font-semibold ms-auto block" onClick={() => setSelectedGameStudio([])}>
+                    <img className="w-4 h-4" src="/buttons/refresh.svg" alt="refreshBtn" />
                     </button>
 
                     {(gameStudioSearchInput.trim() ? FilteredGameStudios : displayedGameStudios).map(

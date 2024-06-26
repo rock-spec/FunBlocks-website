@@ -921,7 +921,7 @@ export const NavBar: React.FC<NavBarProps> = ({ setSearchQuery, locale }) => {
                                 </div>
                                 <div className="">
                                     {showDropdown && (
-                                        <div className="absolute bg-white shadow-lg top-full mt-1 right-0 ">
+                                        <div className="absolute bg-white shadow-lg top-full mt-1 right-0 " onMouseLeave={handleDropdownItemClick}>
                                             <Link href={"/event"}>
                                                 <div
                                                     className="mb-2 px-4 hover:bg-slate-400 m-0"

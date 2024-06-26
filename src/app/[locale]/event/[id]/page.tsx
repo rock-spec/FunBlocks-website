@@ -14,7 +14,6 @@ const EventDetails = async ({ params }: { params: { id: string; locale: Locale }
     const n = await getTranslations("Navbar")
 
     const data = await trpcServer().eventDetailsData({ id, locale })
-    const games = data.relatedData.game
     const articles = data.relatedData.relatedArticles
     const relatedData = data?.relatedData
 
