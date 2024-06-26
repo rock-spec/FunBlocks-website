@@ -52,7 +52,9 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
 
     let articles: any[] = []
     if (data?.articles?.status === "fulfilled") {
+        
         articles = data.articles.value
+        console.log(articles);
     }
 
     let videos: any[] = []
@@ -116,10 +118,11 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                         ))}
                 </div>
 
-                <div className="flex mb-10 gap-x-5">
+                <div className="flex mb-10 gap-x-5 border-2 b">
                     <SingleCard
                         name={n("articles")}
                         singleCardItemDetails={articles?.map((article: any) => ({
+    
                             variant: "article",
                             id: article?.articleid,
                             imageUrl: `${article?.content.image}?height=360&width=720`,

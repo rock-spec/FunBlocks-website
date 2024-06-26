@@ -1,6 +1,6 @@
 import { Locale } from "@/i18n.config"
 import SupabaseInstance from "../../supabase"
-import { getGameRelatedData } from "./utilControllers"
+import { getGameRelatedDataForOthers } from "./utilControllers"
 
 const supabase = SupabaseInstance.getSupabaseInstance()
 
@@ -29,6 +29,6 @@ export const getEventDetailPageData = async ({ id, locale }: { id: string; local
     const eventId = id
     const event: Event = await eventData(eventId)
     const gameId = event.gameid
-    const relatedData = await getGameRelatedData(gameId, locale )
+    const relatedData = await getGameRelatedDataForOthers(gameId, locale )
     return { event, relatedData }
 }

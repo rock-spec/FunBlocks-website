@@ -14,29 +14,40 @@ const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] }
 export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
     const t = useTranslations("Tags")
 
-    const relatedData = data?.relatedData
+    const relatedData = data?.relatedData;
 
-    let game: any[] = []
-    if (relatedData?.game?.status === "fulfilled") game = relatedData?.game?.value
+    let games: any = [];
+    let relatedArticles: any = [];
+    let relatedVideos: any = [];
+    let singleCardItemDetails = [];
 
-    let relatedArticles: any[] = []
-    if (relatedData?.relatedArticles?.status === "fulfilled")
-        relatedArticles = relatedData?.relatedArticles?.value
+    relatedData?.forEach((item: any) => {
+        if (item.game?.status === "fulfilled") {
+            games.push(...item.game.value);
 
-    let relatedVideos: any[] = []
-    if (relatedData?.relatedVideos?.status === "fulfilled") relatedVideos = relatedData?.relatedVideos?.value
 
-    const singleCardItemDetails: any[] = relatedVideos.map((video: any) => ({
+        }
+        if (item.relatedArticles?.status === "fulfilled" && Array.isArray(item.relatedArticles.value)) {
+            item.relatedArticles.value.forEach((article: any) => {
+                relatedArticles.push(article);
+            });
+        }
+        if (item.relatedVideos?.status === "fulfilled") {
+            relatedVideos.push(...item.relatedVideos.value);
+        }
+    });
+    singleCardItemDetails = relatedVideos.map((video: any) => ({
         key: video?.videoid,
         variant: "video",
         id: video.videoid,
-        imageUrl: video.media_url, //This is video url for video
+        imageUrl: video.media_url, // This is video URL for video
         title: video.video_name,
         description: video.summary,
         tags: [],
         gameid: video.gameid,
         date: video.publishdate,
-    }))
+    }));
+
 
     return (
         <>
@@ -50,9 +61,10 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         {data.article.content[`title_${locale}`] || data.article.content?.title_en}
                     </div>
                     <div className="flex gap-1 mb-[24px]">
-                        {[game[0].gameid].map((tag, index) => (
+
+                        {/* {game.length>0  && [game[0].gameid].map((tag, index) => (
                             <Tag text={tag} key={index} type={"relevance"} linkto="game" />
-                        ))}
+                        ))} */}
                         <div className="justify-start items-center gap-2 flex ml-2">
                             <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px] capitalize">
                                 By {data?.article?.content?.author?.name}
@@ -86,7 +98,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         />
                     </div>
                 </div>
-                <div className="flex mb-10 gap-x-5">
+                <div className="flex mb-10 gap-x-5  ">
                     <SingleCard
                         heading={t("relatedArticles")}
                         name={"article"}
@@ -99,10 +111,10 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                             details: formatDate(article?.publishdate),
                             tags: [article?.content?.game?.gameid],
                             author: article?.content?.user?.username,
-                            onFirstButtonClick: () => {},
-                            onSecondButtonClick: () => {},
+                            onFirstButtonClick: () => { },
+                            onSecondButtonClick: () => { },
                         }))}
-                        onButtonClick={() => {}}
+                        onButtonClick={() => { }}
                     />
                 </div>
                 <div className="bg-[#FFFCF9] p-5">
@@ -112,7 +124,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                     <div className="flex gap-x-5">
                         <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
                             {singleCardItemDetails.length > 0 ? (
-                                singleCardItemDetails.map((detail, index) => (
+                                singleCardItemDetails.map((detail: any, index: any) => (
                                     <div className="p-5 border  bg-[#FFFCF9]" key={index}>
                                         <SingleVideoCardItem key={index} {...detail} />
                                     </div>

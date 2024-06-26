@@ -25,7 +25,7 @@ interface Game {
 interface Article {
     articleid: string
     content: {
-        game: {
+        game:[ {
             engine: {
                 pic: string
                 logo: string
@@ -34,7 +34,7 @@ interface Article {
             engineid: string
             blockchainid: string
             gamestudioid: string
-        }
+        }]
         image: string
         title: string
     }

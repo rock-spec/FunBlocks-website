@@ -4,6 +4,7 @@ import { Column } from "@/components/Column/Column"
 import React from "react"
 import { getTranslations } from "next-intl/server"
 import { type Locale } from "@/i18n.config"
+import { any } from "zod"
 
 export const dynamic = "force-dynamic"
 
@@ -14,15 +15,28 @@ const ArticleDetails = async ({ params }: { params: { id: string; locale: Locale
     const { id, locale } = params
     const data = await trpcServer().articleDetailsData({ id, locale })
 
-    const relatedData = data?.relatedData
+    let relatedData = data?.relatedData
+    let game: any[] = [];
+    let featuredArticles: any[] = [];
+    let articleIds = new Set<string>();
 
-    let game: any[] = []
-    if (relatedData?.game?.status === "fulfilled") game = relatedData?.game?.value
-
-    let featuredArticles: any[] = []
-    if (relatedData?.featuredArticles?.status === "fulfilled")
-        featuredArticles = relatedData?.featuredArticles?.value?.featuredArticles
-
+  
+    if (Array.isArray(relatedData)) {
+        relatedData.forEach(data => {
+            if (data?.game?.status === "fulfilled") {
+                game.push(...data.game.value);
+            }
+    
+            if (data?.featuredArticles?.status === "fulfilled") {
+                data.featuredArticles.value.featuredArticles.forEach((article:any) => {
+                    if (!articleIds.has(article.articleid)) {
+                        articleIds.add(article.articleid);
+                        featuredArticles.push(article);
+                    }
+                });
+            }
+        });
+    }
 
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
@@ -36,7 +50,7 @@ const ArticleDetails = async ({ params }: { params: { id: string; locale: Locale
                     variant="game"
                     title={t("relatedGames")}
                     responsive
-                    onButtonClick={() => {}}
+                    onButtonClick={() => { }}
                     columnItems={game?.map((game) => ({
                         id: game?.gameid,
                         variant: "game",
@@ -51,7 +65,7 @@ const ArticleDetails = async ({ params }: { params: { id: string; locale: Locale
                     variant="featuredArticles"
                     title={t("featuredArticles")}
                     responsive
-                    onButtonClick={() => {}}
+                    onButtonClick={() => { }}
                     columnItems={featuredArticles?.map((article: any) => ({
                         id: article?.articleid,
                         variant: "featuredArticles",
