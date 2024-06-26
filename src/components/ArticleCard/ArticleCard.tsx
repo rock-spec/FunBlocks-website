@@ -21,7 +21,7 @@ const ArticleCard = (props: ArticleCardProps) => {
         <Link href={`/news/${id}`} className="">
             <div className="flex flex-col items-start  gap-5 p-5 border border-[#161616] bg-[#FFFCF9] md:w-[285px] w-full mb-5 md:mb-0 md:h-80">
                 {/* First Row: Image */}
-                <div className="w-full border border-[#161616]">
+                <div className="h-[180px] w-[245px] border border-[#161616]">
                     <Image
                         src={imageUrl} // Replace with the actual image URL
                         alt={title}

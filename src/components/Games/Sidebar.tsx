@@ -1,3 +1,4 @@
+
 "use client"
 import SidebarHeading from "../SidebarHeading/SidebarHeading"
 import CustomCheckbox from "../Checkbox/Checkbox"
@@ -68,8 +69,7 @@ const Sidebar = ({
 
     useEffect(() => {
         router.push(
-            `game?engine=${selectedEngine}&blockchain=${selectedBlockChain}&studio=${selectedGameStudio}${
-                searchParams?.qry ? `&qry=${searchParams.qry}` : ""
+            `game?engine=${selectedEngine}&blockchain=${selectedBlockChain}&studio=${selectedGameStudio}${searchParams?.qry ? `&qry=${searchParams.qry}` : ""
             }`
         )
 
@@ -102,23 +102,24 @@ const Sidebar = ({
                             onClick={() => setShowEngineSearch((prev) => !prev)}
                         />
                     ) : (
-                        <Search
-                            placeholder={s("blockchainSearch")}
-                            onChange={async (e) => {
-                                const val = e.target.value
-                                setEngineSearchInput(val)
-                                setFilteredEngines(
-                                    engines.filter((engine) =>
-                                        engine.toLowerCase().includes(val.toLowerCase())
+                      
+                            <Search
+                                placeholder={s("blockchainSearch")}
+                                reset={setSelectedEngine}
+                                onChange={async (e) => {
+                                    const val = e.target.value
+                                    setEngineSearchInput(val)
+                                    setFilteredEngines(
+                                        engines.filter((engine) =>
+                                            engine.toLowerCase().includes(val.toLowerCase())
+                                        )
                                     )
-                                )
-                            }}
-                        />
+                                }}
+                            />
+                           
                     )}
                 </div>
-                <button className="font-semibold ms-auto block" onClick={() => setSelectedEngine([])}>
-                <img className="w-4 h-4" src="/buttons/refresh.svg" alt="refreshBtn" />
-                </button>
+
                 {(engineSearchInput.trim() ? FilteredEngines : displayedEngines).map((engine, i) => (
                     <CustomCheckbox
                         key={i}
@@ -137,8 +138,8 @@ const Sidebar = ({
                         {showAllEngines
                             ? m("showLess")
                             : remainingEnginesCount > 0
-                            ? `+${remainingEnginesCount} ${m("more")}`
-                            : ""}
+                                ? `+${remainingEnginesCount} ${m("more")}`
+                                : ""}
                     </p>
                 )}
 
@@ -151,26 +152,24 @@ const Sidebar = ({
                             onClick={() => setShowBlockChainSearch((prev) => !prev)}
                         />
                     ) : (
-                        <Search
-                            placeholder={s("blockchainSearch")}
-                            onChange={async (e) => {
-                                const val = e.target.value
-                                setblockChainSearchInput(val)
-                                setFilteredBlockChains(
-                                    blockChains.filter((blockChain) =>
-                                        blockChain.toLowerCase().includes(val.toLowerCase())
+                        
+                            <Search
+                                placeholder={s("blockchainSearch")}
+                                reset={setSelectedBlockChain}
+                                onChange={async (e) => {
+                                    const val = e.target.value
+                                    setblockChainSearchInput(val)
+                                    setFilteredBlockChains(
+                                        blockChains.filter((blockChain) =>
+                                            blockChain.toLowerCase().includes(val.toLowerCase())
+                                        )
                                     )
-                                )
-                            }}
-                        />
+                                }}
+                            />
+                        
                     )}
                 </div>
-                <button
-                    className="font-semibold ms-auto block hover:text-blue-500"
-                    onClick={() => setSelectedBlockChain([])}
-                >
-                   <img className="w-4 h-4" src="/buttons/refresh.svg" alt="refreshBtn" />
-                </button>
+
 
                 {(blockChainSearchInput.trim() ? FilteredBlockChains : displayedBlockChains).map(
                     (chain, i) => (
@@ -192,8 +191,8 @@ const Sidebar = ({
                         {showAllBlockChains
                             ? m("showLess")
                             : remainingBlockChainsCount > 0
-                            ? `+${remainingBlockChainsCount} ${m("more")}`
-                            : ""}
+                                ? `+${remainingBlockChainsCount} ${m("more")}`
+                                : ""}
                     </p>
                 )}
                 {/* GameStudio -------------------------------------------------------------------- */}
@@ -205,8 +204,12 @@ const Sidebar = ({
                             onClick={() => setShowGameStudioSearch((prev) => !prev)}
                         />
                     ) : (
+                        <div className="fle">
+
+                        
                         <Search
                             placeholder={s("gameStudioSearch")}
+                            reset={setSelectedGameStudio}
                             onChange={async (e) => {
                                 const val = e.target.value
                                 setGameStudioSearchInput(val)
@@ -217,10 +220,12 @@ const Sidebar = ({
                                 )
                             }}
                         />
+                        {/* <button className="font-semibold ms-auto block" onClick={() => setSelectedGameStudio([])}>
+                        <img className="w-4 h-4" src="/buttons/refresh.svg" alt="refreshBtn" />
+                    </button> */}
+                    </div>
                     )}
-                    <button className="font-semibold ms-auto block" onClick={() => setSelectedGameStudio([])}>
-                    <img className="w-4 h-4" src="/buttons/refresh.svg" alt="refreshBtn" />
-                    </button>
+                   
 
                     {(gameStudioSearchInput.trim() ? FilteredGameStudios : displayedGameStudios).map(
                         (studio, i) => (
@@ -243,8 +248,8 @@ const Sidebar = ({
                         {showAllGameStudios
                             ? m("showLess")
                             : remainingGameStudioCount > 0
-                            ? `+${remainingGameStudioCount} ${m("more")}`
-                            : ""}
+                                ? `+${remainingGameStudioCount} ${m("more")}`
+                                : ""}
                     </p>
                 )}
             </div>
