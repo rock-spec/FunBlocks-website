@@ -45,7 +45,7 @@ const CustomCheckbox = ({
                 onClick={() => handleClick(text)}
             >
                 <p>{text}</p>
-                {stateValue.includes(text.toLowerCase()) ? (
+                {params.get("engine") && params.get("engine").split(",").includes(text.toLowerCase()) ? (
                     <Image
                         src={"/checkboxIcon/checkbox_selected.svg"}
                         className=""
