@@ -68,10 +68,11 @@ const Sidebar = ({
     const s = useTranslations("Search")
 
     useEffect(() => {
-        router.push(
-            `game?engine=${selectedEngine}&blockchain=${selectedBlockChain}&studio=${selectedGameStudio}${searchParams?.qry ? `&qry=${searchParams.qry}` : ""
-            }`
-        )
+        // router.replace(
+        //     `game?engine=${selectedEngine}&blockchain=${selectedBlockChain}&studio=${selectedGameStudio}${searchParams?.qry ? `&qry=${searchParams.qry}` : ""
+        //     }`
+        // )
+// console.log(selectedEngine);
 
         // router.refresh()
     }, [selectedEngine, selectedBlockChain, selectedGameStudio])
