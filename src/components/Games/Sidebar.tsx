@@ -80,12 +80,12 @@ const Sidebar = ({
     useEffect(() => {
         // router.push(`game?engine=${selectedEngine}&blockchain=${selectedBlockChain}&studio=${selectedGameStudio}${searchParams?.qry ? `&qry=${searchParams.qry}` : ""}`)
 
-        let newUrl = `game?engine=${selectedEngine}&blockchain=${selectedBlockChain}&studio=${selectedGameStudio}${searchParams?.qry ? `&qry=${searchParams.qry}` : ""}`
+        // let newUrl = `game?engine=${selectedEngine}&blockchain=${selectedBlockChain}&studio=${selectedGameStudio}${searchParams?.qry ? `&qry=${searchParams.qry}` : ""}`
 
-        // window.history.replaceState(window.history.state, '', newUrl);
+        // // window.history.replaceState(window.history.state, '', newUrl);
 
 
-        replace(newUrl)
+        // replace(newUrl)
         // router.refresh()
     }, [selectedEngine, selectedBlockChain, selectedGameStudio])
 
