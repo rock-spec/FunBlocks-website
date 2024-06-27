@@ -4,27 +4,31 @@ import Image from "next/image"
 import { Dispatch } from "react"
 
 const CustomCheckbox = ({
+    filterName,
     text,
     setFunction,
     stateValue,
     searchParams,
 }: {
+    filterName: any
     text: string
-    setFunction: Dispatch<string[]>
+    setFunction: any
     stateValue: string[]
     searchParams?: any
 }) => {
-    const handleClick = (option: string) => {
+    const handleClick = (option: string,) => {
         stateValue.includes(option)
             ? setFunction(stateValue.filter((item) => item !== option))
             : setFunction([...stateValue, option])
+
+        // filterFunc()
     }
 
     return (
         <>
             <button
                 className="flex justify-between items-center  w-full capitalize my-3"
-                onClick={() => handleClick(text)}
+                onClick={(e) => handleClick(text)}
             >
                 <p>{text}</p>
                 {stateValue.includes(text) ? (
