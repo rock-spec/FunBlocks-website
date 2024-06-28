@@ -54,6 +54,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
     if (data?.articles?.status === "fulfilled") {
         
         articles = data.articles.value
+        console.log(articles);
     }
 
     let videos: any[] = []

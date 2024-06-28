@@ -134,7 +134,6 @@ const Sidebar = ({
 
                     )}
                 </div>
-
                 {(engineSearchInput.trim() ? FilteredEngines : displayedEngines).map((engine, i) => (
                     <CustomCheckbox
                         key={i}
@@ -242,7 +241,6 @@ const Sidebar = ({
                     </button> */}
                         </div>
                     )}
-
 
                     {(gameStudioSearchInput.trim() ? FilteredGameStudios : displayedGameStudios).map(
                         (studio, i) => (
