@@ -78,7 +78,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                 <div className={`items-stretch flex mb-10 gap-x-5 lg:flex-row flex-col ${cabin.className}`}>
                     {loading ? <HomeCarousalSkelton /> : sliderData && <CarousalHome data={sliderData} />}
 
-                    <div className=" h-full ">
+                    <div className=" h-full  ">
                         <Column
                             variant="news"
                             title={n("news")}
@@ -103,8 +103,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                 </div>
 
                 <div
-                    className="flex mb-10  w-full md:justify-between flex-col md:flex-row 
-                    "
+                    className="flex mb-10  w-full gap-5 flex-col md:flex-row "
                 >
                     {featuredNews?.length > 0 &&
                         featuredNews?.map((featured: any) => (
