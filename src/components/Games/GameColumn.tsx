@@ -89,7 +89,7 @@ import SearchInput from "../SearchInput/SearchInput"
 
 export const GameColumn = (data: any) => {
     const [gameFilterData, setGameFilterData] = useState(data.data)
-    console.log(gameFilterData)
+  
 
     function filterGameArray(searchString: string = ""): any[] {
         const gameArray: any[] = data.data
@@ -160,3 +160,5 @@ export const GameColumn = (data: any) => {
         </>
     )
 }
+
+

@@ -21,7 +21,7 @@ const Video = ({ searchParams }: { searchParams: any }) => {
     const t = useTranslations("Tags")
     const b = useTranslations("Buttons")
 
-    useState
+    
 
     const [page, setPage] = useState(0)
     const pageSize = 6

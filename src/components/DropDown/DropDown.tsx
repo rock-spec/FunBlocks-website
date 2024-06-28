@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { IoIosArrowDown } from "react-icons/io"
 import localFont from "next/font/local"
-import { useRouter, usePathname } from "next/navigation"
+import { useRouter, usePathname, useSearchParams } from "next/navigation"
 
 const OffBit = localFont({
     src: "../Button/font/OffBitTrial-Bold.otf",
@@ -33,6 +33,15 @@ const CustomDropDown = ({
     const pathname = usePathname()
     const router = useRouter()
 
+    const searchParam = useSearchParams();
+    const category = searchParam.get('category');
+
+    
+
+    const catName = options
+    .filter((cat: any) => cat.categoryid == category)
+    .map((cat: any) => cat.name)[0] || '';
+
     const dropDownRef = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
@@ -52,8 +61,7 @@ const CustomDropDown = ({
     useEffect(() => {
         if (selectedCategory) {
             router.push(
-                `${path}?category=${selectedCategory}&sort=${searchParams?.sort || ""}&qry=${
-                    searchParams?.qry || ""
+                `${path}?category=${selectedCategory}&sort=${searchParams?.sort || ""}&qry=${searchParams?.qry || ""
                 }`
             )
             router.refresh()
@@ -63,8 +71,7 @@ const CustomDropDown = ({
     useEffect(() => {
         if (sortOption) {
             router.push(
-                `${path}?category=${searchParams?.category || ""}&sort=${sortOption}&qry=${
-                    searchParams?.qry || ""
+                `${path}?category=${searchParams?.category || ""}&sort=${sortOption}&qry=${searchParams?.qry || ""
                 }`
             )
             router.refresh()
@@ -77,7 +84,8 @@ const CustomDropDown = ({
                     onClick={() => setShowDropdown((prev) => !prev)}
                     className={`relative  flex items-center justify-between ${txt_px} ${bg} w-full h-full bg-contain bg-center bg-no-repeat`}
                 >
-                    <p className="capitalize">{text}</p>
+                   {text==='category'&& <p className="capitalize">{!category?text:category===""?text:catName}</p>}
+                   {text!=='category' && <p className="capitalize">{text}</p>}
                     <IoIosArrowDown />
                 </button>
                 {showDropdown && (
