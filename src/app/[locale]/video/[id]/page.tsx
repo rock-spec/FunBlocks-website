@@ -19,6 +19,7 @@ const VideoDetails = async ({ params }: { params: { id: string; locale: Locale }
 
     const relatedData = data?.relatedData
 
+
     let game: any[] = []
     if (relatedData?.game?.status === "fulfilled") game = relatedData?.game?.value
 

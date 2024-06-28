@@ -1,6 +1,6 @@
 import { Locale } from "@/i18n.config"
 import SupabaseInstance from "../../supabase"
-import { getGameRelatedData } from "./utilControllers"
+import { getGameRelatedData, getGameRelatedDataForOthers } from "./utilControllers"
 
 const supabase = SupabaseInstance.getSupabaseInstance()
 
@@ -16,7 +16,7 @@ const videoData = async (video_id: string) => {
 export const getvideoDetailPageData = async ({ id, locale }: { id: string; locale: Locale }) => {
     const videoId = id
     const video = await videoData(videoId)
-    const relatedData = await getGameRelatedData(video.gameid, locale)
+    const relatedData = await getGameRelatedDataForOthers(video.gameid, locale)
 
     return { video, relatedData }
 }
