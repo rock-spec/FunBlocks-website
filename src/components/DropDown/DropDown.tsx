@@ -68,9 +68,6 @@ const CustomDropDown = ({
         }
     }, [selectedCategory])
 
-    console.log(options,text);
-    
-
     useEffect(() => {
         if (sortOption) {
             router.push(
