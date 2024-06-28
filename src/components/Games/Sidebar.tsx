@@ -194,7 +194,7 @@ const Sidebar = ({
                             text={chain}
                             setFunction={setSelectedBlockChain}
                             stateValue={selectedBlockChain}
-                            filterName={'blockchian'}
+                            filterName={'blockchain'}
                         />
                     )
                 )}

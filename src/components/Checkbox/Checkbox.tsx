@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Dispatch } from "react";
 
 const CustomCheckbox = ({
@@ -15,25 +14,30 @@ const CustomCheckbox = ({
     stateValue: string[];
 }) => {
     const searchParams = useSearchParams();
-   ;
+    const pathname =usePathname()
+
+    console.log();
+    
+    const { replace } = useRouter(); // Destructure pathname from useRouter()
     const params = new URLSearchParams(searchParams);
-  
 
     const handleClick = (option: string) => {
-        const { replace } = useRouter()
-        const engineParam = params.get(filterName)
-        const engineOptions = engineParam ? engineParam.split(",") : []
+        const engineParam = params.get(filterName);
+        const engineOptions = engineParam ? engineParam.split(",") : [];
 
         if (engineOptions.includes(option)) {
-            params.set(filterName, engineOptions.filter((opt) => opt !== option).join(","))
+            params.set(filterName, engineOptions.filter((opt) => opt !== option).join(","));
         } else {
-            params.set(filterName, [...engineOptions, option].join(","))
+            params.set(filterName, [...engineOptions, option].join(","));
         }
-        setFunction(engineOptions)
-        replace(`${filterName}?${params.toString()}`)
 
-        
+        setFunction(engineOptions);
+        replace(`${pathname}?${params.toString()}`);
     };
+
+    const paramValue = params.get(filterName)?.toLowerCase(); // Convert to lowercase
+    const textValue = text.toLowerCase();
+
 
     return (
         <>
@@ -42,7 +46,7 @@ const CustomCheckbox = ({
                 onClick={(e) => handleClick(text)}
             >
                 <p>{text}</p>
-                {params.get(filterName) && params.get(filterName)?.split(",").includes(text.toLowerCase()) ? (
+                {params.get(filterName) && paramValue?.split(",").includes(textValue) ? (
                     <Image
                         src={"/checkboxIcon/checkbox_selected.svg"}
                         className=""
@@ -59,4 +63,3 @@ const CustomCheckbox = ({
 };
 
 export default CustomCheckbox;
-
