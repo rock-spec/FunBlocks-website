@@ -80,6 +80,11 @@ export const getRelatedVideos = async (game_id: string) => {
 
 export const getCategories = async () => {
     const { data, error } = await supabase.from("category").select("*")
+    if(data){
+        data.push({ categoryid: "", name: 'All' })
+    }
+    console.log(data);
+    
 
     if (error) {
         throw new Error("Error fetching videos: " + error.message)

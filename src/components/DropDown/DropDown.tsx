@@ -36,11 +36,9 @@ const CustomDropDown = ({
     const searchParam = useSearchParams();
     const category = searchParam.get('category');
 
-    
-
     const catName = options
-    .filter((cat: any) => cat.categoryid == category)
-    .map((cat: any) => cat.name)[0] || '';
+        .filter((cat: any) => cat.categoryid == category)
+        .map((cat: any) => cat.name)[0] || '';
 
     const dropDownRef = useRef<HTMLDivElement | null>(null)
 
@@ -65,6 +63,13 @@ const CustomDropDown = ({
                 }`
             )
             router.refresh()
+        } else if (selectedCategory === "") {
+            router.push(
+                `${path}?category=&sort=${searchParams?.sort || ""}&qry=${searchParams?.qry || ""
+                }`
+            )
+            router.refresh()
+
         }
     }, [selectedCategory])
 
@@ -84,8 +89,8 @@ const CustomDropDown = ({
                     onClick={() => setShowDropdown((prev) => !prev)}
                     className={`relative  flex items-center justify-between ${txt_px} ${bg} w-full h-full bg-contain bg-center bg-no-repeat`}
                 >
-                   {text==='category'&& <p className="capitalize">{!category?text:category===""?text:catName}</p>}
-                   {text!=='category' && <p className="capitalize">{text}</p>}
+                    {text === 'category' && <p className="capitalize">{!category ? text : category === "" ? text : catName}</p>}
+                    {text !== 'category' && <p className="capitalize">{text}</p>}
                     <IoIosArrowDown />
                 </button>
                 {showDropdown && (

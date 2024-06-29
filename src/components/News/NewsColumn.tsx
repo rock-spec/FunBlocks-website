@@ -43,8 +43,6 @@ export const NewsColumn = ({
         onSecondButtonClick: () => {},
     }))
 
-    console.log(singleCardItemDetails)
-
     useEffect(() => {
         setNews(data)
     }, [data])
