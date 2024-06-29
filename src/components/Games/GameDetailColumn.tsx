@@ -62,13 +62,16 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
                             </div>
 
                             <div className="absolute bottom-5 mt-auto">
-                                <BlueButton
-                                    text={b("playNow")}
-                                    link={game?.website}
-                                    width="w-[132px]"
-                                    bg={"bg-[url('/buttons/play_now.svg')]"}
-                                    bg_hover={"hover:bg-[url('/buttons/play_now_hover.svg')]"}
-                                />
+                                {(game?.website !== null && game?.website !== "") &&
+                                    <BlueButton
+                                        text={b("playNow")}
+                                        link={game?.website}
+                                        width="w-[132px]"
+                                        bg={"bg-[url('/buttons/play_now.svg')]"}
+                                        bg_hover={"hover:bg-[url('/buttons/play_now_hover.svg')]"}
+                                    />
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -90,11 +93,11 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
                                 details: formatDate(article?.publishdate),
                                 tags: [article?.content?.game.gameid],
                                 author: article?.content?.author?.name,
-                                onFirstButtonClick: () => {},
-                                onSecondButtonClick: () => {},
+                                onFirstButtonClick: () => { },
+                                onSecondButtonClick: () => { },
                             }))}
                             buttonText={b("viewMoreArticles")}
-                            onButtonClick={() => {}}
+                            onButtonClick={() => { }}
                         />
                     </div>
                 )}
@@ -110,11 +113,11 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
                                 title: video.video_name,
                                 description: video.summary,
                                 tags: [],
-                                onFirstButtonClick: () => {},
-                                onSecondButtonClick: () => {},
+                                onFirstButtonClick: () => { },
+                                onSecondButtonClick: () => { },
                             }))}
                             buttonText={b("viewMoreVideos")}
-                            onButtonClick={() => {}}
+                            onButtonClick={() => { }}
                         />
                     </div>
                 )}
@@ -132,11 +135,11 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
                                 details: `${formatDate(event.startdate)} - ${formatDate(event.enddate)}`,
                                 timezone: event?.timezone,
                                 tags: [event?.game?.gameid],
-                                onFirstButtonClick: () => {},
-                                onSecondButtonClick: () => {},
+                                onFirstButtonClick: () => { },
+                                onSecondButtonClick: () => { },
                             }))}
                             buttonText={b("viewMoreEvents")}
-                            onButtonClick={() => {}}
+                            onButtonClick={() => { }}
                         />
                     </div>
                 )}
