@@ -83,9 +83,6 @@ export const getCategories = async () => {
     if(data){
         data.push({ categoryid: "", name: 'All' })
     }
-    console.log(data);
-    
-
     if (error) {
         throw new Error("Error fetching videos: " + error.message)
     }

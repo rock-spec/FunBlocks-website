@@ -43,7 +43,7 @@ export const EngineDetailColumn = ({
 
     return (
         <>
-            <div className="max-w-[895px] w-full ">
+            <div className="w-[895px]  ">
                 <div className={"h-fit-content items-stretch flex mb-10 gap-x-5 " + cabin.className}>
                     <div className="w-full p-5 bg-stone-50   border border-neutral-900 flex md:flex-row flex-col justify-end items-start gap-6  h-full">
                         {/* image container */}
@@ -63,7 +63,7 @@ export const EngineDetailColumn = ({
                                 {engineData?.engineid}
                             </div>
 
-                            <div className=" text-neutral-900 text-base font-normal max-h-[190px] overflow-y-auto">
+                            <div className=" text-neutral-900 text-base font-normal h-[190px] overflow-y-auto">
                                 {engineData?.desc}
                             </div>
                             <br />
