@@ -121,7 +121,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                 </div>
                 <div className="bg-[#FFFCF9] p-5">
                     <div className="w-fit mb-5">
-                        <Tag text={`${"title"}`} type={"section"} />
+                        <Tag text={`${"Related Videos"}`} type={"section"} />
                     </div>
                     <div className="flex gap-x-5">
                         <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
