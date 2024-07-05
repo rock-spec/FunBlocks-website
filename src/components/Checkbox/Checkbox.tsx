@@ -16,7 +16,6 @@ const CustomCheckbox = ({
     const searchParams = useSearchParams();
     const pathname =usePathname()
 
-    console.log();
     
     const { replace } = useRouter(); // Destructure pathname from useRouter()
     const params = new URLSearchParams(searchParams);

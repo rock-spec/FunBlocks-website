@@ -54,7 +54,6 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
     if (data?.articles?.status === "fulfilled") {
         
         articles = data.articles.value
-        console.log(articles);
     }
 
     let videos: any[] = []
@@ -103,7 +102,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                 </div>
 
                 <div
-                    className="flex mb-10  w-full gap-5 flex-col md:flex-row "
+                    className="flex mb-10  w-full gap-7 flex-col md:flex-row "
                 >
                     {featuredNews?.length > 0 &&
                         featuredNews?.map((featured: any) => (

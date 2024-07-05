@@ -27,12 +27,12 @@ export const Tag = (prop: TagProps) => {
         return (
             <>
                 {type === "searchResult" && (
-                    <div className={`uppercase bg-merino px-2.5 pt-1.5 pb-0.5 text-base ${OffBit.className} w-[63rem]`}>
+                    <div className={`uppercase bg-merino px-2.5 pt-1.5 pb-0.5 text-base inline-block ${OffBit.className} `}>
                         {text}
                     </div>
                 )}
                 {type === "section" && (
-                    <div className={`uppercase bg-merino px-2.5 pt-1.5 pb-0.5 text-base ${OffBit.className}`}>
+                    <div className={`uppercase bg-merino px-2.5 pt-1.5 pb-0.5 text-base inline-block ${OffBit.className}`}>
                         {text}
                     </div>
                 )}

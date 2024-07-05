@@ -33,7 +33,7 @@ const Sidebar = ({
     const [blockChains, setblockChains] = useState<string[]>(blockchainsList)
     const [gameStudio, setGameStudio] = useState<string[]>(gameStudiosList)
 
-  
+
 
     // console.log(enginesList, blockchainsList, gameStudiosList);
 
@@ -96,7 +96,7 @@ const Sidebar = ({
             <div className={`border border-black bg-floralWhite p-5 lg:w-[285px]  `}>
                 {/* Engine ----------------------------------------------------------------------------------------------*/}
                 <div className={`flex justify-between ${OffBit.className} font-bold text-lg`}>
-                    <h3 className=" p-2 pb-1 bg-[#E0D7CE] uppercase">{m("filters")}</h3>
+                    <h3 className="px-3 pt-1  bg-[#E0D7CE] uppercase text-[15px]">{m("filters")}</h3>
                     <button
                         className="text-blue-700 capitalize"
                         onClick={() => {
@@ -108,7 +108,7 @@ const Sidebar = ({
                         {m("clear all")}
                     </button>
                 </div>
-                <hr className="bg-[rgba(22, 22, 22, 0.20);] h-[2px] mt-1" />
+                <hr className="bg-[rgba(22, 22, 22, 0.20);] h-[2px] mt-5" />
 
                 <div className="mt-4">
                     {!ShowEngineSearch ? (
@@ -119,7 +119,8 @@ const Sidebar = ({
                     ) : (
 
                         <Search
-                            placeholder={s("blockchainSearch")}
+                            placeholder={s("engineSearch")}
+                            name={"engine"}
                             reset={setSelectedEngine}
                             onChange={async (e) => {
                                 const val = e.target.value
@@ -170,6 +171,7 @@ const Sidebar = ({
 
                         <Search
                             placeholder={s("blockchainSearch")}
+                            name={"blockchain"}
                             reset={setSelectedBlockChain}
                             onChange={async (e) => {
                                 const val = e.target.value
@@ -224,6 +226,7 @@ const Sidebar = ({
 
 
                             <Search
+                                name={"studio"}
                                 placeholder={s("gameStudioSearch")}
                                 reset={setSelectedGameStudio}
                                 onChange={async (e) => {
