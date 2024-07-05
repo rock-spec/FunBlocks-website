@@ -13,6 +13,8 @@ const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] }
 
 export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
     const t = useTranslations("Tags")
+    
+
 
     const relatedData = data?.relatedData;
 
@@ -76,7 +78,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         </div>
                     </div>
                     <div className="my-6">
-                        <h1 className="font-semibold text-xl mt-6 mb-3">Summary</h1>
+                        <h1 className="font-semibold text-xl mt-6 mb-3">{t("summery")}</h1>
                         <p className="">
                             {data?.article?.content?.[`description_${locale}`] ||
                                 data?.article?.content?.description_en}

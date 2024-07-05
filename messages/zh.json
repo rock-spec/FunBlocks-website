@@ -47,7 +47,8 @@
         "relatedNews": "相关新闻",
         "relatedVideos": "相关视频",
         "relatedEvents": "相关活动",
-        "latestNews": "最新消息"
+        "latestNews": "最新消息",
+         "summery":"摘要"
     },
     "Search": {
         "navSearch": "搜索任何内容",
