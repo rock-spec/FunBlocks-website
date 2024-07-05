@@ -95,12 +95,12 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                             <div className="justify-start items-center gap-2 flex md:ml-2 text-sm">
                                 <Image src="/date-icon.svg" alt="Date" width={14} height={14} />
                                 <div
-                                    className={`text-neutral-900 text-opacity-90 font-semibold  ${cabin.className}`}
+                                    className={`text-neutral-900 text-opacity-90 font-semibold ${OffBit.className} ${cabin.className}`}
                                 >
                                     {details}
                                 </div>
                                 <div className="w-[6px] aspect-square opacity-90 hidden md:block bg-neutral-900" />
-                                <p className="uppercase">{timezone}</p>
+                                <p className="uppercase ">{timezone}</p>
                             </div>
                         </div>
                     ) : (
