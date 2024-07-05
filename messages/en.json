@@ -47,7 +47,8 @@
         "relatedNews": "related news",
         "relatedVideos": "related videos",
         "relatedEvents": "related events",
-        "latestNews": "latest news"
+        "latestNews": "latest news",
+        "summery":"Summery"
     },
     "Search": {
         "navSearch": "Search for anything",
