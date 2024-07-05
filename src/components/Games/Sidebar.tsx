@@ -33,7 +33,7 @@ const Sidebar = ({
     const [blockChains, setblockChains] = useState<string[]>(blockchainsList)
     const [gameStudio, setGameStudio] = useState<string[]>(gameStudiosList)
 
-  
+
 
     // console.log(enginesList, blockchainsList, gameStudiosList);
 
@@ -119,7 +119,8 @@ const Sidebar = ({
                     ) : (
 
                         <Search
-                            placeholder={s("blockchainSearch")}
+                            placeholder={s("engineSearch")}
+                            name={"engine"}
                             reset={setSelectedEngine}
                             onChange={async (e) => {
                                 const val = e.target.value
@@ -170,6 +171,7 @@ const Sidebar = ({
 
                         <Search
                             placeholder={s("blockchainSearch")}
+                            name={"blockchain"}
                             reset={setSelectedBlockChain}
                             onChange={async (e) => {
                                 const val = e.target.value
@@ -224,6 +226,7 @@ const Sidebar = ({
 
 
                             <Search
+                                name={"studio"}
                                 placeholder={s("gameStudioSearch")}
                                 reset={setSelectedGameStudio}
                                 onChange={async (e) => {
