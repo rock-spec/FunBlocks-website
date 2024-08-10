@@ -15,16 +15,18 @@
     "Footer": {
         "emailUs": "联系我们",
         "games": "游戏",
+        "news": "新闻",
+        "articles": "文章",
         "reviews": "评测",
         "events": "活动",
         "guides": "指南",
-        "aboutFunBlock": "关于趣味积木",
-        "terms&conditions": "条款与条件",
+        "aboutFunBlock": "关于FunBlocks",
+        "terms&conditions": "使用条款",
         "2023": "2023",
         "allRightReserved": "版权所有"
     },
     "Buttons": {
-        "explore": "探索",
+        "explore": "进入",
         "allGames": "所有游戏",
         "allNews": "所有新闻",
         "viewMoreArticles": "查看更多文章",
@@ -35,7 +37,7 @@
         "category": "类别",
         "sortBy": "排序",
         "type": "类型",
-        "playNow": "立即游玩",
+        "playNow": "进入游戏",
         "filter by time": "按时间过滤"
     },
     "Tags": {
@@ -48,10 +50,11 @@
         "relatedVideos": "相关视频",
         "relatedEvents": "相关活动",
         "latestNews": "最新消息",
-         "summery":"摘要"
+        "summary": "摘要",
+        "videoSummary": "搜索"
     },
     "Search": {
-        "navSearch": "搜索任何内容",
+        "navSearch": "搜索",
         "blockchainSearch": "搜索区块链",
         "pageSearch": "搜索关键词",
         "engineSearch": "搜索引擎",

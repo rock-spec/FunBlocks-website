@@ -43,8 +43,6 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
         fetchData()
     }, [])
 
-    
-
     let latestNews: any[] = []
     if (data?.latestNews?.status === "fulfilled") {
         latestNews = data.latestNews.value
@@ -52,7 +50,6 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
 
     let articles: any[] = []
     if (data?.articles?.status === "fulfilled") {
-        
         articles = data.articles.value
     }
 
@@ -85,7 +82,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                             responsive
                             className="mb-0 mt-10 lg:mt-0"
                             onButtonClick={() => {}}
-                            columnItems={latestNews?.map((news: any) => ({
+                            columnItems={featuredNews?.map((news: any) => ({
                                 id: news.newsid,
                                 variant: "news",
                                 tags: [
@@ -101,11 +98,9 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                     </div>
                 </div>
 
-                <div
-                    className="flex mb-10  w-full gap-7 flex-col md:flex-row "
-                >
-                    {featuredNews?.length > 0 &&
-                        featuredNews?.map((featured: any) => (
+                <div className="flex mb-10  w-full gap-7 flex-col md:flex-row ">
+                    {latestNews?.length > 0 &&
+                        latestNews?.map((featured: any) => (
                             <ArticleCard
                                 id={featured?.newsid}
                                 key={featured?.newsid} // Ensure to provide a unique key for each iterated element
@@ -120,7 +115,6 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                     <SingleCard
                         name={n("articles")}
                         singleCardItemDetails={articles?.map((article: any) => ({
-    
                             variant: "article",
                             id: article?.articleid,
                             imageUrl: `${article?.content.image}?height=360&width=720`,

@@ -28,7 +28,7 @@ const GameCardComponet = (props: GameCardComponentProps) => {
     const { imageUrl, title, tags, engine, description, onClick, engine_logo, game_id } = props
 
     return (
-        <Link href={`/game/${game_id}`} >
+        <Link href={`/game/${game_id}`}>
             <div className={"gap-6 shadow-sm flex flex-col  " + cabin.className}>
                 <div className="rounded-lg relative">
                     <div className=" relative rounded-md border border-[#161616] overflow-hidden">
@@ -73,13 +73,12 @@ const GameCardComponet = (props: GameCardComponentProps) => {
                     </div>
                     <br />
                     <div
-                        className="self-stretch justify-start items-end gap-1 inline-flex"
+                        className="self-stretch justify-start items-end gap-1 inline-flex overflow-hidden"
                         onClick={(e) => e.preventDefault()}
                     >
-                        {tags.map(
-                            (tag, index) =>
-                                <Tag text={tag} key={index} type={"justTag"} linkto="engine" />
-                        )}
+                        {tags.map((tag, index) => (
+                            <Tag text={tag} key={index} type={"justTag"} linkto="engine" />
+                        ))}
                     </div>
                 </div>
             </div>

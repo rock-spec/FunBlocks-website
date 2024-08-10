@@ -1,3 +1,4 @@
+
 import React, { useState } from "react"
 import Image from "next/image"
 import Button from "@mui/joy/Button"
@@ -26,14 +27,14 @@ const SingleVideoCardItem = (props: any) => {
 
     return (
         <Link href={`/${variant}/${id}`}>
-            <div className=" gap-6 shadow-sm">
+            <div className=" gap-6 ">
                 {/* First Column: Image */}
-                <div className="w-full  rounded-lg flex-col justify-start items-start gap-y-5 inline-flex">
-                    <div className="relative w-full rounded-md border border-[#161616] h-[230px] overflow-hidden ">
-                        <ReactPlayer width={"427px"} height={"237px"} url={imageUrl} controls={true} />
+                <div className="w-full h-full rounded-lg flex flex-col justify-start items-start  ">
+                    <div className="relative w-full rounded-md flex   h-[225px] overflow-hidden ">
+                        <ReactPlayer  height={"225px"} url={imageUrl} controls={true} />
                     </div>
-                    <div className=" ">
-                        <div className=" flex-col justify-center items-start ">
+                    <div className=" h-[121px] w-full flex flex-col  ">
+                        <div className="flex-1  flex flex-col h-full items-start ">
                             {/* Show only two lines of description */}
                             <div
                                 className={` text-neutral-900 text-md font-bold leading-normal line-clamp-1`}
@@ -41,12 +42,12 @@ const SingleVideoCardItem = (props: any) => {
                                 {title}
                             </div>
                             <div
-                                className={`self-stretch text-neutral-900 w-full font-normal leading-normal  line-clamp-2 mt-2 pb-1`}
+                                className={`self-stretch text-neutral-900 w-full font-normal leading-normal  line-clamp-2 mt-3 pb-1`}
                             >
                                 {description}
                             </div>
                             {date && (
-                                <div className=" flex my-5 gap-x-3">
+                                <div className=" flex mt-auto gap-x-3 ">
                                     {/* <Tag text={gameid} type={"relevance"} /> */}
                                     <Tag text={gameid} type={"justTag"} />
 
@@ -54,7 +55,7 @@ const SingleVideoCardItem = (props: any) => {
                                         <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px] capitalize">
                                             By {author}
                                         </div>
-                                        <div className="w-[5px] h-[5px] hidden md:block  opacity-80 bg-neutral-900" />
+                                        <div className="w-[5px] h-[5px] hidden md:block   opacity-80 bg-neutral-900" />
 
                                         <div className="text-neutral-900 text-opacity-80 text-sm font-normal  leading-[16.80px]">
                                             {formatDate(date, true)}

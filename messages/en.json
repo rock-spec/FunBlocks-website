@@ -15,6 +15,8 @@
     "Footer": {
         "emailUs": "email us",
         "games": "games",
+        "news": "news",
+        "articles": "articles",
         "reviews": "reviews",
         "events": "events",
         "guides": "guides",
@@ -48,7 +50,9 @@
         "relatedVideos": "related videos",
         "relatedEvents": "related events",
         "latestNews": "latest news",
-        "summery":"Summery"
+        "summary":"Summary",
+        "videoSummary": "Video Summary"
+
     },
     "Search": {
         "navSearch": "Search for anything",

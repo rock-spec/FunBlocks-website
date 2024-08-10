@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic"
 
 const VideoDetails = async ({ params }: { params: { id: string; locale: Locale } }) => {
     const t = await getTranslations("Tags")
-    const n = await getTranslations("Navbar")
+    // const n = await getTranslations("Navbar")
 
     const id = params.id.replace(/%20/g, " ").replace(/%3A/g, ":").toString() //to remove string and make it so i can search the data// Access the dynamic id parameter
     const locale = params.locale
