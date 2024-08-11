@@ -75,7 +75,6 @@ export const appRouter = router({
         return homeData
     }),
     gameData: publicProcedure.input(gameFilterOptionsSchema).query(async ({ input }) => {
-        console.log(input);
         
         const filters = {
             blockchainIds: input.blockchainIds ? input.blockchainIds.split(",") : [],

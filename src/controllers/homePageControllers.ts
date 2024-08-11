@@ -14,7 +14,7 @@ const getfeaturedNews = async (locale: string) => {
         .limit(3)
 
     if (error) {
-        console.log(error);
+        console.log(error)
 
         throw new Error("Error fetching news: " + error.message)
     }
@@ -31,7 +31,7 @@ const getLatestNews = async (locale: string) => {
                 `newsid, content(title_en, title_zh, image, game!content_gameid_fkey(gameid, game_name, engineid, gamestudioid, blockchainid))`
             )
             .order("content_id->publishdate", { ascending: false })
-            .limit(5)
+            .limit(3)
         if (error) {
             console.log(error)
 
@@ -40,7 +40,7 @@ const getLatestNews = async (locale: string) => {
 
         return data || []
     } catch (error) {
-        console.error(error) 
+        console.error(error)
         return []
     }
 }
@@ -52,9 +52,9 @@ const getFeaturedArticles = async (locale: string) => {
             `articleid, publishdate,games:content_gameids(gameid, game(gameid, engineid, gamestudioid, blockchainid, engine(logo, pic))), content(contentid, image, title_en, title_zh, description_en, description_zh, author(*))`
         )
         .eq("isHome", true)
-    
+
     if (error) {
-        console.log(error, "error in article");
+        console.log(error, "error in article")
 
         throw new Error("Error fetching articles: " + error.message)
     }
@@ -66,12 +66,14 @@ const getFeturedVideos = async () => {
     const { data, error } = await supabase
         .from("videos")
         .select("videoid,video_name,summary,media_url")
-        .range(0, 4)
+        .eq("isHome", true)
+        .limit(4)
 
     if (error) {
-        console.log(error);
+        console.log(error)
         throw new Error("Error fetching videos: " + error.message)
     }
+    console.log(data)
 
     return data || []
 }
@@ -86,7 +88,7 @@ const getfeaturedEvents = async () => {
         .limit(4)
 
     if (error) {
-        console.log(error);
+        console.log(error)
         throw new Error("Error fetching events: " + error.message)
     }
 

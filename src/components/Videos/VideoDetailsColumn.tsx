@@ -68,7 +68,7 @@ export const VideoDetailsColumn = ({ data }: { data: any }) => {
                     </div>
 
                     <div className=" text-neutral-900 text-xl font-semibold leading-[30px] mb-[12px] mt-[24px]">
-                        Video Summary
+                        {t("videoSummary")}
                     </div>
                     <div className=" text-neutral-900 text-base font-normal leading-normal mb-[20.28px]">
                         {video?.summary}

@@ -25,16 +25,18 @@ interface Game {
 interface Article {
     articleid: string
     content: {
-        game:[ {
-            engine: {
-                pic: string
-                logo: string
+        game: [
+            {
+                engine: {
+                    pic: string
+                    logo: string
+                }
+                gameid: string
+                engineid: string
+                blockchainid: string
+                gamestudioid: string
             }
-            gameid: string
-            engineid: string
-            blockchainid: string
-            gamestudioid: string
-        }]
+        ]
         image: string
         title: string
     }
@@ -96,7 +98,6 @@ const Homee = async ({ n, b, locale }: { n?: any; b?: any; locale: Locale }) => 
         games = HomeData.games.value
     }
 
-    
     return (
         <div className="relatve w-full max-w-[1200px] flex flex-col  justify-between lg:gap-x-5 lg:flex-row">
             {/* Left Column */}
@@ -112,7 +113,7 @@ const Homee = async ({ n, b, locale }: { n?: any; b?: any; locale: Locale }) => 
                     variant: "game",
                     tags: [game?.engineid, game?.gamestudioid, game?.blockchainid],
                     title: game?.game_name,
-                    imageUrl: game?.pic,
+                    imageUrl: game?.logo,
                 }))}
             />
             {/* Main Column  */}

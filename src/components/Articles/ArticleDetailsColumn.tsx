@@ -78,7 +78,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         </div>
                     </div>
                     <div className="my-6">
-                        <h1 className="font-semibold text-xl mt-6 mb-3">{t("summery")}</h1>
+                        <h1 className="font-semibold text-xl mt-6 mb-3">{t("summary")}</h1>
                         <p className="">
                             {data?.article?.content?.[`description_${locale}`] ||
                                 data?.article?.content?.description_en}
@@ -100,7 +100,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         />
                     </div>
                 </div>
-                <div className="flex mb-10 gap-x-5  ">
+                <div className="flex mb-10 gap-x-5   ">
                     <SingleCard
                         heading={t("relatedArticles")}
                         name={"article"}
@@ -119,7 +119,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         onButtonClick={() => { }}
                     />
                 </div>
-                <div className="bg-[#FFFCF9] p-5">
+                <div className="bg-[#FFFCF9] p-5 border border-[#161616]">
                     <div className="w-fit mb-5">
                         <Tag text={`${"Related Videos"}`} type={"section"} />
                     </div>
@@ -127,7 +127,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
                             {singleCardItemDetails.length > 0 ? (
                                 singleCardItemDetails.map((detail: any, index: any) => (
-                                    <div className="p-5 border  bg-[#FFFCF9]" key={index}>
+                                    <div className="p-5 " key={index}>
                                         <SingleVideoCardItem key={index} {...detail} />
                                     </div>
                                 ))

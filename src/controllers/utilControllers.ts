@@ -11,7 +11,9 @@ type FilterOptions = {
 export const getGameData = async (game_id: string) => {
     const { data, error } = await supabase
         .from("game")
-        .select("gameid, game_name, website, game_desc, pic, engineid, gamestudioid, blockchainid")
+        .select(
+            "gameid, game_name, website, game_desc, game_desc_zh, pic, engineid, gamestudioid, blockchainid"
+        )
         .eq("gameid", game_id)
 
     if (error) {
@@ -27,14 +29,14 @@ export const getRelatedArticles = async (game_id: string, locale: Locale) => {
         .select(
             `*, category(name), content(title_en, title_zh, description_en, description_zh, image, game(gameid), author(name))`
         )
-        .eq("content.gameid", game_id);
+        .eq("content.gameid", game_id)
 
     if (error) {
-        console.error("Error fetching articles:", error.message);
-        throw new Error("Error fetching articles: " + error.message);
+        console.error("Error fetching articles:", error.message)
+        throw new Error("Error fetching articles: " + error.message)
     }
-    const filteredData = data.filter((article) => article.content !== null);
-    return filteredData || [];
+    const filteredData = data.filter((article) => article.content !== null)
+    return filteredData || []
 }
 
 export const getRelatedEvents = async (game_id: string) => {
@@ -43,10 +45,8 @@ export const getRelatedEvents = async (game_id: string) => {
         .select("eventid,title,pic,joinurl,startdate,enddate, timezone,game(gameid)")
         .eq("gameid", game_id)
 
-
-
     if (error) {
-        console.log(error);
+        console.log(error)
         throw new Error("Error fetching games: " + error.message)
     }
 
@@ -80,8 +80,8 @@ export const getRelatedVideos = async (game_id: string) => {
 
 export const getCategories = async () => {
     const { data, error } = await supabase.from("category").select("*")
-    if(data){
-        data.push({ categoryid: "", name: 'All' })
+    if (data) {
+        data.push({ categoryid: "", name: "All" })
     }
     if (error) {
         throw new Error("Error fetching videos: " + error.message)
@@ -91,52 +91,52 @@ export const getCategories = async () => {
 }
 
 export const getGameRelatedData = async (gameids: any, locale: Locale) => {
-   
+    const decodedGameIds = gameids.map((gameid: any) => decodeURIComponent(gameid))
+    const results = await Promise.all(
+        decodedGameIds.map(async (game_id: any) => {
+            const [game, relatedArticles, relatedNews, relatedVideos, relatedEvents, featuredArticles] =
+                await Promise.allSettled([
+                    getGameData(game_id),
+                    getRelatedArticles(game_id, locale),
+                    getRelatedNews(game_id, locale),
+                    getRelatedVideos(game_id),
+                    getRelatedEvents(game_id),
+                    getfeaturedArticles(locale),
+                ])
 
-    const decodedGameIds = gameids.map((gameid: any) => decodeURIComponent(gameid));
-    const results = await Promise.all(decodedGameIds.map(async (game_id: any) => {
-        const [game, relatedArticles, relatedNews, relatedVideos, relatedEvents, featuredArticles] = await Promise.allSettled([
-            getGameData(game_id),
-            getRelatedArticles(game_id, locale),
-            getRelatedNews(game_id, locale),
-            getRelatedVideos(game_id),
-            getRelatedEvents(game_id),
-            getfeaturedArticles(locale)
-        ]);
-
-        return {
-            game_id,
-            game,
-            relatedArticles,
-            relatedNews,
-            relatedVideos,
-            relatedEvents,
-            featuredArticles
-        };
-    }));
-    return results;
+            return {
+                game_id,
+                game,
+                relatedArticles,
+                relatedNews,
+                relatedVideos,
+                relatedEvents,
+                featuredArticles,
+            }
+        })
+    )
+    return results
 }
 
-export const getGameRelatedDataForOthers:any = async (gameid: any, locale: Locale) => {
-    const decodedGameId =  decodeURIComponent(gameid)
-        const [game, relatedArticles, relatedNews, relatedVideos, relatedEvents, featuredArticles] = await Promise.allSettled([
+export const getGameRelatedDataForOthers: any = async (gameid: any, locale: Locale) => {
+    const decodedGameId = decodeURIComponent(gameid)
+    const [game, relatedArticles, relatedNews, relatedVideos, relatedEvents, featuredArticles] =
+        await Promise.allSettled([
             getGameData(decodedGameId),
             getRelatedArticles(decodedGameId, locale),
             getRelatedNews(decodedGameId, locale),
             getRelatedVideos(decodedGameId),
             getRelatedEvents(decodedGameId),
-            getfeaturedArticles(locale)
-        ]);
+            getfeaturedArticles(locale),
+        ])
 
-        return {
-            gameid,
-            game,
-            relatedArticles,
-            relatedNews,
-            relatedVideos,
-            relatedEvents,
-            featuredArticles
-        };
-    
+    return {
+        gameid,
+        game,
+        relatedArticles,
+        relatedNews,
+        relatedVideos,
+        relatedEvents,
+        featuredArticles,
+    }
 }
-

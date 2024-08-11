@@ -33,7 +33,6 @@ export const ArticleColumn = ({
         setArticles(data)
     }, [data])
 
-    
     const singleCardItemDetails: SingleCardItemProps[] = articles?.map((article: any) => ({
         variant: "article",
         id: article?.articleid,
@@ -46,6 +45,7 @@ export const ArticleColumn = ({
         onFirstButtonClick: () => {},
         onSecondButtonClick: () => {},
     }))
+
 
     return (
         <>
