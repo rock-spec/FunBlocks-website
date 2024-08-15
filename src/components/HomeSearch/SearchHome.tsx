@@ -13,15 +13,36 @@ import { Column } from "../Column/Column"
 import { useTranslations } from "next-intl"
 import { type Locale } from "@/i18n.config"
 import formatTimestamp from "@/utils/formatdateInoriginalForm"
-
+import CustomDropDown from "../DropDown/DropDown"
 // import getfetchFeaturedArticles from "@/actions/articles/action"
-
 export const dynamic = "force-dynamic"
 
-const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale: Locale }) => {
-    const t = useTranslations("Tags")
+type filterOptions = {
+    query?: string
+    locale: Locale
+    filter?: string
+}
 
-    const data = trpc.searchPage.useQuery({ query, locale })
+const HomeSearch = ({
+    query,
+    locale,
+    searchParams,
+}: {
+    hidden?: boolean
+    query: string
+    locale: Locale
+    searchParams: any
+}) => {
+    const t = useTranslations("Tags")
+    const b = useTranslations("Buttons")
+
+    const filters: filterOptions = {
+        query: searchParams?.search || "",
+        locale,
+        filter: searchParams?.filter || "",
+    }
+
+    const data = trpc.searchPage.useQuery(filters)
     const featuredArticlesData = trpc.featuredArticles.useQuery(locale)
 
     const finalData = data.data
@@ -61,24 +82,42 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
             onSecondButtonClick: () => {},
         })) || []
 
-    
-    const singleeventCardItemDetails: any = events?.map((event: any) => ({
-        // url: event?.joinurl,
-        url: `/event/${event?.eventid}`,
-        id: event?.eventid,
-        variant: "event",
-        imageUrl: `${event?.pic}?height=360&width=720`,
-        title: event?.title,
-        details: `${formatTimestamp(event?.startdate)} - ${formatTimestamp(event?.enddate)}`,
-        timezone: event?.timezone,
-        joinurl: event?.joinurl,
-        tags: [event?.game.gameid],
-    })) || []
+    const singleeventCardItemDetails: any =
+        events?.map((event: any) => ({
+            // url: event?.joinurl,
+            url: `/event/${event?.eventid}`,
+            id: event?.eventid,
+            variant: "event",
+            imageUrl: `${event?.pic}?height=360&width=720`,
+            title: event?.title,
+            details: `${formatTimestamp(event?.startdate)} - ${formatTimestamp(event?.enddate)}`,
+            timezone: event?.timezone,
+            joinurl: event?.joinurl,
+            tags: [event?.game.gameid],
+        })) || []
+
+    const options = [
+        { name: b("anytime"), value: "anytime" },
+        { name: b("lastday"), value: "lastday" },
+        { name: b("lastweek"), value: "lastweek" },
+        { name: b("lastmonth"), value: "lastmonth" },
+    ]
 
     return (
-        <div className="">
-            <TopBar setSelectedSection={setSelectedSection} selectedSection={selectedSection} />
-            <div className="flex justify-between gap-x-5">
+        <div className="flex justify-between gap-x-5">
+            <div>
+                <div className="flex justify-between items-center w-full mb-8">
+                    <TopBar setSelectedSection={setSelectedSection} selectedSection={selectedSection} />
+                    <div className="">
+                        <CustomDropDown
+                            text={b("filterbytime")}
+                            options={options}
+                            item={"appSearch"}
+                            searchParams={searchParams}
+                            btn_width="w-[180px]"
+                        />
+                    </div>
+                </div>
                 {data.isFetched ? (
                     <div className="w-full max-w-[1000px] flex lg:flex-row flex-col justify-between gap-x-5">
                         {/* mainCoulumn  */}
@@ -113,7 +152,7 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
                                                                         `description_${locale}`
                                                                     ]
                                                                 }
-                                                                details={article?.publishdate}
+                                                                details={formatDate(article?.publishdate)}
                                                                 tags={[article?.content?.game?.gameid]}
                                                                 author={article?.content?.author?.name}
                                                                 onFirstButtonClick={() => {}}
@@ -193,7 +232,7 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
                                                             description={
                                                                 news?.content?.[`description_${locale}`]
                                                             }
-                                                            details={formatDate(news?.content?.publishdate)}
+                                                            details={formatDate(news?.publishdate)}
                                                             tags={[news?.content?.game?.gameid]}
                                                             author={news?.content?.author?.name}
                                                             onFirstButtonClick={() => {}}
@@ -207,25 +246,28 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
                             )}
                             {/* events section */}
                             {(selectedSection === "ALL" || selectedSection === "EVENTS") && (
-                                <div>
+                                <div className="mt-10">
                                     <Tag
                                         type="searchResult"
                                         text={`${events?.length || 0} Related events Found`}
                                     />
                                     <div className="flex mb-10 gap-x-5 mt-5">
                                         <div className="flex flex-col flex-1 items-start gap-5">
-                                            {singleeventCardItemDetails.length > 0 ? (
-                                                singleeventCardItemDetails.map((detail: React.JSX.IntrinsicAttributes & SingleCardItemProps, index: React.Key | null | undefined) => (
-                                                    <div
-                                                        key={index}
-                                                        className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[62.5rem] "
-                                                    >
-                                                        <SingleCardItem key={index} {...detail} />
-                                                    </div>
-                                                ))
-                                            ) : (
-                                                <div>No events found.</div>
-                                            )}
+                                            {singleeventCardItemDetails.length > 0 &&
+                                                singleeventCardItemDetails.map(
+                                                    (
+                                                        detail: React.JSX.IntrinsicAttributes &
+                                                            SingleCardItemProps,
+                                                        index: React.Key | null | undefined
+                                                    ) => (
+                                                        <div
+                                                            key={index}
+                                                            className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[62.5rem] "
+                                                        >
+                                                            <SingleCardItem key={index} {...detail} />
+                                                        </div>
+                                                    )
+                                                )}
                                             <div className="flex item-center w-full justify-center">
                                                 {/* <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" /> */}
                                             </div>
@@ -239,24 +281,24 @@ const HomeSearch = ({ query, locale }: { hidden?: boolean; query: string; locale
                 ) : (
                     <div className="min-w-[900px] w-full ">Searching Result....</div>
                 )}
-                {featuredArticles && (
-                    <div className="ms-auto">
-                        <Column
-                            variant="search"
-                            title={t("featuredArticles")}
-                            responsive
-                            onButtonClick={() => {}}
-                            columnItems={featuredArticles?.map((article: any) => ({
-                                id: article?.articleid,
-                                variant: "article",
-                                search: true,
-                                title: article?.content?.[`title_${locale}`] || article?.content?.title_en,
-                                imageUrl: article?.content?.image,
-                            }))}
-                        />
-                    </div>
-                )}
             </div>
+            {featuredArticles && (
+                <div className="ms-auto">
+                    <Column
+                        variant="search"
+                        title={t("featuredArticles")}
+                        responsive
+                        onButtonClick={() => {}}
+                        columnItems={featuredArticles?.map((article: any) => ({
+                            id: article?.articleid,
+                            variant: "article",
+                            search: true,
+                            title: article?.content?.[`title_${locale}`] || article?.content?.title_en,
+                            imageUrl: article?.content?.image,
+                        }))}
+                    />
+                </div>
+            )}
         </div>
     )
 }

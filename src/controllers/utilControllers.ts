@@ -23,20 +23,37 @@ export const getGameData = async (game_id: string) => {
     return data || []
 }
 
+// export const getRelatedArticles = async (game_id: string, locale: Locale) => {
+//     console.log(game_id)
+//     const { data, error } = await supabase
+//         .from("articles")
+//         .select(
+//             `*, category(name), content(title_en, title_zh, description_en, description_zh, image, game(gameid), author(name))`
+//         )
+//         .eq("content.gameid", game_id)
+
+//     if (error) {
+//         console.error("Error fetching articles:", error.message)
+//         throw new Error("Error fetching articles: " + error.message)
+//     }
+//     const filteredData = data.filter((article) => article.content !== null)
+//     return filteredData || []
+// }
+
 export const getRelatedArticles = async (game_id: string, locale: Locale) => {
     const { data, error } = await supabase
-        .from("articles")
+        .from("content_gameids")
         .select(
-            `*, category(name), content(title_en, title_zh, description_en, description_zh, image, game(gameid), author(name))`
+            `articles(*, content(title_en, title_zh, description_en, description_zh, image, author(name)))`
         )
-        .eq("content.gameid", game_id)
+        .eq("gameid", game_id)
 
     if (error) {
-        console.error("Error fetching articles:", error.message)
+        console.log("🚀 ~ getRelatedArticles ~ error:", error)
         throw new Error("Error fetching articles: " + error.message)
     }
-    const filteredData = data.filter((article) => article.content !== null)
-    return filteredData || []
+    // const filteredData = data.filter((article) => article.content !== null)
+    return data || []
 }
 
 export const getRelatedEvents = async (game_id: string) => {
@@ -120,6 +137,8 @@ export const getGameRelatedData = async (gameids: any, locale: Locale) => {
 
 export const getGameRelatedDataForOthers: any = async (gameid: any, locale: Locale) => {
     const decodedGameId = decodeURIComponent(gameid)
+    console.log(decodedGameId)
+
     const [game, relatedArticles, relatedNews, relatedVideos, relatedEvents, featuredArticles] =
         await Promise.allSettled([
             getGameData(decodedGameId),

@@ -9,6 +9,7 @@ import SearchInput from "@/components/SearchInput/SearchInput"
 import { trpc } from "@/app/_trpc/client"
 import { useTranslations } from "next-intl"
 import ShowMoreButton from "@/components/Button/ShowMoreButton"
+import { text } from "stream/consumers"
 
 export const dynamic = "force-dynamic"
 
@@ -18,6 +19,7 @@ interface FilterOptions {
     gameStudioIds?: string
     query?: string
     sort?: string
+    network?: string
     locale: Locale
     page: number
     pageSize: number
@@ -27,7 +29,11 @@ const Game = ({ params: { locale }, searchParams }: { params: { locale: Locale }
     const b = useTranslations("Buttons")
     const s = useTranslations("Search")
 
-    const sortOptions = [{ name: "date" }]
+    const sortOptions = [{ name: b("date"), value: "date" }]
+    const networkOptions = [
+        { value: "mainnet", name: b("mainnet") },
+        { value: "testnet", name: b("testnet") },
+    ]
 
     const [page, setPage] = useState(0)
     const pageSize = 9
@@ -44,6 +50,7 @@ const Game = ({ params: { locale }, searchParams }: { params: { locale: Locale }
         engineIds: searchParams?.engine || "",
         gameStudioIds: searchParams?.studio || "",
         query: searchParams?.qry || "",
+        network: searchParams?.network || "",
         sort: searchParams?.sort || "",
         locale: locale,
         page,
@@ -121,11 +128,16 @@ const Game = ({ params: { locale }, searchParams }: { params: { locale: Locale }
                             />
                         </div>
                         <CustomDropDown
+                            text={b("network")}
+                            options={networkOptions}
+                            item={"network"}
+                            searchParams={searchParams}
+                        />
+                        <CustomDropDown
                             text={b("sortBy")}
                             options={sortOptions}
                             item={"sort"}
                             searchParams={searchParams}
-                            btn_width="w-[200px]"
                         />
                     </div>
                     <GameColumn data={gamesData} />

@@ -38,43 +38,45 @@ export const ColumnItems = (props: SingleColumnProps) => {
     const classnames = variant === "news" || variant === "article" ? "line-clamp-3" : ""
 
     return (
-        <Link href={`/${variant}/${id}`} className="">
-            <div
-                className={`w-[245px] h-[${containerHeight}px] justify-start items-start gap-[15px] inline-flex cursor-pointer `}
-            >
-                <Image
-                    src={imageUrl}
-                    height={img_size}
-                    width={img_size}
-                    alt=""
-                    className={`${
-                         "h-[85px] w-[85px]"
-                    } border-[2px] rounded-[7px] border-neutral-900/85 object-cover`}
-                />
-                <div className="grow shrink basis-0 h-full flex-col justify-start items-start gap-2 inline-flex">
-                    <div
-                        className={` self-stretch text-neutral-900 line-clamp-3 ${
-                            search ? "text-base  " : "text-sm"
-                        } leading-tight  ${classnames} ${cabin.className} font-bold`}
-                    >
-                        {title}
-                    </div>
-                    <div className="self-stretch justify-start items-end gap-[5px] inline-flex ">
-                        {variant !== "article" &&
-                            validTags.length > 0 &&
-                            tags
-                                .slice(0, 2)
-                                .map((tag, index) => (
-                                    <Tag
-                                        text={tag}
-                                        key={index}
-                                        type={"justTag"}
-                                        linkto={variant === "game" ? "engine" : "game"}
-                                    />
-                                ))}
-                    </div>
+        <div
+            className={`w-[245px] h-[${containerHeight}px] justify-start items-start gap-[15px] inline-flex cursor-pointer `}
+        >
+            <div>
+                <Link href={`/${variant}/${id}`} className="block h-[85px] w-[85px]">
+                    <Image
+                        src={imageUrl}
+                        height={img_size}
+                        width={img_size}
+                        alt=""
+                        className={`block h-[85px] w-[85px]  border-[2px] rounded-[7px] border-neutral-900/85 object-cover`}
+                    />
+                </Link>
+            </div>
+            <div className="grow shrink basis-0 h-[85px] flex-col justify-between items-start flex">
+                <Link
+                    href={`/${variant}/${id}`}
+                    className={` self-stretch text-neutral-900 line-clamp-3  break-all ${
+                        search ? "text-base  " : "text-sm"
+                    } leading-tight  ${classnames} ${cabin.className} font-bold`}
+                >
+                    {title}
+                </Link>
+                <div className="self-stretch justify-start items-end gap-[5px] flex mb-1">
+                    {variant !== "article" &&
+                        validTags.length > 0 &&
+                        tags
+                            .slice(0, 2)
+                            .map((tag, index) => (
+                                <Tag
+                                    text={tag}
+                                    key={index}
+                                    type="relevance"
+                                    linkto={variant === "game" ? "engine" : "game"}
+                                />
+                            ))}
                 </div>
             </div>
-        </Link>
+        </div>
     )
 }
+

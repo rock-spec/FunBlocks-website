@@ -6,7 +6,7 @@ import { CustomButton } from "../Button/Button"
 import ReactSimplyCarousel from "react-simply-carousel"
 import { useState } from "react"
 // import Link from "next/link"
-import { Link } from "@/i18n.config"
+import { Link, Locale } from "@/i18n.config"
 import { Cabin } from "next/font/google"
 import { useTranslations } from "next-intl"
 import BlueButton from "../Button/BlueButton"
@@ -16,9 +16,12 @@ const cabin = Cabin({
     weight: ["700", "400", "500", "600"],
 })
 
-const CarousalHome = ({ data }: { data: any }) => {
+const CarousalHome = ({ data, locale }: { data: any; locale: Locale }) => {
     const [dataIndex, setDataIndex] = useState(0)
     const b = useTranslations("Buttons")
+
+console.log(data)
+
 
     const goNext = () => {
         if (dataIndex + 1 < data.length) {
@@ -35,8 +38,6 @@ const CarousalHome = ({ data }: { data: any }) => {
             setDataIndex(data.length - 1)
         }
     }
-
-    console.log(data)
 
     return (
         <div className="bg-stone-50  w-full flex-1 border box-border border-neutral-900 ">
@@ -93,13 +94,13 @@ const CarousalHome = ({ data }: { data: any }) => {
                 <div
                     className={`text-neutral-900 text-[40px] font-bold leading-[48px] line-clamp-2 mt-6 ${cabin.className} `}
                 >
-                    {data[dataIndex]?.title}
+                    {data[dataIndex]?.[`title_${locale}`] || data[dataIndex]?.title_en}
                 </div>
 
                 <div
                     className={`text-neutral-900 text-base font-normal leading-normal line-clamp-3 mt-4  ${cabin.className}  `}
                 >
-                    {data[dataIndex]?.description}
+                    {data[dataIndex]?.[`description_${locale}`] || data[dataIndex]?.description_en}
                 </div>
 
                 <div className="mb-[-25px] pb-5 mt-auto">

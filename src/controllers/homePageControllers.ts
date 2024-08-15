@@ -49,16 +49,14 @@ const getFeaturedArticles = async (locale: string) => {
     const { data, error } = await supabase
         .from("articles")
         .select(
-            `articleid, publishdate,games:content_gameids(gameid, game(gameid, engineid, gamestudioid, blockchainid, engine(logo, pic))), content(contentid, image, title_en, title_zh, description_en, description_zh, author(*))`
+            `articleid, publishdate,games:content_gameids(gameid), content(contentid, image, title_en, title_zh, description_en, description_zh, author(*))`
         )
         .eq("isHome", true)
 
     if (error) {
         console.log(error, "error in article")
-
         throw new Error("Error fetching articles: " + error.message)
     }
-
     return data || []
 }
 
@@ -73,19 +71,11 @@ const getFeturedVideos = async () => {
         console.log(error)
         throw new Error("Error fetching videos: " + error.message)
     }
-    console.log(data)
-
     return data || []
 }
 
 const getfeaturedEvents = async () => {
-    const { data, error } = await supabase
-        .from("events")
-        .select(
-            "eventid, pic,title, startdate, enddate, joinurl, game(gameid,engineid,gamestudioid,blockchainid)"
-        )
-        .eq("isHome", true)
-        .limit(4)
+    const { data, error } = await supabase.from("events").select("*").eq("isHome", true).limit(4)
 
     if (error) {
         console.log(error)

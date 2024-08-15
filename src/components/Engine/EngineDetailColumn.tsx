@@ -29,17 +29,17 @@ export const EngineDetailColumn = ({
     const t = useTranslations("Tags")
 
     const singleCardItemDetails: GameCardComponentProps[] = relatedGames.map((game: any) => ({
-        game_id: game?.game_id,
-        engine: game?.engineid,
-        engine_logo:
-            "https://p5ajxprussnpxvbu.public.blob.vercel-storage.com/bolt%20logo-GeDmp6kt980WP2Z0ch3gDvtkNrdZkK.svg",
+        game_id: game?.gameid,
+        engine: game?.engine?.engineid,
+        engine_logo: game?.engine?.logo,
         imageUrl: game?.pic,
         title: game?.game_name,
-        description: "",
+        description: game?.game_desc,
+        description_zh: game?.game_desc_zh,
         tags: [game?.gamestudioid],
     }))
     const engineData = engine && engine[0]
-
+    console.log("🚀 ~ engineData:", engineData)
 
     return (
         <>
@@ -88,7 +88,7 @@ export const EngineDetailColumn = ({
                                     </div>
                                 )}
 
-                                {engineData?.blogurl && (
+                                {engineData?.docs && (
                                     <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
                                         <Image
                                             src={
@@ -100,13 +100,13 @@ export const EngineDetailColumn = ({
                                             className="h-6 mr-1"
                                         />
                                         <p>
-                                            <Link href={engineData?.blogurl} target="_blank">
+                                            <Link href={engineData?.docs} target="_blank">
                                                 Docs
                                             </Link>
                                         </p>
                                     </div>
                                 )}
-                                {engineData?.twitte && (
+                                {engineData?.twitter && (
                                     <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
                                         <Image
                                             src={
@@ -142,13 +142,45 @@ export const EngineDetailColumn = ({
                                         </p>
                                     </div>
                                 )}
+                                {engineData?.youtubeurl && (
+                                    <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
+                                        <Image
+                                            src={"/yt.svg"}
+                                            height={24}
+                                            width={24}
+                                            alt=""
+                                            className="h-6 mr-1"
+                                        />
+                                        <p>
+                                            <Link href={engineData?.youtubeurl} target="_blank">
+                                                Youtube
+                                            </Link>
+                                        </p>
+                                    </div>
+                                )}
+                                {engineData?.blogurl && (
+                                    <div className="text-neutral-900 text-base font-medium underline leading-tight tracking-tight flex justify-start items-center cursor-pointer">
+                                        <Image
+                                            src={"/blog.svg"}
+                                            height={24}
+                                            width={24}
+                                            alt=""
+                                            className="h-6 mr-1"
+                                        />
+                                        <p>
+                                            <Link href={engineData?.blogurl} target="_blank">
+                                                Blog
+                                            </Link>
+                                        </p>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {relatedGames.length > 0 && (
-                    <div className="flex mb-10  flex-col  items-start gap-5">
+                {/* {relatedGames.length > 0 && (
+                    <div className="flex mb-10  flex-col  items-start gap-5 ">
                         <Tag text={`${engineData?.engineid} GAMES`} type={"section"} />
                         <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
                             {singleCardItemDetails.map((detail, index) => (
@@ -158,7 +190,7 @@ export const EngineDetailColumn = ({
                             ))}
                         </div>
                     </div>
-                )}
+                )} */}
 
                 {relatedArticles.length > 0 && (
                     <div className="flex mb-10 gap-x-5">
@@ -174,7 +206,7 @@ export const EngineDetailColumn = ({
                                     article.content?.[`description_${locale}`] ||
                                     article.content?.[`description_en`],
                                 details: formatDate(article?.publishdate),
-                                tags: [article.content.game.gameid],
+                                tags: [article.content?.game?.gameid],
                                 author: article.content.author.name,
                                 onFirstButtonClick: () => {},
                                 onSecondButtonClick: () => {},

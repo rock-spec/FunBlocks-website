@@ -91,7 +91,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         className="mb-[24px] object-cover object-center w-[855.58px] "
                         src={data.article.content.image}
                     />
-                    <div>
+                    <div className="render">
                         <MarkDownview
                             source={
                                 data?.article?.content?.[`content_${locale}`] ||

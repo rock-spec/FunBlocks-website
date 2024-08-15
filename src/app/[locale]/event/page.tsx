@@ -6,6 +6,7 @@ import { trpc } from "@/app/_trpc/client"
 import { useTranslations } from "next-intl"
 import ShowMoreButton from "@/components/Button/ShowMoreButton"
 import { useEffect, useState } from "react"
+import { Locale } from "@/i18n.config"
 
 export const dynamic = "force-dynamic"
 
@@ -15,9 +16,11 @@ type FilterOptions = {
     sort?: string
     page: number
     pageSize: number
+    type?: string
+    status?: string
 }
 
-const Event = ({ searchParams }: { searchParams: any }) => {
+const Event = ({ params: { locale }, searchParams }: { params: { locale: Locale }; searchParams: any }) => {
     const t = useTranslations("Tags")
     const b = useTranslations("Buttons")
 
@@ -31,6 +34,8 @@ const Event = ({ searchParams }: { searchParams: any }) => {
         query: searchParams?.qry || "",
         categoryid: searchParams?.category || "",
         sort: searchParams?.sort || "",
+        type: searchParams?.type || "",
+        status: searchParams?.status || "",
         page,
         pageSize,
     }
@@ -63,7 +68,7 @@ const Event = ({ searchParams }: { searchParams: any }) => {
         <>
             <div className="w-full max-w-[1200px]  flex lg:flex-row flex-col justify-between gap-x-5">
                 {/* Main Column  */}
-                <EventColumn data={events} searchParams={searchParams} />
+                <EventColumn data={events} searchParams={searchParams} locale={locale} />
 
                 {/* Right Column */}
                 {featuredGames && featuredGames.length > 0 && (

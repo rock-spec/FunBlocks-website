@@ -1,25 +1,7 @@
 import { Locale } from "@/i18n.config"
 import SupabaseInstance from "../../supabase"
-import { getGameRelatedData } from "./utilControllers"
 
 const supabase = SupabaseInstance.getSupabaseInstance()
-
-interface Game {
-    gameid: string
-    game_name: string
-    game_desc: string
-    website: string
-    play_now_button: string
-    game_twitter: string
-    testnet_or_mainnet: string
-    blog: string
-    github: string
-    pic: string
-    logo: string
-    engineid: string
-    gamestudioid: string
-    blockchainid: string
-}
 
 const getEngineDetail = async (engine_id: string) => {
     const { data, error } = await supabase.from("engine").select("*").eq("engineid", engine_id)
@@ -27,95 +9,68 @@ const getEngineDetail = async (engine_id: string) => {
     if (error) {
         throw new Error("Error fetching engine: " + error.message)
     }
-
     return data || []
 }
 
 const getRelatedGames = async (engine_id: string) => {
-    const { data, error } = await supabase.from("game").select("*").eq("engineid", engine_id)
+    const { data, error } = await supabase
+        .from("game")
+        .select(
+            "gameid, game_name, game_desc, pic, game_desc_zh, engine(engineid, logo), gamestudioid, blockchainid"
+        )
+        .eq("engineid", engine_id)
 
     if (error) {
         throw new Error("Error fetching engine: " + error.message)
     }
-
     return data || []
 }
 
-async function fetchGameRelatedData(relatedGames: Game[], locale: Locale): Promise<any[]> {
-    const promises = relatedGames.map((game) => getGameRelatedData(game.gameid, locale))
-    return Promise.allSettled(promises)
-}
-
-function extractRelatedVideos(jsonData: any[]): any[] {
-    const relatedVideos: any[] = []
-    let videosArray: any[] = []
-    if (jsonData[0]?.relatedVideos?.status === "fulfilled") videosArray = jsonData[0]?.relatedVideos?.value
-    relatedVideos.push(...videosArray)
-    return relatedVideos
-}
-
-function extractRelatedEvents(jsonData: any[]): any[] {
-    const relatedEvents: any[] = []
-    let eventsArray: any[] = []
-    if (jsonData[0]?.relatedEvents?.status === "fulfilled") eventsArray = jsonData[0]?.relatedEvents?.value
-    relatedEvents.push(...eventsArray)
-    return relatedEvents
-}
-
-function extractRelatedContent(jsonData: any, contentType: string): any[] {
-
-    const relatedContent: any[] = []
-    const contentArray = jsonData[0]?.value?.[contentType]?.value || []
-
-    contentArray.forEach((contentItem: any) => {
-        // Create a new object containing content, newsid, and articleid
-        console.log(contentItem?.publishdate)
-
-        const itemWithIds = {
-            publishdate: contentItem?.publishdate,
-            content: contentItem?.content,
-            newsid: contentItem?.newsid,
-            articleid: contentItem?.articleid,
-        }
-        relatedContent.push(itemWithIds)
-    })
-    return relatedContent
-}
-
-function extractAllGames(jsonData: any): any[] {
-    const allGames: any[] = []
-
-    // Iterate through each entry in relatedData
-    if (jsonData.status === "fulfilled") {
-        jsonData?.value.forEach((entry: any) => {
-            // Extract game information from the "game" object
-            const gameInfo = entry?.game[0] // Assuming there's only one game object in each entry
-            allGames.push(gameInfo)
-        })
+export const getRelatedNews = async (engineId: string, locale: Locale) => {
+    const { data, error } = await supabase
+        .from("news")
+        .select(`*,content(title_en, title_zh, image, game!content_gameid_fkey(gameid), author(name))`)
+        .eq("content.engineid", engineId)
+    if (error) {
+        throw new Error("Error fetching games: " + error.message)
     }
 
-    return allGames || []
+    return data.filter((news) => news.content !== null) || []
 }
 
-export const getEngineDetailPageData = async ({ id = "Enjin", locale }: { id: string; locale: Locale }) => {
+export const getRelatedArticles = async (engineId: string, locale: Locale) => {
+    const { data, error } = await supabase
+        .from("articles")
+        .select(
+            `*, category(name), content(title_en, title_zh, description_en, description_zh, image, game(gameid), author(name))`
+        )
+        .eq("content.engineid", engineId)
+
+    if (error) {
+        console.error("Error fetching articles:", error.message)
+        throw new Error("Error fetching articles: " + error.message)
+    }
+    const filteredData = data.filter((article) => article.content !== null)
+    return filteredData || []
+}
+
+
+
+export const getEngineDetailPageData = async ({ id, locale }: { id: string; locale: Locale }) => {
     const engineId = id
-    const engines = await getEngineDetail(engineId)
-    const relatedGames = await getRelatedGames(engineId)
-    const relatedData = await fetchGameRelatedData(relatedGames, locale)
 
-    let relatedArticles: any = []
-    let relatedVideos: any = []
-    let relatedNews: any = []
-    let relatedEvents: any = []
-    // let allGames: any = []
+    const [enginesResult, relatedGamesResult, relatedNewsResult, relatedArticlesResult] =
+        await Promise.allSettled([
+            getEngineDetail(engineId),
+            getRelatedGames(engineId),
+            getRelatedNews(engineId, locale),
+            getRelatedArticles(engineId, locale),
+        ])
 
-    if (relatedData[0]?.status === "fulfilled") {
-        relatedArticles = extractRelatedContent(relatedData, "relatedArticles")
-        relatedVideos = extractRelatedVideos(relatedData)
-        relatedNews = extractRelatedContent(relatedData, "relatedNews")
+    const engines = enginesResult.status === "fulfilled" ? enginesResult.value : null
+    const relatedGames = relatedGamesResult.status === "fulfilled" ? relatedGamesResult.value : []
+    const relatedNews = relatedNewsResult.status === "fulfilled" ? relatedNewsResult.value : []
+    const relatedArticles = relatedArticlesResult.status === "fulfilled" ? relatedArticlesResult.value : []
 
-    }
-
-    return { engines, relatedArticles, relatedVideos, relatedNews, relatedEvents, relatedGames }
+    return { engines, relatedNews, relatedGames, relatedArticles }
 }
-

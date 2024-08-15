@@ -1,6 +1,13 @@
 import getHomeData from "@/controllers/homePageControllers"
 import { publicProcedure, router } from "./trpc"
-import { getBlockchains, getGameStudios, getEngines, getGames, getGamesAllData, getAllSidebarOptions } from "@/controllers/gamePageController"
+import {
+    getBlockchains,
+    getGameStudios,
+    getEngines,
+    getGames,
+    getGamesAllData,
+    getAllSidebarOptions,
+} from "@/controllers/gamePageController"
 import { getNewsData } from "@/controllers/newsPageController"
 import { getarticlesData, getfeaturedArticles } from "@/controllers/articlePageController"
 import { getVideosData } from "@/controllers/videoPageController"
@@ -31,6 +38,7 @@ const idAndLocaleSchema = z.object({
 const queryAndLocaleSchema = z.object({
     query: z.string(),
     locale: localeSchema,
+    filter: z.string().optional(),
 })
 
 // filter schema for game
@@ -40,6 +48,7 @@ const gameFilterOptionsSchema = z.object({
     gameStudioIds: z.string().optional(),
     query: z.string().optional(),
     sort: z.string().optional(),
+    network: z.string().optional(),
     locale: localeSchema,
     page: z.number().default(0), // Page number for pagination
     pageSize: z.number().default(5),
@@ -51,7 +60,7 @@ const pageFilterSchemaWithLocale = z.object({
     sort: z.string().optional(),
     locale: localeSchema,
     page: z.number().default(0), // Page number for pagination
-    pageSize: z.number().default(5), // Number of items per page  
+    pageSize: z.number().default(5), // Number of items per page
 })
 
 const pageFilterSchema = z.object({
@@ -59,7 +68,10 @@ const pageFilterSchema = z.object({
     categoryid: z.string().optional(),
     sort: z.string().optional(),
     page: z.number().default(0), // Page number for pagination
-    pageSize: z.number().default(5)
+    pageSize: z.number().default(5),
+    type: z.string().optional(),
+    status: z.string().optional(),
+    locale: localeSchema.optional(),
 })
 
 export const appRouter = router({
@@ -75,20 +87,20 @@ export const appRouter = router({
         return homeData
     }),
     gameData: publicProcedure.input(gameFilterOptionsSchema).query(async ({ input }) => {
-        
         const filters = {
             blockchainIds: input.blockchainIds ? input.blockchainIds.split(",") : [],
             engineIds: input.engineIds ? input.engineIds.split(",") : [],
             gameStudioIds: input.gameStudioIds ? input.gameStudioIds.split(",") : [],
             sort: input.sort ? input.sort : "",
+            network: input.network ? input.network : "",
             query: input?.query ? input?.query : "",
             page: input.page,
-            pageSize: input.pageSize
+            pageSize: input.pageSize,
         }
         const gamesData = await getGamesAllData(filters)
         return gamesData
     }),
-    sidebarOptions: publicProcedure.query(async() => {
+    sidebarOptions: publicProcedure.query(async () => {
         const options = await getAllSidebarOptions()
         return options
     }),
@@ -113,10 +125,14 @@ export const appRouter = router({
         const articleData = await getarticlesData(input)
         return articleData
     }),
-    videoData: publicProcedure.input(pageFilterSchema).query(async ({ input }) => {
+    videoData: publicProcedure.input(pageFilterSchemaWithLocale).query(async ({ input }) => {
         const videoData = await getVideosData(input)
         return videoData
     }),
+    // videoData: publicProcedure.input(pageFilterSchema).query(async ({ input }) => {
+    //     const videoData = await getVideosData(input)
+    //     return videoData
+    // }),
     eventData: publicProcedure.input(pageFilterSchema).query(async ({ input }) => {
         const eventData = await getEventsData(input)
         return eventData
@@ -153,8 +169,8 @@ export const appRouter = router({
         return engineDetailsData
     }),
     searchPage: publicProcedure.input(queryAndLocaleSchema).query(async ({ input }) => {
-        const { query, locale } = input
-        const engineDetailsData = await getSearchData(query, locale)
+        const { query, locale, filter } = input
+        const engineDetailsData = await getSearchData(query, locale, filter)
         return engineDetailsData
     }),
     newsSearchData: publicProcedure.input(z.string()).query(async (qry) => {

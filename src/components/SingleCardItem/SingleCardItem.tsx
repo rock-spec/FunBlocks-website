@@ -47,7 +47,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         joinurl,
     } = props
 
-    // console.log(joinurl);
+
 
     return (
         <div className="flex md:flex-row  flex-col items-start gap-6 w-[863px] ">
@@ -105,13 +105,15 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                         </div>
                     ) : (
                         <div className="flex md:flex-row flex-col gap-3 mt-2">
-                            <div className="flex gap-1">
-                                {tags.map((tag, index) => (
-                                    <Tag text={tag} key={index} type={"justTag"} />
-                                ))}
-                            </div>
+                            {tags.length > 0 && tags[0] && (
+                                <div className="flex gap-1">
+                                    {tags.map((tag, index) => (
+                                        <Tag text={tag} key={index} type={"justTag"} />
+                                    ))}
+                                </div>
+                            )}
 
-                            <div className="justify-start md:items-center gap-2 flex md:flex-row flex-col md:ml-2">
+                            <div className="justify-start md:items-center gap-2 flex md:flex-row flex-col ">
                                 <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px] capitalize">
                                     By {author ? author : "Editor"}
                                 </div>
