@@ -18,11 +18,10 @@ const TopBar: React.FC<TopBarProps> = ({ setSelectedSection, selectedSection }) 
     const b = useTranslations("Buttons")
 
     const sortOptions = ["date"]
-console.log(selectedSection);
 
 
     return (
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center ">
             <div className="border border-black  bg-white py-2 px-5 w-fit">
                 <div
                     className={`items-center font-bold flex gap-x-10 ${OffBit.className} capitalize `}

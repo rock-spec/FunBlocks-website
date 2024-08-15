@@ -37,7 +37,7 @@ const SingleVideoCardItem = (props: any) => {
                         <div className="flex-1  flex flex-col h-full items-start ">
                             {/* Show only two lines of description */}
                             <div
-                                className={` text-neutral-900 text-md font-bold leading-normal line-clamp-1`}
+                                className={` text-neutral-900 text-md font-bold leading-normal line-clamp-1 mt-4`}
                             >
                                 {title}
                             </div>

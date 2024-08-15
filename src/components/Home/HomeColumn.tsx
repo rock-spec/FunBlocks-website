@@ -72,7 +72,11 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
         <>
             <div className="w-full">
                 <div className={`items-stretch flex mb-10 gap-x-5 lg:flex-row flex-col ${cabin.className}`}>
-                    {loading ? <HomeCarousalSkelton /> : sliderData && <CarousalHome data={sliderData} />}
+                    {loading ? (
+                        <HomeCarousalSkelton />
+                    ) : (
+                        sliderData && <CarousalHome data={sliderData} locale={locale} />
+                    )}
 
                     <div className=" h-full  ">
                         <Column
@@ -85,12 +89,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                             columnItems={featuredNews?.map((news: any) => ({
                                 id: news.newsid,
                                 variant: "news",
-                                tags: [
-                                    news?.content?.game?.gameid,
-                                    news?.content?.game?.engineid,
-                                    news?.content?.game?.gamestudioid,
-                                    news?.content?.game?.blockchainid,
-                                ],
+                                tags: [news?.content?.game?.gameid],
                                 title: news?.content?.[`title_${locale}`] || news?.content?.title_en,
                                 imageUrl: news.content.image,
                             }))}
@@ -105,7 +104,11 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                                 id={featured?.newsid}
                                 key={featured?.newsid} // Ensure to provide a unique key for each iterated element
                                 imageUrl={featured?.content?.image}
-                                title={featured?.content?.[`title_${locale}`] || featured?.content?.title_en}
+                                title={
+                                    featured?.content?.[`title_${locale}`] ||
+                                    featured?.content?.title_en ||
+                                    featured?.content?.title_zh
+                                }
                                 tags={featured?.game?.length > 0 ? [featured?.game] : []} // Assuming you want to display the gameid as a tag
                             />
                         ))}
@@ -118,11 +121,15 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                             variant: "article",
                             id: article?.articleid,
                             imageUrl: `${article?.content.image}?height=360&width=720`,
-                            title: article?.content[`title_${locale}`] || article?.content?.title_en,
+                            title:
+                                article?.content[`title_${locale}`] ||
+                                article?.content?.title_en ||
+                                article?.content?.title_zh,
                             description:
                                 article?.content[`description_${locale}`] || article?.content?.description_en,
                             details: formatDate(article?.publishdate),
-                            tags: [article?.content?.game?.gameid],
+                            // tags: [article?.content?.game?.gameid],
+                            tags: [article?.games[0]?.gameid],
                             author: article?.content?.author?.name,
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},
@@ -155,11 +162,11 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                             id: event?.eventid,
                             variant: "event",
                             imageUrl: `${event?.pic}?height=360&width=720`,
-                            title: event?.title,
+                            title: event?.[`title_${locale}`] || event?.title_en || event?.title_zh,
                             details: `${formatDate(event?.startdate)} - ${formatDate(event?.enddate)}`,
                             // 'zone': "EST",
                             joinurl: event?.joinurl,
-                            tags: [event?.game.gameid],
+                            tags: [event?.game?.gameid],
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},
                             // url: event?.joinurl,

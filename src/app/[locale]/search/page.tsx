@@ -8,7 +8,7 @@ const SearchPage = ({
     params: { locale: Locale }
     searchParams: any
 }) => {
-    return <HomeSearch query={searchParams?.search} locale={locale} />
+    return <HomeSearch query={searchParams?.search} searchParams={searchParams} locale={locale} />
 }
 
 export default SearchPage

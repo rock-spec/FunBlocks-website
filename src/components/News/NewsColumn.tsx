@@ -28,7 +28,7 @@ export const NewsColumn = ({
     const [newsFilterData, setNewsFilterData] = useState(data)
     const [news, setNews] = useState(data)
 
-    const sortOptions = [{ name: "date" }]
+    const sortOptions = [{ name: "date", value: "date" }]
 
     const singleCardItemDetails: SingleCardItemProps[] = news?.map((news: any) => ({
         variant: "news",

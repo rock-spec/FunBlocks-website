@@ -36,9 +36,29 @@
         "details": "details",
         "category": "category",
         "sortBy": "Sort by",
+        "date": "Date",
+        "network": "Network",
+        "mainnet": "Mainnet",
+        "testnet": "Testnet",
         "type": "type",
+        "online": "online",
+        "offline": "offline",
         "playNow": "play now",
-        "filter by time": "filter by time"
+        "filter by time": "filter by time",
+        "playtest": "playtest",
+        "conference": "conference",
+        "hackerhouse": "hacker house",
+        "hackathon": "hackathon",
+        "other": "other",
+        "status": "status",
+        "active": "active",
+        "ended": "ended",
+        "notStarted": "not started",
+        "filterbytime": "filter by time",
+        "anytime": "anytime",
+        "lastday": "last day",
+        "lastweek": "last week",
+        "lastmonth": "last month"
     },
     "Tags": {
         "featuredGames": "featured games",
@@ -50,9 +70,8 @@
         "relatedVideos": "related videos",
         "relatedEvents": "related events",
         "latestNews": "latest news",
-        "summary":"Summary",
+        "summary": "Summary",
         "videoSummary": "Video Summary"
-
     },
     "Search": {
         "navSearch": "Search for anything",

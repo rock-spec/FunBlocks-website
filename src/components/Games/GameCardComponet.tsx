@@ -52,7 +52,7 @@ const GameCardComponet = (props: GameCardComponentProps) => {
                                     layout="fixed"
                                     objectFit="cover"
                                     objectPosition="center"
-                                    className="object-cover  aspect-square"
+                                    className="object-cover  aspect-square rounded-md"
                                 />
                             )}
                             {engine && (
