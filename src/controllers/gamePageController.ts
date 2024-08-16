@@ -9,6 +9,7 @@ interface FilterOptions {
     gameStudioIds?: string[]
     query?: string
     sort?: string
+    network?: string
     page: number
     pageSize: number
 }
@@ -32,6 +33,7 @@ export const getGames = async (filters: FilterOptions) => {
     const gameStudioIds = filters?.gameStudioIds || []
     const searchQuery = filters?.query || ""
     const sort = filters?.sort || ""
+    const network = filters?.network || ""
     const page = filters?.page
     const pageSize = filters?.pageSize
 
@@ -52,7 +54,9 @@ export const getGames = async (filters: FilterOptions) => {
 
     if (combinedConditions) queryBuilder = queryBuilder.or(combinedConditions)
     if (searchQuery) queryBuilder = queryBuilder.ilike("game_name", `%${searchQuery}%`)
-    if (sort) queryBuilder = queryBuilder.order("game_name", { ascending: sort === "A-Z" })
+    // if (sort) queryBuilder = queryBuilder.order("game_name", { ascending: sort === "A-Z" })
+    if (network) queryBuilder = queryBuilder.ilike("testnet_or_mainnet", network)
+    if (sort) queryBuilder = queryBuilder.order("publishdate", { ascending: false })
     queryBuilder = queryBuilder.range(page * pageSize, (page + 1) * pageSize - 1)
     const { data, error } = await queryBuilder
 

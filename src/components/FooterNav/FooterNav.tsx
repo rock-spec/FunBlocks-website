@@ -14,7 +14,7 @@ const FooterNav = () => {
                     <Link href="/game">{t("games")}</Link>
                 </div>
                 <div className=" text-base cursor-pointer hover:underline" style={{ lineHeight: "50%" }}>
-                    <Link href="#">{t("reviews")}</Link>
+                    <Link href="#">{t("news")}</Link>
                 </div>
                 <div className=" text-base cursor-pointer hover:underline" style={{ lineHeight: "50%" }}>
                     <Link href="/event">{t("events")}</Link>
@@ -24,7 +24,7 @@ const FooterNav = () => {
             {/* Second Sub-Column */}
             <div className="flex flex-col items-start gap-8 w-[180.5px]">
                 <div className=" text-base cursor-pointer hover:underline" style={{ lineHeight: "50%" }}>
-                    <Link href="#"> {t("guides")}</Link>
+                    <Link href="#"> {t("articles")}</Link>
                 </div>
                 <div className=" text-base cursor-pointer hover:underline" style={{ lineHeight: "50%" }}>
                     <Link href="#">{t("aboutFunBlock")}</Link>

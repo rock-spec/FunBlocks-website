@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Press+Start+2P&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -11,8 +10,8 @@
 }
 
 .cabin-font {
-    font-family: 'Cabin', sans-serif;
-  }
+    font-family: "Cabin", sans-serif;
+}
 
 :root {
     --foreground-rgb: 0, 0, 0;
@@ -88,7 +87,7 @@ body {
 }
 
 /* below csss are for rendering content */
-/* .render h1 {
+.wmde-markdown h1 {
     display: block;
     font-size: 2em;
     margin-block-start: 0.67em;
@@ -143,4 +142,13 @@ body {
     list-style-type: lower-latin;
     list-style-position: inside;
     margin-left: 15px;
-} */
+}
+
+.wmde-markdown h1,
+.wmde-markdown h2,
+.wmde-markdown h3,
+.wmde-markdown h4,
+.wmde-markdown h5,
+.wmde-markdown h6 {
+    border-bottom: none !important;
+}

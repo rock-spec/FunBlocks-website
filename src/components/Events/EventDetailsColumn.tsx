@@ -39,7 +39,7 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                     }
                 >
                     <div className=" text-neutral-900 text-[28px] font-bold  leading-[33.60px] mb-[12px]">
-                        {eventDetails.title}
+                        {eventDetails?.[`title_${locale}`] || eventDetails.title_en}
                     </div>
                     <div className="flex gap-1 mb-[24px]">
                         {[game[0]?.gameid, game[0]?.engineid].map((tag, index) => (
@@ -78,8 +78,8 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                     <div className="justify-start items-center gap-2 flex ">
                         <Image src="/date-icon.svg" alt="Date" width={12} height={12} />
                         <div className="text-neutral-900 text-opacity-80 text-sm font-normal  leading-[16.80px]">
-                            {formatTimestamp(eventDetails.startdate)} -{" "}
-                            {formatTimestamp(eventDetails.enddate)}
+                            {formatTimestamp(eventDetails.startdate)}
+                            {eventDetails.enddate ? `- ${formatTimestamp(eventDetails.enddate)}` : ""}
                         </div>
                         <div className="w-[5px] h-[5px] opacity-80 bg-neutral-900" />
                         <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px]">
@@ -99,7 +99,7 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                     </div>
 
                     <div className="mt-5 text-neutral-900 text-base font-normal  leading-normal mb-[20.28px]">
-                        {eventDetails.detail}
+                        {eventDetails?.[`detail_${locale}`] || eventDetails.detail_en}
                     </div>
                 </div>
                 {relatedArticles.length > 0 && (

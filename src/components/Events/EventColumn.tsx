@@ -10,8 +10,17 @@ import formatTimestamp from "@/utils/formatdateInoriginalForm"
 import { useTranslations } from "next-intl"
 import CustomDropDown from "../DropDown/DropDown"
 import { trpc } from "@/app/_trpc/client"
+import { Locale } from "@/i18n.config"
 
-export const EventColumn = ({ data, searchParams }: { data: any; searchParams: any }) => {
+export const EventColumn = ({
+    data,
+    searchParams,
+    locale,
+}: {
+    data: any
+    searchParams: any
+    locale: Locale
+}) => {
     const s = useTranslations("Search")
     const b = useTranslations("Buttons")
 
@@ -22,16 +31,32 @@ export const EventColumn = ({ data, searchParams }: { data: any; searchParams: a
     const [type, setType] = useState<string[]>([])
     const [events, setEvents] = useState(data || [])
 
-    const sortOptions = [{ name: "Event date" }]
+    const categoryOptions = [
+        { name: b("playtest"), categoryid: "playtest" },
+        { name: b("conference"), categoryid: "conference" },
+        { name: b("hackerhouse"), categoryid: "hackerhouse" },
+        { name: b("hackathon"), categoryid: "hackathon" },
+        { name: b("other"), categoryid: "other" },
+    ]
+    const typesOptions = [
+        { name: b("online"), type: "online" },
+        { name: b("offline"), type: "offline" },
+    ]
+    const statusOptions = [
+        { name: b("active"), status: "active" },
+        { name: b("ended"), status: "ended" },
+        { name: b("notStarted"), status: "notStarted" },
+    ]
 
     const singleCardItemDetails: SingleCardItemProps[] = events?.map((event: any) => ({
-        // url: event?.joinurl,
         url: `/event/${event?.eventid}`,
         id: event?.eventid,
         variant: "event",
         imageUrl: `${event?.pic}?height=360&width=720`,
-        title: event?.title,
-        details: `${formatTimestamp(event?.startdate)} - ${formatTimestamp(event?.enddate)}`,
+        title: event?.[`title_${locale}`] || event?.title_en,
+        details: `${formatTimestamp(event?.startdate)}  ${
+            event?.enddate ? `- ${formatTimestamp(event?.enddate)}` : ""
+        }`,
         timezone: event?.timezone,
         joinurl: event?.joinurl,
         tags: [event?.game.gameid],
@@ -56,23 +81,26 @@ export const EventColumn = ({ data, searchParams }: { data: any; searchParams: a
                             searchParams={searchParams}
                         />
                     </div>
-                    {/* <CustomDropDown
+                    <CustomDropDown
                         bg="bg-[url('/buttons/medium_dropdown.svg')]"
                         text={b("type")}
-                        options={type}
-                    /> */}
-
-                    <CustomDropDown
-                        text={b("category")}
-                        options={fetchedCategories}
-                        item={"category"}
+                        options={typesOptions}
                         searchParams={searchParams}
+                        item="type"
                     />
                     <CustomDropDown
-                        text={b("sortBy")}
-                        options={sortOptions}
-                        item={"sort"}
+                        text={b("category")}
+                        options={categoryOptions}
+                        item={"category"}
                         searchParams={searchParams}
+                        bg="bg-[url('/buttons/medium_dropdown.svg')]"
+                    />
+                    <CustomDropDown
+                        text={b("status")}
+                        options={statusOptions}
+                        item={"status"}
+                        searchParams={searchParams}
+                        bg="bg-[url('/buttons/medium_dropdown.svg')]"
                     />
                 </div>
                 <div className="flex mb-10 gap-x-5">

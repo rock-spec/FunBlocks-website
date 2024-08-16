@@ -21,16 +21,14 @@ const ArticleCard = (props: ArticleCardProps) => {
         <Link href={`/news/${id}`} className="">
             <div className="flex flex-col items-start  gap-5 p-5 border border-[#161616] bg-[#FFFCF9] md:w-[285px] w-full mb-5 md:mb-0 md:h-80">
                 {/* First Row: Image */}
-                <div className="h-[180px] w-[245px] border border-[#161616]">
+                <div className="h-[180px] w-[245px] border object-fit object-center border-[#161616] overflow-hidden">
                     <Image
                         src={imageUrl} // Replace with the actual image URL
                         alt={title}
-                        width={245}
+                        width={200}
                         height={180}
                         layout="responsive"
-                        objectFit="cover"
-                        objectPosition="center"
-                        className="h-[180px] w-[245px]"
+                        className="h-[180px] w-[200px] object-fit object-center"
                     />
                 </div>
                 <div className="self-stretch overflow-hidden text-nero text-lg font-bold leading-[110%]  line-clamp-2 ">
@@ -43,7 +41,7 @@ const ArticleCard = (props: ArticleCardProps) => {
                         <Tag text={tag} key={index} type={"relevance"} />
                     ))}
                 </div> */}
-                <div className="flex gap-x-1 ">
+                <div className="flex gap-x-1 mt-auto">
                     {(tags.length > 0 ? tags : defaultTags).map((tag, index) => (
                         <Tag text={tag} key={index} type={"justTag"} />
                     ))}

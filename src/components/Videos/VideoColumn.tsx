@@ -15,7 +15,7 @@ export const VideoColumn = ({ data, searchParams }: { data: any; searchParams: a
     const fetchData = trpc.fetchCategories.useQuery()
     const fetchedCategories = fetchData?.data
 
-    const sortOptions = [{ name: "date" }]
+    const sortOptions = [{ name: "date", value: "date" }]
 
     const [videos, setVideos] = useState(data)
     const [category, setCategory] = useState<string[]>([])

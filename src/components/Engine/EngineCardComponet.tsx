@@ -16,7 +16,7 @@ const EngineCardComponet = (props: EngineCardComponentProps) => {
 
     return (
         <Link href={`/engine/${title}`}>
-            <div className={"gap-6 shadow-sm flex flex-col " + cabin.className}>
+            <div className={"gap-6  flex flex-col " + cabin.className}>
                 {" "}
                 {/* Make it a flex container */}
                 {/* First Column: Image */}
@@ -27,10 +27,7 @@ const EngineCardComponet = (props: EngineCardComponentProps) => {
                             alt="Image"
                             width={245}
                             height={180}
-                            layout="fixed"
-                            objectFit="cover"
-                            objectPosition="center"
-                            className="object-contain h-[180px] w-[245px] rounded-md"
+                            className="object-fit h-[180px] w-[245px] rounded-md"
                         />
                     </div>
                 </div>

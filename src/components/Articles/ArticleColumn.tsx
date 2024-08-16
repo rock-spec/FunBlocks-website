@@ -27,13 +27,13 @@ export const ArticleColumn = ({
     const fetchData = trpc.fetchCategories.useQuery()
     const fetchedCategories = fetchData?.data
 
-    const sortOptions = [{ name: "date" }]
+    const sortOptions = [{ name: "date", value: "date" }]
 
     useEffect(() => {
         setArticles(data)
     }, [data])
 
-    
+
     const singleCardItemDetails: SingleCardItemProps[] = articles?.map((article: any) => ({
         variant: "article",
         id: article?.articleid,
@@ -41,7 +41,7 @@ export const ArticleColumn = ({
         title: article?.content?.[`title_${locale}`] || article?.content?.title_en,
         description: article?.content?.[`description_${locale}`] || article?.content?.description_en,
         details: formatDate(article?.publishdate),
-        tags: [article?.content?.game?.gameid],
+        tags: [article?.games[0]?.gameid],
         author: article?.content?.author?.name,
         onFirstButtonClick: () => {},
         onSecondButtonClick: () => {},

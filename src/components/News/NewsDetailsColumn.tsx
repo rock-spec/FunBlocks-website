@@ -47,22 +47,22 @@ export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale 
                             </div>
                         </div>
                     </div>
-
+{/* 
                     <div className="my-6">
                         <h1 className="font-semibold text-xl mt-6 mb-3">Summary</h1>
                         <p className="">
                             {data?.news?.content?.[`description_${locale}`] ||
                                 data?.news?.content?.description_en}
                         </p>
-                    </div>
+                    </div> */}
 
-                    <Image
+                    {/* <Image
                         alt="banner"
                         height={487.44}
                         width={857.55}
                         className="mb-[24px] w-[855.58px] "
                         src={data?.news?.content?.image}
-                    />
+                    /> */}
                     <div>
                         <MarkDownview
                             source={
@@ -76,16 +76,16 @@ export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale 
                         heading={t("relatedArticles")}
                         name={"article"}
                         singleCardItemDetails={relatedArticles?.map((article: any) => ({
-                            id: article.articleid,
+                            id: article?.articles?.articleid,
                             variant: "article",
-                            imageUrl: `${article.content.image}?height=360&width=720`,
+                            imageUrl: `${article?.articles?.content.image}?height=360&width=720`,
                             title: article?.content?.[`title_${locale}`] || article?.content?.title_en,
                             description:
-                                article?.content?.[`description_${locale}`] ||
-                                article?.content?.description_en,
-                            details: formatDate(article?.publishdate),
+                                article?.articles?.content?.[`description_${locale}`] ||
+                                article?.articles?.content?.description_en,
+                            details: formatDate(article?.articles?.publishdate),
                             tags: [article?.category?.name],
-                            author: article?.content?.user?.username,
+                            author: article?.articles?.content?.user?.username,
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},
                         }))}

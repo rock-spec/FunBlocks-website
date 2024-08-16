@@ -14,9 +14,7 @@ const EngineDetail = async ({ params }: { params: { id: string; locale: Locale }
     const data = await trpcServer().engineDetailsData({ id, locale })
     const relatedNews = data.relatedNews
     const relatedArticles = data.relatedArticles
-    const relatedVideos = data.relatedVideos
     const engine = data.engines
-    const relatedGames = data.relatedGames
 
     const t = await getTranslations("Tags")
     const n = await getTranslations("Navbar")
@@ -26,7 +24,7 @@ const EngineDetail = async ({ params }: { params: { id: string; locale: Locale }
             {/* Main Column  */}
             <EngineDetailColumn
                 engine={engine}
-                relatedGames={relatedGames}
+                relatedGames={[]}
                 relatedArticles={relatedArticles}
                 locale={locale}
             />

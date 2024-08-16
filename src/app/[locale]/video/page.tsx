@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react"
 import { trpc } from "@/app/_trpc/client"
 import { useTranslations } from "next-intl"
 import ShowMoreButton from "@/components/Button/ShowMoreButton"
+import { Locale } from "@/i18n.config"
 
 export const dynamic = "force-dynamic"
 
@@ -15,13 +16,12 @@ type FilterOptions = {
     sort?: string
     page: number
     pageSize: number
+    locale: Locale
 }
 
-const Video = ({ searchParams }: { searchParams: any }) => {
+const Video = ({ searchParams, params: { locale } }: { searchParams: any; params: { locale: Locale } }) => {
     const t = useTranslations("Tags")
     const b = useTranslations("Buttons")
-
-    
 
     const [page, setPage] = useState(0)
     const pageSize = 6
@@ -29,16 +29,15 @@ const Video = ({ searchParams }: { searchParams: any }) => {
     const [hasMore, setHasMore] = useState(true)
     const [featuredGames, setFeaturedGames] = useState<any[]>([])
 
-
     const filters: FilterOptions = {
         query: searchParams?.qry || "",
         categoryid: searchParams?.category || "",
         sort: searchParams?.sort || "",
         page,
         pageSize,
+        locale,
     }
 
-    // const { featuredGames, videos } =  trpc.videoData.useQuery(filters)
     const { data, isLoading, isError } = trpc.videoData.useQuery(filters)
 
     useEffect(() => {
@@ -53,7 +52,6 @@ const Video = ({ searchParams }: { searchParams: any }) => {
             if (page === 0) setVideos([...data?.videos])
             else setVideos((prev) => [...prev, ...data?.videos])
             setFeaturedGames(data?.featuredGames || [])
-
         }
     }, [data])
 
@@ -66,7 +64,7 @@ const Video = ({ searchParams }: { searchParams: any }) => {
 
     return (
         <>
-            <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
+            <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5 ">
                 {/* Main Column  */}
                 <VideoColumn data={videos} searchParams={searchParams} />
 
@@ -83,13 +81,13 @@ const Video = ({ searchParams }: { searchParams: any }) => {
                             variant: "game",
                             tags: [game.engineid, game.gamestudioid, game.blockchainid],
                             title: game.game_name,
-                            imageUrl: game.pic,
+                            imageUrl: game.logo,
                         }))}
                     />
                 )}
             </div>
 
-            {hasMore  && (
+            {hasMore && (
                 <div className="w-[880px]">
                     <ShowMoreButton
                         onClick={loadMore}
