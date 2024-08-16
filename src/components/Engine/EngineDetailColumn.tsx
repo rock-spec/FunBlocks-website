@@ -39,7 +39,6 @@ export const EngineDetailColumn = ({
         tags: [game?.gamestudioid],
     }))
     const engineData = engine && engine[0]
-    console.log("🚀 ~ engineData:", engineData)
 
     return (
         <>

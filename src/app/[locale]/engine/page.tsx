@@ -36,7 +36,7 @@ const Engine = ({ searchParams }: { searchParams: any }) => {
     }
 
     const { data, isLoading, isError } = trpc.engineData.useQuery(filters)
-    
+
     useEffect(() => {
         setPage(0)
         setPageSize(6)
@@ -85,7 +85,7 @@ const Engine = ({ searchParams }: { searchParams: any }) => {
                         variant: "game",
                         tags: [game.engineid, game.gamestudioid, game.blockchainid],
                         title: game.game_name,
-                        imageUrl: game.pic,
+                        imageUrl: game.logo,
                     }))}
                 />
             </div>

@@ -33,7 +33,6 @@ type filterSchema = {
 
 const getAllEvents = async (filter: filterSchema) => {
     const { query, categoryid, sort, page, pageSize, type, status } = filter
-    console.log(status)
 
     const nowUtc = new Date().toISOString()
 

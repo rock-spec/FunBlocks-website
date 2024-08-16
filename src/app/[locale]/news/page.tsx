@@ -87,7 +87,7 @@ const News = ({ params: { locale }, searchParams }: { params: { locale: Locale }
                             variant: "game",
                             tags: [game.engineid, game.gamestudioid, game.blockchainid],
                             title: game.game_name,
-                            imageUrl: game.pic,
+                            imageUrl: game.logo,
                         }))}
                     />
                 )}

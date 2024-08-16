@@ -78,7 +78,7 @@ export const VideoDetailsColumn = ({ data }: { data: any }) => {
                 <div className="flex mb-10 gap-x-5">
                     <SingleCard
                         heading={t("featuredVideos")}
-                        name={"video"}
+                        name={"videos"}
                         singleCardItemDetails={relatedVideos.map((video: any) => ({
                             variant: "video",
                             id: video.videoid,

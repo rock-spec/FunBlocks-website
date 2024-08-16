@@ -27,9 +27,6 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
     let relatedEvents: any[] = []
     if (data?.relatedEvents?.status === "fulfilled") relatedEvents = data?.relatedEvents?.value
 
-    console.log(relatedArticles)
-    console.log(relatedEvents)
-
     return (
         <>
             <div className="m-w-[895px] w-full">

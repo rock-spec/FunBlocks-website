@@ -64,7 +64,7 @@ const Video = ({ searchParams, params: { locale } }: { searchParams: any; params
 
     return (
         <>
-            <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
+            <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5 ">
                 {/* Main Column  */}
                 <VideoColumn data={videos} searchParams={searchParams} />
 
@@ -81,7 +81,7 @@ const Video = ({ searchParams, params: { locale } }: { searchParams: any; params
                             variant: "game",
                             tags: [game.engineid, game.gamestudioid, game.blockchainid],
                             title: game.game_name,
-                            imageUrl: game.pic,
+                            imageUrl: game.logo,
                         }))}
                     />
                 )}

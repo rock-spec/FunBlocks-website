@@ -12,7 +12,7 @@ export const getGameData = async (game_id: string) => {
     const { data, error } = await supabase
         .from("game")
         .select(
-            "gameid, game_name, website, game_desc, game_desc_zh, pic, engineid, gamestudioid, blockchainid"
+            "gameid, game_name, website, game_desc, game_desc_zh, pic, logo, engineid, gamestudioid, blockchainid"
         )
         .eq("gameid", game_id)
 
@@ -137,7 +137,6 @@ export const getGameRelatedData = async (gameids: any, locale: Locale) => {
 
 export const getGameRelatedDataForOthers: any = async (gameid: any, locale: Locale) => {
     const decodedGameId = decodeURIComponent(gameid)
-    console.log(decodedGameId)
 
     const [game, relatedArticles, relatedNews, relatedVideos, relatedEvents, featuredArticles] =
         await Promise.allSettled([
