@@ -25,7 +25,6 @@ const getAllVideos = async (filter: filterSchema) => {
     queryBuilder = queryBuilder.range(page * pageSize, (page + 1) * pageSize - 1) // Apply pagination
 
     const { data, error } = await queryBuilder
-    console.log(error)
 
     if (error) throw new Error("Error fetching articles: " + error.message)
     return data || []

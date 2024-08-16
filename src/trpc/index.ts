@@ -175,7 +175,6 @@ export const appRouter = router({
     }),
     newsSearchData: publicProcedure.input(z.string()).query(async (qry) => {
         const { input } = qry
-        console.log(input)
         // const newsData = await getNewsData()
         return ["qry"]
     }),

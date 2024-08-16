@@ -66,7 +66,6 @@ const getFeaturedArticlesData = async (locale: Locale) => {
     const { data, error } = await queryBuilder
 
     if (error) {
-        console.log("🚀 ~ getFeaturedArticlesData ~ error:", error)
         throw new Error("Error fetching articles: " + error.message)
     }
     const filteredData = data.filter((item) => item.content !== null)

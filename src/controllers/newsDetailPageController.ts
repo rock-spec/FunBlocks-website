@@ -53,7 +53,6 @@ export const getnewsDetailPageData = async ({ id, locale }: { id: string; locale
     const news_id = id
     const news: news = await newsData(news_id, locale)
     const gameid = news?.content?.gameid
-    console.log(gameid);
     
     const relatedData = await getGameRelatedDataForOthers(gameid, locale)
     return { news, relatedData }

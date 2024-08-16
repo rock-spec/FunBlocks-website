@@ -20,7 +20,6 @@ const CarousalHome = ({ data, locale }: { data: any; locale: Locale }) => {
     const [dataIndex, setDataIndex] = useState(0)
     const b = useTranslations("Buttons")
 
-console.log(data)
 
 
     const goNext = () => {

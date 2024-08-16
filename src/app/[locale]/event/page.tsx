@@ -84,13 +84,13 @@ const Event = ({ params: { locale }, searchParams }: { params: { locale: Locale 
                                 gamestudioid: any
                                 blockchainid: any
                                 game_name: any
-                                pic: any
+                                logo: any
                             }) => ({
                                 id: game.gameid,
                                 variant: "game",
                                 tags: [game.engineid, game.gamestudioid, game.blockchainid],
                                 title: game.game_name,
-                                imageUrl: game.pic,
+                                imageUrl: game.logo,
                             })
                         )}
                     />
