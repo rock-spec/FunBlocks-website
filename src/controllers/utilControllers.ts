@@ -59,7 +59,7 @@ export const getRelatedArticles = async (game_id: string, locale: Locale) => {
 export const getRelatedEvents = async (game_id: string) => {
     const { data, error } = await supabase
         .from("events")
-        .select("eventid,title,pic,joinurl,startdate,enddate, timezone,game(gameid)")
+        .select("eventid,title_en, title_zh,pic,joinurl,startdate,enddate, timezone,game(gameid)")
         .eq("gameid", game_id)
 
     if (error) {
