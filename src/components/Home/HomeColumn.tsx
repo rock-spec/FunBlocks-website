@@ -62,7 +62,6 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
     if (data?.videos?.status === "fulfilled") {
         videos = data.videos.value
     }
-    console.log(videos)
 
     let events: any[] = []
     if (data?.events?.status === "fulfilled") {

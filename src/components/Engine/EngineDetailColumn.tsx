@@ -36,7 +36,7 @@ export const EngineDetailColumn = ({
         title: game?.game_name,
         description: game?.game_desc,
         description_zh: game?.game_desc_zh,
-        tags: [game?.gamestudioid],
+        tags: [game?.gamestudioid, game?.blockchainid],
     }))
     const engineData = engine && engine[0]
 
@@ -178,7 +178,7 @@ export const EngineDetailColumn = ({
                     </div>
                 </div>
 
-                {/* {relatedGames.length > 0 && (
+                {relatedGames.length > 0 && (
                     <div className="flex mb-10  flex-col  items-start gap-5 ">
                         <Tag text={`${engineData?.engineid} GAMES`} type={"section"} />
                         <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
@@ -189,7 +189,7 @@ export const EngineDetailColumn = ({
                             ))}
                         </div>
                     </div>
-                )} */}
+                )}
 
                 {relatedArticles.length > 0 && (
                     <div className="flex mb-10 gap-x-5">

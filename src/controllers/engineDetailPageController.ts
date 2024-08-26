@@ -22,7 +22,7 @@ const getRelatedGames = async (engine_id: string) => {
 
     if (error) {
         throw new Error("Error fetching engine: " + error.message)
-    }
+    }    
     return data || []
 }
 

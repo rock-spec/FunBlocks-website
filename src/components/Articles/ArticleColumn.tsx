@@ -33,7 +33,6 @@ export const ArticleColumn = ({
         setArticles(data)
     }, [data])
 
-
     const singleCardItemDetails: SingleCardItemProps[] = articles?.map((article: any) => ({
         variant: "article",
         id: article?.articleid,
@@ -41,7 +40,11 @@ export const ArticleColumn = ({
         title: article?.content?.[`title_${locale}`] || article?.content?.title_en,
         description: article?.content?.[`description_${locale}`] || article?.content?.description_en,
         details: formatDate(article?.publishdate),
-        tags: [article?.games[0]?.gameid],
+        tags: [
+            ...(article?.games?.map((game: any) => game?.gameid) || []),
+            article?.content?.engineid,
+            article?.category?.name,
+        ].filter(Boolean),
         author: article?.content?.author?.name,
         onFirstButtonClick: () => {},
         onSecondButtonClick: () => {},

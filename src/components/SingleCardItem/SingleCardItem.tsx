@@ -47,8 +47,6 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         joinurl,
     } = props
 
-
-
     return (
         <div className="flex md:flex-row  flex-col items-start gap-6 w-[863px] ">
             {/* First Column: Image */}
@@ -71,16 +69,16 @@ const SingleCardItem = (props: SingleCardItemProps) => {
             {/* Second Column */}
             <div className="flex flex-col w-full h-full">
                 {/* First Row */}
-                <div className="flex flex-col gap-2 pe-5">
+                <div className="flex flex-col gap-2 pe-5 h-[149px] ">
                     {/* Title */}
-                    <div className="text-[#161616] font-bold text-lg leading-[120%] tracking-[-0.32px] line-clamp-2 bg ">
+                    <div className="text-[#161616] font-bold text-lg  tracking-[-0.32px] line-clamp-2 bg leading-6">
                         <Link href={`/${variant}/${id}`}>{title}</Link>
                     </div>
 
                     {/* Details */}
                     <div className="text-neutral-900 text-base font-normal leading-normal w-full overflow-hidden break-all ">
                         <Link href={`/${variant}/${id}`}>
-                            <div className={`line-clamp-2  ${cabin.className}`}>{description}</div>
+                            <div className={`line-clamp-2 leading-6 ${cabin.className}`}>{description}</div>
                         </Link>
                     </div>
 
@@ -88,7 +86,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                     {variant === "event" ? (
                         <div className="flex items-center md:flex-row flex-col gap-3 flex-1">
                             <div className="flex gap-1">
-                                {tags.map((tag, index) => (
+                                {tags.slice(0, 4).map((tag, index) => (
                                     <Tag text={tag} key={index} type={"relevance"} linkto="game" />
                                 ))}
                             </div>
@@ -104,7 +102,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                             </div>
                         </div>
                     ) : (
-                        <div className="flex md:flex-row flex-col gap-3 mt-2">
+                        <div className="flex md:flex-row flex-col gap-3 mt-auto">
                             {tags.length > 0 && tags[0] && (
                                 <div className="flex gap-1">
                                     {tags.map((tag, index) => (
