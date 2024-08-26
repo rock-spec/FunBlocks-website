@@ -52,7 +52,7 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
                                     {game?.game_name}
                                 </div>
 
-                                <div className="text-neutral-900 text-base font-normal">
+                                <div className="text-neutral-900 text-base font-normal leading-6 h-[144px] overflow-y-auto">
                                     {locale === "en" ? game?.game_desc : game?.game_desc_zh}
                                 </div>
                                 <div className="flex gap-x-1 mt-3">

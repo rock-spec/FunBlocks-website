@@ -45,6 +45,29 @@ const getLatestNews = async (locale: string) => {
     }
 }
 
+const getFeatured = async (locale: string) => {
+    try {
+        const { data, error } = await supabase
+
+            .from("featured")
+            .select(
+                `featuredid, title, image, url, game(gameid, game_name, engineid, gamestudioid, blockchainid)`
+            )
+            .order("created_at", { ascending: false })
+            .limit(3)
+        if (error) {
+            console.log(error)
+
+            throw new Error("Error fetching news: " + error.message)
+        }
+
+        return data || []
+    } catch (error) {
+        console.error(error)
+        return []
+    }
+}
+
 const getFeaturedArticles = async (locale: string) => {
     const { data, error } = await supabase
         .from("articles")
@@ -60,11 +83,12 @@ const getFeaturedArticles = async (locale: string) => {
     return data || []
 }
 
-const getFeturedVideos = async () => {
+const getFeturedVideos = async (locale?: string) => {
     const { data, error } = await supabase
         .from("videos")
         .select("videoid,video_name,summary,media_url")
         .eq("isHome", true)
+        .eq("language", locale)
         .limit(4)
 
     if (error) {
@@ -86,13 +110,14 @@ const getfeaturedEvents = async () => {
 }
 
 const getHomeData = async (locale: string) => {
-    const [featuredNews, games, articles, videos, events, latestNews] = await Promise.allSettled([
+    const [featuredNews, games, articles, videos, events, featured] = await Promise.allSettled([
         getfeaturedNews(locale),
         getFeaturedGames(),
         getFeaturedArticles(locale),
-        getFeturedVideos(),
+        getFeturedVideos(locale),
         getfeaturedEvents(),
-        getLatestNews(locale),
+        // getLatestNews(locale),
+        getFeatured(locale),
     ])
 
     return {
@@ -101,7 +126,7 @@ const getHomeData = async (locale: string) => {
         articles,
         videos,
         events,
-        latestNews,
+        featured,
     }
 }
 

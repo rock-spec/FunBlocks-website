@@ -1,5 +1,5 @@
 import React from "react"
-import ArticleCard from "@/components/ArticleCard/ArticleCard"
+// import ArticleCard from "@/components/ArticleCard/ArticleCard"
 import SingleCard from "@/components/SingleCard/SingleCard"
 import { CustomButton } from "@/components/Button/Button"
 import Image from "next/image"

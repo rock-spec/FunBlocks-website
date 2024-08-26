@@ -98,7 +98,7 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                         </div>
                     </div>
 
-                    <div className="mt-5 text-neutral-900 text-base font-normal  leading-normal mb-[20.28px]">
+                    <div className="mt-5 text-neutral-900 text-base font-normal h-[144px] overflow-y-auto  leading-6 mb-[20.28px]">
                         {eventDetails?.[`detail_${locale}`] || eventDetails.detail_en}
                     </div>
                 </div>
@@ -108,16 +108,18 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                             heading={t("relatedArticles")}
                             name={"article"}
                             singleCardItemDetails={relatedArticles.map((article: any) => ({
-                                id: article?.articleid,
+                                id: article?.articles?.articleid,
                                 variant: "article",
-                                imageUrl: `${article?.content?.image}?height=360&width=720`,
-                                title: article?.content?.[`title_${locale}`] || article?.content?.title_en,
+                                imageUrl: `${article?.articles?.content?.image}?height=360&width=720`,
+                                title:
+                                    article?.articles?.content?.[`title_${locale}`] ||
+                                    article?.articles?.content?.title_en,
                                 description:
-                                    article?.content?.[`description_${locale}`] ||
-                                    article?.content?.description_en,
-                                details: formatDate(article?.publishdate),
-                                tags: [article?.content?.game?.gameid],
-                                author: article?.content?.author?.name,
+                                    article?.articles?.content?.[`description_${locale}`] ||
+                                    article?.articles?.content?.description_en,
+                                details: formatDate(article?.articles?.publishdate),
+                                tags: [article?.articles?.content?.game?.gameid],
+                                author: article?.articles?.content?.author?.name,
                                 onFirstButtonClick: () => {},
                                 onSecondButtonClick: () => {},
                             }))}

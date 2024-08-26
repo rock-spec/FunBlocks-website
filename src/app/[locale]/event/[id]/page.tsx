@@ -24,6 +24,7 @@ const EventDetails = async ({ params }: { params: { id: string; locale: Locale }
     if (relatedData?.relatedArticles?.status === "fulfilled")
         relatedArticles = relatedData?.relatedArticles?.value
 
+
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
             {/* Main Column  */}
@@ -52,11 +53,13 @@ const EventDetails = async ({ params }: { params: { id: string; locale: Locale }
                         title={n("articles")}
                         onButtonClick={() => {}}
                         columnItems={relatedArticles.map((article: any) => ({
-                            id: article.articleid,
+                            id: article?.articleid,
                             variant: "article",
                             tags: [],
-                            title: article.content[`title_${locale}`] || article.content?.title_en,
-                            imageUrl: article.content.image,
+                            title:
+                                article?.articles?.content?.[`title_${locale}`] ||
+                                article?.articles?.content?.title_en,
+                            imageUrl: article?.articles?.content?.image,
                         }))}
                     />
                 )}

@@ -1,5 +1,6 @@
-export default function formatDate(dateString: string, includeTime = false): string {   
-     
+export default function formatDate(dateString: string, includeTime = false): string {
+    console.log(dateString)
+
     const date: Date = new Date(dateString)
     // Convert to EST
     const estDate = new Date(date.toLocaleString("en-US"))
