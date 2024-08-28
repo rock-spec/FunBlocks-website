@@ -11,33 +11,40 @@ import SingleVideoCardItem from "../SingleCard/SingleVideoCardItem"
 
 const cabin = Cabin({ subsets: ["latin"], weight: ["400", "500", "600", "700"] })
 
-export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Locale }) => {
+export const ArticleDetailsColumn = ({
+    data,
+    locale,
+    articleId,
+}: {
+    data: any
+    locale: Locale
+    articleId: string
+}) => {
     const t = useTranslations("Tags")
-    
 
+    const relatedData = data?.relatedData
 
-    const relatedData = data?.relatedData;
-
-    let games: any = [];
-    let relatedArticles: any = [];
-    let relatedVideos: any = [];
-    let singleCardItemDetails = [];
+    let games: any = []
+    let relatedArticles: any = []
+    let relatedVideos: any = []
+    let singleCardItemDetails = []
 
     relatedData?.forEach((item: any) => {
         if (item.game?.status === "fulfilled") {
-            games.push(...item.game.value);
-
-
+            games.push(...item.game.value)
         }
         if (item.relatedArticles?.status === "fulfilled" && Array.isArray(item.relatedArticles.value)) {
             item.relatedArticles.value.forEach((article: any) => {
-                relatedArticles.push(article);
-            });
+                if (article.articles.articleid !== articleId) {
+                    relatedArticles.push(article)
+                }
+            })
         }
         if (item.relatedVideos?.status === "fulfilled") {
-            relatedVideos.push(...item.relatedVideos.value);
+            relatedVideos.push(...item.relatedVideos.value)
         }
-    });
+    })
+
     singleCardItemDetails = relatedVideos.map((video: any) => ({
         key: video?.videoid,
         variant: "video",
@@ -48,7 +55,7 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
         tags: [],
         gameid: video.gameid,
         date: video.publishdate,
-    }));
+    }))
 
 
     return (
@@ -63,7 +70,6 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         {data.article.content[`title_${locale}`] || data.article.content?.title_en}
                     </div>
                     <div className="flex gap-1 mb-[24px]">
-
                         {/* {game.length>0  && [game[0].gameid].map((tag, index) => (
                             <Tag text={tag} key={index} type={"relevance"} linkto="game" />
                         ))} */}
@@ -105,36 +111,37 @@ export const ArticleDetailsColumn = ({ data, locale }: { data: any; locale: Loca
                         heading={t("relatedArticles")}
                         name={"article"}
                         singleCardItemDetails={relatedArticles.map((article: any) => ({
-                            id: article?.articleid,
+                            id: article?.articles?.articleid,
                             variant: "article",
-                            imageUrl: `${article?.content?.image}?height=360&width=720`,
-                            title: article?.content?.[`title_${locale}`],
-                            description: article?.content?.[`description_${locale}`],
-                            details: formatDate(article?.publishdate),
-                            tags: [article?.content?.game?.gameid],
-                            author: article?.content?.user?.username,
-                            onFirstButtonClick: () => { },
-                            onSecondButtonClick: () => { },
+                            imageUrl: `${article?.articles?.content?.image}?height=360&width=720`,
+                            title: article?.articles?.content?.[`title_${locale}`],
+                            description: article?.articles?.content?.[`description_${locale}`],
+                            details: formatDate(article?.articles?.publishdate),
+                            tags: [article?.articles?.content?.game?.gameid],
+                            author: article?.articles?.content?.author?.name,
+                            onFirstButtonClick: () => {},
+                            onSecondButtonClick: () => {},
                         }))}
-                        onButtonClick={() => { }}
+                        onButtonClick={() => {}}
                     />
                 </div>
                 <div className="bg-[#FFFCF9] p-5 border border-[#161616]">
                     <div className="w-fit mb-5">
                         <Tag text={`${"Related Videos"}`} type={"section"} />
                     </div>
+
                     <div className="flex gap-x-5">
-                        <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
-                            {singleCardItemDetails.length > 0 ? (
-                                singleCardItemDetails.map((detail: any, index: any) => (
+                        {singleCardItemDetails.length > 0 ? (
+                            <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
+                                {singleCardItemDetails.map((detail: any, index: any) => (
                                     <div className="p-5 " key={index}>
                                         <SingleVideoCardItem key={index} {...detail} />
                                     </div>
-                                ))
-                            ) : (
-                                <div>No videos found</div>
-                            )}
-                        </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="w-full text-center ">No videos found</div>
+                        )}
                     </div>
                 </div>
             </div>

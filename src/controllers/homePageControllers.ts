@@ -11,11 +11,12 @@ const getfeaturedNews = async (locale: string) => {
             `newsid, content(title_en, title_zh, image, game!content_gameid_fkey(gameid, game_name, engineid, gamestudioid, blockchainid))`
         )
         .eq("isHome", true)
-        .limit(3)
+        .not(`content.title_${locale}`, "is", null)
+        .not("content", "is", null)
+        .limit(6)
 
     if (error) {
         console.log(error)
-
         throw new Error("Error fetching news: " + error.message)
     }
 
@@ -75,6 +76,9 @@ const getFeaturedArticles = async (locale: string) => {
             `articleid, publishdate,games:content_gameids(gameid), content(contentid, image, title_en, title_zh, description_en, description_zh, author(*))`
         )
         .eq("isHome", true)
+        .not(`content.title_${locale}`, "is", null)
+        .not("content", "is", null)
+        .limit(3)
 
     if (error) {
         console.log(error, "error in article")
@@ -98,8 +102,13 @@ const getFeturedVideos = async (locale?: string) => {
     return data || []
 }
 
-const getfeaturedEvents = async () => {
-    const { data, error } = await supabase.from("events").select("*").eq("isHome", true).limit(4)
+const getfeaturedEvents = async (locale: string) => {
+    const { data, error } = await supabase
+        .from("events")
+        .select("*")
+        .eq("isHome", true)
+        .not(`title_${locale}`, "is", null)
+        .limit(4)
 
     if (error) {
         console.log(error)
@@ -115,7 +124,7 @@ const getHomeData = async (locale: string) => {
         getFeaturedGames(),
         getFeaturedArticles(locale),
         getFeturedVideos(locale),
-        getfeaturedEvents(),
+        getfeaturedEvents(locale),
         // getLatestNews(locale),
         getFeatured(locale),
     ])

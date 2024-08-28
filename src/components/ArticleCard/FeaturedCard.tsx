@@ -21,14 +21,15 @@ const FeaturedCard = (props: FeaturedCardProps) => {
         <Link href={url} className="" target="_blank">
             <div className="flex flex-col items-start  gap-y-5 p-5 border border-[#161616] bg-[#FFFCF9] md:w-[285px] w-full mb-5 md:mb-0 md:h-[310px] overflow-hidden">
                 {/* First Row: Image */}
-                <Image
-                    src={imageUrl} // Replace with the actual image URL
-                    alt={title}
-                    width={245}
-                    height={200}
-                    layout="responsive"
-                    className="h-[180px] w-[245px] border border-[#161616] object-cover rounded-[4px]"
-                />
+                <div className=" w-[245px] h-[180px] overflow-hidden rounded-[4px] border border-[#161616] ">
+                    <Image
+                        src={imageUrl} // Replace with the actual image URL
+                        alt={title}
+                        width={245}
+                        height={200}
+                        className="h-full w-full object-cover"
+                    />
+                </div>
                 <div className="self-stretch overflow-hidden text-nero text-lg font-bold leading-[22px]  line-clamp-2 ">
                     {title}
                 </div>

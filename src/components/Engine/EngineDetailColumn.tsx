@@ -46,14 +46,14 @@ export const EngineDetailColumn = ({
                 <div className={"h-fit-content items-stretch flex mb-10 gap-x-5 " + cabin.className}>
                     <div className="w-full p-5 bg-stone-50   border border-neutral-900 flex md:flex-row flex-col justify-end items-start gap-6  h-full">
                         {/* image container */}
-                        <div className="relative md:w-[50%] w-full">
+                        <div className="relative md:max-w-[50%] min-w-[457px] h-[337px] w-full">
                             {/* main banner image  */}
                             <Image
                                 src={engineData?.pic}
                                 width={457}
                                 height={337}
                                 alt=""
-                                className="rounded-md w-full"
+                                className="rounded-md object-center object-cover min-w-[457px] max-w-[50%] h-[337px]"
                             />
                         </div>
 

@@ -1,3 +1,4 @@
+import { Locale } from "@/i18n.config"
 import SupabaseInstance from "../../supabase"
 
 const supabase = SupabaseInstance.getSupabaseInstance()
@@ -10,33 +11,18 @@ type filterSchema = {
     pageSize: number
     type?: string
     status?: string
+    locale?: Locale
 }
 
-// const getAllEvents = async (filter: filterSchema) => {
-//     const { query, categoryid, sort, page, pageSize, type, status } = filter
-//     console.log(status)
-
-//     let queryBuilder = supabase.from("events").select("*,game(gameid,engineid,gamestudioid,blockchainid)")
-//     if (categoryid) queryBuilder = queryBuilder.eq("category", categoryid)
-//     if (query) queryBuilder = queryBuilder.ilike(`title`, `%${query}%`)
-//     if (type) queryBuilder = queryBuilder.eq("type", type)
-//     // if (sort) queryBuilder = queryBuilder.order("startdate", { ascending: true })
-//     queryBuilder = queryBuilder.range(page * pageSize, (page + 1) * pageSize - 1)
-
-//     const { data, error } = await queryBuilder
-
-//     if (error) throw new Error("Error fetching articles: " + error.message)
-//     console.log(data)
-
-//     return data || []
-// }
-
 const getAllEvents = async (filter: filterSchema) => {
-    const { query, categoryid, sort, page, pageSize, type, status } = filter
+    const { query, categoryid, sort, page, pageSize, type, status, locale } = filter
 
     const nowUtc = new Date().toISOString()
 
-    let queryBuilder = supabase.from("events").select("*,game(gameid,engineid,gamestudioid,blockchainid)")
+    let queryBuilder = supabase
+        .from("events")
+        .select("*,game(gameid,engineid,gamestudioid,blockchainid)")
+        .not(`title_${locale}`, "is", null)
     if (categoryid) queryBuilder = queryBuilder.eq("category", categoryid)
     if (query) queryBuilder = queryBuilder.ilike(`title`, `%${query}%`)
     if (type) queryBuilder = queryBuilder.eq("type", type)

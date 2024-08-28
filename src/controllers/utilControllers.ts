@@ -23,23 +23,6 @@ export const getGameData = async (game_id: string) => {
     return data || []
 }
 
-// export const getRelatedArticles = async (game_id: string, locale: Locale) => {
-//     console.log(game_id)
-//     const { data, error } = await supabase
-//         .from("articles")
-//         .select(
-//             `*, category(name), content(title_en, title_zh, description_en, description_zh, image, game(gameid), author(name))`
-//         )
-//         .eq("content.gameid", game_id)
-
-//     if (error) {
-//         console.error("Error fetching articles:", error.message)
-//         throw new Error("Error fetching articles: " + error.message)
-//     }
-//     const filteredData = data.filter((article) => article.content !== null)
-//     return filteredData || []
-// }
-
 export const getRelatedArticles = async (game_id: string, locale: Locale) => {
     const { data, error } = await supabase
         .from("content_gameids")
@@ -47,20 +30,24 @@ export const getRelatedArticles = async (game_id: string, locale: Locale) => {
             `articles(*, content(title_en, title_zh, description_en, description_zh, image, author(name)))`
         )
         .eq("gameid", game_id)
+        .not(`articles.content.title_${locale}`, "is", null)
+        .not("articles.content", "is", null)
+        .not("articles", "is", null)
 
     if (error) {
-        console.log("🚀 ~ getRelatedArticles ~ error:", error)
         throw new Error("Error fetching articles: " + error.message)
     }
-    // const filteredData = data.filter((article) => article.content !== null)
+    console.log(data)
+
     return data || []
 }
 
-export const getRelatedEvents = async (game_id: string) => {
+export const getRelatedEvents = async (game_id: string, locale: Locale) => {
     const { data, error } = await supabase
         .from("events")
         .select("eventid,title_en, title_zh,pic,joinurl,startdate,enddate, timezone,game(gameid)")
         .eq("gameid", game_id)
+        .not(`title_${locale}`, "is", null)
 
     if (error) {
         console.log(error)
@@ -75,6 +62,8 @@ export const getRelatedNews = async (game_id: string, locale: Locale) => {
         .from("news")
         .select(`*,content(title_en, title_zh, image, game!content_gameid_fkey(gameid), author(name))`)
         .eq("content.gameid", game_id)
+        .not(`content.title_${locale}`, "is", null)
+        .not("content", "is", null)
     if (error) {
         throw new Error("Error fetching games: " + error.message)
     }
@@ -82,10 +71,11 @@ export const getRelatedNews = async (game_id: string, locale: Locale) => {
     return data.filter((news) => news.content !== null) || []
 }
 
-export const getRelatedVideos = async (game_id: string) => {
+export const getRelatedVideos = async (game_id: string, locale: Locale) => {
     const { data, error } = await supabase
         .from("videos")
         .select("videoid,video_name,summary,media_url")
+        .eq("language", locale)
         .eq("gameid", game_id)
 
     if (error) {
@@ -116,8 +106,8 @@ export const getGameRelatedData = async (gameids: any, locale: Locale) => {
                     getGameData(game_id),
                     getRelatedArticles(game_id, locale),
                     getRelatedNews(game_id, locale),
-                    getRelatedVideos(game_id),
-                    getRelatedEvents(game_id),
+                    getRelatedVideos(game_id, locale),
+                    getRelatedEvents(game_id, locale),
                     getfeaturedArticles(locale),
                 ])
 
@@ -143,8 +133,8 @@ export const getGameRelatedDataForOthers: any = async (gameid: any, locale: Loca
             getGameData(decodedGameId),
             getRelatedArticles(decodedGameId, locale),
             getRelatedNews(decodedGameId, locale),
-            getRelatedVideos(decodedGameId),
-            getRelatedEvents(decodedGameId),
+            getRelatedVideos(decodedGameId, locale),
+            getRelatedEvents(decodedGameId, locale),
             getfeaturedArticles(locale),
         ])
 

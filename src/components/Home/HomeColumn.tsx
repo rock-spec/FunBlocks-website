@@ -83,7 +83,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                         sliderData && <CarousalHome data={sliderData} locale={locale} />
                     )}
 
-                    <div className="h-full">
+                    <div className="h-full border ">
                         <Column
                             variant="news"
                             title={n("news")}
@@ -95,15 +95,15 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                                 id: news.newsid,
                                 variant: "news",
                                 tags: [news?.content?.game?.gameid],
-                                title: news?.content?.[`title_${locale}`] || news?.content?.title_en,
-                                imageUrl: news.content.image,
+                                title: news?.content?.[`title_${locale}`],
+                                imageUrl: news?.content?.image,
                             }))}
                         />
                     </div>
                 </div>
 
                 {featured && featured.length > 0 && (
-                    <div className="flex mb-10  w-full gap-7 flex-col md:flex-row">
+                    <div className="grid grid-cols-3 gap-7 mb-10 me-[8px]">
                         {featured?.map((featured: any, index: number) => (
                             <FeaturedCard
                                 id={featured?.featuredid}
@@ -128,10 +128,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                             variant: "article",
                             id: article?.articleid,
                             imageUrl: `${article?.content.image}?height=360&width=720`,
-                            title:
-                                article?.content[`title_${locale}`] ||
-                                article?.content?.title_en ||
-                                article?.content?.title_zh,
+                            title: article?.content[`title_${locale}`],
                             description:
                                 article?.content[`description_${locale}`] || article?.content?.description_en,
                             details: formatDate(article?.publishdate),
@@ -171,7 +168,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                             id: event?.eventid,
                             variant: "event",
                             imageUrl: `${event?.pic}?height=360&width=720`,
-                            title: event?.[`title_${locale}`] || event?.title_en || event?.title_zh,
+                            title: event?.[`title_${locale}`],
                             details: `${formatDate(event?.startdate)} - ${formatDate(event?.enddate)}`,
                             // 'zone': "EST",
                             joinurl: event?.joinurl,

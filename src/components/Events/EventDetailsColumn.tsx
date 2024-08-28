@@ -30,6 +30,7 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
     if (relatedData?.relatedArticles?.status === "fulfilled")
         relatedArticles = relatedData?.relatedArticles?.value
 
+
     return (
         <>
             <div className="m-w-[895px] w-full">

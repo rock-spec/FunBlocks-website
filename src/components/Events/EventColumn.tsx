@@ -48,6 +48,7 @@ export const EventColumn = ({
         { name: b("notStarted"), status: "notStarted" },
     ]
 
+
     const singleCardItemDetails: SingleCardItemProps[] = events?.map((event: any) => ({
         url: `/event/${event?.eventid}`,
         id: event?.eventid,
@@ -57,6 +58,7 @@ export const EventColumn = ({
         details: `${formatTimestamp(event?.startdate)}  ${
             event?.enddate ? `- ${formatTimestamp(event?.enddate)}` : ""
         }`,
+        description: event?.[`detail_${locale}`] || event?.detail_en,
         timezone: event?.timezone,
         joinurl: event?.joinurl,
         tags: [event?.game.gameid],
@@ -67,6 +69,7 @@ export const EventColumn = ({
     useEffect(() => {
         setEvents(data)
     }, [data])
+
 
     return (
         // w-[863px]
@@ -109,7 +112,7 @@ export const EventColumn = ({
                             singleCardItemDetails.map((detail, index) => (
                                 <div
                                     key={index}
-                                    className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[55rem]"
+                                    className="p-5 border border-[#161616] bg-[#FFFCF9]   w-full lg:w-[55rem] "
                                 >
                                     <SingleCardItem key={index} {...detail} />
                                 </div>

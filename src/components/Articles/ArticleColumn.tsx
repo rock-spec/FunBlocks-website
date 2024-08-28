@@ -88,9 +88,9 @@ export const ArticleColumn = ({
                         ) : (
                             <div className="border">No articles found.</div>
                         )}
-                        <div className="flex item-center w-full justify-center">
-                            {/* <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" /> */}
-                        </div>
+                        {/* <div className="flex item-center w-full justify-center">
+                            <CustomButton text="Show More" onClick={() => { }} size="15px" width="240px" />
+                        </div> */}
                     </div>
                 </div>
             </div>

@@ -29,7 +29,7 @@ export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale 
                         "flex-col w-full mb-10 p-5 border border-[#161616] bg-[#FFFCF9] " + cabin.className
                     }
                 >
-                    <div className=" text-neutral-900 text-[28px] font-bold  leading-[33.60px] mb-[12px]">
+                    <div className=" text-neutral-900 text-[28px] font-bold  leading-[33.60px] mb-[12px] w-[850px]">
                         {data?.news?.content?.[`title_${locale}`] || data?.news?.content?.title_en}
                     </div>
                     <div className="flex gap-1 mb-[24px]">
@@ -47,7 +47,7 @@ export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale 
                             </div>
                         </div>
                     </div>
-{/* 
+                    {/* 
                     <div className="my-6">
                         <h1 className="font-semibold text-xl mt-6 mb-3">Summary</h1>
                         <p className="">
@@ -79,7 +79,7 @@ export const NewsDetailsColumn = ({ data, locale }: { data: any; locale: Locale 
                             id: article?.articles?.articleid,
                             variant: "article",
                             imageUrl: `${article?.articles?.content.image}?height=360&width=720`,
-                            title: article?.content?.[`title_${locale}`] || article?.content?.title_en,
+                            title: article?.articles?.content?.[`title_${locale}`] ,
                             description:
                                 article?.articles?.content?.[`description_${locale}`] ||
                                 article?.articles?.content?.description_en,
