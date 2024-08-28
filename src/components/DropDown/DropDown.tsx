@@ -65,11 +65,11 @@ const CustomDropDown = ({
     useEffect(() => {
         if (selectedCategory) {
             router.push(
-                `${path}?category=${selectedCategory}&network=${searchParams?.network || ""}&sort=${
-                    searchParams?.sort || ""
-                }&types=${searchParams?.type || ""}&status=${searchParams?.status || ""}&qry=${
-                    searchParams?.qry || ""
-                }`
+                `${path}?category=${selectedCategory === "all" ? "" : selectedCategory}&network=${
+                    searchParams?.network || ""
+                }&sort=${searchParams?.sort || ""}&types=${searchParams?.type || ""}&status=${
+                    searchParams?.status || ""
+                }&qry=${searchParams?.qry || ""}`
             )
             router.refresh()
         }

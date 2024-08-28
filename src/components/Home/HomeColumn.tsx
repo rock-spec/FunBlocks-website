@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import ArticleCard from "@/components/ArticleCard/ArticleCard"
+import FeaturedCard from "@/components/ArticleCard/FeaturedCard"
 import SingleCard from "@/components/SingleCard/SingleCard"
 import { Column } from "../Column/Column"
 import CarousalHome from "../Carousel/CarousalHome"
@@ -43,9 +43,14 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
         fetchData()
     }, [])
 
-    let latestNews: any[] = []
-    if (data?.latestNews?.status === "fulfilled") {
-        latestNews = data.latestNews.value
+    // let latestNews: any[] = []
+    // if (data?.latestNews?.status === "fulfilled") {
+    //     latestNews = data.latestNews.value
+    // }
+
+    let featured: any[] = []
+    if (data?.featured?.status === "fulfilled") {
+        featured = data.featured.value
     }
 
     let articles: any[] = []
@@ -78,7 +83,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                         sliderData && <CarousalHome data={sliderData} locale={locale} />
                     )}
 
-                    <div className=" h-full  ">
+                    <div className="h-full border ">
                         <Column
                             variant="news"
                             title={n("news")}
@@ -90,29 +95,31 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                                 id: news.newsid,
                                 variant: "news",
                                 tags: [news?.content?.game?.gameid],
-                                title: news?.content?.[`title_${locale}`] || news?.content?.title_en,
-                                imageUrl: news.content.image,
+                                title: news?.content?.[`title_${locale}`],
+                                imageUrl: news?.content?.image,
                             }))}
                         />
                     </div>
                 </div>
 
-                <div className="flex mb-10  w-full gap-7 flex-col md:flex-row ">
-                    {latestNews?.length > 0 &&
-                        latestNews?.map((featured: any) => (
-                            <ArticleCard
-                                id={featured?.newsid}
-                                key={featured?.newsid} // Ensure to provide a unique key for each iterated element
-                                imageUrl={featured?.content?.image}
-                                title={
-                                    featured?.content?.[`title_${locale}`] ||
-                                    featured?.content?.title_en ||
-                                    featured?.content?.title_zh
-                                }
-                                tags={featured?.game?.length > 0 ? [featured?.game] : []} // Assuming you want to display the gameid as a tag
+                {featured && featured.length > 0 && (
+                    <div className="grid grid-cols-3 gap-7 mb-10 me-[8px]">
+                        {featured?.map((featured: any, index: number) => (
+                            <FeaturedCard
+                                id={featured?.featuredid}
+                                key={featured?.featuredid} // Ensure to provide a unique key for each iterated element
+                                imageUrl={featured?.image}
+                                title={featured?.title}
+                                url={featured?.url}
+                                tags={[
+                                    featured?.game?.game_name,
+                                    featured?.game?.blockchainid,
+                                    featured?.game?.gamestudioid,
+                                ].filter(Boolean)}
                             />
                         ))}
-                </div>
+                    </div>
+                )}
 
                 <div className="flex mb-10 gap-x-5 border-2 b">
                     <SingleCard
@@ -121,10 +128,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                             variant: "article",
                             id: article?.articleid,
                             imageUrl: `${article?.content.image}?height=360&width=720`,
-                            title:
-                                article?.content[`title_${locale}`] ||
-                                article?.content?.title_en ||
-                                article?.content?.title_zh,
+                            title: article?.content[`title_${locale}`],
                             description:
                                 article?.content[`description_${locale}`] || article?.content?.description_en,
                             details: formatDate(article?.publishdate),
@@ -138,23 +142,25 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                         onButtonClick={() => {}}
                     />
                 </div>
-                <div className="flex mb-10 gap-x-5">
-                    <SingleCard
-                        name={n("videos")}
-                        singleCardItemDetails={videos?.map((video: any) => ({
-                            variant: "video",
-                            id: video?.videoid,
-                            imageUrl: video?.media_url, //This is video url for video
-                            title: video?.video_name,
-                            description: video?.summary,
-                            tags: [],
-                            onFirstButtonClick: () => {},
-                            onSecondButtonClick: () => {},
-                        }))}
-                        buttonText={b("viewMoreVideos")}
-                        onButtonClick={() => {}}
-                    />
-                </div>
+                {videos && videos.length > 0 && (
+                    <div className="flex mb-10 gap-x-5">
+                        <SingleCard
+                            name={n("videos")}
+                            singleCardItemDetails={videos?.map((video: any) => ({
+                                variant: "video",
+                                id: video?.videoid,
+                                imageUrl: video?.media_url, //This is video url for video
+                                title: video?.video_name,
+                                description: video?.summary,
+                                tags: [],
+                                onFirstButtonClick: () => {},
+                                onSecondButtonClick: () => {},
+                            }))}
+                            buttonText={b("viewMoreVideos")}
+                            onButtonClick={() => {}}
+                        />
+                    </div>
+                )}
                 <div className="flex mb-10 gap-x-5 ">
                     <SingleCard
                         name={n("events")}
@@ -162,7 +168,7 @@ export const HomeColumn = ({ data, locale }: { data: any; locale: Locale }) => {
                             id: event?.eventid,
                             variant: "event",
                             imageUrl: `${event?.pic}?height=360&width=720`,
-                            title: event?.[`title_${locale}`] || event?.title_en || event?.title_zh,
+                            title: event?.[`title_${locale}`],
                             details: `${formatDate(event?.startdate)} - ${formatDate(event?.enddate)}`,
                             // 'zone': "EST",
                             joinurl: event?.joinurl,

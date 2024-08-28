@@ -21,6 +21,8 @@ const getAllNews = async (filter: filterSchema) => {
         .select(
             `newsid,publishdate, category(*), content(title_en, title_zh, description_en, description_zh, image, author(name),game(gameid,engineid,gamestudioid,blockchainid))`
         )
+        .not(`content.title_${locale}`, "is", null)
+        .not("content", "is", null)
     if (categoryid) queryBuilder = queryBuilder.eq("categoryid", categoryid)
     if (query) queryBuilder = queryBuilder.ilike(`content.title_${locale}`, `%${query}%`)
     if (sort) queryBuilder = queryBuilder.order("publishdate", { ascending: false })

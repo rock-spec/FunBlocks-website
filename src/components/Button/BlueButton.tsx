@@ -25,7 +25,7 @@ const BlueButton = ({
         <button
             className={`${height} ${width} flex justify-center items-center text-white text-lg  bg-cover bg-no-repeat ${bg} ${bg_hover} ${OffBit.className} leading-normal `}
         >
-            <Link href={link ? link : "#"} className="capitalize" target="_blank">
+            <Link href={link ? `${link}` : "#"} target="_blank">
                 {text}
             </Link>
         </button>

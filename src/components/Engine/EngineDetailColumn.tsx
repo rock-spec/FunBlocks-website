@@ -1,5 +1,5 @@
 import React from "react"
-import ArticleCard from "@/components/ArticleCard/ArticleCard"
+// import ArticleCard from "@/components/ArticleCard/ArticleCard"
 import SingleCard from "@/components/SingleCard/SingleCard"
 import { CustomButton } from "@/components/Button/Button"
 import Image from "next/image"
@@ -36,7 +36,7 @@ export const EngineDetailColumn = ({
         title: game?.game_name,
         description: game?.game_desc,
         description_zh: game?.game_desc_zh,
-        tags: [game?.gamestudioid],
+        tags: [game?.gamestudioid, game?.blockchainid],
     }))
     const engineData = engine && engine[0]
 
@@ -46,14 +46,14 @@ export const EngineDetailColumn = ({
                 <div className={"h-fit-content items-stretch flex mb-10 gap-x-5 " + cabin.className}>
                     <div className="w-full p-5 bg-stone-50   border border-neutral-900 flex md:flex-row flex-col justify-end items-start gap-6  h-full">
                         {/* image container */}
-                        <div className="relative md:w-[50%] w-full">
+                        <div className="relative md:max-w-[50%] min-w-[457px] h-[337px] w-full">
                             {/* main banner image  */}
                             <Image
                                 src={engineData?.pic}
                                 width={457}
                                 height={337}
                                 alt=""
-                                className="rounded-md w-full"
+                                className="rounded-md object-center object-cover min-w-[457px] max-w-[50%] h-[337px]"
                             />
                         </div>
 
@@ -178,7 +178,7 @@ export const EngineDetailColumn = ({
                     </div>
                 </div>
 
-                {/* {relatedGames.length > 0 && (
+                {relatedGames.length > 0 && (
                     <div className="flex mb-10  flex-col  items-start gap-5 ">
                         <Tag text={`${engineData?.engineid} GAMES`} type={"section"} />
                         <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
@@ -189,7 +189,7 @@ export const EngineDetailColumn = ({
                             ))}
                         </div>
                     </div>
-                )} */}
+                )}
 
                 {relatedArticles.length > 0 && (
                     <div className="flex mb-10 gap-x-5">

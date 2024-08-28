@@ -22,9 +22,10 @@ export interface ColumnProps {
 export const Column = (props: ColumnProps) => {
     const { variant, title, columnItems, buttonText, onButtonClick = () => {}, className, responsive } = props
 
+
     return (
         <div
-            className={`border relative border-black bg-floralWhite p-5 lg:w-[285px] h-fit ${
+            className={`border relative border-black bg-floralWhite p-5 lg:w-[285px] h-fit  ${
                 buttonText ? "h-[80%] lg:min-h-[650px] pb-[75px]" : ""
             }  ${responsive ? "sm:w-full bg-re mb-10 lg:mb-0" : ""} ${className} `}
         >
@@ -32,31 +33,27 @@ export const Column = (props: ColumnProps) => {
             <div className="flex justify-between items-center mb-5 ">
                 <Tag text={`${title}`} type={"section"} />
             </div>
-            <div className=" overflow-x-hidden w-fit max-h-fit">
-                {/* Row 2 */}
 
+            <div className=" overflow-x-hidden w-full max-h-fit">
                 <div
-                    className={`flex w-fit flex-col gap-${variant === "article" ? 0 : 5} ${
+                    className={`flex w-full flex-col gap-${variant === "article" ? 6 : 5} ${
                         responsive
-                            ? `sm:grid sm:grid-cols-2 md:grid-cols-3 lg:flex lg:w-fit lg:flex-col lg:gap-${
-                                  variant === "article" ? 0 : 5
+                            ? `sm:grid sm:grid-cols-2 md:grid-cols-3 lg:flex lg:w-full lg:flex-col lg:gap-${
+                                  variant === "article" ? 6 : 5
                               }`
                             : ``
                     }`}
                 >
                     {columnItems?.length > 0 ? (
-                        columnItems.map((detail, index) => (
-                            <ColumnItems key={index} {...detail} /> // Replace '...detail' with actual props
-                        ))
+                        columnItems.map((detail, index) => <ColumnItems key={index} {...detail} />)
                     ) : (
-                        <p></p>
+                        <p className="w-full text-center ">{`No related items `}</p>
                     )}
                 </div>
             </div>
 
             {/* Row 3 */}
             <div className="flex  w-full  absolute left-0 bottom-4">
-                {/* Replace ButtonComponent with your actual button component */}
                 {buttonText && (
                     <div className="mx-auto ">
                         <CustomButton

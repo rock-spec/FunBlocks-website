@@ -12,7 +12,6 @@ import VideoPlayer from "./VideoPlayer"
 
 const cabin = Cabin({
     subsets: ["latin"],
-    weight: ["700"],
 })
 
 export const VideoDetailsColumn = ({ data }: { data: any }) => {
@@ -67,10 +66,10 @@ export const VideoDetailsColumn = ({ data }: { data: any }) => {
                         </div>
                     </div>
 
-                    <div className=" text-neutral-900 text-xl font-semibold leading-[30px] mb-[12px] mt-[24px]">
+                    <div className=" text-neutral-900 text-xl font-semibold leading-[30px] mb-3 mt-4">
                         {t("videoSummary")}
                     </div>
-                    <div className=" text-neutral-900 text-base font-normal leading-normal mb-[20.28px]">
+                    <div className=" leading-6 tracking-[-0.32px]">
                         {video?.summary}
                     </div>
                 </div>

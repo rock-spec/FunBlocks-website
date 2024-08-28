@@ -1,6 +1,7 @@
 import { format } from "date-fns"
 
 export default function formatTimestamp(timestamp: string): string {
+
     const date = new Date(timestamp)
     const dayOfMonth = date.getDate()
     const daySuffix = (day: number) => {

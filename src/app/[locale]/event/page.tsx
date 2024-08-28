@@ -18,6 +18,7 @@ type FilterOptions = {
     pageSize: number
     type?: string
     status?: string
+    locale: Locale
 }
 
 const Event = ({ params: { locale }, searchParams }: { params: { locale: Locale }; searchParams: any }) => {
@@ -38,6 +39,7 @@ const Event = ({ params: { locale }, searchParams }: { params: { locale: Locale 
         status: searchParams?.status || "",
         page,
         pageSize,
+        locale,
     }
 
     const { data, isLoading, isError } = trpc.eventData.useQuery(filters)
