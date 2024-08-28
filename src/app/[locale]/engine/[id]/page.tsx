@@ -12,9 +12,10 @@ const EngineDetail = async ({ params }: { params: { id: string; locale: Locale }
     const id = params.id.replace(/%20/g, " ").toString()
     const locale = params.locale
     const data = await trpcServer().engineDetailsData({ id, locale })
-    const relatedNews = data.relatedNews
-    const relatedArticles = data.relatedArticles
-    const engine = data.engines
+    const relatedNews = data?.relatedNews
+    const relatedArticles = data?.relatedArticles
+    const relatedGames = data?.relatedGames
+    const engine = data?.engines
 
     const t = await getTranslations("Tags")
     const n = await getTranslations("Navbar")
@@ -24,7 +25,7 @@ const EngineDetail = async ({ params }: { params: { id: string; locale: Locale }
             {/* Main Column  */}
             <EngineDetailColumn
                 engine={engine}
-                relatedGames={[]}
+                relatedGames={relatedGames}
                 relatedArticles={relatedArticles}
                 locale={locale}
             />

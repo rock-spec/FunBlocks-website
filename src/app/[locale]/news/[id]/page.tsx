@@ -21,7 +21,9 @@ const NewsDetails = async ({ params }: { params: { id: string; locale: Locale } 
     if (relatedData?.game?.status === "fulfilled") game = relatedData?.game?.value
 
     let relatedNews: any[] = []
-    if (relatedData?.relatedNews?.status === "fulfilled") relatedNews = relatedData?.relatedNews?.value
+    if (relatedData?.relatedNews?.status === "fulfilled") {
+        relatedNews = relatedData?.relatedNews?.value.filter((news: any) => news.newsid !== id)
+    }
 
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">

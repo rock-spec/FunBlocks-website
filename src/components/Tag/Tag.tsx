@@ -22,7 +22,7 @@ const OffBit = localFont({
 
 export const Tag = (prop: TagProps) => {
     const { text, type = "section", numberOfMore = 0, linkto } = prop
-
+    
     if (text) {
         return (
             <>

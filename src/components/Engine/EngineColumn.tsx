@@ -42,24 +42,17 @@ export const EngineColumn = ({ data, searchParams }: { data: any; searchParams: 
                         />
                     </div>
                     {/* <CustomDropDown
-                        bg="bg-[url('/buttons/medium_dropdown.svg')]"
-                        text={b("type")}
-                        options={type}
-                    /> */}
-                    <CustomDropDown
-                        // bg="bg-[url('/buttons/medium_dropdown.svg')]"
                         text={b("category")}
                         options={fetchedCategories}
                         item={"category"}
                         searchParams={searchParams}
-                        // txt_px={"px-8"}
-                    />
+                    /> */}
                     <CustomDropDown
-                        // bg="bg-[url('/buttons/medium_dropdown.svg')]"
                         text={b("sortBy")}
                         options={sortOptions}
                         item={"sort"}
                         searchParams={searchParams}
+                        txt_px="px-6"
                     />
                 </div>
                 <div className="flex mb-10 gap-x-5">

@@ -61,7 +61,6 @@ const Article = ({ params: { locale }, searchParams }: { params: { locale: Local
     if (isLoading && page === 0) return <div>Loading...</div>
     if (isError) return <div>Error loading data</div>
 
-
     return (
         <>
             <div className="w-full max-w-[1200px] flex justify-between gap-x-5 lg:flex-row flex-col ">

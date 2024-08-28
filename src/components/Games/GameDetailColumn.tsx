@@ -32,19 +32,20 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
             <div className="m-w-[895px] w-full">
                 <div className=" items-stretch flex mb-10 gap-x-5">
                     <div className="w-full relative p-5 bg-stone-50 border border-neutral-900 flex md:flex-row flex-col items-start gap-6 h-full ">
-                        <div className="relative md:w-[50%] w-full">
+                        <div className="relative min-w-[467px] h-[350px] max-w-[50%]">
                             <Image
                                 src={game?.pic}
                                 width={467}
                                 height={350}
                                 alt=""
-                                className="rounded-md object-center  h-[300px] w-full"
+                                className="rounded-md object-center w-[467px] h-[350px]"
                             />
                         </div>
 
                         <div
                             className={
-                                "md:w-[50%] w-full flex flex-col justify-between h-full " + cabin.className
+                                "md:min-w-[370px] md:max-w-[50%]: w-full flex flex-col justify-between h-full " +
+                                cabin.className
                             }
                         >
                             <div className="">
@@ -52,7 +53,7 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
                                     {game?.game_name}
                                 </div>
 
-                                <div className="text-neutral-900 text-base font-normal">
+                                <div className="text-neutral-900 text-base font-normal leading-6 h-[144px] overflow-y-auto">
                                     {locale === "en" ? game?.game_desc : game?.game_desc_zh}
                                 </div>
                                 <div className="flex gap-x-1 mt-3">

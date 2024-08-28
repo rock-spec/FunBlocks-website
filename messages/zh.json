@@ -51,7 +51,7 @@
         "hackathon": "黑客马拉松",
         "other": "其他",
         "status": "状态",
-        "active": "活动中",
+        "active": "进行中",
         "ended": "结束",
         "notStarted": "未开始",
         "filterbytime": "按时间过滤",
@@ -71,7 +71,7 @@
         "relatedEvents": "相关活动",
         "latestNews": "最新消息",
         "summary": "摘要",
-        "videoSummary": "搜索"
+        "videoSummary": "摘要"
     },
     "Search": {
         "navSearch": "搜索",

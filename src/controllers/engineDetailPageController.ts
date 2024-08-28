@@ -31,6 +31,7 @@ export const getRelatedNews = async (engineId: string, locale: Locale) => {
         .from("news")
         .select(`*,content(title_en, title_zh, image, game!content_gameid_fkey(gameid), author(name))`)
         .eq("content.engineid", engineId)
+        .not(`content.title_${locale}`, "is", null)
     if (error) {
         throw new Error("Error fetching games: " + error.message)
     }
@@ -45,6 +46,8 @@ export const getRelatedArticles = async (engineId: string, locale: Locale) => {
             `*, category(name), content(title_en, title_zh, description_en, description_zh, image, game(gameid), author(name))`
         )
         .eq("content.engineid", engineId)
+        .not(`content.title_${locale}`, "is", null)
+        .not(`content`, "is", null)
 
     if (error) {
         console.error("Error fetching articles:", error.message)
@@ -53,8 +56,6 @@ export const getRelatedArticles = async (engineId: string, locale: Locale) => {
     const filteredData = data.filter((article) => article.content !== null)
     return filteredData || []
 }
-
-
 
 export const getEngineDetailPageData = async ({ id, locale }: { id: string; locale: Locale }) => {
     const engineId = id

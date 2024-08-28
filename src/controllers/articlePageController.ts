@@ -18,7 +18,7 @@ const getAllArticles = async (filter: filterSchema) => {
     let queryBuilder = supabase
         .from("articles")
         .select(
-            `articleid, publishdate,games:content_gameids(gameid), content(contentid, image, title_en, title_zh, description_en, description_zh, author(*))`
+            `articleid, category(name), publishdate,games:content_gameids(gameid), content(contentid, image, title_en, title_zh, description_en, description_zh, author(*), engineid)`
         )
     queryBuilder = queryBuilder.not(`content.title_${locale}`, "is", null)
     if (categoryid) queryBuilder = queryBuilder.eq("categoryid", categoryid)
@@ -82,4 +82,3 @@ export const getfeaturedArticles = async (locale: Locale) => {
     const featuredArticles = await getFeaturedArticlesData(locale)
     return { featuredArticles }
 }
-

@@ -16,32 +16,28 @@ const ArticleDetails = async ({ params }: { params: { id: string; locale: Locale
     const data = await trpcServer().articleDetailsData({ id, locale })
 
     let relatedData = data?.relatedData
-    let game: any[] = [];
-    let featuredArticles: any[] = [];
-    let articleIds = new Set<string>();
+    let game: any[] = []
+    let featuredArticles: any[] = []
+    let articleIds = new Set<string>()
 
-  
     if (Array.isArray(relatedData)) {
-        relatedData.forEach(data => {
+        relatedData.forEach((data) => {
             if (data?.game?.status === "fulfilled") {
-                game.push(...data.game.value);
+                game.push(...data.game.value)
             }
-    
+
             if (data?.featuredArticles?.status === "fulfilled") {
-                data.featuredArticles.value.featuredArticles.forEach((article:any) => {
-                    if (!articleIds.has(article.articleid)) {
-                        articleIds.add(article.articleid);
-                        featuredArticles.push(article);
-                    }
-                });
+                featuredArticles = data?.featuredArticles?.value?.featuredArticles?.filter(
+                    (article: any) => article.articleid !== id
+                )
             }
-        });
+        })
     }
 
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
             {/* Main Column  */}
-            <ArticleDetailsColumn data={data} locale={locale} />
+            <ArticleDetailsColumn data={data} locale={locale} articleId={id} />
             {/* {JSON.stringify(articlesDetails)} */}
 
             {/* Right Column */}
@@ -50,7 +46,7 @@ const ArticleDetails = async ({ params }: { params: { id: string; locale: Locale
                     variant="game"
                     title={t("relatedGames")}
                     responsive
-                    onButtonClick={() => { }}
+                    onButtonClick={() => {}}
                     columnItems={game?.map((game) => ({
                         id: game?.gameid,
                         variant: "game",
@@ -59,13 +55,12 @@ const ArticleDetails = async ({ params }: { params: { id: string; locale: Locale
                         imageUrl: game?.pic,
                     }))}
                 />
-                {/* for space between them */}
                 <div className="h-[24px] w-full"></div>
                 <Column
                     variant="featuredArticles"
                     title={t("featuredArticles")}
                     responsive
-                    onButtonClick={() => { }}
+                    onButtonClick={() => {}}
                     columnItems={featuredArticles?.map((article: any) => ({
                         id: article?.articleid,
                         variant: "featuredArticles",

@@ -1,4 +1,3 @@
-
 "use client"
 import SidebarHeading from "../SidebarHeading/SidebarHeading"
 import CustomCheckbox from "../Checkbox/Checkbox"
@@ -6,7 +5,7 @@ import { useEffect, useState } from "react"
 import localFont from "next/font/local"
 import Search from "./Search"
 import { useTranslations } from "next-intl"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { trpc } from "@/app/_trpc/client"
 import { any } from "zod"
 import { NavigateOptions } from "next/dist/shared/lib/app-router-context.shared-runtime"
@@ -33,17 +32,14 @@ const Sidebar = ({
     const [blockChains, setblockChains] = useState<string[]>(blockchainsList)
     const [gameStudio, setGameStudio] = useState<string[]>(gameStudiosList)
 
+    const pathname = usePathname()
 
-
-    // console.log(enginesList, blockchainsList, gameStudiosList);
-
-    const { replace } = router
+    const { push } = router
 
     // to store user selected engines(checkbox)
     const [selectedEngine, setSelectedEngine] = useState<string[]>([])
     const [selectedBlockChain, setSelectedBlockChain] = useState<string[]>([])
     const [selectedGameStudio, setSelectedGameStudio] = useState<string[]>([])
-
 
     const [showAllEngines, setShowAllEngines] = useState<boolean>(false)
     const [showAllGameStudios, setShowAllGameStudios] = useState<boolean>(false)
@@ -76,20 +72,10 @@ const Sidebar = ({
     const m = useTranslations("Misc")
     const s = useTranslations("Search")
 
-
-    useEffect(() => {
-        // router.push(`game?engine=${selectedEngine}&blockchain=${selectedBlockChain}&studio=${selectedGameStudio}${searchParams?.qry ? `&qry=${searchParams.qry}` : ""}`)
-
-        // let newUrl = `game?engine=${selectedEngine}&blockchain=${selectedBlockChain}&studio=${selectedGameStudio}${searchParams?.qry ? `&qry=${searchParams.qry}` : ""}`
-
-        // // window.history.replaceState(window.history.state, '', newUrl);
-
-
-        // replace(newUrl)
-        // router.refresh()
-    }, [selectedEngine, selectedBlockChain, selectedGameStudio])
-
-
+    let urlParams = "?"
+    if (searchParams?.qry) urlParams += `&qry=${searchParams.qry}`
+    if (searchParams?.network) urlParams += `&network=${searchParams.network}`
+    if (searchParams?.sort) urlParams += `&sort=${searchParams.sort}`
 
     return (
         <div className="h-full">
@@ -100,9 +86,10 @@ const Sidebar = ({
                     <button
                         className="text-blue-700 capitalize"
                         onClick={() => {
-                            setSelectedBlockChain([])
-                            setSelectedEngine([])
-                            setSelectedGameStudio([])
+                            push(pathname + urlParams)
+                            // setSelectedBlockChain([])
+                            // setSelectedEngine([])
+                            // setSelectedGameStudio([])
                         }}
                     >
                         {m("clear all")}
@@ -117,7 +104,6 @@ const Sidebar = ({
                             onClick={() => setShowEngineSearch((prev) => !prev)}
                         />
                     ) : (
-
                         <Search
                             placeholder={s("engineSearch")}
                             name={"engine"}
@@ -132,7 +118,6 @@ const Sidebar = ({
                                 )
                             }}
                         />
-
                     )}
                 </div>
                 {(engineSearchInput.trim() ? FilteredEngines : displayedEngines).map((engine, i) => (
@@ -141,7 +126,7 @@ const Sidebar = ({
                         text={engine}
                         setFunction={setSelectedEngine}
                         stateValue={selectedEngine}
-                        filterName={'engine'}
+                        filterName={"engine"}
                     />
                 ))}
                 {engineSearchInput.trim() ? (
@@ -154,8 +139,8 @@ const Sidebar = ({
                         {showAllEngines
                             ? m("showLess")
                             : remainingEnginesCount > 0
-                                ? `+${remainingEnginesCount} ${m("more")}`
-                                : ""}
+                            ? `+${remainingEnginesCount} ${m("more")}`
+                            : ""}
                     </p>
                 )}
 
@@ -168,7 +153,6 @@ const Sidebar = ({
                             onClick={() => setShowBlockChainSearch((prev) => !prev)}
                         />
                     ) : (
-
                         <Search
                             placeholder={s("blockchainSearch")}
                             name={"blockchain"}
@@ -183,10 +167,8 @@ const Sidebar = ({
                                 )
                             }}
                         />
-
                     )}
                 </div>
-
 
                 {(blockChainSearchInput.trim() ? FilteredBlockChains : displayedBlockChains).map(
                     (chain, i) => (
@@ -195,7 +177,7 @@ const Sidebar = ({
                             text={chain}
                             setFunction={setSelectedBlockChain}
                             stateValue={selectedBlockChain}
-                            filterName={'blockchain'}
+                            filterName={"blockchain"}
                         />
                     )
                 )}
@@ -209,8 +191,8 @@ const Sidebar = ({
                         {showAllBlockChains
                             ? m("showLess")
                             : remainingBlockChainsCount > 0
-                                ? `+${remainingBlockChainsCount} ${m("more")}`
-                                : ""}
+                            ? `+${remainingBlockChainsCount} ${m("more")}`
+                            : ""}
                     </p>
                 )}
                 {/* GameStudio -------------------------------------------------------------------- */}
@@ -223,8 +205,6 @@ const Sidebar = ({
                         />
                     ) : (
                         <div className="fle">
-
-
                             <Search
                                 name={"studio"}
                                 placeholder={s("gameStudioSearch")}
@@ -252,7 +232,7 @@ const Sidebar = ({
                                 text={studio}
                                 setFunction={setSelectedGameStudio}
                                 stateValue={selectedGameStudio}
-                                filterName={'studio'}
+                                filterName={"studio"}
                             />
                         )
                     )}
@@ -267,8 +247,8 @@ const Sidebar = ({
                         {showAllGameStudios
                             ? m("showLess")
                             : remainingGameStudioCount > 0
-                                ? `+${remainingGameStudioCount} ${m("more")}`
-                                : ""}
+                            ? `+${remainingGameStudioCount} ${m("more")}`
+                            : ""}
                     </p>
                 )}
             </div>
@@ -277,7 +257,6 @@ const Sidebar = ({
 }
 
 export default Sidebar
-
 
 // "use client"
 // import SidebarHeading from "../SidebarHeading/SidebarHeading"
@@ -320,7 +299,6 @@ export default Sidebar
 //     const [selectedBlockChain, setSelectedBlockChain] = useState<string[]>([])
 //     const [selectedGameStudio, setSelectedGameStudio] = useState<string[]>([])
 
-
 //     const [showAllEngines, setShowAllEngines] = useState<boolean>(false)
 //     const [showAllGameStudios, setShowAllGameStudios] = useState<boolean>(false)
 //     const [showAllBlockChains, setShowAllBlockChains] = useState<boolean>(false)
@@ -352,13 +330,10 @@ export default Sidebar
 //     const m = useTranslations("Misc")
 //     const s = useTranslations("Search")
 
-
 //     useEffect(() => {
 //         // router.push(`game?engine=${selectedEngine}&blockchain=${selectedBlockChain}&studio=${selectedGameStudio}${searchParams?.qry ? `&qry=${searchParams.qry}` : ""}`)
 //         // router.refresh()
 //     }, [selectedEngine, selectedBlockChain, selectedGameStudio])
-
-
 
 //     return (
 //         <div className="h-full">
@@ -455,7 +430,6 @@ export default Sidebar
 //                     )}
 //                 </div>
 
-
 //                 {(blockChainSearchInput.trim() ? FilteredBlockChains : displayedBlockChains).map(
 //                     (chain, i) => (
 //                         <CustomCheckbox
@@ -492,7 +466,6 @@ export default Sidebar
 //                     ) : (
 //                         <div className="fle">
 
-
 //                             <Search
 //                                 placeholder={s("gameStudioSearch")}
 //                                 reset={setSelectedGameStudio}
@@ -511,7 +484,6 @@ export default Sidebar
 //                     </button> */}
 //                         </div>
 //                     )}
-
 
 //                     {(gameStudioSearchInput.trim() ? FilteredGameStudios : displayedGameStudios).map(
 //                         (studio, i) => (
