@@ -66,6 +66,7 @@ const Event = ({ params: { locale }, searchParams }: { params: { locale: Locale 
     if (isLoading && page === 0) return <div>Loading...</div>
     if (isError) return <div>Error loading data</div>
 
+
     return (
         <>
             <div className="w-full max-w-[1200px]  flex lg:flex-row flex-col justify-between gap-x-5">
@@ -88,11 +89,11 @@ const Event = ({ params: { locale }, searchParams }: { params: { locale: Locale 
                                 game_name: any
                                 logo: any
                             }) => ({
-                                id: game.gameid,
+                                id: game?.gameid,
                                 variant: "game",
-                                tags: [game.engineid, game.gamestudioid, game.blockchainid],
-                                title: game.game_name,
-                                imageUrl: game.logo,
+                                tags: [game?.engineid, game?.gamestudioid, game?.blockchainid],
+                                title: game?.game_name,
+                                imageUrl: game?.logo,
                             })
                         )}
                     />
