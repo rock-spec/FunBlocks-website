@@ -134,7 +134,7 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
                             heading={t("relatedEvents")}
                             singleCardItemDetails={relatedEvents?.map((event: any) => ({
                                 url: event?.joinurl,
-                                id: event.eventid,
+                                id: event?.eventid,
                                 variant: "event",
                                 imageUrl: `${event.pic}?height=360&width=720`,
                                 title: event?.[`title_${locale}`] || event.title_en,

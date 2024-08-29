@@ -93,7 +93,7 @@ const HomeSearch = ({
             details: `${formatTimestamp(event?.startdate)} - ${formatTimestamp(event?.enddate)}`,
             timezone: event?.timezone,
             joinurl: event?.joinurl,
-            tags: [event?.game.gameid],
+            tags: [event?.game?.gameid],
         })) || []
 
     const options = [

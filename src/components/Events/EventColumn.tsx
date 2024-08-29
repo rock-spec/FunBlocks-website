@@ -61,7 +61,7 @@ export const EventColumn = ({
         description: event?.[`detail_${locale}`] || event?.detail_en,
         timezone: event?.timezone,
         joinurl: event?.joinurl,
-        tags: [event?.game.gameid],
+        tags: [event?.game?.gameid],
         onFirstButtonClick: () => {},
         onSecondButtonClick: () => {},
     }))
