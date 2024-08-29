@@ -114,10 +114,10 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
                             name={"videos"}
                             singleCardItemDetails={relatedVideos?.map((video: any) => ({
                                 variant: "video",
-                                id: video.videoid,
-                                imageUrl: video.media_url, //This is video url for video
-                                title: video.video_name,
-                                description: video.summary,
+                                id: video?.videoid,
+                                imageUrl: video?.media_url, //This is video url for video
+                                title: video?.video_name,
+                                description: video?.summary,
                                 tags: [],
                                 onFirstButtonClick: () => {},
                                 onSecondButtonClick: () => {},
@@ -134,11 +134,11 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
                             heading={t("relatedEvents")}
                             singleCardItemDetails={relatedEvents?.map((event: any) => ({
                                 url: event?.joinurl,
-                                id: event.eventid,
+                                id: event?.eventid,
                                 variant: "event",
                                 imageUrl: `${event.pic}?height=360&width=720`,
                                 title: event?.[`title_${locale}`] || event.title_en,
-                                details: `${formatDate(event.startdate)} - ${formatDate(event.enddate)}`,
+                                details: `${formatDate(event?.startdate)} - ${formatDate(event.enddate)}`,
                                 timezone: event?.timezone,
                                 tags: [event?.game?.gameid],
                                 onFirstButtonClick: () => {},
