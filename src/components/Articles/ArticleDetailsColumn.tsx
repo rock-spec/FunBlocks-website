@@ -48,15 +48,14 @@ export const ArticleDetailsColumn = ({
     singleCardItemDetails = relatedVideos.map((video: any) => ({
         key: video?.videoid,
         variant: "video",
-        id: video.videoid,
-        imageUrl: video.media_url, // This is video URL for video
-        title: video.video_name,
-        description: video.summary,
+        id: video?.videoid,
+        imageUrl: video?.media_url, // This is video URL for video
+        title: video?.video_name,
+        description: video?.summary,
         tags: [],
-        gameid: video.gameid,
-        date: video.publishdate,
+        gameid: video?.gameid,
+        date: video?.publishdate,
     }))
-
 
     return (
         <>
@@ -67,7 +66,9 @@ export const ArticleDetailsColumn = ({
                     }
                 >
                     <div className=" text-neutral-900 text-[28px] font-bold  leading-[33.60px] mb-[12px]">
-                        {data.article.content[`title_${locale}`] || data.article.content?.title_en}
+                        {data.article.content[`title_${locale}`] ||
+                            data.article.content?.title_en ||
+                            data.article.content?.title_zh}
                     </div>
                     <div className="flex gap-1 mb-[24px]">
                         {/* {game.length>0  && [game[0].gameid].map((tag, index) => (
@@ -87,7 +88,8 @@ export const ArticleDetailsColumn = ({
                         <h1 className="font-semibold text-xl mt-6 mb-3">{t("summary")}</h1>
                         <p className="">
                             {data?.article?.content?.[`description_${locale}`] ||
-                                data?.article?.content?.description_en}
+                                data?.article?.content?.description_en ||
+                                data?.article?.content?.description_zh}
                         </p>
                     </div>
                     <Image
@@ -101,7 +103,7 @@ export const ArticleDetailsColumn = ({
                         <MarkDownview
                             source={
                                 data?.article?.content?.[`content_${locale}`] ||
-                                data?.article?.content?.content_en
+                                data?.article?.content?.content_en || data?.article?.content?.content_zh
                             }
                         />
                     </div>

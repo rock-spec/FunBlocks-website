@@ -30,10 +30,9 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
     if (relatedData?.relatedArticles?.status === "fulfilled")
         relatedArticles = relatedData?.relatedArticles?.value
 
-
     return (
         <>
-            <div className="m-w-[895px] w-full">
+            <div className="w-[890px]">
                 <div
                     className={
                         "flex-col w-full mb-10 p-5 border border-[#161616] bg-[#FFFCF9] " + cabin.className
@@ -57,7 +56,7 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                         alt="banner"
                         height={309}
                         width={850}
-                        className="mb-[24px] w-full "
+                        className="mb-[24px] w-[850px] h-[310px] object-cover object-center"
                         src={eventDetails.pic}
                     />
 
@@ -135,10 +134,10 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                             name={"video"}
                             singleCardItemDetails={relatedVideos.map((video: any) => ({
                                 variant: "video",
-                                id: video.videoid,
-                                imageUrl: video.media_url, //This is video url for video
-                                title: video.video_name,
-                                description: video.summary,
+                                id: video?.videoid,
+                                imageUrl: video?.media_url, //This is video url for video
+                                title: video?.video_name,
+                                description: video?.summary,
                                 tags: [],
                                 onFirstButtonClick: () => {},
                                 onSecondButtonClick: () => {},

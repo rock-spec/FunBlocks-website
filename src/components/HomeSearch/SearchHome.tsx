@@ -133,35 +133,39 @@ const HomeSearch = ({
                                     />
                                     <div className="flex mb-10 gap-x-5">
                                         {/* <div className="flex flex-col flex-1 min-w-full items-start gap-5 mt-5"> */}
-                                        <div className="flex flex-col flex-1 min-w-full items-start gap-5 mt-5">
-                                            {articles?.map(
-                                                (article, index) =>
-                                                    article.content && (
-                                                        <div
-                                                            className="p-5 border min-w-full border-[#161616] bg-[#FFFCF9]"
-                                                            key={index}
-                                                        >
-                                                            <SingleCardItem
+                                        {articles && articles?.length > 0 && (
+                                            <div className="flex flex-col flex-1 min-w-full items-start gap-5 mt-5">
+                                                {articles?.map(
+                                                    (article, index) =>
+                                                        article?.content && (
+                                                            <div
+                                                                className="p-5 border min-w-full border-[#161616] bg-[#FFFCF9]"
                                                                 key={index}
-                                                                id={article?.articleid}
-                                                                variant="article"
-                                                                imageUrl={article?.content?.image}
-                                                                title={article?.content?.[`title_${locale}`]}
-                                                                description={
-                                                                    article?.content?.[
-                                                                        `description_${locale}`
-                                                                    ]
-                                                                }
-                                                                details={formatDate(article?.publishdate)}
-                                                                tags={[article?.content?.game?.gameid]}
-                                                                author={article?.content?.author?.name}
-                                                                onFirstButtonClick={() => {}}
-                                                                onSecondButtonClick={() => {}}
-                                                            />
-                                                        </div>
-                                                    )
-                                            )}
-                                        </div>
+                                                            >
+                                                                <SingleCardItem
+                                                                    key={index}
+                                                                    id={article?.articleid}
+                                                                    variant="article"
+                                                                    imageUrl={article?.content?.image}
+                                                                    title={
+                                                                        article?.content?.[`title_${locale}`]
+                                                                    }
+                                                                    description={
+                                                                        article?.content?.[
+                                                                            `description_${locale}`
+                                                                        ]
+                                                                    }
+                                                                    details={formatDate(article?.publishdate)}
+                                                                    tags={[article?.content?.game?.gameid]}
+                                                                    author={article?.content?.author?.name}
+                                                                    onFirstButtonClick={() => {}}
+                                                                    onSecondButtonClick={() => {}}
+                                                                />
+                                                            </div>
+                                                        )
+                                                )}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             )}
