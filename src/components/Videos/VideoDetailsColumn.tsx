@@ -69,9 +69,7 @@ export const VideoDetailsColumn = ({ data }: { data: any }) => {
                     <div className=" text-neutral-900 text-xl font-semibold leading-[30px] mb-3 mt-4">
                         {t("videoSummary")}
                     </div>
-                    <div className=" leading-6 tracking-[-0.32px]">
-                        {video?.summary}
-                    </div>
+                    <div className=" leading-6 tracking-[-0.32px]">{video?.summary}</div>
                 </div>
 
                 <div className="flex mb-10 gap-x-5">
@@ -80,10 +78,10 @@ export const VideoDetailsColumn = ({ data }: { data: any }) => {
                         name={"videos"}
                         singleCardItemDetails={relatedVideos.map((video: any) => ({
                             variant: "video",
-                            id: video.videoid,
-                            imageUrl: video.media_url, //This is video url for video
-                            title: video.video_name,
-                            description: video.summary,
+                            id: video?.videoid,
+                            imageUrl: video?.media_url, //This is video url for video
+                            title: video?.video_name,
+                            description: video?.summary,
                             tags: [],
                             onFirstButtonClick: () => {},
                             onSecondButtonClick: () => {},

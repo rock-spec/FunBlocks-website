@@ -77,11 +77,11 @@ const Video = ({ searchParams, params: { locale } }: { searchParams: any; params
                         buttonText={b("allGames")}
                         onButtonClick={() => {}}
                         columnItems={featuredGames?.map((game) => ({
-                            id: game.gameid,
+                            id: game?.gameid,
                             variant: "game",
-                            tags: [game.engineid, game.gamestudioid, game.blockchainid],
-                            title: game.game_name,
-                            imageUrl: game.logo,
+                            tags: [game?.engineid, game?.gamestudioid, game?.blockchainid],
+                            title: game?.game_name,
+                            imageUrl: game?.logo,
                         }))}
                     />
                 )}

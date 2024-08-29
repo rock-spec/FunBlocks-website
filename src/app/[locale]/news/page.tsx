@@ -83,11 +83,11 @@ const News = ({ params: { locale }, searchParams }: { params: { locale: Locale }
                         responsive
                         onButtonClick={() => {}}
                         columnItems={featuredGames.map((game) => ({
-                            id: game.gameid,
+                            id: game?.gameid,
                             variant: "game",
-                            tags: [game.engineid, game.gamestudioid, game.blockchainid],
-                            title: game.game_name,
-                            imageUrl: game.logo,
+                            tags: [game?.engineid, game?.gamestudioid, game?.blockchainid],
+                            title: game?.game_name,
+                            imageUrl: game?.logo,
                         }))}
                     />
                 )}

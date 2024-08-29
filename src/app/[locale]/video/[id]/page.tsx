@@ -39,11 +39,11 @@ const VideoDetails = async ({ params }: { params: { id: string; locale: Locale }
                     responsive
                     onButtonClick={() => {}}
                     columnItems={game?.map((game) => ({
-                        id: game.gameid,
+                        id: game?.gameid,
                         variant: "game",
-                        tags: [game.engineid, game.gamestudioid],
-                        title: game.game_name,
-                        imageUrl: game.logo,
+                        tags: [game?.engineid, game?.gamestudioid],
+                        title: game?.game_name,
+                        imageUrl: game?.logo,
                     }))}
                 />
                 {/* for space between them */}
@@ -58,7 +58,9 @@ const VideoDetails = async ({ params }: { params: { id: string; locale: Locale }
                             id: article?.articles?.articleid,
                             variant: "article",
                             tags: ["test"],
-                            title: article?.articles?.content?.[`title_${locale}`] || article?.articles?.content?.title_en,
+                            title:
+                                article?.articles?.content?.[`title_${locale}`] ||
+                                article?.articles?.content?.title_en,
                             imageUrl: article?.articles?.content?.image,
                         }))}
                     />

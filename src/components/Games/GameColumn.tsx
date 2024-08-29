@@ -19,12 +19,12 @@ export const GameColumn = (data: any) => {
         // Filter the gameArray based on the search string
         return gameArray.filter((game) => {
             return (
-                game?.gameid?.toLowerCase().includes(searchString.toLowerCase()) ||
-                game?.game_name?.toLowerCase().includes(searchString.toLowerCase()) ||
-                game?.game_desc?.toLowerCase().includes(searchString.toLowerCase()) ||
-                game?.gamestudioid?.toLowerCase().includes(searchString.toLowerCase()) ||
-                game?.blockchainid?.toLowerCase().includes(searchString.toLowerCase()) ||
-                game?.game?.gamestudioid?.toLowerCase().includes(searchString.toLowerCase())
+                game?.gameid?.toLowerCase().includes(searchString?.toLowerCase()) ||
+                game?.game_name?.toLowerCase().includes(searchString?.toLowerCase()) ||
+                game?.game_desc?.toLowerCase().includes(searchString?.toLowerCase()) ||
+                game?.gamestudioid?.toLowerCase().includes(searchString?.toLowerCase()) ||
+                game?.blockchainid?.toLowerCase().includes(searchString?.toLowerCase()) ||
+                game?.game?.gamestudioid?.toLowerCase().includes(searchString?.toLowerCase())
             )
         })
     }
@@ -49,7 +49,7 @@ export const GameColumn = (data: any) => {
     }
 
     useEffect(() => {
-        setGameFilterData(data.data)
+        setGameFilterData(data?.data)
     }, [data])
 
     return (

@@ -38,11 +38,11 @@ const NewsDetails = async ({ params }: { params: { id: string; locale: Locale } 
                     responsive
                     onButtonClick={() => {}}
                     columnItems={game.map((game) => ({
-                        id: game.gameid,
+                        id: game?.gameid,
                         variant: "game",
-                        tags: [game.engineid, game.gamestudioid, game.blockchainid],
-                        title: game.game_name,
-                        imageUrl: game.pic,
+                        tags: [game?.engineid, game?.gamestudioid, game?.blockchainid],
+                        title: game?.game_name,
+                        imageUrl: game?.pic,
                     }))}
                 />
                 {/* for space between them */}

@@ -198,15 +198,16 @@ export const EngineDetailColumn = ({
                             heading={t("relatedArticles")}
                             singleCardItemDetails={relatedArticles.map((article: any) => ({
                                 variant: "article",
-                                id: article.articleid,
-                                imageUrl: `${article.content.image}?height=360&width=720`,
-                                title: article.content?.[`title_${locale}`] || article.content?.[`title_en`],
+                                id: article?.articleid,
+                                imageUrl: `${article?.content.image}?height=360&width=720`,
+                                title:
+                                    article?.content?.[`title_${locale}`] || article?.content?.[`title_en`],
                                 description:
-                                    article.content?.[`description_${locale}`] ||
-                                    article.content?.[`description_en`],
+                                    article?.content?.[`description_${locale}`] ||
+                                    article?.content?.[`description_en`],
                                 details: formatDate(article?.publishdate),
-                                tags: [article.content?.game?.gameid],
-                                author: article.content.author.name,
+                                tags: [article?.content?.game?.gameid],
+                                author: article?.content?.author?.name,
                                 onFirstButtonClick: () => {},
                                 onSecondButtonClick: () => {},
                             }))}
