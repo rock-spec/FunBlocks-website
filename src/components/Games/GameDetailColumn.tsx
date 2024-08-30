@@ -140,6 +140,7 @@ export const GameDetailColumn = async ({ data, locale }: { data: any; locale: Lo
                                 title: event?.[`title_${locale}`] || event.title_en,
                                 details: `${formatDate(event?.startdate)} - ${formatDate(event.enddate)}`,
                                 timezone: event?.timezone?.split(":")[0],
+
                                 tags: [event?.game?.gameid],
                                 onFirstButtonClick: () => {},
                                 onSecondButtonClick: () => {},

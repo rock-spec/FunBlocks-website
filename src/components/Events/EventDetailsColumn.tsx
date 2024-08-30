@@ -21,6 +21,7 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
     let game = data?.relatedData?.relatedGames
     const relatedArticles = data?.relatedData?.relatedArticles
 
+
     return (
         <>
             <div className="w-[890px]">
