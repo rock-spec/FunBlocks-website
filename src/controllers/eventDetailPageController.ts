@@ -35,6 +35,7 @@ const getRelatedArticles = async (event_id: string, locale: Locale) => {
     if (error) {
         throw new Error("Error fetching articles: " + error.message)
     }
+
     return data || []
 }
 
