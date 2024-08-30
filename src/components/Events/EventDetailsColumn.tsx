@@ -17,18 +17,9 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
 
     const eventDetails = data?.event
 
-    const relatedGame = data?.relatedData?.game[0]
-    // const relatedArticles = data?.relatedData?.relatedArticles
     const relatedVideos = data?.relatedData?.relatedVideos
-
-    const relatedData = data?.relatedData
-
-    let game: any[] = []
-    if (relatedData?.game?.status === "fulfilled") game = relatedData?.game?.value
-
-    let relatedArticles: any[] = []
-    if (relatedData?.relatedArticles?.status === "fulfilled")
-        relatedArticles = relatedData?.relatedArticles?.value
+    let game = data?.relatedData?.relatedGames
+    const relatedArticles = data?.relatedData?.relatedArticles
 
     return (
         <>
@@ -102,24 +93,22 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                         {eventDetails?.[`detail_${locale}`] || eventDetails.detail_en}
                     </div>
                 </div>
-                {relatedArticles.length > 0 && (
+                {relatedArticles?.length > 0 && (
                     <div className="flex mb-10 gap-x-5">
                         <SingleCard
                             heading={t("relatedArticles")}
                             name={"article"}
-                            singleCardItemDetails={relatedArticles.map((article: any) => ({
-                                id: article?.articles?.articleid,
+                            singleCardItemDetails={relatedArticles?.map((article: any) => ({
+                                id: article?.articleid,
                                 variant: "article",
-                                imageUrl: `${article?.articles?.content?.image}?height=360&width=720`,
-                                title:
-                                    article?.articles?.content?.[`title_${locale}`] ||
-                                    article?.articles?.content?.title_en,
+                                imageUrl: `${article?.content?.image}?height=360&width=720`,
+                                title: article?.content?.[`title_${locale}`] || article?.content?.title_en,
                                 description:
-                                    article?.articles?.content?.[`description_${locale}`] ||
-                                    article?.articles?.content?.description_en,
-                                details: formatDate(article?.articles?.publishdate),
-                                tags: [article?.articles?.content?.game?.gameid],
-                                author: article?.articles?.content?.author?.name,
+                                    article?.content?.[`description_${locale}`] ||
+                                    article?.content?.description_en,
+                                details: formatDate(article?.publishdate),
+                                tags: [article?.content?.game?.gameid],
+                                author: article?.content?.author?.name,
                                 onFirstButtonClick: () => {},
                                 onSecondButtonClick: () => {},
                             }))}
@@ -127,12 +116,12 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                         />
                     </div>
                 )}
-                {relatedVideos.length > 0 && (
+                {relatedVideos?.length > 0 && (
                     <div className="flex mb-10 gap-x-5">
                         <SingleCard
                             heading={t("relatedVideos")}
                             name={"video"}
-                            singleCardItemDetails={relatedVideos.map((video: any) => ({
+                            singleCardItemDetails={relatedVideos?.map((video: any) => ({
                                 variant: "video",
                                 id: video?.videoid,
                                 imageUrl: video?.media_url, //This is video url for video
