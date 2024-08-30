@@ -20,7 +20,6 @@ const BlueButton = ({
     bg?: string
     bg_hover?: string
 }) => {
-
     return (
         <button
             className={`${height} ${width} flex justify-center items-center text-white text-lg  bg-cover bg-no-repeat ${bg} ${bg_hover} ${OffBit.className} leading-normal `}
