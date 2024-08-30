@@ -38,7 +38,7 @@ export const NewsColumn = ({
         description: news?.content[`description_${locale}`] || news?.content?.description_en,
         details: formatDate(news?.publishdate),
         tags: [news?.content?.game?.gameid],
-        author: news?.content?.author?.name,
+        author: news?.content?.author?.name || "",
         onFirstButtonClick: () => {},
         onSecondButtonClick: () => {},
     }))

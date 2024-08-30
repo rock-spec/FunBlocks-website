@@ -46,7 +46,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         timezone = "",
         joinurl,
     } = props
-
+    console.log(variant)
 
     return (
         <div className="flex md:flex-row  flex-col items-start gap-x-6 w-full  ">
@@ -112,12 +112,15 @@ const SingleCardItem = (props: SingleCardItemProps) => {
                                 ))}
                             </div>
                         )}
-
                         <div className="justify-start md:items-center gap-2 flex md:flex-row flex-col ">
-                            <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px] capitalize">
-                                By {author ? author : "Editor"}
-                            </div>
-                            <div className="w-[5px] h-[5px] hidden md:block  opacity-80 bg-neutral-900" />
+                            {variant !== "news" && (
+                                <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px] capitalize">
+                                    By {author ? author : "Editor"}
+                                </div>
+                            )}
+                            {variant !== "news" && (
+                                <div className="w-[5px] h-[5px] hidden md:block  opacity-80 bg-neutral-900" />
+                            )}
                             <div className="text-neutral-900 text-opacity-80 text-sm font-normal  leading-[16.80px]">
                                 {details}
                             </div>
