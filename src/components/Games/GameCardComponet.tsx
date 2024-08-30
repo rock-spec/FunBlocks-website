@@ -40,7 +40,7 @@ const GameCardComponet = (props: GameCardComponentProps) => {
                             layout="fixed"
                             objectFit="cover"
                             objectPosition="center"
-                            className="object-cover h-[187px] aspect-video"
+                            className="object-cover h-[187px] aspect-video "
                         />
                         <div className="absolute flex items-center top-3 left-3">
                             {engine_logo && (

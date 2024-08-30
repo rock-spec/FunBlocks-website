@@ -20,7 +20,7 @@ const SearchInput = (props: SearchInputProps) => {
     const pathname = usePathname()
     const router = useRouter()
     const inputRef = useRef<HTMLInputElement>(null)
-    const { varient = "dark", placeholder = "Search for anything", searchParams, locale } = props
+    const { varient = "dark", placeholder = "Search for anything", searchParams, locale, component } = props
 
     useEffect(() => {
         if (pathname) setPath(pathname?.split("/")[2])
@@ -74,7 +74,13 @@ const SearchInput = (props: SearchInputProps) => {
     const handleInputChange = () => {
         if (inputRef.current) {
             setQuery(inputRef.current.value)
-            debouncedSearch()
+            if (component && component === "navbar") debouncedSearch()
+        }
+    }
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            handleSearchClick()
         }
     }
 
@@ -93,6 +99,7 @@ const SearchInput = (props: SearchInputProps) => {
                 placeholder={placeholder}
                 style={{ padding: "0", height: "22px" }} // Inline style for exact height
                 onChange={handleInputChange} // Call the input change handler
+                onKeyDown={handleKeyDown} // Call the keydown handler for "Enter" key
             />
             <Image
                 className="cursor-pointer"

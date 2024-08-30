@@ -83,7 +83,7 @@ export const EventDetailsColumn = ({ data, locale }: { data: any; locale: Locale
                         </div>
                         <div className="w-[5px] h-[5px] opacity-80 bg-neutral-900" />
                         <div className="opacity-80 text-neutral-900 text-sm font-normal  leading-[16.80px]">
-                            {eventDetails.timezone}
+                            {eventDetails?.timezone?.split(":")[0]}
                         </div>
                     </div>
                     <div className="justify-start items-center gap-2 flex mt-2">

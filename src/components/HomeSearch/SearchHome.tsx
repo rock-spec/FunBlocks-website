@@ -89,9 +89,9 @@ const HomeSearch = ({
             id: event?.eventid,
             variant: "event",
             imageUrl: `${event?.pic}?height=360&width=720`,
-            title: event?.title,
+            title: event?.[`title_${locale}`],
             details: `${formatTimestamp(event?.startdate)} - ${formatTimestamp(event?.enddate)}`,
-            timezone: event?.timezone,
+            timezone: event?.timezone?.split(":")[0],
             joinurl: event?.joinurl,
             tags: [event?.game?.gameid],
         })) || []
@@ -121,7 +121,7 @@ const HomeSearch = ({
                 {data.isFetched ? (
                     <div className="w-full max-w-[1000px] flex lg:flex-row flex-col justify-between gap-x-5">
                         {/* mainCoulumn  */}
-                        <div className="min-w-[895px] w-full ">
+                        <div className="max-w-[890px] ">
                             {/* Related Articles Section  */}
                             {(selectedSection === "ALL" || selectedSection === "ARTICLES") && (
                                 <div>
