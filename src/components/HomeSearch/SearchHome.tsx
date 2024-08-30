@@ -238,7 +238,7 @@ const HomeSearch = ({
                                                             }
                                                             details={formatDate(news?.publishdate)}
                                                             tags={[news?.content?.game?.gameid]}
-                                                            author={news?.content?.author?.name}
+                                                            author={news?.content?.author?.name || ""}
                                                             onFirstButtonClick={() => {}}
                                                             onSecondButtonClick={() => {}}
                                                         />

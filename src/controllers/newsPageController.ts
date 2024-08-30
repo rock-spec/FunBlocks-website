@@ -19,7 +19,7 @@ const getAllNews = async (filter: filterSchema) => {
     let queryBuilder = supabase
         .from("news")
         .select(
-            `newsid,publishdate, category(*), content(title_en, title_zh, description_en, description_zh, image, author(name),game(gameid,engineid,gamestudioid,blockchainid))`
+            `newsid,publishdate, content(title_en, title_zh, description_en, description_zh, image,game(gameid,engineid,gamestudioid,blockchainid))`
         )
         .not(`content.title_${locale}`, "is", null)
         .not("content", "is", null)
@@ -28,12 +28,13 @@ const getAllNews = async (filter: filterSchema) => {
     if (sort) queryBuilder = queryBuilder.order("publishdate", { ascending: false })
     queryBuilder = queryBuilder.range(page * pageSize, (page + 1) * pageSize - 1)
 
-    const { data, error } = await queryBuilder
+    const { data, error } = await queryBuilder    
     if (error) throw new Error("Error fetching articles: " + error.message)
     if (query) {
         const filteredData = data.filter((item) => item.content !== null)
         return filteredData || []
     }
+
     return data || []
 }
 

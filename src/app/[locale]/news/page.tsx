@@ -39,7 +39,7 @@ const News = ({ params: { locale }, searchParams }: { params: { locale: Locale }
     }
 
     // const data = await trpcServer().newsData(filters)
-    const { data, isLoading, isError } = trpc.newsData.useQuery(filters)
+    const { data, isLoading, isError, error } = trpc.newsData.useQuery(filters)
 
     useEffect(() => {
         setPage(0)
