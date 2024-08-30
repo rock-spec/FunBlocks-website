@@ -14,8 +14,9 @@ const EventDetails = async ({ params }: { params: { id: string; locale: Locale }
     const n = await getTranslations("Navbar")
 
     const data = await trpcServer().eventDetailsData({ id, locale })
-    const games = data?.relatedData?.relatedGames
-    const news = data?.relatedData?.relatedNews
+    const games = data?.relatedData?.relatedGames || []
+    const news = data?.relatedData?.relatedNews || []
+
 
     return (
         <div className="w-full max-w-[1200px] flex lg:flex-row flex-col justify-between gap-x-5">
@@ -28,7 +29,7 @@ const EventDetails = async ({ params }: { params: { id: string; locale: Locale }
                     responsive
                     title={t("relatedGames")}
                     onButtonClick={() => {}}
-                    columnItems={games.map((game) => ({
+                    columnItems={games?.map((game) => ({
                         id: game.gameid,
                         variant: "game",
                         tags: [game.engineid, game.gamestudioid],
@@ -38,7 +39,7 @@ const EventDetails = async ({ params }: { params: { id: string; locale: Locale }
                 />
                 {/* for space between them */}
                 <div className="h-[24px] w-full"></div>
-                {news.length > 0 && (
+                {news?.length > 0 && (
                     <Column
                         variant="news"
                         responsive

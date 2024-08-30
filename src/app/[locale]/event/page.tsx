@@ -67,7 +67,6 @@ const Event = ({ params: { locale }, searchParams }: { params: { locale: Locale 
     if (isLoading && page === 0) return <div>Loading...</div>
     if (isError) return <div>Error loading data</div>
 
-
     return (
         <>
             <div className="w-full max-w-[1200px]  flex lg:flex-row flex-col justify-between gap-x-5">
