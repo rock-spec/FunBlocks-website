@@ -28,11 +28,13 @@ interface FilterOptions {
 const Game = ({ params: { locale }, searchParams }: { params: { locale: Locale }; searchParams: any }) => {
     const b = useTranslations("Buttons")
     const s = useTranslations("Search")
+    const n = useTranslations("Navbar")
 
     const sortOptions = [{ name: b("date"), value: "date" }]
     const networkOptions = [
         { value: "mainnet", name: b("mainnet") },
         { value: "testnet", name: b("testnet") },
+        { value: "all", name: n("all") },
     ]
 
     const [page, setPage] = useState(0)

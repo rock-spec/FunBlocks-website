@@ -24,7 +24,7 @@ const getAllEvents = async (filter: filterSchema) => {
         .select("*,game(gameid,engineid,gamestudioid,blockchainid)")
         .not(`title_${locale}`, "is", null)
     if (categoryid) queryBuilder = queryBuilder.eq("category", categoryid)
-    if (query) queryBuilder = queryBuilder.ilike(`title`, `%${query}%`)
+    if (query) queryBuilder = queryBuilder.ilike(`title_${locale}`, `%${query}%`)
     if (type) queryBuilder = queryBuilder.eq("type", type)
     queryBuilder = queryBuilder.range(page * pageSize, (page + 1) * pageSize - 1)
 

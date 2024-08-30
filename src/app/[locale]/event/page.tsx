@@ -42,7 +42,7 @@ const Event = ({ params: { locale }, searchParams }: { params: { locale: Locale 
         locale,
     }
 
-    const { data, isLoading, isError } = trpc.eventData.useQuery(filters)
+    const { data, isLoading, isError, error } = trpc.eventData.useQuery(filters)
 
     useEffect(() => {
         setPage(0)
@@ -62,6 +62,7 @@ const Event = ({ params: { locale }, searchParams }: { params: { locale: Locale 
     const loadMore = () => {
         setPage((prev) => prev + 1)
     }
+
 
     if (isLoading && page === 0) return <div>Loading...</div>
     if (isError) return <div>Error loading data</div>

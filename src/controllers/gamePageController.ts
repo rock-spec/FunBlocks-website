@@ -55,7 +55,7 @@ export const getGames = async (filters: FilterOptions) => {
     if (combinedConditions) queryBuilder = queryBuilder.or(combinedConditions)
     if (searchQuery) queryBuilder = queryBuilder.ilike("game_name", `%${searchQuery}%`)
     // if (sort) queryBuilder = queryBuilder.order("game_name", { ascending: sort === "A-Z" })
-    if (network) queryBuilder = queryBuilder.ilike("testnet_or_mainnet", network)
+    if (network && network !== "all") queryBuilder = queryBuilder.ilike("testnet_or_mainnet", network)
     if (sort) queryBuilder = queryBuilder.order("publishdate", { ascending: false })
     queryBuilder = queryBuilder.range(page * pageSize, (page + 1) * pageSize - 1)
     const { data, error } = await queryBuilder
