@@ -47,6 +47,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         joinurl,
     } = props
 
+
     return (
         <div className="flex md:flex-row  flex-col items-start gap-x-6 w-full  ">
             {/* First Column: Image */}
