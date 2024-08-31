@@ -46,7 +46,7 @@ const SingleCardItem = (props: SingleCardItemProps) => {
         timezone = "",
         joinurl,
     } = props
-    console.log(variant)
+
 
     return (
         <div className="flex md:flex-row  flex-col items-start gap-x-6 w-full  ">
