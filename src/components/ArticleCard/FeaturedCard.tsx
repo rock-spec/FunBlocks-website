@@ -15,7 +15,6 @@ export interface FeaturedCardProps {
 const FeaturedCard = (props: FeaturedCardProps) => {
     const { imageUrl, title, tags, id, url } = props
 
-    const defaultTags = ["Hot Topic", "Trending", "Must Read"]
 
     return (
         <Link href={url} className="" target="_blank">
@@ -33,12 +32,13 @@ const FeaturedCard = (props: FeaturedCardProps) => {
                 <div className="self-stretch overflow-hidden text-nero text-lg font-bold leading-[22px]  line-clamp-2 ">
                     {title}
                 </div>
-
-                <div className="flex gap-x-1 mt-auto w-full overflow-hidden">
-                    {(tags.length > 0 ? tags : defaultTags).map((tag, index) => (
-                        <Tag text={tag} key={index} type={"justTag"} />
-                    ))}
-                </div>
+                {tags && tags?.length > 0 && (
+                    <div className="flex gap-x-1 mt-auto w-full overflow-hidden">
+                        {tags?.map((tag, index) => (
+                            <Tag text={tag} key={index} type={"justTag"} />
+                        ))}
+                    </div>
+                )}
             </div>
         </Link>
     )
